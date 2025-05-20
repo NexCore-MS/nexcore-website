@@ -48,12 +48,12 @@
     }
     section {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(30px) scale(0.95);
       transition: all 0.8s ease-out;
     }
     section.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
     .hero {
       display: flex;
@@ -213,24 +213,13 @@
 
   
 
-  <section id="stats" class="section">
-    <h3>Server Stats</h3>
-    <p>Our community is growing fast — here’s a quick look at where NexCore stands.</p>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem;">
-      <div class="stat-box" style="background:#111; border-radius: 15px; padding: 2rem 3rem; box-shadow: 0 6px 20px rgba(0,0,0,0.3); min-width: 200px;">
-        <h2 style="font-size: 2.5rem; color: #8e2de2;" id="players">0</h2>
-        <p>Registered Players</p>
-      </div>
-      <div class="stat-box" style="background:#111; border-radius: 15px; padding: 2rem 3rem; box-shadow: 0 6px 20px rgba(0,0,0,0.3); min-width: 200px;">
-        <h2 style="font-size: 2.5rem; color: #8e2de2;" id="builds">0</h2>
-        <p>Unique Builds</p>
-      </div>
-      <div class="stat-box" style="background:#111; border-radius: 15px; padding: 2rem 3rem; box-shadow: 0 6px 20px rgba(0,0,0,0.3); min-width: 200px;">
-        <h2 style="font-size: 2.5rem; color: #8e2de2;" id="uptime">0%</h2>
-        <p>Server Uptime</p>
-      </div>
-    </div>
-  </section>
+  
+
+<section style="height: 80vh; background: url('assets/images/parallax-banner.jpg') center/cover no-repeat fixed; display: flex; align-items: center; justify-content: center; text-align: center;">
+  <h2 style="font-size: 2.5rem; font-weight: 800; color: white; background: rgba(0,0,0,0.5); padding: 1rem 2rem; border-radius: 15px;">Build Beyond Limits. NexCore is just the beginning.</h2>
+</section>
+
+
 
   
 
