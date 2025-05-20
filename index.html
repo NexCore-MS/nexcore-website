@@ -211,16 +211,52 @@
     </ul>
   </section>
 
-  <section id="gallery" class="section">
-    <h3>Featured Builds</h3>
-    <p>Check out what our players are creating. These are only the beginning — imagine what you'll build here.</p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; max-width: 900px; margin: 2rem auto;">
-      <img src="assets/images/build1.jpg" alt="Build 1" style="width:100%; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
-      <img src="assets/images/build2.jpg" alt="Build 2" style="width:100%; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
-      <img src="assets/images/build3.jpg" alt="Build 3" style="width:100%; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+  
+
+  <section id="stats" class="section">
+    <h3>Server Stats</h3>
+    <p>Our community is growing fast — here’s a quick look at where NexCore stands.</p>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem;">
+      <div class="stat-box" style="background:#111; border-radius: 15px; padding: 2rem 3rem; box-shadow: 0 6px 20px rgba(0,0,0,0.3); min-width: 200px;">
+        <h2 style="font-size: 2.5rem; color: #8e2de2;" id="players">0</h2>
+        <p>Registered Players</p>
+      </div>
+      <div class="stat-box" style="background:#111; border-radius: 15px; padding: 2rem 3rem; box-shadow: 0 6px 20px rgba(0,0,0,0.3); min-width: 200px;">
+        <h2 style="font-size: 2.5rem; color: #8e2de2;" id="builds">0</h2>
+        <p>Unique Builds</p>
+      </div>
+      <div class="stat-box" style="background:#111; border-radius: 15px; padding: 2rem 3rem; box-shadow: 0 6px 20px rgba(0,0,0,0.3); min-width: 200px;">
+        <h2 style="font-size: 2.5rem; color: #8e2de2;" id="uptime">0%</h2>
+        <p>Server Uptime</p>
+      </div>
     </div>
-    <p style="margin-top: 1.5rem; color: #777; font-style: italic;">Want your build featured here? Join the Discord and share it with us!</p>
   </section>
+
+  
+
+  <script>
+    // Animated counter
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      let startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        obj.textContent = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      }
+      window.requestAnimationFrame(step);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      animateValue('players', 0, 312, 1500);
+      animateValue('builds', 0, 58, 1500);
+      animateValue('uptime', 0, 100, 2000);
+    });
+  </script>
 
   
 
