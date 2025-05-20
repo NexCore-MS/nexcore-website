@@ -144,22 +144,24 @@
     }
   </style>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('section');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
       });
-      sections.forEach(section => {
-        observer.observe(section);
-      });
+    }, {
+      threshold: 0.25
     });
-  </script>
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  });
+</script>
 </head>
 <body>
   <header>
