@@ -2,116 +2,151 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NexCore Minecraft Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexCore SMP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-
-    body {
+    * {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(to bottom right, #0f0f0f, #1c001a);
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #000;
       color: #fff;
-      text-align: center;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
-
     header {
-      padding: 5vh 2rem 2rem;
-      animation: glow 4s ease-in-out infinite alternate;
-    }
-
-    h1 {
-      font-size: 3.5rem;
-      color: #c400ff;
-      margin: 0;
-    }
-
-    p.subtitle {
-      color: #aaa;
-      font-size: 1.2rem;
-      margin-bottom: 3rem;
-    }
-
-    .ip-box {
-      background: #1a001a;
-      border: 1px solid #c400ff;
-      border-radius: 10px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 1rem 2rem;
-      display: inline-block;
-      font-size: 1.4rem;
+      z-index: 1000;
+    }
+    header h1 {
+      font-weight: 800;
+      font-size: 1.5rem;
       color: #fff;
+    }
+    nav a {
+      color: #aaa;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+      transition: background 0.5s ease;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    .cta-btn {
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(to right, #8e2de2, #4a00e0);
+      color: white;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
-    .ip-box:hover {
-      background: #2d0030;
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(142, 45, 226, 0.4);
     }
-
-    .copied {
-      color: #00ffb3;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
+    .section {
+      padding: 6rem 2rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
     }
-
-    .discord-widget {
-      margin-top: 4rem;
+    .section h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
-
+    .section p {
+      color: #bbb;
+      font-size: 1rem;
+    }
     footer {
-      margin-top: 5rem;
-      padding: 1rem;
+      padding: 2rem;
+      text-align: center;
       font-size: 0.9rem;
-      color: #555;
+      color: #666;
+      border-top: 1px solid #222;
     }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #c400ff, 0 0 20px #c400ff;
-      }
-      to {
-        text-shadow: 0 0 20px #ff00e0, 0 0 30px #ff00e0;
-      }
-    }
-
     @media (max-width: 768px) {
-      h1 {
-        font-size: 2.5rem;
+      .hero h2 {
+        font-size: 2.2rem;
       }
-
-      .ip-box {
+      .hero p {
         font-size: 1rem;
-        padding: 0.8rem 1.5rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Welcome to NexCore</h1>
-    <p class="subtitle">A Cyberpunk-Themed Minecraft SMP</p>
-    <div class="ip-box" onclick="copyIP()">play.nexcore.top</div>
-    <div class="copied" id="copyConfirm" style="display: none;">Copied to clipboard!</div>
+    <h1>NexCore</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#join">Join</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <div class="discord-widget">
-    <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-  </div>
+  <section class="hero">
+    <h2>Welcome to NexCore SMP</h2>
+    <p>A cyberpunk-inspired Minecraft experience. Smooth. Stable. Stylish.</p>
+    <button class="cta-btn" onclick="window.location.href='minecraft://?addExternalServer=NexCore|play.nexcore.top'">Join Server</button>
+  </section>
+
+  <section id="about" class="section">
+    <h3>Why NexCore?</h3>
+    <p>Built by players, for players. Our SMP server combines elegant performance, quality plugins, and a sleek aesthetic to give you the smoothest Minecraft experience possible.</p>
+  </section>
+
+  <section id="join" class="section">
+    <h3>How to Join</h3>
+    <p>Add <strong>play.nexcore.top</strong> to your Minecraft server list. Compatible with latest Java version.</p>
+  </section>
+
+  <section id="contact" class="section">
+    <h3>Get in Touch</h3>
+    <p>Need help or want to chat? Join our <a href="https://discord.gg/yourdiscordlink" style="color:#8e2de2; text-decoration:none;">Discord</a> community.</p>
+  </section>
 
   <footer>
-    &copy; 2025 NexCore SMP. All rights reserved.
+    &copy; 2025 NexCore SMP. Designed with style.
   </footer>
-
-  <script>
-    function copyIP() {
-      navigator.clipboard.writeText("play.nexcore.top").then(() => {
-        document.getElementById("copyConfirm").style.display = "block";
-        setTimeout(() => {
-          document.getElementById("copyConfirm").style.display = "none";
-        }, 2000);
-      });
-    }
-  </script>
 </body>
 </html>
