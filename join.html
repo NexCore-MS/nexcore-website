@@ -22,38 +22,58 @@
     p {
       font-size: 1.2rem;
       color: #ccc;
-      margin-bottom: 2rem;
     }
     .info-box {
-      background: #111;
+      margin: 2rem auto;
       padding: 2rem;
-      border-radius: 20px;
-      display: inline-block;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      max-width: 500px;
+      background: #111;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
-    .info-box p {
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
-    }
-    .back-link {
-      display: block;
-      margin-top: 3rem;
+    .info-box strong {
+      font-size: 1.4rem;
       color: #8e2de2;
-      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #8e2de2;
       text-decoration: none;
+      font-weight: 600;
+    }
+    .back {
+      margin-top: 3rem;
+      display: inline-block;
+      color: #aaa;
+    }
+    iframe {
+      margin-top: 3rem;
+      border-radius: 12px;
     }
   </style>
 </head>
 <body>
   <h1>Join NexCore</h1>
-  <p>Connect to our network and begin your journey.</p>
+  <p>Your next adventure is one click away.</p>
 
   <div class="info-box">
-    <p><strong>Server IP:</strong> <code>nexcore.top</code></p>
-    <p><strong>Platform:</strong> Java Edition (latest version)</p>
-    <p><strong>Discord:</strong> <a href="https://discord.gg/VAjz44fRAJ" style="color:#8e2de2;">Join Here</a></p>
+    <strong>Server IP:</strong>
+    <p>nexcore.top</p>
   </div>
 
-  <a href="index.html" class="back-link">&larr; Back to Home</a>
+  <div class="info-box">
+    <strong>Discord:</strong>
+    <p><a href="https://discord.gg/VAjz44fRAJ">Click here to join our Discord</a></p>
+  </div>
+
+  <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark"
+          width="100%" height="400"
+          allowtransparency="true"
+          frameborder="0"
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+  </iframe>
+
+  <a class="back" href="index.html">&larr; Back to Home</a>
 </body>
 </html>
