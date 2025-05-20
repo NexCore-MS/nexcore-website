@@ -2,39 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NexCore Minecraft Server</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #0d0d0d;
-      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom right, #0f0f0f, #1c001a);
+      color: #fff;
       text-align: center;
+      overflow-x: hidden;
     }
+
+    header {
+      padding: 5vh 2rem 2rem;
+      animation: glow 4s ease-in-out infinite alternate;
+    }
+
     h1 {
+      font-size: 3.5rem;
       color: #c400ff;
-      font-size: 3rem;
-      margin-top: 2rem;
+      margin: 0;
     }
-    p {
+
+    p.subtitle {
+      color: #aaa;
       font-size: 1.2rem;
-      margin: 1rem;
+      margin-bottom: 3rem;
     }
-    .ip {
-      font-size: 1.5rem;
-      background-color: #1a1a1a;
-      padding: 1rem;
-      border-radius: 8px;
+
+    .ip-box {
+      background: #1a001a;
+      border: 1px solid #c400ff;
+      border-radius: 10px;
+      padding: 1rem 2rem;
       display: inline-block;
-      margin-top: 2rem;
+      font-size: 1.4rem;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .ip-box:hover {
+      background: #2d0030;
+    }
+
+    .copied {
+      color: #00ffb3;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .discord-widget {
+      margin-top: 4rem;
+    }
+
+    footer {
+      margin-top: 5rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #c400ff, 0 0 20px #c400ff;
+      }
+      to {
+        text-shadow: 0 0 20px #ff00e0, 0 0 30px #ff00e0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .ip-box {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to NexCore</h1>
-  <p>Cyberpunk-themed Minecraft SMP</p>
-  <div class="ip">IP: play.nexcore.net</div>
+  <header>
+    <h1>Welcome to NexCore</h1>
+    <p class="subtitle">A Cyberpunk-Themed Minecraft SMP</p>
+    <div class="ip-box" onclick="copyIP()">play.nexcore.top</div>
+    <div class="copied" id="copyConfirm" style="display: none;">Copied to clipboard!</div>
+  </header>
+
+  <div class="discord-widget">
+    <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+  </div>
+
+  <footer>
+    &copy; 2025 NexCore SMP. All rights reserved.
+  </footer>
+
+  <script>
+    function copyIP() {
+      navigator.clipboard.writeText("play.nexcore.top").then(() => {
+        document.getElementById("copyConfirm").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("copyConfirm").style.display = "none";
+        }, 2000);
+      });
+    }
+  </script>
 </body>
 </html>
