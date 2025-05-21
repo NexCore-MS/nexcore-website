@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Join NexCore</title>
+  <title>Join | NexCore</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -11,69 +11,154 @@
       background: #000;
       color: #fff;
       font-family: 'Inter', sans-serif;
-      text-align: center;
-      padding: 5rem 2rem;
+      overflow-x: hidden;
     }
-    h1 {
-      font-size: 3rem;
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    header h1 {
+      font-size: 1.5rem;
       font-weight: 800;
-      margin-bottom: 1rem;
     }
-    p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-    .info-box {
-      margin: 2rem auto;
-      padding: 2rem;
-      max-width: 500px;
-      background: #111;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-    .info-box strong {
-      font-size: 1.4rem;
-      color: #8e2de2;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    a {
-      color: #8e2de2;
+    nav a {
+      color: #aaa;
+      margin-left: 1.5rem;
       text-decoration: none;
       font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
     }
-    .back {
-      margin-top: 3rem;
-      display: inline-block;
-      color: #aaa;
+    nav a:hover {
+      color: #fff;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    .section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .section p {
+      color: #bbb;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      text-align: center;
+    }
+    .info-box {
+      background: #111;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .info-box code {
+      font-size: 1.2rem;
+      background: #222;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      color: #fff;
     }
     iframe {
-      margin-top: 3rem;
+      border: none;
+      width: 100%;
+      height: 400px;
       border-radius: 12px;
+      margin-top: 2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
     }
   </style>
 </head>
 <body>
-  <h1>Join NexCore</h1>
-  <p>Your next adventure is one click away.</p>
+  <header>
+    <h1>NexCore</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="rules.html">Rules</a>
+      <a href="join.html">Join</a>
+    </nav>
+  </header>
 
-  <div class="info-box">
-    <strong>Server IP:</strong>
-    <p>nexcore.top</p>
-  </div>
+  <section class="section">
+    <h2>Join NexCore</h2>
+    <p>
+      Ready to dive in? Here's everything you need to connect and start your NexCore journey.
+    </p>
+    <div class="info-box">
+      <p><strong>Server IP:</strong> <code>nexcore.top</code></p>
+      <p><strong>Version:</strong> <code>1.20.1</code></p>
+    </div>
+  </section>
 
-  <div class="info-box">
-    <strong>Discord:</strong>
-    <p><a href="https://discord.gg/VAjz44fRAJ">Click here to join our Discord</a></p>
-  </div>
+  <section class="section">
+    <h2>Join Our Discord</h2>
+    <p>
+      Our Discord is the heart of our community. Get help, chat with staff, and be the first to hear about new features and events.
+    </p>
+    <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+  </section>
 
-  <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark"
-          width="100%" height="400"
-          allowtransparency="true"
-          frameborder="0"
-          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-  </iframe>
+  <footer>
+    &copy; 2025 NexCore. Join. Connect. Thrive.
+  </footer>
 
-  <a class="back" href="index.html">&larr; Back to Home</a>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.section');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
 </body>
 </html>
