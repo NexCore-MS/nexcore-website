@@ -3,43 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About NexCore</title>
+  <title>About | NexCore</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.html" />
   <style>
     body {
       margin: 0;
       background: #000;
       color: #fff;
       font-family: 'Inter', sans-serif;
-      text-align: center;
-      padding: 4rem 2rem;
+      overflow-x: hidden;
     }
-    a {
-      color: #8e2de2;
-      text-decoration: none;
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
     }
-    h1 {
-      font-size: 3rem;
+    header h1 {
+      font-size: 1.5rem;
       font-weight: 800;
+    }
+    nav a {
+      color: #aaa;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    .section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      text-align: center;
       margin-bottom: 1rem;
     }
-    p {
-      max-width: 800px;
-      margin: 1rem auto;
-      color: #ccc;
-      font-size: 1.2rem;
+    .section p {
+      color: #bbb;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      text-align: center;
     }
-    .back {
-      margin-top: 2rem;
-      display: inline-block;
-      font-weight: 600;
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    @media (max-width: 768px) {
+      nav { display: none; }
     }
   </style>
 </head>
 <body>
-  <h1>About NexCore</h1>
-  <p>NexCore SMP is a premium cyberpunk-themed Minecraft survival server built for players who value design, performance, and community. Our mission is to deliver a smooth, immersive experience where every build matters and every player contributes to the world.</p>
-  <p>Whether you're into redstone engineering, mega builds, or chill exploration, NexCore provides the tools and space to thrive. We're constantly improving with quality-of-life plugins, community events, and a strong focus on fair play.</p>
-  <a class="back" href="index.html">&larr; Back to Home</a>
+  <header>
+    <h1>NexCore</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="rules.html">Rules</a>
+      <a href="join.html">Join</a>
+    </nav>
+  </header>
+
+  <section class="section">
+    <h2>About NexCore</h2>
+    <p>
+      NexCore is more than just a Minecraft server — it's a curated experience crafted for those who seek immersion, creativity, and community.
+      Our vision is to push Minecraft beyond its vanilla boundaries, blending performance, style, and story into a seamless universe.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Built for the Future</h2>
+    <p>
+      With interconnected worlds, advanced infrastructure, and custom systems tailored to player feedback, NexCore evolves with every season.
+      From survival to roleplay and beyond, we’re laying the foundation for something truly ambitious.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 NexCore. Designed with intention.
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.section');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
 </body>
 </html>
