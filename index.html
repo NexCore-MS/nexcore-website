@@ -41,10 +41,29 @@
       margin-left: 1.5rem;
       text-decoration: none;
       font-weight: 600;
+      position: relative;
       transition: color 0.3s ease;
     }
     nav a:hover {
       color: #fff;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
     }
     section {
       opacity: 0;
@@ -218,6 +237,27 @@
       display: block;
     }
   }
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInButton {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 </style>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -240,11 +280,16 @@
 </script>
 </head>
 <body>
-  <section class="section" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
-    <h2 style="font-size: 2rem; font-weight: 800; color: white; background: rgba(0,0,0,0.6); padding: 1rem 2rem; border-radius: 15px; max-width: 90vw;">
-      Build Beyond Limits. NexCore is just the beginning.
-    </h2>
-  </section>
+  <section class="section" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; animation: fadeSlideIn 1.2s ease-out forwards;">
+  <h2 style="font-size: 2rem; font-weight: 800; color: white; background: rgba(0,0,0,0.6); padding: 1rem 2rem; border-radius: 15px; max-width: 90vw;">
+    Build Beyond Limits. NexCore is just the beginning.
+  </h2>
+</section>
+
+<section class="section" style="display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; background: #0a0a0a; padding: 6rem 2rem;">
+  <h3 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; max-width: 800px;">A Network Designed for Players</h3>
+  <p style="max-width: 600px; color: #bbb; font-size: 1.1rem;">From immersive survival to upcoming creative and minigame worlds, NexCore delivers high-performance gameplay wrapped in a clean, modern experience.</p>
+</section>
   <header>
     <h1>NexCore</h1>
     <div class="mobile-menu-icon" onclick="document.getElementById('mobileNav').classList.toggle('show')" style="display: none;">☰</div>
@@ -264,10 +309,10 @@
 
   
 
-<section class="hero">
+<section class="hero" style="animation: fadeSlideIn 1.5s ease forwards;">
   <h2>Welcome to NexCore</h2>
   <p>A cyberpunk-inspired Minecraft network built for immersion, creativity, and community.</p>
-  <button class="cta-btn" onclick="window.location.href='join.html'">Join Server</button>
+  <button class="cta-btn" style="animation: fadeInButton 1.5s ease 1s forwards; opacity: 0;">Join Server</button>
 </section>
 
 
