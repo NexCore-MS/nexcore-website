@@ -40,7 +40,16 @@
   <header>
     <h1>NexCore Live Dynmap</h1>
   </header>
-  <iframe src="http://129.213.41.110:8124/#" allowfullscreen></iframe>
+  <div id="dynmapContainer">
+    <iframe id="dynmapFrame" src="http://129.213.41.110:8124/#" allowfullscreen></iframe>
+  </div>
+  <script>
+    // If served over HTTPS, switch to link fallback
+    if (window.location.protocol === 'https:') {
+      const container = document.getElementById('dynmapContainer');
+      container.innerHTML = '<p style="color:#bbb; text-align:center; padding:2rem;">Due to HTTPS restrictions, <a href="http://129.213.41.110:8124/#" target="_blank" style="color:#8e2de2;">open the live map in a new tab</a>.</p>';
+    }
+  </script>
   <footer>
     &copy; 2025 NexCore. Powered by Dynmap.
   </footer>
