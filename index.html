@@ -17,7 +17,8 @@
     /* Header */
     header { position: sticky; top: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 1000; }
     .nav-container { display: flex; align-items: center; justify-content: flex-start; max-width: 1200px; margin: 0 auto; padding: .75rem 1rem; position: relative; }
-    .nav-left, .nav-right { display: flex; gap: 1.5rem; align-items: center; margin-left: auto; }
+    .nav-left { display: flex; gap: 1.5rem; align-items: center; margin-left: 0; }
+    .nav-right { display: flex; gap: 1.5rem; align-items: center; margin-left: auto; }
     .nav-left a, .nav-right a { color: #aaa; font-weight: 600; position: relative; text-decoration: none; }
     .nav-left a:hover, .nav-right a:hover { color: #fff; }
     .nav-left a::after, .nav-right a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: #fff; transform: scaleX(0); transform-origin: right; transition: transform .3s; }
