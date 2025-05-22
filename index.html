@@ -10,29 +10,29 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { height:100%; font-family:'Inter',sans-serif; background:#000; color:#fff; overflow-x:hidden; scroll-behavior:smooth; }
 
-    /* Fade-in */
-    .fade-in { opacity:0; transform:translateY(30px); transition:opacity .8s ease-out, transform .8s ease-out; }
-    .visible { opacity:1; transform:translateY(0); }
+    /* Fade-in Utility */
+    .fade-in { opacity:0; transform:translateY(20px); transition:opacity .6s ease-out, transform .6s ease-out; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
 
     /* Promo Banner */
     .promo-banner { background:#111; text-align:center; padding:.5rem 1rem; font-size:.9rem; }
     .promo-banner a { color:#4a90e2; }
 
     /* Header/Nav */
-    header { position:sticky; top:0; background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); display:flex; align-items:center; padding:1rem 2rem; z-index:100; justify-content:flex-start; }
-    header h1 { font-size:1.5rem; font-weight:800; margin-right:3rem; }
+    header { position:sticky; top:0; background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); display:flex; align-items:center; padding:1rem 2rem; z-index:1000; }
+    header h1 { font-size:1.5rem; font-weight:800; color:#fff; margin-right:2rem; }
     nav { display:flex; gap:2rem; }
-    nav a { color:#aaa; font-weight:600; position:relative; padding:.5rem 0; text-decoration:none; }
+    nav a { color:#aaa; font-weight:600; text-decoration:none; position:relative; padding:.5rem 0; }
     nav a:hover { color:#fff; }
-    nav a::after { content:''; position:absolute; bottom:-4px; left:0; width:100%; height:2px; background:#fff; transform:scaleX(0); transform-origin:right; transition:transform .3s; }
+    nav a::after { content:''; position:absolute; bottom:-3px; left:0; width:100%; height:2px; background:#fff; transform:scaleX(0); transform-origin:right; transition:transform .3s; }
     nav a:hover::after { transform:scaleX(1); transform-origin:left; }
 
     /* Utility Bar */
     .utility-bar { background:#111; padding:.5rem 0; display:flex; justify-content:center; gap:2rem; font-size:.9rem; }
-    .utility-bar a { color:#aaa; }
+    .utility-bar a { color:#aaa; text-decoration:none; }
     .utility-bar a:hover { color:#fff; }
 
-    /* Hero */
+    /* Hero Section */
     .hero { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; text-align:center; background:url('assets/images/hero.jpg') center/cover no-repeat; }
     .hero::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.7); }
     .hero h2, .hero p, .cta-group { position:relative; z-index:1; }
@@ -43,10 +43,9 @@
     .cta-btn:hover { transform:translateY(-3px); box-shadow:0 10px 20px rgba(142,45,226,.4); }
 
     /* Carousel */
-    .carousel { position:relative; display:flex; overflow:hidden; width:100%; height:60vh; margin:2rem 0; }
-    .carousel-slide { min-width:100%; background-size:cover; background-position:center; position:relative; }
-    .carousel-slide::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.4); }
-    .carousel-content { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); text-align:center; color:#fff; }
+    .carousel { position:relative; overflow:hidden; width:100%; height:60vh; margin:2rem 0; }
+    .carousel-slide { min-width:100%; background-size:cover; background-position:center; transition:transform .5s ease; }
+    .carousel-content { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:#fff; text-align:center; }
     .carousel-content h3 { font-size:2.5rem; margin-bottom:.5rem; }
     .carousel-content p { font-size:1rem; }
     .carousel-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); border:none; color:#fff; font-size:2rem; padding:.5rem; cursor:pointer; }
@@ -58,14 +57,14 @@
     .products-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; max-width:1200px; margin:0 auto; }
     .product-card { background:#111; padding:2rem; border-radius:20px; transition:transform .3s; }
     .product-card:hover { transform:translateY(-10px); }
-    .product-card h4 { font-size:1.5rem; margin-bottom:.5rem; }
+    .product-card h4 { font-size:1.5rem; margin-bottom:.5rem; color:#fff; }
     .product-card p { color:#ccc; font-size:.9rem; }
 
     /* Testimonials */
     .testimonials { padding:6rem 2rem; text-align:center; }
     .testimonials h3 { font-size:2rem; margin-bottom:1.5rem; }
     .testimonial { max-width:800px; margin:1rem auto; font-style:italic; }
-    .testimonial-author { display:block; margin-top:.5rem; font-weight:600; }
+    .testimonial-author { display:block; margin-top:.5rem; font-weight:600; color:#ccc; }
 
     /* Newsletter */
     .newsletter { padding:6rem 2rem; text-align:center; }
@@ -77,31 +76,27 @@
     #contact { padding:6rem 2rem; text-align:center; }
 
     /* Footer */
-    footer { background:#111; padding:4rem 2rem; color:#888; text-align:center; }
+    footer { background:#111; padding:4rem 2rem; text-align:center; color:#888; }
     .footer-cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:2rem; max-width:1200px; margin:0 auto 2rem; }
     .footer-col h5 { margin-bottom:1rem; color:#fff; }
-    .footer-col a { display:block; color:#888; margin-bottom:.5rem; }
+    .footer-col a { display:block; color:#888; margin-bottom:.5rem; text-decoration:none; }
     .footer-col a:hover { color:#fff; }
+
+    @media(max-width:768px){ .carousel { height:40vh; } .cta-group { flex-direction:column; } }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded',() => {
-      const elems = document.querySelectorAll('.fade-in, .hero');
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if(e.isIntersecting) {
-            e.target.classList.add('visible');
-          } else {
-            e.target.classList.remove('visible');
-          }
-        });
-      }, {threshold:0.2});{threshold:0.2});
-      elems.forEach(el=>obs.observe(el));
+      // Fade-in Observer
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => entry.isIntersecting ? entry.target.classList.add('visible') : entry.target.classList.remove('visible'));
+      }, { threshold: 0.2 });
+      document.querySelectorAll('.fade-in, .hero').forEach(el => observer.observe(el));
 
-      // Carousel
-      const slides = document.querySelectorAll('.carousel-slide'); let idx=0;
-      const update = () => slides.forEach((s,i)=>s.style.transform=`translateX(${100*(i-idx)}%)`);
-      document.getElementById('prev').onclick = ()=>{ idx=(idx-1+slides.length)%slides.length; update(); };
-      document.getElementById('next').onclick = ()=>{ idx=(idx+1)%slides.length; update(); };
+      // Carousel Logic
+      const slides = document.querySelectorAll('.carousel-slide'), prev = document.getElementById('prev'), next = document.getElementById('next'); let idx=0;
+      function update(){ slides.forEach((s,i)=>s.style.transform = `translateX(${100*(i-idx)}%)`); }
+      prev.addEventListener('click',() => { idx = (idx-1+slides.length)%slides.length; update(); });
+      next.addEventListener('click',() => { idx = (idx+1)%slides.length; update(); });
       update();
     });
   </script>
@@ -134,7 +129,7 @@
   <div class="carousel fade-in">
     <button class="carousel-btn" id="prev">‹</button>
     <div class="carousel-slide" style="background-image:url('assets/images/slide1.jpg')"><div class="carousel-content"><h3>Survival Mode</h3><p>Rich, balanced, anti-griefed gameplay.</p></div></div>
-    <div class="carousel-slide" style="background-image:url('assets/images/slide2.jpg')"><div class="carousel-content"><h3>Creative World</h3><p>Unleash unlimited creativity in our free-build realm.</p></div></div>
+    <div class="carousel-slide" style="background-image:url('assets/images/slide2.jpg')"><div class="carousel-content"><h3>Creative World</h3><p>Build anything in our free-build realm.</p></div></div>
     <div class="carousel-slide" style="background-image:url('assets/images/slide3.jpg')"><div class="carousel-content"><h3>Minigames Arena</h3><p>Challenging competitions and fun events.</p></div></div>
     <button class="carousel-btn" id="next">›</button>
   </div>
@@ -155,13 +150,14 @@
   <section class="newsletter fade-in">
     <h3>Stay Updated</h3>
     <p>Sign up for news and upcoming features.</p>
-    <div><input type="email" placeholder="Enter your email"><button>Subscribe</button></div>
+    <div><input type="email" placeholder="Your email"><button>Subscribe</button></div>
   </section>
   <section id="contact" class="fade-in">
     <h3>Get in Touch</h3>
-    <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark" width="100%" height="400" allowtransparency frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark" width="100%" height="400" allowtransparency frameborder="0" sandbox="allow-popups allow-same-origin allow-scripts"></iframe>
   </section>
   <footer class="fade-in">
+    &copy; 2025 NexCore. All rights reserved.
     <div class="footer-cols">
       <div class="footer-col"><h5>WORLD TYPES</h5><a href="#">Survival</a><a href="#">Creative</a><a href="#">Minigames</a><a href="#">Roleplay</a></div>
       <div class="footer-col"><h5>COMMUNITY</h5><a href="#">Discord</a><a href="#">Wiki</a><a href="#">Store</a></div>
