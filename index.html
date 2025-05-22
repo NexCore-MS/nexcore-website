@@ -10,12 +10,14 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { height:100%; font-family:'Inter',sans-serif; background:#000; color:#fff; overflow-x:hidden; scroll-behavior:smooth; }
 
-    /* Promotional banner */
-    .promo-banner { background:#1a1a1a; text-align:center; padding:.5rem; font-size:.9rem; }
+    /* Promo banner */
+    .promo-banner { background:#1a1a1a; text-align:center; padding:.5rem; font-size:.9rem; opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out; }
+    .promo-banner.visible { opacity:1; transform:translateY(0) scale(1); }
     .promo-banner a { color:#4a90e2; text-decoration:none; margin-left:.5rem; }
 
     /* Utility bar */
-    .utility-bar { display:flex; justify-content:center; background:#111; padding:.5rem 0; font-size:.9rem; }
+    .utility-bar { display:flex; justify-content:center; background:#111; padding:.5rem 0; font-size:.9rem; opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out; }
+    .utility-bar.visible { opacity:1; transform:translateY(0) scale(1); }
     .utility-bar a { color:#aaa; margin:0 1rem; text-decoration:none; transition:color .3s; }
     .utility-bar a:hover { color:#fff; }
 
@@ -25,7 +27,9 @@
       background:rgba(0,0,0,0.8); backdrop-filter:blur(10px);
       display:flex; justify-content:center; align-items:center;
       padding:.5rem 2rem; z-index:1001; position:relative;
+      opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out;
     }
+    header.visible { opacity:1; transform:translateY(0) scale(1); }
     .logo {
       position:absolute; left:50%; transform:translateX(-50%);
       display:flex; align-items:center; gap:.5rem; text-decoration:none; color:#fff;
@@ -56,6 +60,7 @@
       padding:.5rem;
       border-radius:8px;
       transition:transform .3s ease;
+      z-index:1002;
     }
     .search-form.active {
       transform:translateY(0) scaleY(1);
@@ -68,7 +73,13 @@
     }
 
     /* Hero */
-    .hero { display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; padding:2rem; background:url('assets/images/hero.jpg') no-repeat center/cover; position:relative; }
+    .hero {
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      height:100vh; text-align:center; padding:2rem;
+      background:url('assets/images/hero.jpg') no-repeat center/cover; position:relative;
+      opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out;
+    }
+    .hero.visible { opacity:1; transform:translateY(0) scale(1); }
     .hero::before { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); }
     .hero h2 { position:relative; z-index:1; font-size:3rem; font-weight:800; margin-bottom:1rem; color:#fff; }
     .hero p { position:relative; z-index:1; font-size:1.2rem; color:#ccc; max-width:600px; margin-bottom:2rem; }
@@ -76,9 +87,9 @@
     .cta-btn { flex:1; padding:.75rem 1rem; font-size:1rem; font-weight:600; border:none; border-radius:30px; background:linear-gradient(to right,#8e2de2,#4a00e0); color:#fff; cursor:pointer; transition:transform .3s,box-shadow .3s; }
     .cta-btn:hover { transform:translateY(-3px); box-shadow:0 10px 20px rgba(142,45,226,.4); }
 
-    
     /* Carousel */
-    .carousel { position:relative; display:flex; overflow:hidden; width:100%; height:60vh; margin-top:2rem; }
+    .carousel { position:relative; display:flex; overflow:hidden; width:100%; height:60vh; margin-top:2rem; opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out; }
+    .carousel.visible { opacity:1; transform:translateY(0) scale(1); }
     .carousel-slide { min-width:100%; transition:transform .5s ease; background-size:cover; background-position:center; position:relative; }
     .carousel-slide::before { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); }
     .carousel-content { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:#fff; text-align:center; }
@@ -88,7 +99,8 @@
     #prev { left:1rem; } #next { right:1rem; }
 
     /* Featured Worlds */
-    .products { padding:6rem 2rem; text-align:center; }
+    .products { padding:6rem 2rem; text-align:center; opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out; }
+    .products.visible { opacity:1; transform:translateY(0) scale(1); }
     .products h3 { margin-bottom:3rem; color:#fff; }
     .products-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; max-width:1200px; margin:0 auto; }
     .product-card { background:#111; padding:2rem; border-radius:20px; transition:transform .3s; }
@@ -98,22 +110,26 @@
     .product-card p { color:#ccc; font-size:.9rem; }
 
     /* Testimonials */
-    .testimonials { padding:6rem 2rem; text-align:center; }
+    .testimonials { padding:6rem 2rem; text-align:center; opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out; }
+    .testimonials.visible { opacity:1; transform:translateY(0) scale(1); }
     .testimonials h3 { margin-bottom:2rem; color:#fff; }
     .testimonials p { font-style:italic; max-width:800px; margin:1rem auto; }
     .testimonial-author { font-weight:600; margin-top:.5rem; }
 
     /* Newsletter */
-    .newsletter { padding:6rem 2rem; text-align:center; }
+    .newsletter { padding:6rem 2rem; text-align:center; opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out; }
+    .newsletter.visible { opacity:1; transform:translateY(0) scale(1); }
     .newsletter h3 { margin-bottom:1rem; color:#fff; }
     .newsletter input[type=email] { padding:.75rem; width:300px; max-width:100%; border:none; border-radius:30px 0 0 30px; }
     .newsletter button { padding:.75rem 1.5rem; border:none; border-radius:0 30px 30px 0; background:#8e2de2; color:#fff; cursor:pointer; }
 
     /* Contact */
-    #contact { padding:6rem 2rem; text-align:center; }
+    #contact { padding:6rem 2rem; text-align:center; opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out; }
+    #contact.visible { opacity:1; transform:translateY(0) scale(1); }
 
     /* Footer */
-    footer { background:#111; padding:4rem 2rem; color:#888; }
+    footer { background:#111; padding:4rem 2rem; color:#888; opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out; }
+    footer.visible { opacity:1; transform:translateY(0) scale(1); }
     .footer-cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:2rem; max-width:1200px; margin:0 auto; }
     .footer-col h5 { margin-bottom:1rem; color:#fff; }
     .footer-col a { display:block; color:#888; text-decoration:none; margin-bottom:.5rem; }
@@ -124,16 +140,23 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded',()=>{
+      // Intersection Observer reveal
+      const elems = document.querySelectorAll('.promo-banner, .utility-bar, header, .hero, .carousel, .products, .testimonials, .newsletter, #contact, footer');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: 0.2 });
+      elems.forEach(el => obs.observe(el));
+
       // Carousel logic
-      const slides=document.querySelectorAll('.carousel-slide'), prev=document.getElementById('prev'), next=document.getElementById('next'); let idx=0;
-      function update(){ slides.forEach((s,i)=>s.style.transform=`translateX(${100*(i-idx)}%)`); }
-      prev.onclick=()=>{ idx=(idx-1+slides.length)%slides.length; update(); };
-      next.onclick=()=>{ idx=(idx+1)%slides.length; update(); };
+      const slides = document.querySelectorAll('.carousel-slide'), prev = document.getElementById('prev'), next = document.getElementById('next'); let idx=0;
+      function update(){ slides.forEach((s,i)=>s.style.transform = `translateX(${100*(i-idx)}%)`); }
+      prev.onclick = ()=>{ idx=(idx-1+slides.length)%slides.length; update(); };
+      next.onclick = ()=>{ idx=(idx+1)%slides.length; update(); };
       update();
 
       // Search toggle
-      const searchToggle=document.getElementById('searchToggle');
-      const searchForm=document.getElementById('searchForm');
+      const searchToggle = document.getElementById('searchToggle');
+      const searchForm = document.getElementById('searchForm');
       searchToggle.addEventListener('click',()=>{
         searchForm.classList.toggle('active');
         if(searchForm.classList.contains('active')) searchForm.querySelector('input').focus();
