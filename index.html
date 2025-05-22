@@ -1,173 +1,137 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NexCore</title>
-
-  <!-- Apple Global Header CSS -->
-  <link rel="stylesheet" href="https://www.apple.com/ac/globalnav/7/en_US/styles/ac-globalnav.built.css">
-
-  <!-- NexCore Custom Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* Reset */
-    *{margin:0;padding:0;box-sizing:border-box}
-    html,body{font-family:'Inter',sans-serif;background:#000;color:#fff;overflow-x:hidden;scroll-behavior:smooth}
-    a{text-decoration:none;color:inherit}
-    /* Override Apple Header Background */
-    .ac-gn-header{background:rgba(0,0,0,0.85)!important}
-    /* Page Content Spacing */
-    body{padding-top:72px}
+    /* Reset & Base */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { font-family:'Inter',sans-serif; background:#000; color:#fff; scroll-behavior:smooth; }
+    a { text-decoration:none; color:inherit; }
+    /* Header */
+    .site-header { position:fixed; top:0; left:0; width:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); display:flex; justify-content:center; align-items:center; padding:0.75rem 1rem; z-index:1000; }
+    .site-header nav { display:flex; gap:2rem; }
+    .site-header nav a { color:#aaa; font-weight:600; padding:.5rem; position:relative; }
+    .site-header nav a:hover { color:#fff; }
+    .site-header nav a::after { content:''; position:absolute; bottom:0; left:0; width:100%; height:2px; background:#fff; transform:scaleX(0); transform-origin:right; transition:transform .3s; }
+    .site-header nav a:hover::after { transform:scaleX(1); transform-origin:left; }
+    /* Placeholder logo spacing */
+    .site-header .logo { font-weight:800; font-size:1.25rem; color:#fff; margin:0 2rem; }
+    /* Utility bar */
+    .utility-bar { margin-top:3rem; background:#111; padding:.5rem 1rem; text-align:center; }
+    .utility-bar a { margin:0 1rem; color:#aaa; font-size:.9rem; }
+    .utility-bar a:hover { color:#fff; }
+    /* Content below header */
+    .main { padding-top:4rem; }
     /* Fade-in Utility */
-    .fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}
-    .visible{opacity:1;transform:translateY(0)}
+    .fade-in { opacity:0; transform:translateY(30px); transition:opacity .6s ease-out, transform .6s ease-out; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
     /* Hero */
-    .hero{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100vh;text-align:center;background:url('assets/images/hero.jpg') center/cover no-repeat}
-    .hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.7)}
-    .hero h2,.hero p,.cta-group{position:relative;z-index:1}
-    .hero h2{font-size:3rem;margin-bottom:1rem}
-    .hero p{font-size:1.2rem;color:#ccc;max-width:600px;margin-bottom:2rem}
-    .cta-group{display:flex;gap:1rem}
-    .cta-btn{padding:.75rem 1.5rem;border:none;border-radius:30px;background:linear-gradient(to right,#8e2de2,#4a00e0);color:#fff;cursor:pointer;transition:transform .3s,box-shadow .3s}
-    .cta-btn:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(142,45,226,.4)}
+    .hero { position:relative; display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; background:url('assets/images/hero.jpg') center/cover no-repeat; }
+    .hero::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.7); }
+    .hero h2 { position:relative; z-index:1; font-size:3rem; margin-bottom:1rem; }
+    .hero p { position:relative; z-index:1; font-size:1.2rem; color:#ccc; max-width:600px; margin-bottom:2rem; }
+    .cta-group { position:relative; z-index:1; display:flex; gap:1rem; }
+    .cta-btn { padding:.75rem 1.5rem; border:none; border-radius:30px; background:linear-gradient(to right,#8e2de2,#4a00e0); color:#fff; cursor:pointer; transition:transform .3s,box-shadow .3s; }
+    .cta-btn:hover { transform:translateY(-3px); box-shadow:0 10px 20px rgba(142,45,226,.4); }
     /* Carousel */
-    .carousel{position:relative;overflow:hidden;width:100%;height:60vh;margin:2rem 0}
-    .carousel-slide{min-width:100%;background-size:cover;background-position:center;transition:transform .5s ease}
-    .carousel-content{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);text-align:center;color:#fff}
-    .carousel-content h3{font-size:2.5rem;margin-bottom:.5rem}
-    .carousel-content p{font-size:1rem}
-    .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:none;color:#fff;font-size:2rem;padding:.5rem;cursor:pointer;z-index:10}
-    #prev{left:1rem}#next{right:1rem}
-    /* Featured Worlds */
-    .products{padding:6rem 2rem;text-align:center}
-    .products h3{font-size:2rem;margin-bottom:2rem}
-    .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;max-width:1200px;margin:0 auto}
-    .product-card{background:#111;padding:2rem;border-radius:20px;transition:transform .3s}
-    .product-card:hover{transform:translateY(-10px)}
-    .product-card h4{font-size:1.5rem;color:#fff;margin-bottom:.5rem}
-    .product-card p{color:#ccc;font-size:.9rem}
-    /* Testimonials */
-    .testimonials{padding:6rem 2rem;text-align:center}
-    .testimonials h3{font-size:2rem;margin-bottom:1.5rem}
-    .testimonial{max-width:800px;margin:1rem auto;font-style:italic;color:#ccc}
-    .testimonial-author{display:block;margin-top:.5rem;font-weight:600}
-    /* Newsletter */
-    .newsletter{padding:6rem 2rem;text-align:center}
-    .newsletter h3{font-size:2rem;margin-bottom:1rem}
-    .newsletter input{padding:.75rem;width:300px;max-width:100%;border:none;border-radius:30px 0 0 30px}
-    .newsletter button{padding:.75rem 1.5rem;border:none;border-radius:0 30px 30px 0;background:#8e2de2;color:#fff;cursor:pointer}
-    /* Contact */
-    #contact{padding:6rem 2rem;text-align:center}
-    /* Footer */
-    footer{background:#111;padding:4rem 2rem;text-align:center;color:#888}
-    .footer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2rem;max-width:1200px;margin:0 auto 2rem}
-    .footer-col h5{margin-bottom:1rem;color:#fff}
-    .footer-col a{display:block;color:#888;margin-bottom:.5rem}
-    .footer-col a:hover{color:#fff}
-    @media(max-width:768px){.carousel{height:40vh}.cta-group{flex-direction:column}}
+    .carousel { position:relative; overflow:hidden; width:100%; height:60vh; margin:2rem 0; }
+    .carousel-slide { min-width:100%; background-size:cover; background-position:center; transition:transform .5s ease; }
+    .carousel-content { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); text-align:center; color:#fff; }
+    .carousel-content h3 { font-size:2.5rem; margin-bottom:.5rem; }
+    .carousel-content p { font-size:1rem; }
+    .carousel-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); border:none; color:#fff; font-size:2rem; padding:.5rem; cursor:pointer; z-index:10; }
+    #prev { left:1rem; } #next { right:1rem; }
+    /* Sections */
+    .products, .testimonials, .newsletter, #contact { padding:6rem 1rem; text-align:center; }
+    .products-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; max-width:1000px; margin:2rem auto; }
+    .product-card { background:#111; padding:1.5rem; border-radius:12px; transition:transform .3s; }
+    .product-card:hover { transform:translateY(-5px); }
+    .testimonial { max-width:800px; margin:1rem auto; font-style:italic; color:#ccc; }
+    .testimonial-author { display:block; margin-top:.5rem; font-weight:600; }
+    .newsletter input { padding:.75rem; width:250px; max-width:100%; border:none; border-radius:30px 0 0 30px; }
+    .newsletter button { padding:.75rem 1.5rem; border:none; border-radius:0 30px 30px 0; background:#8e2de2; color:#fff; cursor:pointer; }
+    #contact iframe { max-width:800px; width:100%; height:400px; border:none; }
+    footer { background:#111; padding:4rem 1rem; text-align:center; color:#888; }
+    .footer-cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1.5rem; max-width:1000px; margin:0 auto; }
+    .footer-col h5 { margin-bottom:.5rem; color:#fff; }
+    .footer-col a { display:block; color:#888; margin-bottom:.5rem; }
+    .footer-col a:hover { color:#fff; }
+    @media(max-width:768px){ .carousel { height:40vh; } .cta-group { flex-direction:column; } }
   </style>
 </head>
 <body>
-  <!-- Apple Global Header -->
-  <div class="ac-gn-globalnav" lang="en_US" data-analytics-region="global nav">
-    <input class="ac-gn-globalnav-open-state" id="ac-gn-globalnav-open-state" type="checkbox" />
-    <nav class="ac-gn-header" role="navigation" aria-label="Global">
-      <div class="ac-gn-header-inner">
-        <div class="ac-gn-header-slot ac-gn-header-slot-left">
-          <a href="/" class="ac-gn-link ac-gn-link-apple" id="ac-gn-firstfocus-small">NexCore</a>
-        </div>
-        <div class="ac-gn-header-slot ac-gn-header-slot-center">
-          <ul class="ac-gn-list">
-            <li class="ac-gn-item"><a href="/about.html" class="ac-gn-link">About</a></li>
-            <li class="ac-gn-item"><a href="/rules.html" class="ac-gn-link">Rules</a></li>
-            <li class="ac-gn-item"><a href="/join.html" class="ac-gn-link">Join</a></li>
-            <li class="ac-gn-item"><a href="/dynmap.html" class="ac-gn-link">Dynmap</a></li>
-            <li class="ac-gn-item"><a href="/contact.html" class="ac-gn-link">Contact</a></li>
-          </ul>
-        </div>
-        <div class="ac-gn-header-slot ac-gn-header-slot-right">
-          <ul class="ac-gn-list">
-            <li class="ac-gn-item ac-gn-item-menu"><a href="#" class="ac-gn-link ac-gn-menu-link" aria-label="Open menu" role="button"></a></li>
-            <li class="ac-gn-item ac-gn-search"><a href="/search" class="ac-gn-link" aria-label="Search"></a></li>
-          </ul>
-        </div>
-      </div>
+  <!-- Custom Header -->
+  <header class="site-header fade-in">
+    <nav>
+      <a href="about.html">About</a>
+      <a href="rules.html">Rules</a>
+      <span class="logo">NexCore</span>
+      <a href="join.html">Join</a>
+      <a href="dynmap.html">Dynmap</a>
+      <a href="contact.html">Contact</a>
     </nav>
-  </div>
+  </header>
 
-  <!-- Utility Bar -->
   <div class="utility-bar fade-in">
     <a href="https://discord.com/widget?id=1004153689105240124&theme=dark" target="_blank">Discord</a>
     <a href="https://wiki.nexcore.top" target="_blank">Wiki</a>
     <a href="https://store.nexcore.top" target="_blank">Store</a>
   </div>
 
-  <!-- Hero Section -->
-  <section class="hero fade-in">
-    <h2>Build Beyond Limits.</h2>
-    <p>A cyberpunk-inspired Minecraft network built for immersion, creativity, and community.</p>
-    <div class="cta-group fade-in">
-      <button class="cta-btn" onclick="location.href='join.html'">Join Server</button>
-      <button class="cta-btn" onclick="location.href='contact.html'">Contact</button>
-    </div>
-  </section>
-
-  <!-- Carousel Section -->
-  <div class="carousel fade-in">
-    <button class="carousel-btn" id="prev">‹</button>
-    <div class="carousel-slide" style="background-image:url('assets/images/slide1.jpg')">  <div class="carousel-content">
-        <h3>Survival Mode</h3>
-        <p>Rich, balanced, anti-griefed gameplay.</p>
+  <main class="main">
+    <section class="hero fade-in">
+      <h2>Build Beyond Limits.</h2>
+      <p>A cyberpunk-inspired Minecraft network built for immersion, creativity, and community.</p>
+      <div class="cta-group">
+        <button class="cta-btn" onclick="location.href='join.html'">Join Server</button>
+        <button class="cta-btn" onclick="location.href='contact.html'">Contact</button>
       </div>
-    </div>
-    <div class="carousel-slide" style="background-image:url('assets/images/slide2.jpg')">
-      <div class="carousel-content">
-        <h3>Creative World</h3>
-        <p>Build anything in our free-build realm.</p>
+    </section>
+
+    <div class="carousel fade-in">
+      <button class="carousel-btn" id="prev">‹</button>
+      <div class="carousel-slide" style="background-image:url('assets/images/slide1.jpg')">
+        <div class="carousel-content"><h3>Survival Mode</h3><p>Rich, balanced, anti-griefed gameplay.</p></div>
       </div>
-    </div>
-    <div class="carousel-slide" style="background-image:url('assets/images/slide3.jpg')">
-      <div class="carousel-content">
-        <h3>Minigames Arena</h3>
-        <p>Challenging competitions and fun events.</p>
+      <div class="carousel-slide" style="background-image:url('assets/images/slide2.jpg')">
+        <div class="carousel-content"><h3>Creative World</h3><p>Unleash unlimited creativity.</p></div>
       </div>
+      <div class="carousel-slide" style="background-image:url('assets/images/slide3.jpg')">
+        <div class="carousel-content"><h3>Minigames Arena</h3><p>Challenging competitions and fun events.</p></div>
+      </div>
+      <button class="carousel-btn" id="next">›</button>
     </div>
-    <button class="carousel-btn" id="next">›</button>
-  </div>
 
-  <!-- Featured Worlds -->
-  <section class="products fade-in">
-    <h3>Featured Worlds</h3>
-    <div class="products-grid">
-      <div class="product-card"><h4>Survival</h4><p>Balanced and anti-griefed experience.</p></div>
-      <div class="product-card"><h4>Creative</h4><p>Unleash unlimited creativity.</p></div>
-      <div class="product-card"><h4>Minigames</h4><p>Fast-paced arenas and community events.</p></div>
-      <div class="product-card"><h4>Roleplay</h4><p>Immersive stories and player-driven economy.</p></div>
-    </div>
-  </section>
+    <section class="products fade-in">
+      <h3>Featured Worlds</h3>
+      <div class="products-grid">
+        <div class="product-card"><h4>Survival</h4><p>Balanced and anti-griefed experience.</p></div>
+        <div class="product-card"><h4>Creative</h4><p>Unleash unlimited creativity.</p></div>
+        <div class="product-card"><h4>Minigames</h4><p>Fast-paced arenas and community events.</p></div>
+        <div class="product-card"><h4>Roleplay</h4><p>Immersive stories and player-driven economy.</p></div>
+      </div>
+    </section>
 
-  <!-- Testimonials -->
-  <section class="testimonials fade-in">
-    <h3>Community Voices</h3>
-    <p class="testimonial">“NexCore’s custom plugins make every session feel fresh and unique.”<span class="testimonial-author">— AlexGamer</span></p>
-    <p class="testimonial">“Performance is incredible—80+ players never lag.”<span class="testimonial-author">— MineCraftPro</span></p>
-  </section>
+    <section class="testimonials fade-in">
+      <h3>Community Voices</h3>
+      <p class="testimonial">“NexCore’s custom plugins make every session feel fresh and unique.”<span class="testimonial-author">— AlexGamer</span></p>
+      <p class="testimonial">“Performance is incredible—80+ players never lag.”<span class="testimonial-author">— MineCraftPro</span></p>
+    </section>
 
-  <!-- Newsletter -->
-  <section class="newsletter fade-in">
-    <h3>Stay Updated</h3>
-    <p>Sign up for news and upcoming features.</p>
-    <div><input type="email" placeholder="Your email"><button>Subscribe</button></div>
-  </section>
+    <section class="newsletter fade-in">
+      <h3>Stay Updated</h3>
+      <div><input type="email" placeholder="Your email"><button>Subscribe</button></div>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="fade-in">
-    <h3>Get in Touch</h3>
-    <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark" width="100%" height="400" allowtransparency frameborder="0" sandbox="allow-popups allow-same-origin allow-scripts"></iframe>
-  </section>
+    <section id="contact" class="fade-in">
+      <h3>Get in Touch</h3>
+      <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark"></iframe>
+    </section>
+  </main>
 
-  <!-- Footer -->
   <footer class="fade-in">
     <div class="footer-cols">
       <div class="footer-col"><h5>WORLD TYPES</h5><a href="#">Survival</a><a href="#">Creative</a><a href="#">Minigames</a><a href="#">Roleplay</a></div>
@@ -177,19 +141,16 @@
     </div>
   </footer>
 
-  <!-- Apple Global Header JS -->
-  <script src="https://www.apple.com/ac/globalnav/7/en_US/scripts/ac-globalnav.built.js"></script>
-  <!-- NexCore JS -->
   <script>
-    document.addEventListener('DOMContentLoaded',()=>{
+    document.addEventListener('DOMContentLoaded', () => {
       // Fade-in
-      const obs=new IntersectionObserver(entries=>entries.forEach(e=>e.isIntersecting?e.target.classList.add('visible'):e.target.classList.remove('visible')),{threshold:0.2});
-      document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
-      // Carousel Logic
-      const slides=document.querySelectorAll('.carousel-slide'),prev=document.getElementById('prev'),next=document.getElementById('next');let idx=0;
-      const update=()=>slides.forEach((s,i)=>s.style.transform=`translateX(${100*(i-idx)}%)`);
-      prev.onclick=()=>{idx=(idx-1+slides.length)%slides.length;update()};
-      next.onclick=()=>{idx=(idx+1)%slides.length;update()};
+      const obs = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting ? e.target.classList.add('visible') : e.target.classList.remove('visible')), { threshold: 0.2 });
+      document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+      // Carousel
+      const slides = document.querySelectorAll('.carousel-slide'), prev = document.getElementById('prev'), next = document.getElementById('next'); let idx=0;
+      const update = () => slides.forEach((s,i) => s.style.transform = `translateX(${100*(i-idx)}%)`);
+      prev.onclick = () => { idx = (idx-1+slides.length)%slides.length; update(); };
+      next.onclick = () => { idx = (idx+1)%slides.length; update(); };
       update();
     });
   </script>
