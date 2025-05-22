@@ -12,13 +12,26 @@
     a { text-decoration:none; color:inherit; }
     /* Header */
     .site-header { position:fixed; top:0; left:0; width:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(10px); display:flex; justify-content:center; align-items:center; padding:0.75rem 1rem; z-index:1000; }
-    .site-header nav { display:flex; gap:2rem; }
+    .site-header nav {
+      display: flex;
+      gap: 2rem;
+      position: relative; /* enable absolute center for logo */
+      justify-content: center;
+    }
     .site-header nav a { color:#aaa; font-weight:600; padding:.5rem; position:relative; }
     .site-header nav a:hover { color:#fff; }
     .site-header nav a::after { content:''; position:absolute; bottom:0; left:0; width:100%; height:2px; background:#fff; transform:scaleX(0); transform-origin:right; transition:transform .3s; }
     .site-header nav a:hover::after { transform:scaleX(1); transform-origin:left; }
     /* Placeholder logo spacing */
-    .site-header .logo { font-weight:800; font-size:1.25rem; color:#fff; margin:0 2rem; }
+    .site-header .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #fff;
+      margin: 0; /* reset margins */
+    }
     /* Utility bar */
     .utility-bar { margin-top:3rem; background:#111; padding:.5rem 1rem; text-align:center; }
     .utility-bar a { margin:0 1rem; color:#aaa; font-size:.9rem; }
