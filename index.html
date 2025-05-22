@@ -6,145 +6,66 @@
   <title>NexCore</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { font-family: 'Inter', sans-serif; background: #000; color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
-    nav a { text-decoration: none; }
-    header {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 1000;
-    }
-    header h1 {
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: #fff;
-    }
-    nav a {
-      color: #aaa;
-      margin-left: 1.5rem;
-      font-weight: 600;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #fff;
-    }
-    nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 100%;
-      height: 2px;
-      background: #fff;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.3s ease;
-    }
-    nav a:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      padding: 2rem;
-      background: url('assets/images/hero.jpg') no-repeat center center/cover;
-      position: relative;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 0;
-    }
-    .hero h2, .hero p, .cta-btn {
-      position: relative;
-      z-index: 1;
-    }
-    .hero h2 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      color: #ccc;
-      max-width: 600px;
-      margin-bottom: 2rem;
-    }
-    .cta-btn {
-      padding: 0.75rem 2rem;
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 30px;
-      background: linear-gradient(to right, #8e2de2, #4a00e0);
-      color: white;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .cta-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(142, 45, 226, 0.4);
-    }
-    .carousel {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 60vh;
-      margin: 2rem 0;
-    }
-    .carousel-slide {
-      min-width: 100%;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.5s ease;
-    }
-    .carousel-content {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #fff;
-      text-align: center;
-    }
-    .carousel-content h3 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .carousel-content p {
-      font-size: 1rem;
-    }
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      padding: 0.5rem;
-      cursor: pointer;
-      z-index: 10;
-    }
-    #prev { left: 1rem; }
-    #next { right: 1rem; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; font-family:'Inter',sans-serif; background:#000; color:#fff; overflow-x:hidden; scroll-behavior:smooth; }
+    a { text-decoration:none; color:inherit; }
+    /* Header */
+    header { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); display:flex; justify-content:flex-start; align-items:center; padding:1rem 2rem; z-index:1000; }
+    header h1 { font-size:1.5rem; font-weight:800; margin-right:2rem; }
+    nav { display:flex; gap:1.5rem; }
+    nav a { color:#aaa; font-weight:600; position:relative; padding:.5rem 0; }
+    nav a:hover { color:#fff; }
+    nav a::after { content:''; position:absolute; bottom:-3px; left:0; width:100%; height:2px; background:#fff; transform:scaleX(0); transform-origin:right; transition:transform .3s; }
+    nav a:hover::after { transform:scaleX(1); transform-origin:left; }
+    /* Utility Bar */
+    .utility-bar { margin-top:64px; background:#111; padding:.5rem 2rem; display:flex; gap:2rem; justify-content:center; font-size:.9rem; }
+    .utility-bar a:hover { color:#fff; }
+    /* Fade-in */
+    .fade-in { opacity:0; transform:translateY(30px); transition:opacity .6s ease-out, transform .6s ease-out; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+    /* Hero */
+    .hero { display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; background:url('assets/images/hero.jpg') center/cover no-repeat; position:relative; }
+    .hero::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.7); }
+    .hero h2 { position:relative; z-index:1; font-size:3rem; font-weight:800; margin-bottom:1rem; }
+    .hero p { position:relative; z-index:1; font-size:1.2rem; color:#ccc; max-width:600px; margin-bottom:2rem; }
+    .cta-group { position:relative; z-index:1; display:flex; gap:1rem; }
+    .cta-btn { padding:.75rem 1.5rem; background:linear-gradient(to right,#8e2de2,#4a00e0); border:none; border-radius:30px; color:#fff; font-weight:600; cursor:pointer; transition:transform .3s, box-shadow .3s; }
+    .cta-btn:hover { transform:translateY(-3px); box-shadow:0 10px 20px rgba(142,45,226,.4); }
+    /* Carousel */
+    .carousel { position:relative; overflow:hidden; width:100%; height:60vh; margin:2rem 0; }
+    .carousel-slide { min-width:100%; background-size:cover; background-position:center; transition:transform .5s ease; }
+    .carousel-content { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); text-align:center; color:#fff; }
+    .carousel-content h3 { font-size:2.5rem; margin-bottom:.5rem; }
+    .carousel-content p { font-size:1rem; }
+    .carousel-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); border:none; color:#fff; font-size:2rem; padding:.5rem; cursor:pointer; z-index:10; }
+    #prev { left:1rem; } #next { right:1rem; }
+    /* Featured Worlds */
+    .products { padding:6rem 2rem; text-align:center; }
+    .products h3 { font-size:2rem; margin-bottom:2rem; }
+    .products-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; max-width:1200px; margin:0 auto; }
+    .product-card { background:#111; padding:2rem; border-radius:20px; transition:transform .3s; }
+    .product-card:hover { transform:translateY(-10px); }
+    .product-card h4 { font-size:1.5rem; margin-bottom:.5rem; color:#fff; }
+    .product-card p { color:#ccc; font-size:.9rem; }
+    /* Testimonials */
+    .testimonials { padding:6rem 2rem; text-align:center; }
+    .testimonials h3 { font-size:2rem; margin-bottom:1.5rem; }
+    .testimonial { max-width:800px; margin:1rem auto; font-style:italic; color:#ccc; }
+    .testimonial-author { display:block; margin-top:.5rem; font-weight:600; }
+    /* Newsletter */
+    .newsletter { padding:6rem 2rem; text-align:center; }
+    .newsletter h3 { font-size:2rem; margin-bottom:1rem; }
+    .newsletter input { padding:.75rem; width:300px; max-width:100%; border:none; border-radius:30px 0 0 30px; }
+    .newsletter button { padding:.75rem 1.5rem; border:none; border-radius:0 30px 30px 0; background:#8e2de2; color:#fff; cursor:pointer; }
+    /* Contact */
+    #contact { padding:6rem 2rem; text-align:center; }
+    /* Footer */
+    footer { background:#111; padding:4rem 2rem; text-align:center; color:#888; }
+    .footer-cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:2rem; max-width:1200px; margin:0 auto 2rem; }
+    .footer-col h5 { margin-bottom:1rem; color:#fff; }
+    .footer-col a { display:block; color:#888; margin-bottom:.5rem; }
+    .footer-col a:hover { color:#fff; }
+    @media(max-width:768px){ .carousel { height:40vh; } .cta-group { flex-direction:column; } }
   </style>
 </head>
 <body>
@@ -158,16 +79,19 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-
-  <section class="hero">
+  <div class="utility-bar fade-in">
+    <a href="https://discord.com/widget?id=1004153689105240124&theme=dark" target="_blank">Discord</a>
+    <a href="https://wiki.nexcore.top" target="_blank">Wiki</a>
+    <a href="https://store.nexcore.top" target="_blank">Store</a>
+  </div>
+  <section class="hero fade-in">
     <h2>Build Beyond Limits.</h2>
     <p>A cyberpunk-inspired Minecraft network built for immersion, creativity, and community.</p>
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+    <div class="cta-group fade-in">
       <button class="cta-btn" onclick="window.location.href='join.html'">Join Server</button>
       <button class="cta-btn" onclick="window.location.href='contact.html'">Contact</button>
     </div>
   </section>
-
   <div class="carousel fade-in">
     <button class="carousel-btn" id="prev">‹</button>
     <div class="carousel-slide" style="background-image:url('assets/images/slide1.jpg')">
@@ -190,24 +114,45 @@
     </div>
     <button class="carousel-btn" id="next">›</button>
   </div>
-
+  <section class="products fade-in">
+    <h3>Featured Worlds</h3>
+    <div class="products-grid">
+      <div class="product-card"><h4>Survival</h4><p>Balanced and anti-griefed experience.</p></div>
+      <div class="product-card"><h4>Creative</h4><p>Unleash unlimited creativity.</p></div>
+      <div class="product-card"><h4>Minigames</h4><p>Fast-paced arenas and community events.</p></div>
+      <div class="product-card"><h4>Roleplay</h4><p>Immersive stories and player-driven economy.</p></div>
+    </div>
+  </section>
+  <section class="testimonials fade-in">
+    <h3>Community Voices</h3>
+    <p class="testimonial">“NexCore’s custom plugins make every session feel fresh and unique.”<span class="testimonial-author">— AlexGamer</span></p>
+    <p class="testimonial">“Performance is incredible—80+ players never lag.”<span class="testimonial-author">— MineCraftPro</span></p>
+  </section>
+  <section class="newsletter fade-in">
+    <h3>Stay Updated</h3>
+    <p>Sign up for news and upcoming features.</p>
+    <div><input type="email" placeholder="Your email"><button>Subscribe</button></div>
+  </section>
+  <section id="contact" class="fade-in">
+    <h3>Get in Touch</h3>
+    <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark" width="100%" height="400" allowtransparency frameborder="0" sandbox="allow-popups allow-same-origin allow-scripts"></iframe>
+  </section>
+  <footer class="fade-in">
+    <div class="footer-cols">
+      <div class="footer-col"><h5>WORLD TYPES</h5><a href="#">Survival</a><a href="#">Creative</a><a href="#">Minigames</a><a href="#">Roleplay</a></div>
+      <div class="footer-col"><h5>COMMUNITY</h5><a href="#">Discord</a><a href="#">Wiki</a><a href="#">Store</a></div>
+      <div class="footer-col"><h5>SUPPORT</h5><a href="contact.html">Contact</a><a href="rules.html">Rules</a><a href="about.html">About</a></div>
+      <div class="footer-col"><h5>LEGAL</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </footer>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const slides = document.querySelectorAll('.carousel-slide');
-      let idx = 0;
-      function update() {
-        slides.forEach((slide, i) => {
-          slide.style.transform = `translateX(${100 * (i - idx)}%)`;
-        });
-      }
-      document.getElementById('prev').addEventListener('click', () => {
-        idx = (idx - 1 + slides.length) % slides.length;
-        update();
-      });
-      document.getElementById('next').addEventListener('click', () => {
-        idx = (idx + 1) % slides.length;
-        update();
-      });
+    document.addEventListener('DOMContentLoaded',()=>{
+      const obs=new IntersectionObserver(entries=>entries.forEach(e=>e.isIntersecting?e.target.classList.add('visible'):e.target.classList.remove('visible')),{threshold:0.2});
+      document.querySelectorAll('.fade-in, .hero').forEach(el=>obs.observe(el));
+      const slides=document.querySelectorAll('.carousel-slide'),prev=document.getElementById('prev'),next=document.getElementById('next');let idx=0;
+      const update=()=>slides.forEach((s,i)=>s.style.transform=`translateX(${100*(i-idx)}%)`);
+      prev.onclick=()=>{idx=(idx-1+slides.length)%slides.length;update()};
+      next.onclick=()=>{idx=(idx+1)%slides.length;update()};
       update();
     });
   </script>
