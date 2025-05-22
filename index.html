@@ -12,14 +12,31 @@
       overflow-x: hidden; scroll-behavior: smooth;
     }
     header {
-      position: fixed; width: 100%; top: 0; background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px); display: flex; justify-content: space-between;
-      align-items: center; padding: 1rem 2rem; z-index: 1000;
+      position: fixed;
+      width: 100%; top: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: flex-start; /* align items to the left */
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
     }
-    header h1 { font-weight: 800; font-size: 1.5rem; color: #fff; }
+    header h1 {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #fff;
+      position: relative; /* reset any absolute positioning */
+      transform: none;
+      margin-right: 3rem; /* spacing between logo and nav */
+    }
     nav a {
-      color: #aaa; margin-left: 1.5rem; text-decoration: none; font-weight: 600;
-      position: relative; transition: color 0.3s ease;
+      color: #aaa;
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
     }
     nav a:hover { color: #fff; }
     nav a::after {
@@ -90,7 +107,7 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('section');
+      const sections = document.querySelectorAll('section, .hero');
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
