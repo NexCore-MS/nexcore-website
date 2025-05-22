@@ -16,20 +16,26 @@
     .utility-bar a { color:#aaa; text-decoration:none; margin:0 1rem; transition:color .3s; }
     .utility-bar a:hover { color:#fff; }
     /* Header */
-    header { position:sticky; top:0; background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); display:flex; align-items:center; padding:1rem 2rem; z-index:1001; }
-    .logo { flex:0 0 auto; display:flex; align-items:center; gap:.5rem; text-decoration:none; color:#fff; }
+    header {
+      position:sticky; top:0; background:rgba(0,0,0,0.8); backdrop-filter:blur(10px);
+      display:grid; grid-template-columns:auto 1fr auto; align-items:center;
+      padding:1rem 2rem; z-index:1001;
+    }
+    .logo { justify-self:start; display:flex; align-items:center; gap:.5rem; text-decoration:none; color:#fff; }
     .logo svg { width:40px; height:24px; }
     .logo span { font-size:1.5rem; font-weight:800; }
-    nav { flex:1 1 auto; display:flex; justify-content:center; gap:2rem; }
+    nav { justify-self:center; display:flex; gap:2rem; }
     nav a { color:#aaa; text-decoration:none; font-weight:600; position:relative; transition:color .3s; }
     nav a:hover { color:#fff; }
     nav a::after { content:''; position:absolute; left:0; bottom:-5px; width:100%; height:2px; background:#fff; transform:scaleX(0); transition:transform .3s; }
     nav a:hover::after { transform:scaleX(1); }
-    .icon-group { flex:0 0 auto; display:flex; align-items:center; gap:1rem; }
+    .icon-group { justify-self:end; display:flex; align-items:center; gap:1rem; }
     .icon-btn { background:none; border:none; color:#aaa; font-size:1.2rem; cursor:pointer; transition:color .3s; }
     .icon-btn:hover { color:#fff; }
-    /* Sections reveal */
-    .promo-banner, .utility-bar, header, .hero, .carousel, .products, .testimonials, .newsletter, #contact, footer { opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out; }
+    /* Section reveal */
+    .promo-banner, .utility-bar, header, .hero, .carousel, .products, .testimonials, .newsletter, #contact, footer {
+      opacity:0; transform:translateY(30px) scale(.95); transition:all .8s ease-out;
+    }
     .visible { opacity:1 !important; transform:translateY(0) scale(1) !important; }
     /* Hero */
     .hero { display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; padding:2rem; background:url('assets/images/hero.jpg') no-repeat center/cover; position:relative; }
@@ -37,8 +43,8 @@
     .hero h2, .hero p, .cta-group { position:relative; z-index:1; }
     .hero h2 { font-size:3rem; font-weight:800; margin-bottom:1rem; }
     .hero p { font-size:1.2rem; color:#ccc; max-width:600px; margin-bottom:2rem; }
-    .cta-group { display:flex; gap:1rem; }
-    .cta-btn { padding:.75rem 2rem; font-size:1rem; font-weight:600; border:none; border-radius:30px; background:linear-gradient(to right,#8e2de2,#4a00e0); color:#fff; cursor:pointer; transition:transform .3s,box-shadow .3s; }
+    .cta-group { display:flex; justify-content:center; gap:1rem; width:100%; max-width:400px; margin-bottom:2rem; }
+    .cta-btn { flex:1; padding:.75rem 1rem; font-size:1rem; font-weight:600; border:none; border-radius:30px; background:linear-gradient(to right,#8e2de2,#4a00e0); color:#fff; cursor:pointer; transition:transform .3s,box-shadow .3s; }
     .cta-btn:hover { transform:translateY(-3px); box-shadow:0 10px 20px rgba(142,45,226,.4); }
     /* Carousel */
     .carousel { position:relative; display:flex; overflow:hidden; width:100%; height:60vh; margin-top:2rem; }
@@ -50,7 +56,7 @@
     .carousel-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); border:none; color:#fff; font-size:2rem; padding:.5rem 1rem; cursor:pointer; }
     #prev { left:1rem; }
     #next { right:1rem; }
-    /* Products Grid */
+    /* Featured Worlds */
     .products { padding:6rem 2rem; text-align:center; }
     .products-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; max-width:1200px; margin:0 auto; }
     .product-card { background:#111; padding:2rem; border-radius:20px; transition:transform .3s ease; }
@@ -75,7 +81,11 @@
     .footer-col a { display:block; color:#888; text-decoration:none; margin-bottom:.5rem; font-size:.9rem; }
     .footer-col a:hover { color:#fff; }
     .footer-bottom { text-align:center; margin-top:2rem; font-size:.8rem; color:#666; }
-    @media(max-width:768px){ .carousel { height:40vh; } .carousel-content h3{font-size:1.8rem;} }
+    @media(max-width:768px){
+      .carousel { height:40vh; }
+      .carousel-content h3{font-size:1.8rem;}
+      .cta-group { flex-direction:column; max-width:100%; }
+    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded',()=>{
@@ -92,37 +102,103 @@
 <body>
   <div class="promo-banner">Now supporting cross-server chat!<a href="#">Learn more</a></div>
   <header>
-    <a href="/" class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" fill="none"><g fill="#111"><rect x="10" y="50" width="20" height="50"/><rect x="35" y="30" width="20" height="70"/><rect x="60" y="60" width="20" height="40"/><rect x="85" y="20" width="20" height="80"/><rect x="110" y="45" width="20" height="55"/><rect x="135" y="35" width="20" height="65"/><rect x="160" y="55" width="20" height="45"/></g><rect x="0" y="105" width="200" height="5" fill="#8E2DE2"/></svg><span>NexCore</span></a>
-    <nav><a href="about.html">About</a><a href="rules.html">Rules</a><a href="join.html">Join</a><a href="dynmap.html">Dynmap</a><a href="contact.html">Contact</a></nav>
+    <a href="/" class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" fill="none">
+        <g fill="#111">
+          <rect x="10" y="50" width="20" height="50"/>
+          <rect x="35" y="30" width="20" height="70"/>
+          <rect x="60" y="60" width="20" height="40"/>
+          <rect x="85" y="20" width="20" height="80"/>
+          <rect x="110" y="45" width="20" height="55"/>
+          <rect x="135" y="35" width="20" height="65"/>
+          <rect x="160" y="55" width="20" height="45"/>
+        </g>
+        <rect x="0" y="105" width="200" height="5" fill="#8E2DE2"/>
+      </svg>
+      <span>NexCore</span>
+    </a>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="rules.html">Rules</a>
+      <a href="join.html">Join</a>
+      <a href="dynmap.html">Dynmap</a>
+      <a href="contact.html">Contact</a>
+    </nav>
     <div class="icon-group">
       <button class="icon-btn" aria-label="Search">🔍</button>
       <button class="icon-btn" aria-label="Language">🌐</button>
     </div>
   </header>
-  <div class="utility-bar"><a href="https://discord.com">Discord</a><a href="https://wiki.nexcore.top">Wiki</a><a href="https://store.nexcore.top">Store</a></div>
+  <div class="utility-bar">
+    <a href="https://discord.com">Discord</a>
+    <a href="https://wiki.nexcore.top">Wiki</a>
+    <a href="https://store.nexcore.top">Store</a>
+  </div>
 
   <!-- Hero -->
-  <section class="hero"><h2>Build Beyond Limits.</h2><p>NexCore is your ultimate Minecraft network.</p><div class="cta-group"><button class="cta-btn" onclick="location.href='join.html'">Join Server</button><button class="cta-btn" onclick="location.href='contact.html'">Contact</button></div></section>
+  <section class="hero">
+    <h2>Build Beyond Limits.</h2>
+    <p>NexCore is your ultimate Minecraft network.</p>
+    <div class="cta-group">
+      <button class="cta-btn" onclick="location.href='join.html'">Join Server</button>
+      <button class="cta-btn" onclick="location.href='contact.html'">Contact</button>
+    </div>
+  </section>
 
   <!-- Carousel -->
   <div class="carousel" id="carousel">
     <button class="carousel-btn" id="prev">‹</button>
-    <div class="carousel-slide" style="background:url('assets/images/slide1.jpg')"><div class="carousel-content"><h3>Survival Mode</h3><p>Rich, balanced, anti-griefed gameplay.</p></div></div>
-    <div class="carousel-slide" style="background:url('assets/images/slide2.jpg')"><div class="carousel-content"><h3>Creative World</h3><p>Unleash unlimited creativity in our free-build realm.</p></div></div>
-    <div class="carousel-slide" style="background:url('assets/images/slide3.jpg')"><div class="carousel-content"><h3>Minigames Arena</h3><p>Challenging competitions and fun events.</p></div></div>
+    <div class="carousel-slide" style="background:url('assets/images/slide1.jpg')">
+      <div class="carousel-content">
+        <h3>Survival Mode</h3>
+        <p>Rich, balanced, anti-griefed gameplay.</p>
+      </div>
+    </div>
+    <div class="carousel-slide" style="background:url('assets/images/slide2.jpg')">
+      <div class="carousel-content">
+        <h3>Creative World</h3>
+        <p>Unleash unlimited creativity in our free-build realm.</p>
+      </div>
+    </div>
+    <div class="carousel-slide" style="background:url('assets/images/slide3.jpg')">
+      <div class="carousel-content">
+        <h3>Minigames Arena</h3>
+        <p>Challenging competitions and fun events.</p>
+      </div>
+    </div>
     <button class="carousel-btn" id="next">›</button>
   </div>
 
   <!-- Featured Worlds -->
-  <section class="products"><h3>Featured Worlds</h3><div class="products-grid">
-      <div class="product-card"><img src="assets/images/world1.jpg" alt="Survival"><h4>Survival</h4><p>Balanced and anti-griefed survival experience.</p></div>
-      <div class="product-card"><img src="assets/images/world2.jpg" alt="Creative"><h4>Creative</h4><p>Build anything you imagine without limits.</p></div>
-      <div class="product-card"><img src="assets/images/world3.jpg" alt="Minigames"><h4>Minigames</h4><p>Fast-paced arenas and community events.</p></div>
-      <div class="product-card"><img src="assets/images/world4.jpg" alt="Roleplay"><h4>Roleplay</h4><p>Immersive stories and player-driven economy.</p></div>
-    </div></section>
+  <section class="products">
+    <h3>Featured Worlds</h3>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="assets/images/world1.jpg" alt="Survival">
+        <h4>Survival</h4>
+        <p>Balanced and anti-griefed survival experience.</p>
+      </div>
+      <div class="product-card">
+        <img src="assets/images/world2.jpg" alt="Creative">
+        <h4>Creative</h4>
+        <p>Build anything you imagine without limits.</p>
+      </div>
+      <div class="product-card">
+        <img src="assets/images/world3.jpg" alt="Minigames">
+        <h4>Minigames</h4>
+        <p>Fast-paced arenas and community events.</p>
+      </div>
+      <div class="product-card">
+        <img src="assets/images/world4.jpg" alt="Roleplay">
+        <h4>Roleplay</h4>
+        <p>Immersive stories and player-driven economy.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- Testimonials -->
-  <section class="testimonials"><h3>Community Voices</h3>
+  <section class="testimonials">
+    <h3>Community Voices</h3>
     <p>“NexCore’s custom plugins make every session feel fresh and unique.”</p>
     <div class="testimonial-author">— AlexGamer</div>
     <p>“The performance is incredible—80+ players never lag.”</p>
@@ -130,20 +206,49 @@
   </section>
 
   <!-- Newsletter -->
-  <section class="newsletter"><h3>Stay Updated</h3><p>Sign up for news and upcoming features.</p>
-    <div><input type="email" placeholder="Enter your email"><button>Subscribe</button></div>
+  <section class="newsletter">
+    <h3>Stay Updated</h3>
+    <p>Sign up for news and upcoming features.</p>
+    <div>
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact"><h3>Get in Touch</h3><p>Join our Discord community:</p><iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark" width="100%" height="400" allowtransparency sandbox="allow-popups allow-same-origin allow-scripts"></iframe></section>
+  <section id="contact">
+    <h3>Get in Touch</h3>
+    <p>Join our Discord community:</p>
+    <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark" width="100%" height="400" allowtransparency sandbox="allow-popups allow-same-origin allow-scripts"></iframe>
+  </section>
 
   <!-- Footer -->
   <footer>
     <div class="footer-cols">
-      <div class="footer-col"><h5>WORLD TYPES</h5><a href="#worlds">Survival</a><a href="#explore">Creative</a><a href="#features">Minigames</a><a href="#vision">Roleplay</a></div>
-      <div class="footer-col"><h5>COMMUNITY</h5><a href="https://discord.com">Discord</a><a href="https://twitter.com">Twitter</a><a href="https://reddit.com">Reddit</a></div>
-      <div class="footer-col"><h5>SUPPORT</h5><a href="contact.html">Contact</a><a href="rules.html">Rules</a><a href="about.html">About</a></div>
-      <div class="footer-col"><h5>LEGAL</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      <div class="footer-col">
+        <h5>WORLD TYPES</h5>
+        <a href="#worlds">Survival</a>
+        <a href="#explore">Creative</a>
+        <a href="#features">Minigames</a>
+        <a href="#vision">Roleplay</a>
+      </div>
+      <div class="footer-col">
+        <h5>COMMUNITY</h5>
+        <a href="https://discord.com">Discord</a>
+        <a href="https://twitter.com">Twitter</a>
+        <a href="https://reddit.com">Reddit</a>
+      </div>
+      <div class="footer-col">
+        <h5>SUPPORT</h5>
+        <a href="contact.html">Contact</a>
+        <a href="rules.html">Rules</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="footer-col">
+        <h5>LEGAL</h5>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
     </div>
     <div class="footer-bottom">&copy; 2025 NexCore. All rights reserved.</div>
   </footer>
