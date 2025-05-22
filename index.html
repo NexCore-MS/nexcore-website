@@ -145,9 +145,13 @@
       <a href="contact.html">Contact</a>
     </nav>
     <div class="icon-group">
-      <button class="icon-btn" aria-label="Search">🔍</button>
+      <button class="icon-btn" aria-label="Search" id="searchToggle">🔍</button>
       <button class="icon-btn" aria-label="Language">🌐</button>
     </div>
+    <!-- Search form -->
+    <form id="searchForm" class="search-form" action="/search" method="GET">
+      <input type="text" name="q" placeholder="Search NexCore…" aria-label="Search input" />
+    </form>
   </header>
   <div class="utility-bar">
     <a href="https://discord.com">Discord</a>
