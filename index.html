@@ -10,7 +10,7 @@
     html, body { font-family:'Inter',sans-serif; background:#000; color:#fff; overflow-x:hidden; }
     a { text-decoration:none; }
     /* Fade-in utility */
-    .fade-in { opacity:0; transform:translateY(30px); transition:opacity .8s ease-out, transform .8s ease-out; }
+    .fade-in { opacity:0; transform:translateY(30px); transition:opacity .6s ease-out, transform .6s ease-out; }
     .visible { opacity:1; transform:translateY(0); }
     /* Promo banner */
     .promo-banner { background:#1a1a1a; text-align:center; padding:.75rem; font-size:.9rem; }
@@ -18,10 +18,10 @@
     /* Header */
     header { position:sticky; top:0; background:rgba(0,0,0,0.9); backdrop-filter:blur(10px); display:flex; justify-content:center; align-items:center; padding:1rem 2rem; z-index:100; }
     .logo { position:absolute; left:50%; transform:translateX(-50%); font-size:1.5rem; font-weight:800; }
-    nav { display:flex; gap:3rem; }
-    nav a { color:#aaa; font-weight:600; padding:.5rem 0; position:relative; }
+    nav { display:flex; gap:2.5rem; }
+    nav a { color:#aaa; font-weight:600; position:relative; padding:.5rem 0; }
     nav a:hover { color:#fff; }
-    nav a::after { content:''; position:absolute; bottom:-4px; left:0; width:100%; height:2px; background:#fff; transform:scaleX(0); transform-origin:right; transition:transform .3s; }
+    nav a::after { content:''; position:absolute; left:0; bottom:-4px; width:100%; height:2px; background:#fff; transform:scaleX(0); transform-origin:right; transition:transform .3s; }
     nav a:hover::after { transform:scaleX(1); transform-origin:left; }
     /* Utility bar */
     .utility-bar { background:#111; padding:.5rem 0; display:flex; justify-content:center; gap:2rem; font-size:.9rem; }
@@ -68,10 +68,9 @@
     /* Footer */
     footer { background:#111; padding:4rem 2rem; text-align:center; color:#888; }
     .footer-cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:2rem; margin-bottom:2rem; }
-    .footer-col h5 { margin-bottom:1rem; }
+    .footer-col h5 { margin-bottom:1rem; color:#fff; }
     .footer-col a { display:block; color:#888; margin-bottom:.5rem; }
     .footer-col a:hover { color:#fff; }
-    @media(max-width:768px){ .carousel { height:40vh; } .cta-group { flex-direction:column; } }
   </style>
 </head>
 <body>
@@ -87,20 +86,71 @@
     </nav>
   </header>
   <div class="utility-bar fade-in">
-    <a href="https://discord.com">Discord</a>
-    <a href="https://wiki.nexcore.top">Wiki</a>
-    <a href="https://store.nexcore.top">Store</a>
+    <a href="https://discord.com" target="_blank">Discord</a>
+    <a href="https://wiki.nexcore.top" target="_blank">Wiki</a>
+    <a href="https://store.nexcore.top" target="_blank">Store</a>
   </div>
   <section class="hero fade-in">
     <h2>Build Beyond Limits.</h2>
     <p>A cyberpunk-inspired Minecraft network built for immersion, creativity, and community.</p>
     <div class="cta-group">
-      <button class="cta-btn" onclick="location.href='join.html'">Join Server</button>
-      <button class="cta-btn" onclick="location.href='contact.html'">Contact</button>
+      <button class="cta-btn" onclick="window.location.href='join.html'">Join Server</button>
+      <button class="cta-btn" onclick="window.location.href='contact.html'">Contact</button>
     </div>
   </section>
   <div class="carousel fade-in">
     <button class="carousel-btn" id="prev">‹</button>
-    <div class="carousel-slide" style="background:url('assets/images/slide1.jpg')"><div class="carousel-content"><h3>Survival Mode</h3><p>Rich, balanced, anti-griefed gameplay.</p></div></div>
-    <div class="carousel-slide" style="background:url('assets/images/slide2.jpg')"><div class="carousel-content"><h3>Creative World</h3><p>Unleash unlimited creativity in our free-build realm.</p></div></div>
-    <div class="carousel-slide" style="background:url('assets/images/slide3.jpg')"><div class="carousel-content"><h3>Minigames Arena</h3><p>Challenging competitions and fun events.</p></
+    <div class="carousel-slide" style="background-image:url('assets/images/slide1.jpg')"><div class="carousel-content"><h3>Survival Mode</h3><p>Rich, balanced, anti-griefed gameplay.</p></div></div>
+    <div class="carousel-slide" style="background-image:url('assets/images/slide2.jpg')"><div class="carousel-content"><h3>Creative World</h3><p>Build anything in our free-build realm.</p></div></div>
+    <div class="carousel-slide" style="background-image:url('assets/images/slide3.jpg')"><div class="carousel-content"><h3>Minigames Arena</h3><p>Challenging competitions and fun events.</p></div></div>
+    <button class="carousel-btn" id="next">›</button>
+  </div>
+  <section class="products fade-in">
+    <h3>Featured Worlds</h3>
+    <div class="products-grid">
+      <div class="product-card"><h4>Survival</h4><p>Balanced and anti-griefed experience.</p></div>
+      <div class="product-card"><h4>Creative</h4><p>Unleash unlimited creativity.</p></div>
+      <div class="product-card"><h4>Minigames</h4><p>Fast-paced arenas and community events.</p></div>
+      <div class="product-card"><h4>Roleplay</h4><p>Immersive stories and player-driven economy.</p></div>
+    </div>
+  </section>
+  <section class="testimonials fade-in">
+    <h3>Community Voices</h3>
+    <p>“NexCore’s custom plugins make every session feel fresh and unique.”<br><span class="testimonial-author">— AlexGamer</span></p>
+    <p>“Performance is incredible—80+ players never lag.”<br><span class="testimonial-author">— MineCraftPro</span></p>
+  </section>
+  <section class="newsletter fade-in">
+    <h3>Stay Updated</h3>
+    <p>Sign up for news and upcoming features.</p>
+    <div><input type="email" placeholder="Enter your email"> <button>Subscribe</button></div>
+  </section>
+  <section id="contact" class="fade-in">
+    <h3>Get in Touch</h3>
+    <p>Join our Discord community:</p>
+    <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark" width="100%" height="400" allowtransparency sandbox="allow-popups allow-same-origin allow-scripts"></iframe>
+  </section>
+  <footer class="fade-in">
+    <div class="footer-cols">
+      <div class="footer-col"><h5>WORLD TYPES</h5><a href="#">Survival</a><a href="#">Creative</a><a href="#">Minigames</a><a href="#">Roleplay</a></div>
+      <div class="footer-col"><h5>COMMUNITY</h5><a href="#">Discord</a><a href="#">Wiki</a><a href="#">Store</a></div>
+      <div class="footer-col"><h5>SUPPORT</h5><a href="contact.html">Contact</a><a href="rules.html">Rules</a><a href="about.html">About</a></div>
+      <div class="footer-col"><h5>LEGAL</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </footer>
+  <script>
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Carousel
+    const slides = document.querySelectorAll('.carousel-slide');
+    let idx = 0;
+    const update = () => slides.forEach((s,i) => s.style.transform = `translateX(${100*(i-idx)}%)`);
+    document.getElementById('prev').addEventListener('click', () => { idx = (idx-1+slides.length)%slides.length; update(); });
+    document.getElementById('next').addEventListener('click', () => { idx = (idx+1)%slides.length; update(); });
+    update();
+  </script>
+</body>
+</html>
