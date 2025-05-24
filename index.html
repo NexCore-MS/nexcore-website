@@ -42,8 +42,21 @@
     .hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
     .hero h1 { position: relative; z-index: 1; font-size: 3rem; margin-bottom: 1rem; }
     .hero p { position: relative; z-index: 1; font-size: 1.2rem; color: #ccc; max-width: 600px; margin-bottom: 2rem; }
-    .cta-btn { padding: .75rem 1.5rem; border: none; border-radius: 30px; background: linear-gradient(to right, #8e2de2, #4a00e0); color: #fff; font-weight: 600; cursor: pointer; transition: transform .3s, box-shadow .3s; }
-    .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(142,45,226, .4); }
+
+    /* CTA Buttons now as links */
+    .cta-btn {
+      display: inline-block;
+      padding: .75rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(to right, #8e2de2, #4a00e0);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(142,45,226,.4); }
     .cta-group { display: flex; gap: 1rem; }
 
     /* Carousel */
@@ -105,8 +118,8 @@
       <h1>Build Beyond Limits.</h1>
       <p>A cyberpunk-inspired Minecraft network built for immersion, creativity, and community.</p>
       <div class="cta-group">
-        <button class="cta-btn" onclick="location.href='join.html'">Join Server</button>
-        <button class="cta-btn" onclick="location.href='contact.html'">Contact</button>
+        <a class="cta-btn" href="join.html">Join Server</a>
+        <a class="cta-btn" href="contact.html">Contact</a>
       </div>
     </section>
 
@@ -174,9 +187,7 @@
       document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
       // Carousel
       const slides = document.querySelectorAll('.carousel-slide'); let idx=0;
-      const update = () => {
-        slides.forEach((s,i)=> s.classList.toggle('active', i===idx));
-      };
+      const update = () => { slides.forEach((s,i)=> s.classList.toggle('active', i===idx)); };
       document.getElementById('prev').onclick = () => { idx=(idx-1+slides.length)%slides.length; update(); };
       document.getElementById('next').onclick = () => { idx=(idx+1)%slides.length; update(); };
       update();
