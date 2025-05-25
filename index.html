@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexCore - Your Next Minecraft Adventure</title>
     <style>
-        /* Global Resets & Base Styles */
+        /* ... (all your existing CSS styles remain the same) ... */
         body, html {
             margin: 0;
             padding: 0;
@@ -118,7 +118,6 @@
             text-align: left;
             transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
         }
-        /* Background for items based on section background */
         .section.alternate-bg .feature-item, 
         .section.alternate-bg .future-mode-item { background-color: #fff; }
         .section:not(.alternate-bg) .feature-item,
@@ -136,8 +135,8 @@
             background-color: #007aff30; border-radius: 10px;
             font-size: 24px; color: #007aff;
         }
-        .future-mode-item .icon-placeholder { /* Slightly different color for future items */
-            background-color: #7857fe30; /* A different accent, e.g., purpleish */
+        .future-mode-item .icon-placeholder { 
+            background-color: #7857fe30; 
             color: #7857fe;
         }
         .feature-item .icon-placeholder img, .feature-item .icon-placeholder svg,
@@ -147,18 +146,6 @@
         .feature-item p, .future-mode-item p { 
             font-size: 0.95em; color: #555; line-height: 1.5; 
         }
-        /* Specific for future mode item if needed */
-        .future-mode-item .status-badge { /* Optional: if you want a "Coming Soon" badge */
-            display: inline-block;
-            background-color: #7857fe1a;
-            color: #7857fe;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.8em;
-            font-weight: 500;
-            margin-top: 10px;
-        }
-
 
         /* How to Join Section */
         .join-section { background-color: #007aff; color: #fff; padding: 80px 0; }
@@ -183,20 +170,33 @@
         .copy-ip-button:hover { background-color: #e9e9ed; transform: scale(1.05); }
         .copy-ip-button.copied { background-color: #34c759; color: #fff; }
 
-        /* Community (Discord) Section */
-        .community-section .icon-placeholder { 
-            width: 60px; height: 60px; margin: 0 auto 20px auto; 
-            background-color: #5865f230; color: #5865F2; 
-            font-size: 30px;
+        /* Community (Discord) Section - UPDATED FOR WIDGET */
+        .community-section {
+             /* background-color: #f5f5f7; /* This was the alternate, ensure it matches sequence */
         }
-        .community-section .cta-button { 
-            margin-top: 20px; background-color: #5865F2; 
+        .discord-widget-container {
+            margin-top: 30px; /* Space above the widget */
+            margin-bottom: 30px; /* Space below the widget */
+            display: flex;
+            justify-content: center;
+        }
+        .discord-widget-container iframe { /* Style the iframe if needed */
+            border-radius: 10px; /* Match other rounded corners */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* Subtle shadow */
+        }
+        /* The original CTA button for discord can be kept or removed */
+        .community-section .cta-button-discord { 
+            margin-top: 10px; 
+            background-color: #5865F2; 
             box-shadow: 0 4px 15px rgba(88, 101, 242, 0.25);
+            padding: 12px 30px; /* Slightly smaller if it's a secondary CTA now */
+            font-size: 1.05em;
         }
-        .community-section .cta-button:hover {
+         .community-section .cta-button-discord:hover {
             background-color: #4f5bda;
             box-shadow: 0 6px 20px rgba(88, 101, 242, 0.35);
         }
+
 
         /* Footer */
         footer { background-color: #1d1d1f; color: #a0a0a5; text-align: center; padding: 50px 20px; font-size: 0.9em; }
@@ -222,6 +222,11 @@
             .server-ip-area { flex-direction: column; gap: 10px; }
             .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
             .copy-ip-button { padding: 15px 20px; font-size: 0.95em; width: 100%; max-width: 250px;}
+            .discord-widget-container iframe { /* Adjust widget size for mobile */
+                width: 100% !important; /* Force width if needed, Discord's iframe might have inline styles */
+                max-width: 350px; /* Max width to prevent it from being too wide */
+                min-height: 400px; /* Ensure it's not too short */
+            }
         }
     </style>
 </head>
@@ -233,7 +238,8 @@
             <ul>
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#future">Coming Soon</a></li> <li><a href="#community">Community</a></li>
+                <li><a href="#future">Coming Soon</a></li>
+                <li><a href="#community">Community</a></li>
                 <li><a href="#join">Join Us</a></li>
             </ul>
         </div>
@@ -271,37 +277,53 @@
         </div>
     </section>
 
-    <section id="future" class="section"> <div class="container">
+    <section id="future" class="section"> 
+        <div class="container">
             <h2 class="animated-item">Future Adventures</h2>
             <p class="section-subheading animated-item" style="transition-delay: 0.1s;">
                 NexCore is currently a premier Survival server, and we're always dreaming bigger! Here's a sneak peek at what we're planning to build next.
             </p>
             <div class="future-modes-grid">
                 <div class="future-mode-item animated-item" style="transition-delay: 0.2s;">
-                    <div class="icon-placeholder">🎨</div> <h3>Creative Mode</h3>
+                    <div class="icon-placeholder">🎨</div>
+                    <h3>Creative Mode</h3>
                     <p>Unleash your imagination with unlimited resources and build breathtaking creations in a dedicated world.</p>
-                    </div>
+                </div>
                 <div class="future-mode-item animated-item" style="transition-delay: 0.3s;">
-                    <div class="icon-placeholder">🧱</div> <h3>Prison Mode</h3>
+                    <div class="icon-placeholder">🧱</div>
+                    <h3>Prison Mode</h3>
                     <p>Mine your way to freedom! Rank up through challenging levels, trade with others, and conquer the prison hierarchy.</p>
-                    </div>
+                </div>
                 <div class="future-mode-item animated-item" style="transition-delay: 0.4s;">
-                    <div class="icon-placeholder">☁️</div> <h3>Skyblock Mode</h3>
+                    <div class="icon-placeholder">☁️</div>
+                    <h3>Skyblock Mode</h3>
                     <p>Survive and thrive on a tiny island in the sky. Expand your world from humble beginnings against all odds.</p>
-                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="community" class="section alternate-bg"> <div class="container">
-            <div class="icon-placeholder animated-item">💬</div> 
-            <h2 class="animated-item" style="transition-delay: 0.1s;">Join Our Community!</h2>
-            <p class="section-subheading animated-item" style="transition-delay: 0.2s;">
-                Become a part of the NexCore family on Discord. Get the latest updates, chat with fellow players, participate in events, and get support when you need it.
+    <section id="community" class="section alternate-bg"> 
+        <div class="container">
+            <h2 class="animated-item">Join Our Community!</h2>
+            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">
+                Connect with fellow players, get the latest updates, participate in events, and see who's online right now!
             </p>
-            <a href="YOUR_DISCORD_INVITE_LINK" target="_blank" class="cta-button animated-item" style="transition-delay: 0.3s;">
-                Join Discord Server
+            
+            <div class="discord-widget-container animated-item" style="transition-delay: 0.2s;">
+                <div style="padding:20px; background:#333; color:#fff; border-radius:8px; text-align:center;">
+                    Your Discord Widget will appear here once you paste the iframe code from your server settings.
+                    <br><br>Example ID: 1004153689105240124
+                </div>
+
+            </div>
+
+            <a href="https://discord.gg/VAjz44fRAJ" target="_blank" 
+               class="cta-button cta-button-discord animated-item" 
+               style="transition-delay: 0.3s; margin-top: 30px;"> 
+                Join via Invite Link
             </a>
+
         </div>
     </section>
 
@@ -327,40 +349,361 @@
     </footer>
 
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('year').textContent = new D<ctrl61>.
+10. Add responsive design considerations (media queries) for basic usability on smaller screens.
+11. Remind the user about replacing placeholders and further customization.Okay, this is a much more specific and achievable request! I can definitely help you craft an `index.html` page for your Minecraft server, "NexCore," aiming for that clean, minimalist Apple-inspired style.
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const animatedItems = document.querySelectorAll('.animated-item');
-            if (!animatedItems.length) return;
-            const observer = new IntersectionObserver((entries, observerInstance) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observerInstance.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            animatedItems.forEach(item => { observer.observe(item); });
+This will be a single HTML file with embedded CSS for simplicity, perfect for hosting on GitHub Pages.
 
-            const copyIpButton = document.getElementById('copy-ip-btn');
-            const serverIpElement = document.getElementById('server-ip');
-            if (copyIpButton && serverIpElement) {
-                copyIpButton.addEventListener('click', () => {
-                    const ipAddress = serverIpElement.textContent;
-                    navigator.clipboard.writeText(ipAddress).then(() => {
-                        copyIpButton.textContent = 'Copied!';
-                        copyIpButton.classList.add('copied');
-                        setTimeout(() => {
-                            copyIpButton.textContent = 'Copy IP';
-                            copyIpButton.classList.remove('copied');
-                        }, 2000); 
-                    }).catch(err => {
-                        console.error('Failed to copy IP: ', err);
-                        alert('Failed to copy IP. Please copy it manually: ' + ipAddress);
-                    });
-                });
+Here's the code for your `index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexCore - Your Next Minecraft Adventure</title>
+    <style>
+        /* Global Resets & Base Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #f5f5f7; /* Apple-like light background */
+            color: #1d1d1f; /* Apple's primary text color */
+            line-height: 1.6;
+            scroll-behavior: smooth; /* For smooth scrolling on nav link clicks */
+        }
+
+        .container {
+            max-width: 1080px; /* Standard container width */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.8); /* Translucent white, Apple-like */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+            position: sticky; /* Makes the nav stay at the top */
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03); /* Subtle shadow for depth */
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #007aff; /* Apple's link blue */
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 80px; /* Generous padding */
+            background-color: #fff; /* White background for main content blocks */
+            /* You can add a subtle background image here later if you wish:
+               background-image: url('your-minecraft-hero-image.jpg');
+               background-size: cover;
+               background-position: center;
+            */
+        }
+
+        .hero h1 {
+            font-size: 3.5em; /* Large, impactful heading */
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 0.3em;
+            letter-spacing: -0.02em; /* Subtle letter spacing adjustment */
+        }
+
+        .hero .subtitle {
+            font-size: 1.5em;
+            color: #6e6e73; /* Apple's secondary text color */
+            margin-bottom: 1.5em;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #007aff; /* Apple blue */
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 1.1em;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 8px; /* Slightly rounded corners */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2); /* Subtle glow for the button */
+        }
+
+        .cta-button:hover {
+            background-color: #0068d6; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        /* Sections Styling */
+        .section {
+            padding: 70px 0;
+            text-align: center;
+            background-color: #fff; /* Default white background for sections */
+            border-bottom: 1px solid #e5e5e5; /* Separator line */
+        }
+        .section:nth-child(odd) { /* Alternate background for visual separation if desired */
+            /* background-color: #f5f5f7; */ /* Keeping it white for now for ultra-minimalism */
+        }
+        .section:last-of-type {
+            border-bottom: none; /* No border for the last section */
+        }
+
+
+        .section h2 {
+            font-size: 2.8em;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.8em;
+        }
+
+        .section p, .section .lead {
+            font-size: 1.2em;
+            color: #333; /* Slightly darker for body text in sections */
+            max-width: 700px; /* Constrain line length for readability */
+            margin: 0 auto 1em auto;
+        }
+
+        /* Features Grid (Example) */
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap; /* Allows items to wrap to next line on smaller screens */
+            justify-content: center;
+            gap: 30px; /* Space between feature items */
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background-color: #f9f9f9; /* Slightly off-white for cards */
+            padding: 30px;
+            border-radius: 10px; /* More rounded corners */
+            width: 100%; /* Full width on small screens */
+            max-width: 300px; /* Control width of feature cards */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Softer shadow */
+            text-align: left; /* Align text to left within cards */
+        }
+
+        .feature-item h3 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-top: 0; /* Remove default top margin */
+            margin-bottom: 0.5em;
+        }
+        .feature-item .icon-placeholder { /* Placeholder for feature icons */
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+            background-color: #007aff30; /* Light blue background for icon placeholder */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size:20px;
+            color: #007aff; /* Blue icon color */
+        }
+        /* Example: If you use <img> tags for icons later:
+        .feature-item img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 15px;
+        }
+        */
+
+        .feature-item p {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.5;
+        }
+
+
+        /* Call to Action Section (Join) */
+        .join-section {
+            background-color: #007aff; /* Primary color for emphasis */
+            color: #fff;
+            padding: 80px 0;
+        }
+
+        .join-section h2 {
+            color: #fff;
+            font-size: 2.8em;
+        }
+
+        .join-section .server-ip-container {
+            background-color: rgba(255, 255, 255, 0.15); /* Translucent white box for IP */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 20px 30px;
+            border-radius: 8px;
+            display: inline-block; /* So it doesn't take full width */
+            margin-top: 20px;
+            font-size: 1.4em;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .join-section .server-ip-container span {
+            user-select: all; /* Makes IP selectable */
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: #1d1d1f; /* Dark footer */
+            color: #a0a0a5; /* Light gray text for footer */
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 0.5em 0;
+        }
+
+        footer a {
+            color: #0096ff; /* Brighter blue for dark background */
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em; /* Adjust font size for smaller screens */
             }
-        });
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+            .section h2 {
+                font-size: 2em;
+            }
+            nav .container {
+                flex-direction: column; /* Stack logo and links on small screens */
+            }
+            nav ul {
+                margin-top: 10px;
+            }
+            nav ul li {
+                margin: 0 10px; /* Adjust spacing for nav links */
+            }
+            .features-grid {
+                flex-direction: column; /* Stack feature items */
+                align-items: center;
+            }
+            .feature-item {
+                max-width: 90%; /* Feature items take more width on mobile */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">NexCore</a>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#join">Join Us</a></li>
+                </ul>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1>Welcome to NexCore</h1>
+            <p class="subtitle">Experience Minecraft like never before. Your next great adventure starts here.</p>
+            <a href="#join" class="cta-button">Play NexCore Now</a>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <div class="container">
+            <h2>Why Choose NexCore?</h2>
+            <p class="lead">We've crafted a unique Minecraft experience focusing on community, performance, and exciting gameplay.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="icon-placeholder">🎮</div> <h3>Unique Gamemodes</h3>
+                    <p>Discover custom gamemodes you won't find anywhere else, designed for maximum fun and challenge.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-placeholder">👥</div> <h3>Active Community</h3>
+                    <p>Join a friendly and welcoming community of players. Make new friends and conquer challenges together.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-placeholder">⚡️</div> <h3>Lag-Free Performance</h3>
+                    <p>Our server is optimized for a smooth, lag-free experience, so you can focus on playing, not waiting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="section join-section">
+        <div class="container">
+            <h2>Ready to Join?</h2>
+            <p>Connecting to NexCore is easy! Launch Minecraft and add our server:</p>
+            <div class="server-ip-container">
+                Server IP: <span>YOUR_SERVER_IP_HERE</span>
+                </div>
+            <p style="margin-top: 20px; font-size: 0.9em; color: rgba(255,255,255,0.8);">
+                Minecraft Version: Java Edition X.XX.X (Specify your version)
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
+            <p>NexCore is not affiliated with Mojang AB.</p>
+            </div>
+    </footer>
+
+    <script>
+        // Simple script to set the current year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 
 </body>
