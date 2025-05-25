@@ -1,197 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NexCore</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    /* Reset */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexCore - Your Next Minecraft Adventure</title>
+    <style>
+        /* Global Resets & Base Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #f5f5f7; /* Apple-like light background */
+            color: #1d1d1f; /* Apple's primary text color */
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
 
-    /* Promo Banner */
-    .promo { background: #111; text-align: center; padding: .5rem; font-size: .9rem; }
-    .promo a { color: #4a90e2; text-decoration: none; }
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    /* Header */
-    header { position: sticky; top: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 1000; }
-    .nav-container { display: flex; align-items: center; justify-content: flex-start; max-width: 1200px; margin: 0 auto; padding: .75rem 1rem; position: relative; }
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.8); /* Translucent white */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
 
-    /* Nav Links Updated to White */
-    .nav-left { display: flex; gap: 1.5rem; align-items: center; margin-left: 0; }
-    .nav-right { display: flex; gap: 1.5rem; align-items: center; margin-left: auto; }
-    .nav-left a, .nav-right a { color: #fff; font-weight: 600; position: relative; text-decoration: none; }
-    .nav-left a:hover, .nav-right a:hover { color: #4a90e2; }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .logo { position: absolute; left: 50%; transform: translateX(-50%); font-size: 1.5rem; font-weight: 800; color: #fff; }
+        nav .logo {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
 
-    /* Utility Bar */
-    .utility { background: #111; text-align: center; padding: .5rem; }
-    .utility a { color: #aaa; margin: 0 1rem; font-size: .9rem; text-decoration: none; }
-    .utility a:hover { color: #fff; }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
 
-    /* Main Content Padding */
-    main { padding-top: 3.5rem; }
+        nav ul li {
+            margin-left: 25px;
+        }
 
-    /* Fade-in Utility */
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s ease-out, transform .6s ease-out; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+        nav ul li a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
 
-    /* Hero */
-    .hero { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; background: url('assets/images/hero.jpg') center/cover no-repeat; }
-    .hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
-    .hero h1 { position: relative; z-index: 1; font-size: 3rem; margin-bottom: 1rem; }
-    .hero p { position: relative; z-index: 1; font-size: 1.2rem; color: #ccc; max-width: 600px; margin-bottom: 2rem; }
+        nav ul li a:hover {
+            color: #007aff; /* Apple's link blue */
+        }
 
-    /* CTA Buttons now as links */
-    .cta-btn {
-      display: inline-block;
-      padding: .75rem 1.5rem;
-      border-radius: 30px;
-      background: linear-gradient(to right, #8e2de2, #4a00e0) !important;
-      color: #fff !important;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform .3s, box-shadow .3s;
-    }
-    .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(142,45,226,.4); }
-    .cta-group { display: flex; gap: 1rem; }
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 80px; /* Generous padding */
+            background-color: #fff; /* White background for main content blocks */
+            /* Optional: Add a subtle background image here if you have one */
+            /* background-image: url('your-minecraft-hero-image.jpg'); */
+            /* background-size: cover; */
+            /* background-position: center; */
+        }
 
-    /* Carousel */
-    .carousel { position: relative; overflow: hidden; width: 100%; height: 60vh; margin: 2rem 0; }
-    .carousel-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: opacity .8s ease, transform .8s ease; opacity: 0; }
-    .carousel-slide.active { opacity: 1; transform: translateX(0); }
-    .carousel-content { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); text-align: center; color: #fff; }
-    .carousel-content h3 { font-size: 2.5rem; margin-bottom: .5rem; }
-    .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); border: none; color: #fff; font-size: 2rem; padding: .5rem; cursor: pointer; }
-    .carousel-btn.prev { left: 1rem; } .carousel-btn.next { right: 1rem; }
+        .hero h1 {
+            font-size: 3.5em; /* Large, impactful heading */
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 0.3em;
+            letter-spacing: -0.02em;
+        }
 
-    /* Sections */
-    section { padding: 6rem 1rem; text-align: center; }
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; max-width: 1200px; margin: 2rem auto; }
-    .product-card { background: #111; padding: 1.5rem; border-radius: 12px; transition: transform .3s; }
-    .product-card:hover { transform: translateY(-5px); }
-    .testimonial { max-width: 800px; margin: 1rem auto; font-style: italic; color: #ccc; }
-    .newsletter input { padding: .75rem; width: 250px; border: none; border-radius: 30px 0 0 30px; }
-    .newsletter button { padding: .75rem 1.5rem; border: none; border-radius: 0 30px 30px 0; background: #8e2de2; color: #fff; cursor: pointer; }
-    #contact iframe { width: 100%; max-width: 800px; height: 400px; border: none; }
+        .hero .subtitle {
+            font-size: 1.5em;
+            color: #6e6e73; /* Apple's secondary text color */
+            margin-bottom: 1.5em;
+            font-weight: 400;
+        }
 
-    footer { background: #111; padding: 4rem 1rem; color: #888; }
-    .footer-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
-    .footer-col h5 { margin-bottom: .5rem; color: #fff; }
-    .footer-col a { display: block; color: #888; margin-bottom: .5rem; }
-    @media (max-width:768px) { .hero h1 { font-size: 2rem; } }
-  </style>
+        .cta-button {
+            display: inline-block;
+            background-color: #007aff; /* Apple blue */
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 1.1em;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 8px; /* Slightly rounded corners */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #0068d6;
+            transform: translateY(-2px);
+        }
+
+        /* Sections Styling */
+        .section {
+            padding: 70px 0;
+            text-align: center;
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .section:nth-child(odd) { /* Alternate background for visual separation if desired */
+             /* background-color: #f5f5f7; */
+        }
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+
+        .section h2 {
+            font-size: 2.8em;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.8em;
+        }
+
+        .section p, .section .lead {
+            font-size: 1.2em;
+            color: #333; /* Slightly darker for body text in sections */
+            max-width: 700px;
+            margin: 0 auto 1em auto;
+        }
+
+        /* Features Grid (Example) */
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px; /* Space between feature items */
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background-color: #f9f9f9; /* Slightly off-white for cards */
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 300px; /* Control width of feature cards */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.5em;
+        }
+        .feature-item img { /* Placeholder for feature icons */
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+            /* background-color: #007aff; /* temp background for icon placeholder */
+            /* border-radius: 8px; */
+        }
+
+        .feature-item p {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.5;
+        }
+
+
+        /* Call to Action Section (Join) */
+        .join-section {
+            background-color: #007aff; /* Primary color for emphasis */
+            color: #fff;
+            padding: 80px 0;
+        }
+
+        .join-section h2 {
+            color: #fff;
+            font-size: 2.8em;
+        }
+
+        .join-section .server-ip-container {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 20px 30px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.4em;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .join-section .server-ip-container span {
+            user-select: all; /* Makes IP selectable */
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: #1d1d1f; /* Dark footer */
+            color: #a0a0a5; /* Light gray text for footer */
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 0.5em 0;
+        }
+
+        footer a {
+            color: #0096ff; /* Brighter blue for dark background */
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+            .section h2 {
+                font-size: 2em;
+            }
+            nav .container {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 10px;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            .features-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature-item {
+                max-width: 90%; /* Feature items take more width on mobile */
+            }
+        }
+
+    </style>
 </head>
 <body>
-  <!-- Promo -->
-  <div class="promo fade-in">Now supporting cross-server chat! <a href="#">Learn more</a></div>
 
-  <!-- Header -->
-  <header>
-    <div class="nav-container fade-in">
-      <div class="nav-left">
-        <a href="about.html">About</a>
-        <a href="rules.html">Rules</a>
-      </div>
-      <div class="logo">NexCore</div>
-      <div class="nav-right">
-        <a href="join.html">Join</a>
-        <a href="dynmap.html">Dynmap</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-  </header>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">NexCore</a>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#join">Join Us</a></li>
+                </ul>
+        </div>
+    </nav>
 
-  <!-- Utility -->
-  <div class="utility fade-in">
-    <a href="https://discord.com/widget?id=1004153689105240124&theme=dark" target="_blank">Discord</a>
-    <a href="https://wiki.nexcore.top" target="_blank">Wiki</a>
-    <a href="https://store.nexcore.top" target="_blank">Store</a>
-  </div>
-
-  <main>
-    <!-- Hero -->
-    <section class="hero fade-in">
-      <h1>Build Beyond Limits.</h1>
-      <p>A cyberpunk-inspired Minecraft network built for immersion, creativity, and community.</p>
-      <div class="cta-group">
-        <a class="cta-btn" href="join.html">Join Server</a>
-        <a class="cta-btn" href="contact.html">Contact</a>
-      </div>
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1>Welcome to NexCore</h1>
+            <p class="subtitle">Experience Minecraft like never before. Your next great adventure starts here.</p>
+            <a href="#join" class="cta-button">Play NexCore Now</a>
+        </div>
     </section>
 
-    <!-- Carousel -->
-    <div class="carousel fade-in">
-      <button class="carousel-btn prev" id="prev">‹</button>
-      <div class="carousel-slide active" style="background-image:url('assets/images/slide1.jpg')">
-        <div class="carousel-content"><h3>Survival Mode</h3><p>Rich, balanced, anti-griefed gameplay.</p></div>
-      </div>
-      <div class="carousel-slide" style="background-image:url('assets/images/slide2.jpg')">
-        <div class="carousel-content"><h3>Creative World</h3><p>Unleash unlimited creativity.</p></div>
-      </div>
-      <div class="carousel-slide" style="background-image:url('assets/images/slide3.jpg')">
-        <div class="carousel-content"><h3>Minigames Arena</h3><p>Challenging competitions and fun events.</p></div>
-      </div>
-      <button class="carousel-btn next" id="next">›</button>
-    </div>
-
-    <!-- Featured Worlds -->
-    <section class="products fade-in">
-      <h3>Featured Worlds</h3>
-      <div class="products-grid">
-        <div class="product-card"><h4>Survival</h4><p>Balanced and anti-griefed experience.</p></div>
-        <div class="product-card"><h4>Creative</h4><p>Unleash unlimited creativity.</p></div>
-        <div class="product-card"><h4>Minigames</h4><p>Fast-paced arenas and community events.</p></div>
-        <div class="product-card"><h4>Roleplay</h4><p>Immersive stories and player-driven economy.</p></div>
-      </div>
+    <section id="features" class="section">
+        <div class="container">
+            <h2>Why Choose NexCore?</h2>
+            <p class="lead">We've crafted a unique Minecraft experience focusing on community, performance, and exciting gameplay.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div style="width: 50px; height: 50px; background-color: #ddd; margin-bottom: 15px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size:20px; color: #555;">🎮</div>
+                    <h3>Unique Gamemodes</h3>
+                    <p>Discover custom gamemodes you won't find anywhere else, designed for maximum fun and challenge.</p>
+                </div>
+                <div class="feature-item">
+                    <div style="width: 50px; height: 50px; background-color: #ddd; margin-bottom: 15px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size:20px; color: #555;">👥</div>
+                    <h3>Active Community</h3>
+                    <p>Join a friendly and welcoming community of players. Make new friends and conquer challenges together.</p>
+                </div>
+                <div class="feature-item">
+                    <div style="width: 50px; height: 50px; background-color: #ddd; margin-bottom: 15px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size:20px; color: #555;">⚡️</div>
+                    <h3>Lag-Free Performance</h3>
+                    <p>Our server is optimized for a smooth, lag-free experience, so you can focus on playing, not waiting.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials fade-in">
-      <h3>Community Voices</h3>
-      <p class="testimonial">“NexCore’s custom plugins make every session feel fresh and unique.”<span class="testimonial-author">— AlexGamer</span></p>
-      <p class="testimonial">“Performance is incredible—80+ players never lag.”<span class="testimonial-author">— MineCraftPro</span></p>
+    <section id="join" class="section join-section">
+        <div class="container">
+            <h2>Ready to Join?</h2>
+            <p>Connecting to NexCore is easy! Launch Minecraft and add our server:</p>
+            <div class="server-ip-container">
+                Server IP: <span>play.nexcore.gg</span> (Example IP)
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9em; color: rgba(255,255,255,0.8);">Minecraft Version: Java Edition 1.XX.X (Specify your version)</p>
+        </div>
     </section>
 
-    <!-- Newsletter -->
-    <section class="newsletter fade-in">
-      <h3>Stay Updated</h3>
-      <p>Sign up for news and upcoming features.</p>
-      <div><input type="email" placeholder="Your email"><button>Subscribe</button></div>
-    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
+            <p>NexCore is not affiliated with Mojang AB.</p>
+            </div>
+    </footer>
 
-    <!-- Contact -->
-    <section id="contact" class="fade-in">
-      <h3>Get in Touch</h3>
-      <iframe src="https://discord.com/widget?id=1004153689105240124&theme=dark"></iframe>
-    </section>
-  </main>
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 
-  <!-- Footer -->
-  <footer class="fade-in">
-    <div class="footer-cols">
-      <div class="footer-col"><h5>WORLD TYPES</h5><a href="#">Survival</a><a href="#">Creative</a><a href="#">Minigames</a><a href="#">Roleplay</a></div>
-      <div class="footer-col"><h5>COMMUNITY</h5><a href="#">Discord</a><a href="#">Wiki</a><a href="#">Store</a></div>
-      <div class="footer-col"><h5>SUPPORT</h5><a href="contact.html">Contact</a><a href="rules.html">Rules</a><a href="about.html">About</a></div>
-      <div class="footer-col"><h5>LEGAL</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
-    </div>
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Fade-in
-      const obs = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting ? e.target.classList.add('visible') : e.target.classList.remove('visible')), { threshold: 0.2 });
-      document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-      // Carousel
-      const slides = document.querySelectorAll('.carousel-slide'); let idx=0;
-      const update = () => { slides.forEach((s,i)=> s.classList.toggle('active', i===idx)); };
-      document.getElementById('prev').onclick = () => { idx=(idx-1+slides.length)%slides.length; update(); };
-      document.getElementById('next').onclick = () => { idx=(idx+1)%slides.length; update(); };
-      update();
-    });
-  </script>
 </body>
 </html>
