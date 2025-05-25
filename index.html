@@ -74,24 +74,54 @@
             opacity: 0; transform: translateY(20px);
             animation: fadeInUp 0.8s 0.4s ease-out forwards;
         }
-        .hero .cta-button { /* Base CTA button styles */
-            display: inline-block; 
-            color: #fff; /* Default text color for CTA buttons */
-            padding: 16px 40px; font-size: 1.15em; 
-            font-weight: 500; text-decoration: none; border-radius: 10px; 
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* === BUTTON STYLES === */
+        /* Base Call-to-Action Button Style */
+        .cta-button {
+            display: inline-block; /* Crucial for button-like behavior */
+            padding: 12px 25px;   /* Default padding */
+            font-size: 1.05em;    /* Default font size */
+            font-weight: 500;
+            color: #fff;           /* Default text color (usually white for colored buttons) */
+            text-decoration: none;  /* Remove underline from links styled as buttons */
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;           /* Remove default browser border */
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
-        .hero .cta-button { /* Hero specific CTA */
-            background-color: #007aff; 
+
+        /* Hero Button Specifics */
+        .hero .cta-button { /* This is the <a> tag with class="cta-button" inside .hero */
+            background-color: #007aff;
             box-shadow: 0 4px 15px rgba(0, 122, 255, 0.25);
-            opacity: 0; transform: translateY(20px);
+            padding: 16px 40px; /* Larger padding for hero button */
+            font-size: 1.15em;  /* Larger font for hero button */
+            /* Animation styles */
+            opacity: 0; 
+            transform: translateY(20px);
             animation: fadeInUp 0.8s 0.6s ease-out forwards;
         }
         .hero .cta-button:hover {
-            background-color: #0068d6; transform: translateY(-3px) scale(1.02);
+            background-color: #0068d6;
+            transform: translateY(-3px) scale(1.02);
             box-shadow: 0 6px 20px rgba(0, 122, 255, 0.35);
         }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Discord Button Specifics (uses .cta-button as a base class in HTML) */
+        .cta-button-discord { 
+            background-color: #5865F2; /* Discord purple */
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.25);
+            margin-top: 30px;   /* Spacing below the widget */
+        }
+        .cta-button-discord:hover {
+            background-color: #4f5bda;
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.35);
+            transform: translateY(-2px); /* Slight lift */
+        }
+        /* === END BUTTON STYLES === */
+
 
         /* General Section Styling */
         .section {
@@ -165,10 +195,11 @@
             padding: 18px 30px; border-radius: 10px;
             font-size: 1.5em; font-weight: 600; color: #fff; user-select: all;
         }
-        .copy-ip-button {
+        .copy-ip-button { /* This is an actual <button> element, style accordingly */
             background-color: #fff; color: #007aff; 
             padding: 18px 25px; border: none; border-radius: 10px;
             font-size: 1em; font-weight: 500; cursor: pointer;
+            font-family: inherit; /* Ensure it uses the page font */
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
         }
         .copy-ip-button:hover { background-color: #e9e9ed; transform: scale(1.05); }
@@ -185,25 +216,7 @@
             border-radius: 10px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
         }
-        /* UPDATED .cta-button-discord styles */
-        .community-section .cta-button-discord { 
-            display: inline-block; /* Ensures it behaves like a button */
-            margin-top: 30px;   /* Spacing below the widget */
-            background-color: #5865F2; 
-            color: #fff; /* Text color */
-            text-decoration: none; /* Removes underline from link */
-            padding: 12px 30px; 
-            font-size: 1.05em;
-            font-weight: 500;
-            border-radius: 10px; /* Matches other cta-buttons */
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.25);
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        }
-         .community-section .cta-button-discord:hover {
-            background-color: #4f5bda;
-            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.35);
-            transform: translateY(-2px); /* Slight lift */
-        }
+        /* .cta-button-discord styles are now above in the main BUTTON STYLES section */
 
         /* Footer */
         footer { background-color: #1d1d1f; color: #a0a0a5; text-align: center; padding: 50px 20px; font-size: 0.9em; }
@@ -256,7 +269,7 @@
         <div class="container">
             <h1>Welcome to NexCore</h1>
             <p class="subtitle">Experience Minecraft like never before. Your next great adventure starts here.</p>
-            <a href="#join" class="cta-button">Play NexCore Now</a>
+            <a href="#join" class="cta-button">Play NexCore Now</a> {/* HTML class="cta-button" */}
         </div>
     </section>
 
@@ -329,7 +342,7 @@
             </div>
 
             <a href="https://discord.gg/VAjz44fRAJ" target="_blank" 
-               class="cta-button cta-button-discord animated-item" 
+               class="cta-button cta-button-discord animated-item"  /* HTML classes "cta-button" and "cta-button-discord" */
                style="transition-delay: 0.3s;"> 
                 Join Our Discord
             </a>
