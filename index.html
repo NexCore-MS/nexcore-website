@@ -171,9 +171,6 @@
         .copy-ip-button.copied { background-color: #34c759; color: #fff; }
 
         /* Community (Discord) Section */
-        .community-section {
-             /* Ensure this has the correct background based on its sequence */
-        }
         .discord-widget-container {
             margin-top: 30px; 
             margin-bottom: 30px; 
@@ -309,11 +306,14 @@
             </p>
             
             <div class="discord-widget-container animated-item" style="transition-delay: 0.2s;">
-                <div style="padding:20px; background:#333; color:#fff; border-radius:8px; text-align:center;">
-                    Your Discord Widget will appear here once you paste the iframe code from your server settings.
-                    <br><br>Example ID: 1004153689105240124
-                </div>
-
+                <iframe 
+                    src="https://discord.com/widget?id=1004153689105240124&theme=dark" 
+                    width="350" 
+                    height="500" 
+                    allowtransparency="true" 
+                    frameborder="0" 
+                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+                </iframe>
             </div>
 
             <a href="https://discord.gg/VAjz44fRAJ" target="_blank" 
@@ -355,7 +355,7 @@
 
             // Intersection Observer for Scroll Animations
             const animatedItems = document.querySelectorAll('.animated-item');
-            if (animatedItems.length > 0) { // Check if any items found before proceeding
+            if (animatedItems.length > 0) {
                 const observer = new IntersectionObserver((entries, observerInstance) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
