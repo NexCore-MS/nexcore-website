@@ -3,416 +3,480 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexCore - Your Next Minecraft Adventure</title>
+    <title>Aurum Admin Panel Mockup</title>
     <style>
-        /* Global Resets & Base Styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            background-color: #f5f5f7;
-            color: #1d1d1f;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
+        body { font-family: sans-serif; margin: 0; background-color: #f4f6f9; color: #333; }
+        .header { background-color: #fff; padding: 15px 20px; border-bottom: 1px solid #dee2e6; display: flex; justify-content: space-between; align-items: center; }
+        .header .logo-breadcrumb .logo { font-size: 1.5em; font-weight: bold; color: #333; }
+        .header .logo-breadcrumb .breadcrumb { font-size: 0.9em; color: #6c757d; }
+        .header .user-profile { display: flex; align-items: center; }
+        .header .user-profile .user-icon { background-color: #007bff; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 8px; font-weight: bold; }
+        .header .search-bar input { padding: 5px 10px; border-radius: 5px; border: 1px solid #ced4da; margin-right: 15px;}
+        .sidebar { width: 230px; background-color: #343a40; color: #c2c7d0; height: calc(100vh - 60px); float: left; padding-top:10px;}
+        .sidebar ul { list-style-type: none; padding: 0; margin: 0; }
+        .sidebar ul li a { display: block; padding: 10px 15px; color: #c2c7d0; text-decoration: none; border-left: 3px solid transparent;}
+        .sidebar ul li a:hover, .sidebar ul li a.active { background-color: #494e53; color: #fff; border-left-color: #007bff;}
+        .sidebar .sidebar-bottom-text { font-size: 0.8em; text-align: center; padding: 10px; color: #6c757d; position:absolute; bottom: 60px; width: 200px;}
+        .content-wrapper { margin-left: 230px; padding: 20px; background-color: #f4f6f9; min-height: calc(100vh - 100px); }
+        .main-content { background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .footer { text-align: center; padding: 10px; font-size: 0.9em; color: #6c757d; border-top: 1px solid #dee2e6; background-color: #fff; clear: both; }
+        .footer .entries-info { float: left; }
+        .footer .pagination-info { float: right; }
+        .btn { padding: 8px 15px; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer; border: 1px solid transparent; }
+        .btn-primary { background-color: #007bff; color: white; }
+        .btn-secondary { background-color: #6c757d; color: white; }
+        .btn-light { background-color: #f8f9fa; color: #212529; border: 1px solid #ced4da; }
+        .btn-sm { padding: 5px 10px; font-size: 0.875em; }
+        .table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .table th, .table td { padding: 8px; border: 1px solid #dee2e6; text-align: left; font-size: 0.9em; }
+        .table th { background-color: #e9ecef; }
+        .table .status-active { color: green; font-weight: bold; text-transform: uppercase;}
+        .table .status-inactive { color: red; font-weight: bold; text-transform: uppercase;}
+        .page-title { font-size: 1.8em; margin-bottom: 10px; }
+        .controls { margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .controls .left-controls span { margin-right: 10px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input[type="text"], .form-group input[type="email"], .form-group input[type="file"], .form-group textarea { width: calc(100% - 22px); padding: 10px; border: 1px solid #ced4da; border-radius: 4px; }
+        .form-group textarea { resize: vertical; }
+        .client-profile-header { display: flex; align-items: center; margin-bottom: 20px;}
+        .client-profile-header img.logo { width: 70px; height: 70px; border: 1px solid #ccc; margin-right: 15px; object-fit: contain; background-color: #eee; text-align:center; line-height:70px; font-size:0.8em;}
+        .client-profile-header .client-info h3 { margin: 0 0 5px 0; }
+        .client-profile-header .client-info p { margin: 0; color: #6c757d; }
+        .tabs { margin-bottom: 20px; border-bottom: 1px solid #dee2e6; }
+        .tabs button { background: none; border: none; padding: 10px 15px; cursor: pointer; font-size: 1em; }
+        .tabs button.active { border-bottom: 2px solid #007bff; font-weight: bold; }
+        .checkbox-column input { margin-left: 5px; }
+        .action-buttons a, .action-buttons button { margin-right: 5px; text-decoration: none; color: #007bff; background: none; border: none; cursor: pointer; padding: 2px 5px;}
+        .action-buttons button:hover, .action-buttons a:hover { text-decoration: underline; }
+        .action-buttons .delete-btn { color: red; }
+        .flex-container { display: flex; gap: 20px; }
+        .flex-container > div { flex: 1; }
+        .notes-section textarea { width: 100%; height: 80px; }
+        .file-upload-area { border: 2px dashed #007bff; padding: 20px; text-align: center; border-radius: 5px; margin-top:10px; }
+        .file-upload-area input[type="file"] { display: inline-block; }
+        .file-upload-area span { display: block; color: #6c757d; margin-top:5px; }
+        .document-name-input { padding: 10px; border: 1px solid #ced4da; border-radius: 4px; width: calc(100% - 22px); margin-bottom:10px;}
+        .save-exit-btn { background-color: #28a745; color: white; float: right; margin-top: 20px;}
 
-        .container {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Specific styles from PDF observation */
+        .header .logo-breadcrumb .logo { color: #8A2BE2; /* Approximate color for Aurum House */ }
+        .header .user-profile .user-icon { background-color: #8A2BE2; }
+        .sidebar ul li a.active, .sidebar ul li a:hover { border-left-color: #8A2BE2; }
+        .btn-primary { background-color: #8A2BE2; border-color: #8A2BE2; }
+        .tabs button.active { border-bottom-color: #8A2BE2; }
+        .page-header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .page-header-bar .page-title { margin-bottom: 0; }
+        .page-header-bar .actions { display: flex; align-items: center; }
+        .page-header-bar .actions .search-bar input { margin-left: 15px; }
+        .table .action-buttons .preview-btn, .table .action-buttons .edit-btn, .table .action-buttons .delete-btn {
+            margin-right: 5px;
+            padding: 3px 6px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 0.8em;
+            text-decoration: none;
         }
-
-        /* Navigation */
-        nav {
-            background-color: rgba(255, 255, 255, 0.8); 
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.08); 
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav .container { display: flex; justify-content: space-between; align-items: center; }
-        nav .logo { font-size: 1.8em; font-weight: 600; color: #1d1d1f; text-decoration: none; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
-        nav ul li { margin-left: 25px; }
-        nav ul li a {
-            text-decoration: none; color: #1d1d1f; font-weight: 500; 
-            font-size: 0.95em; transition: color 0.3s ease, opacity 0.3s ease; 
-            position: relative; opacity: 0.9;
-        }
-        nav ul li a:hover { color: #007aff; opacity: 1; }
-        nav ul li a::after {
-            content: ''; position: absolute; width: 100%; transform: scaleX(0);
-            height: 1px; bottom: -3px; left: 0; background-color: #007aff;
-            transform-origin: bottom right; transition: transform 0.25s ease-out;
-        }
-        nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
-
-        /* Hero Section */
-        .hero {
-            text-align: center; padding: 120px 20px 100px;
-            background-color: #1c1c1e; 
-            /* --- REPLACE 'YOUR_IMAGE_FILENAME_HERE.jpg' with your actual image --- */
-            background-image: linear-gradient(rgba(28, 28, 30, 0.65), rgba(28, 28, 30, 0.85)), url('YOUR_IMAGE_FILENAME_HERE.jpg');
-            background-size: cover; background-position: center center;
-            background-repeat: no-repeat; position: relative; color: #fff; 
-        }
-        .hero h1 {
-            font-size: 3.8em; font-weight: 700; color: #fff; 
-            margin-bottom: 0.3em; letter-spacing: -0.02em;
-            opacity: 0; transform: translateY(20px);
-            animation: fadeInUp 0.8s 0.2s ease-out forwards; 
-        }
-        .hero .subtitle {
-            font-size: 1.6em; color: #d1d1d6; 
-            margin-bottom: 1.8em; font-weight: 400;
-            max-width: 650px; margin-left: auto; margin-right: auto; 
-            opacity: 0; transform: translateY(20px);
-            animation: fadeInUp 0.8s 0.4s ease-out forwards;
-        }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-        /* === BUTTON STYLES === */
-        /* Base Call-to-Action Button Style */
-        .cta-button {
-            display: inline-block; /* Crucial for button-like behavior */
-            padding: 12px 25px;   /* Default padding */
-            font-size: 1.05em;    /* Default font size */
-            font-weight: 500;
-            color: #fff;           /* Default text color (usually white for colored buttons) */
-            text-decoration: none;  /* Remove underline from links styled as buttons */
-            text-align: center;
-            border-radius: 10px;
-            cursor: pointer;
-            border: none;           /* Remove default browser border */
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        }
-
-        /* Hero Button Specifics */
-        .hero .cta-button { /* This is the <a> tag with class="cta-button" inside .hero */
-            background-color: #007aff;
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.25);
-            padding: 16px 40px; /* Larger padding for hero button */
-            font-size: 1.15em;  /* Larger font for hero button */
-            /* Animation styles */
-            opacity: 0; 
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s 0.6s ease-out forwards;
-        }
-        .hero .cta-button:hover {
-            background-color: #0068d6;
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.35);
-        }
-
-        /* Discord Button Specifics (uses .cta-button as a base class in HTML) */
-        .cta-button-discord { 
-            background-color: #5865F2; /* Discord purple */
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.25);
-            margin-top: 30px;   /* Spacing below the widget */
-        }
-        .cta-button-discord:hover {
-            background-color: #4f5bda;
-            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.35);
-            transform: translateY(-2px); /* Slight lift */
-        }
-        /* === END BUTTON STYLES === */
-
-
-        /* General Section Styling */
-        .section {
-            padding: 80px 0; text-align: center;
-            background-color: #fff; 
-            border-bottom: 1px solid #e5e5e5;
-        }
-        .section.alternate-bg { background-color: #f5f5f7; }
-        .section:last-of-type { border-bottom: none; }
-        .section h2 {
-            font-size: 2.8em; font-weight: 600; color: #1d1d1f; margin-bottom: 0.5em; 
-        }
-        .section .section-subheading {
-            font-size: 1.3em; color: #6e6e73;
-            max-width: 700px; margin: 0 auto 2.5em auto; 
-            font-weight: 400;
-        }
-
-        /* Features Section & Future Adventures Section Grid Styling */
-        .features-grid, .future-modes-grid { 
-            display: flex; flex-wrap: wrap; justify-content: center; 
-            gap: 30px; margin-top: 40px; 
-        }
-        .feature-item, .future-mode-item {
-            padding: 30px; border-radius: 12px; 
-            width: 100%; max-width: 320px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            text-align: left;
-            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-        }
-        .section.alternate-bg .feature-item, 
-        .section.alternate-bg .future-mode-item { background-color: #fff; }
-        .section:not(.alternate-bg) .feature-item,
-        .section:not(.alternate-bg) .future-mode-item { background-color: #f9f9f9; }
-
-        .feature-item:hover, .future-mode-item:hover { 
-            transform: translateY(-8px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); 
-        }
-        .feature-item h3, .future-mode-item h3 { 
-            font-size: 1.5em; font-weight: 600; color: #1d1d1f; margin-bottom: 0.5em; 
-        }
-        .feature-item .icon-placeholder, .future-mode-item .icon-placeholder { 
-            width: 48px; height: 48px; margin-bottom: 20px;
-            display: flex; align-items: center; justify-content: center;
-            background-color: #007aff30; border-radius: 10px;
-            font-size: 24px; color: #007aff;
-        }
-        .future-mode-item .icon-placeholder { 
-            background-color: #7857fe30; 
-            color: #7857fe;
-        }
-        .feature-item .icon-placeholder img, .feature-item .icon-placeholder svg,
-        .future-mode-item .icon-placeholder img, .future-mode-item .icon-placeholder svg {
-            width: 28px; height: 28px;
-        }
-        .feature-item p, .future-mode-item p { 
-            font-size: 0.95em; color: #555; line-height: 1.5; 
-        }
-
-        /* How to Join Section */
-        .join-section { background-color: #007aff; color: #fff; padding: 80px 0; }
-        .join-section h2 { color: #fff; font-size: 2.8em; }
-        .join-section .section-subheading { color: rgba(255,255,255,0.85); }
-        .server-ip-area {
-            display: flex; justify-content: center; align-items: center;
-            gap: 15px; margin-top: 25px; margin-bottom: 15px;
-        }
-        .server-ip-display {
-            background-color: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 18px 30px; border-radius: 10px;
-            font-size: 1.5em; font-weight: 600; color: #fff; user-select: all;
-        }
-        .copy-ip-button { /* This is an actual <button> element, style accordingly */
-            background-color: #fff; color: #007aff; 
-            padding: 18px 25px; border: none; border-radius: 10px;
-            font-size: 1em; font-weight: 500; cursor: pointer;
-            font-family: inherit; /* Ensure it uses the page font */
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-        }
-        .copy-ip-button:hover { background-color: #e9e9ed; transform: scale(1.05); }
-        .copy-ip-button.copied { background-color: #34c759; color: #fff; }
-
-        /* Community (Discord) Section */
-        .discord-widget-container {
-            margin-top: 30px; 
-            margin-bottom: 30px; 
-            display: flex;
-            justify-content: center;
-        }
-        .discord-widget-container iframe { 
-            border-radius: 10px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
-        }
-        /* .cta-button-discord styles are now above in the main BUTTON STYLES section */
-
-        /* Footer */
-        footer { background-color: #1d1d1f; color: #a0a0a5; text-align: center; padding: 50px 20px; font-size: 0.9em; }
-        footer p { margin: 0.5em 0; }
-        footer a { color: #2997ff; text-decoration: none; } 
-        footer a:hover { text-decoration: underline; }
-
-        /* Scroll Animation Helper Classes */
-        .animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .animated-item.is-visible { opacity: 1; transform: translateY(0); }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8em; }
-            .hero .subtitle { font-size: 1.3em; }
-            .section h2 { font-size: 2.2em; }
-            .section .section-subheading { font-size: 1.1em; }
-            nav .container { flex-direction: column; }
-            nav ul { margin-top: 10px; }
-            nav ul li { margin: 0 10px; }
-            .features-grid, .future-modes-grid { flex-direction: column; align-items: center; }
-            .feature-item, .future-mode-item { max-width: 90%; }
-            .server-ip-area { flex-direction: column; gap: 10px; }
-            .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
-            .copy-ip-button { padding: 15px 20px; font-size: 0.95em; width: 100%; max-width: 250px;}
-            .discord-widget-container iframe { 
-                width: 100% !important; 
-                max-width: 350px; 
-                min-height: 400px; 
-            }
-        }
+        .table .action-buttons .preview-btn { color: #007bff; }
+        .table .action-buttons .edit-btn { color: #ffc107; }
+        .table .action-buttons .delete-btn { color: #dc3545; }
+        .table .action-buttons input[type="checkbox"] { vertical-align: middle;}
+        .entries-per-page { float: left; }
+        .pagination { float: right; }
+        .pagination span { margin: 0 5px; padding: 5px 10px; border: 1px solid #dee2e6; border-radius: 3px;}
+        .pagination span.current { background-color: #8A2BE2; color: white; border-color: #8A2BE2;}
+        .profile-logo-placeholder { width: 100px; height:100px; border:1px solid #ccc; display:flex; align-items:center; justify-content:center; background-color:#f0f0f0; font-size:0.9em; color:#777; text-align:center; margin-bottom:10px;}
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="container">
-            <a href="#" class="logo">NexCore</a>
-            <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#future">Coming Soon</a></li>
-                <li><a href="#community">Community</a></li>
-                <li><a href="#join">Join Us</a></li>
-            </ul>
+    <div class="header">
+        <div class="logo-breadcrumb">
+            <div class="logo">Aurum House</div>
+            <div class="breadcrumb" id="breadcrumb-text">Admin / Services / List</div>
         </div>
-    </nav>
-
-    <section id="hero" class="hero">
-        <div class="container">
-            <h1>Welcome to NexCore</h1>
-            <p class="subtitle">Experience Minecraft like never before. Your next great adventure starts here.</p>
-            <a href="#join" class="cta-button">Play NexCore Now</a> {/* HTML class="cta-button" */}
+        <div class="user-profile">
+            <input type="text" placeholder="Q Search..." style="padding: 6px 10px; border-radius: 15px; border: 1px solid #ccc;">
+            <div class="user-icon">M</div>
+            <span>Monica Contador</span>
         </div>
-    </section>
+    </div>
 
-    <section id="features" class="section alternate-bg">
-        <div class="container">
-            <h2 class="animated-item">Why Choose NexCore?</h2>
-            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">We've crafted a unique Minecraft experience focusing on community, performance, and exciting gameplay.</p>
-            <div class="features-grid">
-                <div class="feature-item animated-item" style="transition-delay: 0.2s;">
-                    <div class="icon-placeholder">🎮</div>
-                    <h3>Unique Gamemodes</h3>
-                    <p>Discover custom gamemodes you won't find anywhere else, designed for maximum fun and challenge.</p>
-                </div>
-                <div class="feature-item animated-item" style="transition-delay: 0.3s;">
-                    <div class="icon-placeholder">👥</div>
-                    <h3>Active Community</h3>
-                    <p>Join a friendly and welcoming community of players. Make new friends and conquer challenges together.</p>
-                </div>
-                <div class="feature-item animated-item" style="transition-delay: 0.4s;">
-                    <div class="icon-placeholder">⚡️</div>
-                    <h3>Lag-Free Performance</h3>
-                    <p>Our server is optimized for a smooth, lag-free experience, so you can focus on playing, not waiting.</p>
-                </div>
-            </div>
+    <div class="sidebar">
+        <ul>
+            <li><a href="#" id="nav-dashboard">Dashboard</a></li>
+            <li><a href="#" id="nav-services" class="active">Services</a></li>
+            <li><a href="#" id="nav-pricing">Pricing & Packages</a></li>
+            <li><a href="#" id="nav-faqs">Faqs</a></li>
+            <li><a href="#" id="nav-leads">Leads</a></li>
+            <li><a href="#" id="nav-blogs">Blogs</a></li>
+            <li><a href="#" id="nav-testimonials">Testimonials</a></li>
+            <li><a href="#" id="nav-newsletters">Newsletters</a></li>
+            <li><a href="#" id="nav-projects">Projects</a></li>
+            <li><a href="#" id="nav-authentication">Authentication</a></li>
+            <li><a href="#" id="nav-clients">8 Clients</a></li>
+        </ul>
+        <div class="sidebar-bottom-text">
+            <a href="https://aurumhouse.com/admin/dashboard" style="color: #6c757d; text-decoration:none;">https://aurumhouse.com/admin/dashboard</a>
         </div>
-    </section>
+    </div>
 
-    <section id="future" class="section"> 
-        <div class="container">
-            <h2 class="animated-item">Future Adventures</h2>
-            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">
-                NexCore is currently a premier Survival server, and we're always dreaming bigger! Here's a sneak peek at what we're planning to build next.
-            </p>
-            <div class="future-modes-grid">
-                <div class="future-mode-item animated-item" style="transition-delay: 0.2s;">
-                    <div class="icon-placeholder">🎨</div>
-                    <h3>Creative Mode</h3>
-                    <p>Unleash your imagination with unlimited resources and build breathtaking creations in a dedicated world.</p>
-                </div>
-                <div class="future-mode-item animated-item" style="transition-delay: 0.3s;">
-                    <div class="icon-placeholder">🧱</div>
-                    <h3>Prison Mode</h3>
-                    <p>Mine your way to freedom! Rank up through challenging levels, trade with others, and conquer the prison hierarchy.</p>
-                </div>
-                <div class="future-mode-item animated-item" style="transition-delay: 0.4s;">
-                    <div class="icon-placeholder">☁️</div>
-                    <h3>Skyblock Mode</h3>
-                    <p>Survive and thrive on a tiny island in the sky. Expand your world from humble beginnings against all odds.</p>
+    <div class="content-wrapper">
+
+        <div class="main-content" id="page-clients-list">
+            <div class="page-header-bar">
+                <h1 class="page-title">Clients</h1>
+                <div class="actions">
+                    <span>Showing 1 to 5 of 5 entries.</span>
+                    <button class="btn btn-light btn-sm" style="margin-left:10px; margin-right:10px;">Reset</button>
+                    <button class="btn btn-primary">+ Add Client</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="community" class="section alternate-bg"> 
-        <div class="container">
-            <h2 class="animated-item">Join Our Community!</h2>
-            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">
-                Connect with fellow players, get the latest updates, participate in events, and see who's online right now!
-            </p>
-            
-            <div class="discord-widget-container animated-item" style="transition-delay: 0.2s;">
-                <iframe 
-                    src="https://discord.com/widget?id=1004153689105240124&theme=dark" 
-                    width="350" 
-                    height="500" 
-                    allowtransparency="true" 
-                    frameborder="0" 
-                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-                </iframe>
+             <table class="table">
+                <thead>
+                    <tr>
+                        <th>STATUS</th>
+                        <th>NAME</th>
+                        <th>PROJECT</th>
+                        <th>PROJECT MANAGER</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="status-active">ACTIVE</span></td>
+                        <td>Erik Torres</td>
+                        <td>World Famous Puppies</td>
+                        <td>Marco Sterlicchi</td>
+                        <td class="action-buttons">
+                            <input type="checkbox"> Preview Edit Delete
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-active">ACTIVE</span></td>
+                        <td>Lenny Smith</td>
+                        <td>Only in Dade</td>
+                        <td>Monica Contador</td>
+                        <td class="action-buttons">
+                            <input type="checkbox"> Preview Edit Delete
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-active">ACTIVE</span></td>
+                        <td>Mike Junco</td>
+                        <td>Nuceria Health</td>
+                        <td>Carlos Fonte</td>
+                        <td class="action-buttons">
+                            <input type="checkbox"> Preview Edit Delete
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-inactive">INACTIVE</span></td>
+                        <td>Max Contador</td>
+                        <td>CTI Wireless</td>
+                        <td>Carlos Fonte</td>
+                        <td class="action-buttons">
+                             Preview Edit Delete <input type="checkbox"> </td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-inactive">INACTIVE</span></td>
+                        <td>Hector Mateo</td>
+                        <td>Helping Hands PPEC</td>
+                        <td>Monica Contador</td>
+                        <td class="action-buttons">
+                             Preview Edit Delete <input type="checkbox">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 15px; overflow: hidden;"> <div class="entries-per-page">
+                    <select>
+                        <option>5</option>
+                        <option selected>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                    </select> entries per page
+                </div>
+                <div class="pagination">
+                    <span>&laquo;</span>
+                    <span class="current">1</span>
+                    <span>&raquo;</span>
+                </div>
+            </div>
+        </div> <div class="main-content" id="page-client-profile-main" style="display:none;"> <div class="client-profile-header">
+                <div class="profile-logo-placeholder">ONLY IN DADE</div> <div class="client-info">
+                    <h3>Lenny Smith</h3>
+                    <p>Only in Dade</p>
+                    <p>305938492</p> <p>lenny@livecolors.com</p> </div>
             </div>
 
-            <a href="https://discord.gg/VAjz44fRAJ" target="_blank" 
-               class="cta-button cta-button-discord animated-item"  /* HTML classes "cta-button" and "cta-button-discord" */
-               style="transition-delay: 0.3s;"> 
-                Join Our Discord
-            </a>
-        </div>
-    </section>
+            <div class="form-group">
+                <label for="business_logo">Business Logo:</label>
+                <input type="file" id="business_logo" name="business_logo"> Choose File Browse </div>
 
-    <section id="join" class="section join-section">
-        <div class="container">
-            <h2 class="animated-item">Ready to Join?</h2>
-            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">Connecting to NexCore is easy! Launch Minecraft Java Edition and add our server:</p>
-            <div class="server-ip-area animated-item" style="transition-delay: 0.2s;">
-                <div class="server-ip-display" id="server-ip">nexcore.top</div>
-                <button class="copy-ip-button" id="copy-ip-btn">Copy IP</button>
+            <div class="tabs">
+                <button class="active" onclick="showTab('profile-documents')">Profile Documents</button> <button onclick="showTab('invoices')">Invoices</button> </div>
+
+            <table class="table" style="margin-bottom:20px;">
+                <tbody>
+                    <tr>
+                        <td><strong>Status:</strong></td><td>Active</td>
+                        <td><strong>Account Manager:</strong></td><td>Monica Contador</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Business Name:</strong></td><td>Only in Dade</td>
+                        <td><strong>Domain:</strong></td><td>onlyindade.com</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Name:</strong></td><td>Lenny Smith</td>
+                        <td><strong>Phone Number:</strong></td><td>305938492</td>
+                    </tr>
+                     <tr>
+                        <td><strong>Email:</strong></td><td>lenny@livecolors.com</td>
+                        <td><strong>Instagram Handle:</strong></td><td>@onlyindade</td>
+                    </tr>
+                </tbody>
+            </table>
+             <div class="form-group notes-section"> <label for="notes">Notes</label> <textarea id="notes" name="notes">Any extra info goes here</textarea> </div>
+
+            <button class="btn save-exit-btn">Save and Exit</button> <div style="clear:both;"></div>
+        </div> <div class="main-content" id="page-client-profile-documents" style="display:none;"> <div class="client-profile-header">
+                <div class="profile-logo-placeholder">ONLY IN DADE</div>
+                <div class="client-info">
+                    <h3>Lenny Smith</h3> <p>Only in Dade</p> <p>305938492</p> <p>lenny@livecolors.com</p> </div>
             </div>
-            <p class="animated-item" style="margin-top: 10px; font-size: 0.95em; color: rgba(255,255,255,0.9); transition-delay: 0.3s;">
-                Recommended Version: 1.21.4
-            </p>
-        </div>
-    </section>
+             <div class="form-group">
+                <label for="business_logo_pg3">Business Logo:</label>
+                <input type="file" id="business_logo_pg3" name="business_logo_pg3"> Choose File Browse </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
-            <p>NexCore is not affiliated with Mojang AB.</p>
-        </div>
-    </footer>
+            <div class="tabs">
+                <button class="active">Profile Documents</button> <button>Invoices</button>
+            </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set current year in footer
-            const yearElement = document.getElementById('year');
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
+            <div style="text-align: right; margin-bottom: 15px;">
+                <button class="btn btn-primary">+ Create New</button> </div>
 
-            // Intersection Observer for Scroll Animations
-            const animatedItems = document.querySelectorAll('.animated-item');
-            if (animatedItems.length > 0) {
-                const observer = new IntersectionObserver((entries, observerInstance) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('is-visible');
-                            observerInstance.unobserve(entry.target); 
-                        }
-                    });
-                }, { threshold: 0.1 });
-                animatedItems.forEach(item => { observer.observe(item); });
-            }
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Document Name:</th>
+                        <th>Document:</th>
+                        <th>Actions:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Signed Contract</td>
+                        <td>[File Upload Goes Here]</td>
+                        <td class="action-buttons">
+                            <a href="#" class="edit-btn">Edit</a>
+                            <a href="#" class="delete-btn">Delete</a>
+                            <a href="#" class="preview-btn">Preview</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OID Pitch Deck</td>
+                        <td>[File Upload Goes Here]</td>
+                        <td class="action-buttons">
+                            <a href="#" class="preview-btn">Preview</a>
+                            <a href="#" class="edit-btn">Edit</a>
+                            <a href="#" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Package/Pricing Details</td>
+                        <td>[File Upload Goes Here]</td>
+                        <td class="action-buttons">
+                           <input type="checkbox" checked> <a href="#" class="preview-btn">Preview</a>
+                           <input type="checkbox" checked> <a href="#" class="edit-btn">Edit</a>
+                           <input type="checkbox" checked> <a href="#" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn save-exit-btn">Save and Exit</button>
+            <div style="clear:both;"></div>
+        </div> <div class="main-content" id="page-client-add-document" style="display:none;"> <div class="client-profile-header">
+                <div class="profile-logo-placeholder">ONLY IN DADE</div>
+                <div class="client-info">
+                    <h3>Lenny Smith</h3> <p>Only in Dade</p> <p>305938492</p> <p>lenny@livecolors.com</p> </div>
+            </div>
+            <div class="form-group">
+                <label for="business_logo_pg4">Business Logo:</label>
+                <input type="file" id="business_logo_pg4" name="business_logo_pg4"> Choose File Browse </div>
 
-            // Copy IP Button Functionality
-            const copyIpButton = document.getElementById('copy-ip-btn');
-            const serverIpElement = document.getElementById('server-ip');
-            if (copyIpButton && serverIpElement) {
-                copyIpButton.addEventListener('click', () => {
-                    const ipAddress = serverIpElement.textContent;
-                    navigator.clipboard.writeText(ipAddress).then(() => {
-                        copyIpButton.textContent = 'Copied!';
-                        copyIpButton.classList.add('copied');
-                        setTimeout(() => {
-                            copyIpButton.textContent = 'Copy IP';
-                            copyIpButton.classList.remove('copied');
-                        }, 2000); 
-                    }).catch(err => {
-                        console.error('Failed to copy IP: ', err);
-                        alert('Failed to copy IP. Please copy it manually: ' + ipAddress);
-                    });
-                });
-            }
-        });
-    </script>
+            <div class="tabs">
+                 <button class="active">Profile Documents</button> <button>Invoices</button>
+            </div>
+
+            <h3 style="margin-top:20px;">NEW DOCUMENT:</h3> <div class="form-group">
+                <label for="doc_name">Document Name</label> <input type="text" id="doc_name" name="doc_name" class="document-name-input">
+            </div>
+            <div class="form-group">
+                <label for="upload_doc">Upload Document</label> <input type="file" id="upload_doc" name="upload_doc"> Choose File Browse </div>
+
+            <button class="btn save-exit-btn">Save and Exit</button>
+            <div style="clear:both;"></div>
+        </div> <div class="main-content" id="page-client-invoices" style="display:none;"> <div class="client-profile-header">
+                <div class="profile-logo-placeholder">ONLY IN DADE</div>
+                <div class="client-info">
+                    <h3>Lenny Smith</h3> <p>Only in Dade</p> <p>305938492</p> <p>lenny@livecolors.com</p> </div>
+            </div>
+            <div class="form-group">
+                <label for="business_logo_pg5">Business Logo:</label>
+                <input type="file" id="business_logo_pg5" name="business_logo_pg5"> Choose File Browse </div>
+
+            <div class="tabs">
+                 <button>Profile Documents</button>
+                 <button class="active">Invoices</button> </div>
+
+            <div style="text-align: right; margin-bottom: 15px;">
+                <button class="btn btn-primary">Create New</button> </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                        <th>Paid On</th>
+                        <th>Price</th>
+                        <th>Profit</th>
+                        <th>Discount</th>
+                        <th>Commission</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Social Media</td>
+                        <td>Pending Payments</td>
+                        <td>05/13/2025 10:30 AM</td>
+                        <td></td>
+                        <td>50</td>
+                        <td>50.00</td>
+                        <td>0.00</td>
+                        <td>0</td>
+                        <td class="action-buttons"> <a href="#" class="preview-btn">Preview</a> <a href="#" class="edit-btn">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Web Design</td>
+                        <td>Completed</td>
+                        <td>07/17/2024 10:42 AM</td>
+                        <td></td>
+                        <td>50</td>
+                        <td>50.00</td>
+                        <td>0.00</td>
+                        <td>0</td>
+                        <td class="action-buttons">
+                           <a href="#" class="preview-btn">Preview</a> <a href="#" class="edit-btn">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Custom</td>
+                        <td>Completed</td>
+                        <td>07/10/2024 12:08 PM</td>
+                        <td></td>
+                        <td>$300</td>
+                        <td>$100.00</td>
+                        <td></td> <td>0</td>
+                        <td class="action-buttons">
+                           <a href="#" class="preview-btn">Preview</a> <a href="#" class="edit-btn">Edit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn save-exit-btn">Save and Exit</button> <div style="clear:both;"></div>
+        </div> </div> <div class="footer">
+        <span id="footer-text-left">Handcrafted by Monica Contador</span>
+        <span id="footer-text-right" style="float:right; margin-right:20px;">1</span> </div>
+
+<script>
+    // Basic script to simulate page/tab switching for demonstration
+    // This is NOT a full SPA implementation.
+
+    // Default view is Page 1 (Client List)
+    document.getElementById('page-clients-list').style.display = 'block';
+    document.getElementById('breadcrumb-text').textContent = 'Admin / Services / List'; // [cite: 1]
+    document.getElementById('nav-services').classList.add('active');
+
+
+    // Function to switch "pages" (div visibility)
+    function showPage(pageId, breadcrumb, navId) {
+        document.querySelectorAll('.main-content').forEach(page => page.style.display = 'none');
+        document.getElementById(pageId).style.display = 'block';
+        document.getElementById('breadcrumb-text').textContent = breadcrumb;
+
+        document.querySelectorAll('.sidebar ul li a').forEach(nav => nav.classList.remove('active'));
+        if (navId) document.getElementById(navId).classList.add('active');
+
+        // Update footer based on page (simple example)
+        if (pageId === 'page-clients-list') {
+            document.getElementById('footer-text-left').textContent = '10 entries per page'; // [cite: 3]
+            document.getElementById('footer-text-right').innerHTML = 'Handcrafted by Monica Contador <span style="float:right; margin-left:20px;">1</span>'; // [cite: 3]
+        } else {
+            document.getElementById('footer-text-left').textContent = 'Handcrafted by Monica Contador'; // [cite: 6]
+            document.getElementById('footer-text-right').textContent = '';
+        }
+    }
+
+    // Function to switch tabs within a client profile page
+    function showTab(tabContentIdSuffix) {
+        // This is a placeholder. For a real app, you'd show/hide tab content sections.
+        // For now, it would navigate to the corresponding "page" div.
+        if (tabContentIdSuffix === 'profile-documents') {
+            showPage('page-client-profile-documents', 'Admin / Clients / Lenny Smith / Profile Documents', 'nav-clients');
+            // Update active tab button style
+            document.querySelector('#page-client-profile-main .tabs button.active').classList.remove('active');
+            document.querySelector('#page-client-profile-main .tabs button:nth-child(1)').classList.add('active');
+
+        } else if (tabContentIdSuffix === 'invoices') {
+             showPage('page-client-invoices', 'Admin / Clients / Lenny Smith / Invoices', 'nav-clients');
+             // Update active tab button style
+            document.querySelector('#page-client-profile-main .tabs button.active').classList.remove('active');
+            document.querySelector('#page-client-profile-main .tabs button:nth-child(2)').classList.add('active');
+        }
+    }
+
+
+    // Example: Simulate clicking on "Lenny Smith" to go to their profile (Page 2)
+    // In a real app, table rows would be clickable. For this demo, we can add an event listener if needed
+    // or manually call showPage for demonstration.
+
+    // To view Page 2 (Client Profile - Main for Lenny Smith):
+    // showPage('page-client-profile-main', 'Admin / Clients / Lenny Smith', 'nav-clients');
+    // To make breadcrumb more accurate to page 2 screenshot: [cite: 4]
+    // document.getElementById('breadcrumb-text').textContent = 'Admin / Clients / List'; // As per actual breadcrumb on PDF page 2 header
+
+    // To view Page 3 (Client Profile - Profile Documents for Lenny Smith):
+    // showPage('page-client-profile-documents', 'Admin / Clients / Lenny Smith / Profile Documents', 'nav-clients');
+    // Breadcrumb on PDF Page 3 is "Admin / Services / List" [cite: 7] but logically should be client specific.
+    // I will set it as per PDF:
+    // document.getElementById('breadcrumb-text').textContent = 'Admin / Services / List';
+
+    // To view Page 4 (Adding New Document for Lenny Smith):
+    // showPage('page-client-add-document', 'Admin / Clients / Lenny Smith / Add Document', 'nav-clients');
+    // Breadcrumb on PDF Page 4 is "Admin / Services / List" [cite: 10]
+    // document.getElementById('breadcrumb-text').textContent = 'Admin / Services / List';
+
+
+    // To view Page 5 (Invoices for Lenny Smith):
+    // showPage('page-client-invoices', 'Admin / Clients / Lenny Smith / Invoices', 'nav-clients');
+    // Breadcrumb on PDF Page 5 is "Admin / Services / List" [cite: 11]
+    // document.getElementById('breadcrumb-text').textContent = 'Admin / Services / List';
+
+    // Initial setup for Page 1 based on the PDF
+     if (document.getElementById('page-clients-list').style.display === 'block') {
+        document.getElementById('footer-text-left').textContent = '10 entries per page'; // [cite: 3]
+        document.getElementById('footer-text-right').innerHTML = 'Handcrafted by Monica Contador <span style="float:right; margin-left:20px;">1</span>'; // [cite: 3]
+        document.getElementById('breadcrumb-text').textContent = 'Admin / Services / List'; // [cite: 1]
+        document.getElementById('nav-services').classList.add('active');
+        document.getElementById('nav-clients').classList.remove('active'); // Ensure only one active
+    }
+
+
+</script>
 
 </body>
 </html>
