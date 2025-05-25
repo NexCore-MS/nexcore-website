@@ -14,7 +14,7 @@
             color: #1d1d1f;
             line-height: 1.6;
             scroll-behavior: smooth;
-            overflow-x: hidden; /* Prevent horizontal scrollbar from animations */
+            overflow-x: hidden;
         }
 
         .container {
@@ -25,273 +25,234 @@
 
         /* Navigation */
         nav {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8); /* Softer white, more Apple-like */
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             padding: 15px 0;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid rgba(0,0,0,0.08); /* Softer border */
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            /* Removed box-shadow for a flatter Apple style, relies on blur */
         }
 
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-size: 1.8em;
-            font-weight: 600;
-            color: #1d1d1f;
-            text-decoration: none;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 25px;
-        }
-
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        nav .logo { font-size: 1.8em; font-weight: 600; color: #1d1d1f; text-decoration: none; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav ul li { margin-left: 25px; }
         nav ul li a {
             text-decoration: none;
-            color: #1d1d1f;
-            font-weight: 500;
+            color: #1d1d1f; /* Use primary text color for nav links for consistency */
+            font-weight: 500; /* Apple often uses regular/medium weight for nav */
             font-size: 0.95em;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, opacity 0.3s ease; /* Added opacity */
             position: relative;
+            opacity: 0.9;
         }
-
-        nav ul li a:hover {
-            color: #007aff;
-        }
-
+        nav ul li a:hover { color: #007aff; opacity: 1; }
         nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 1px;
-            bottom: -3px;
-            left: 0;
-            background-color: #007aff;
-            transform-origin: bottom right;
-            transition: transform 0.25s ease-out;
+            content: ''; position: absolute; width: 100%; transform: scaleX(0);
+            height: 1px; bottom: -3px; left: 0; background-color: #007aff;
+            transform-origin: bottom right; transition: transform 0.25s ease-out;
         }
+        nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
 
-        nav ul li a:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        /* Hero Section */
+        /* Hero Section - UPDATED FOR BACKGROUND IMAGE */
         .hero {
             text-align: center;
-            padding: 100px 20px 80px;
-            background-color: #fff;
+            padding: 120px 20px 100px;
+            background-color: #1c1c1e; /* Fallback color */
+            /* --- REPLACE 'YOUR_IMAGE_FILENAME_HERE.jpg' with your actual image --- */
+            background-image: linear-gradient(rgba(28, 28, 30, 0.65), rgba(28, 28, 30, 0.85)), url('YOUR_IMAGE_FILENAME_HERE.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            position: relative;
+            color: #fff; /* Default text color in hero is now white */
         }
 
         .hero h1 {
-            font-size: 3.5em;
+            font-size: 3.8em; /* Slightly larger */
             font-weight: 700;
-            color: #1d1d1f;
+            color: #fff; /* Ensure white */
             margin-bottom: 0.3em;
             letter-spacing: -0.02em;
-            /* Animation applied directly */
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s 0.1s ease-out forwards; /* Added slight base delay */
+            opacity: 0; transform: translateY(20px);
+            animation: fadeInUp 0.8s 0.2s ease-out forwards; /* Adjusted delay */
         }
 
         .hero .subtitle {
-            font-size: 1.5em;
-            color: #6e6e73;
-            margin-bottom: 1.5em;
+            font-size: 1.6em; /* Slightly larger */
+            color: #d1d1d6; /* Lighter gray for better readability on dark bg */
+            margin-bottom: 1.8em; /* More space */
             font-weight: 400;
-            /* Animation applied directly */
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s 0.3s ease-out forwards; /* Staggered delay */
+            max-width: 650px; /* Constrain width for readability */
+            margin-left: auto; margin-right: auto; /* Center if constrained */
+            opacity: 0; transform: translateY(20px);
+            animation: fadeInUp 0.8s 0.4s ease-out forwards;
         }
 
-        .hero .cta-button { /* .cta-button is already a class, ensure it's used in HTML */
-            display: inline-block;
-            background-color: #007aff;
-            color: #fff;
-            padding: 15px 35px;
-            font-size: 1.1em;
-            font-weight: 500;
-            text-decoration: none;
-            border-radius: 8px;
+        .hero .cta-button {
+            display: inline-block; background-color: #007aff; color: #fff;
+            padding: 16px 40px; /* Larger padding */
+            font-size: 1.15em; /* Slightly larger font */
+            font-weight: 500; text-decoration: none; border-radius: 10px; /* More rounded */
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
-            /* Animation applied directly */
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s 0.5s ease-out forwards; /* Staggered delay */
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.25);
+            opacity: 0; transform: translateY(20px);
+            animation: fadeInUp 0.8s 0.6s ease-out forwards;
         }
-
         .hero .cta-button:hover {
-            background-color: #0068d6;
-            transform: translateY(-3px) scale(1.02); /* Adjusted hero button hover slightly */
-            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.3);
+            background-color: #0068d6; transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.35);
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* Sections Styling */
+        /* General Section Styling */
         .section {
-            padding: 70px 0;
+            padding: 80px 0; /* Increased padding */
             text-align: center;
-            background-color: #fff;
+            background-color: #fff; /* Default white */
             border-bottom: 1px solid #e5e5e5;
         }
-        .section:last-of-type {
-            border-bottom: none;
+        .section.alternate-bg { /* For sections that need the lighter gray bg */
+            background-color: #f5f5f7;
         }
+        .section:last-of-type { border-bottom: none; }
 
         .section h2 {
-            font-size: 2.8em;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 0.8em;
+            font-size: 2.8em; font-weight: 600; color: #1d1d1f; margin-bottom: 0.5em; /* Reduced margin */
         }
-
-        .section p, .section .lead {
-            font-size: 1.2em;
-            color: #333;
+        .section .section-subheading { /* NEW class for subheading under main H2 */
+            font-size: 1.3em;
+            color: #6e6e73;
             max-width: 700px;
-            margin: 0 auto 1em auto;
+            margin: 0 auto 2.5em auto; /* Increased bottom margin */
+            font-weight: 400;
         }
 
-        /* Features Grid */
-        .features-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
+        /* Features Section */
+        /* .features-grid styling remains the same */
+        .features-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px; }
         .feature-item {
-            background-color: #f9f9f9;
-            padding: 30px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 300px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            background-color: #fff; /* On #f5f5f7 bg, feature items can be white */
+            padding: 30px; border-radius: 12px; /* More rounding */
+            width: 100%; max-width: 320px; /* Slightly wider */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Softer shadow */
             text-align: left;
             transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
         }
+         /* If feature section itself is white, then cards could be #f9f9f9 or remain white */
+        .section.alternate-bg .feature-item { background-color: #fff; }
+        .section:not(.alternate-bg) .feature-item { background-color: #f9f9f9; }
 
-        .feature-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
 
-        .feature-item h3 {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 0.5em;
+        .feature-item:hover { transform: translateY(-8px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+        .feature-item h3 { font-size: 1.5em; font-weight: 600; color: #1d1d1f; margin-bottom: 0.5em; }
+        .feature-item .icon-placeholder { /* Now better suited for <img> or SVG */
+            width: 48px; height: 48px;
+            margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: center;
+            background-color: #007aff30; /* Light blue bg for placeholder */
+            border-radius: 10px;
+            font-size: 24px; color: #007aff;
         }
-        .feature-item .icon-placeholder {
-            width: 50px;
-            height: 50px;
-            background-color: #e9e9ed;
-            margin-bottom: 15px;
-            border-radius: 8px;
+        .feature-item .icon-placeholder img,
+        .feature-item .icon-placeholder svg {
+            width: 28px; height: 28px;
+        }
+        .feature-item p { font-size: 0.95em; color: #555; line-height: 1.5; }
+
+        /* How to Join Section - UPDATED WITH COPY IP BUTTON */
+        .join-section { background-color: #007aff; color: #fff; padding: 80px 0; }
+        .join-section h2 { color: #fff; font-size: 2.8em; }
+        .join-section .section-subheading { color: rgba(255,255,255,0.85); }
+
+        .server-ip-area {
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size:20px;
-            color: #555;
+            align-items: center;
+            gap: 15px; /* Space between IP display and button */
+            margin-top: 25px;
+            margin-bottom: 15px;
         }
-
-        .feature-item p {
-            font-size: 0.95em;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        /* Call to Action Section (Join) */
-        .join-section {
-            background-color: #007aff;
-            color: #fff;
-            padding: 80px 0;
-        }
-
-        .join-section h2 {
-            color: #fff;
-            font-size: 2.8em;
-        }
-
-        .join-section .server-ip-container {
+        .server-ip-display {
             background-color: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 20px 30px;
-            border-radius: 8px;
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 1.4em;
-            font-weight: 500;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease;
-        }
-        .join-section .server-ip-container:hover {
-            transform: scale(1.03);
-        }
-
-        .join-section .server-ip-container span {
+            padding: 18px 30px; /* Slightly more padding */
+            border-radius: 10px;
+            font-size: 1.5em; /* Larger IP */
+            font-weight: 600; /* Bolder IP */
+            color: #fff;
             user-select: all;
         }
-
-        /* Footer */
-        footer {
-            background-color: #1d1d1f;
-            color: #a0a0a5;
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9em;
+        .copy-ip-button {
+            background-color: #fff; /* White button */
+            color: #007aff; /* Blue text */
+            padding: 18px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+        .copy-ip-button:hover {
+            background-color: #e9e9ed; /* Light gray hover */
+            transform: scale(1.05);
+        }
+        .copy-ip-button.copied {
+            background-color: #34c759; /* Apple green for success */
+            color: #fff;
         }
 
+        /* NEW: Community (Discord) Section */
+        .community-section {
+            background-color: #f5f5f7; /* Light gray background */
+        }
+        .community-section .icon-placeholder { /* Re-using for Discord icon */
+            width: 60px; height: 60px;
+            margin: 0 auto 20px auto; /* Centered */
+            background-color: #5865f230; /* Discord-like purple, light */
+            color: #5865F2; /* Discord purple */
+            font-size: 30px;
+        }
+        .community-section .cta-button { /* Re-using .cta-button styles */
+            margin-top: 20px;
+            background-color: #5865F2; /* Discord purple */
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.25);
+        }
+        .community-section .cta-button:hover {
+            background-color: #4f5bda;
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.35);
+        }
+
+
+        /* Footer */
+        footer { background-color: #1d1d1f; color: #a0a0a5; text-align: center; padding: 50px 20px; font-size: 0.9em; }
         footer p { margin: 0.5em 0; }
-        footer a { color: #0096ff; text-decoration: none; }
+        footer a { color: #2997ff; text-decoration: none; } /* Slightly different blue for dark bg */
         footer a:hover { text-decoration: underline; }
 
         /* Scroll Animation Helper Classes */
-        .animated-item {
-            opacity: 0;
-            transform: translateY(30px); /* Initial off-screen position */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animated-item.is-visible {
-            opacity: 1;
-            transform: translateY(0); /* Final on-screen position */
-        }
+        .animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .animated-item.is-visible { opacity: 1; transform: translateY(0); }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5em; }
-            .hero .subtitle { font-size: 1.2em; }
-            .section h2 { font-size: 2em; }
+            .hero h1 { font-size: 2.8em; }
+            .hero .subtitle { font-size: 1.3em; }
+            .section h2 { font-size: 2.2em; }
+            .section .section-subheading { font-size: 1.1em; }
             nav .container { flex-direction: column; }
             nav ul { margin-top: 10px; }
             nav ul li { margin: 0 10px; }
             .features-grid { flex-direction: column; align-items: center; }
             .feature-item { max-width: 90%; }
+            .server-ip-area { flex-direction: column; gap: 10px; }
+            .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
+            .copy-ip-button { padding: 15px 20px; font-size: 0.95em; width: 100%; max-width: 250px;}
         }
     </style>
 </head>
@@ -303,7 +264,7 @@
             <ul>
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#join">Join Us</a></li>
+                <li><a href="#community">Community</a></li> <li><a href="#join">Join Us</a></li>
             </ul>
         </div>
     </nav>
@@ -316,38 +277,49 @@
         </div>
     </section>
 
-    <section id="features" class="section">
-        <div class="container">
+    <section id="features" class="section alternate-bg"> <div class="container">
             <h2 class="animated-item">Why Choose NexCore?</h2>
-            <p class="lead animated-item" style="transition-delay: 0.1s;">We've crafted a unique Minecraft experience focusing on community, performance, and exciting gameplay.</p>
+            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">We've crafted a unique Minecraft experience focusing on community, performance, and exciting gameplay.</p>
             <div class="features-grid">
                 <div class="feature-item animated-item" style="transition-delay: 0.2s;">
-                    <div class="icon-placeholder">🎮</div>
-                    <h3>Unique Gamemodes</h3>
+                    <div class="icon-placeholder">🎮</div> <h3>Unique Gamemodes</h3>
                     <p>Discover custom gamemodes you won't find anywhere else, designed for maximum fun and challenge.</p>
                 </div>
                 <div class="feature-item animated-item" style="transition-delay: 0.3s;">
-                    <div class="icon-placeholder">👥</div>
-                    <h3>Active Community</h3>
+                    <div class="icon-placeholder">👥</div> <h3>Active Community</h3>
                     <p>Join a friendly and welcoming community of players. Make new friends and conquer challenges together.</p>
                 </div>
                 <div class="feature-item animated-item" style="transition-delay: 0.4s;">
-                    <div class="icon-placeholder">⚡️</div>
-                    <h3>Lag-Free Performance</h3>
+                    <div class="icon-placeholder">⚡️</div> <h3>Lag-Free Performance</h3>
                     <p>Our server is optimized for a smooth, lag-free experience, so you can focus on playing, not waiting.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="community" class="section">
+        <div class="container">
+            <div class="icon-placeholder animated-item">💬</div> <h2 class="animated-item" style="transition-delay: 0.1s;">Join Our Community!</h2>
+            <p class="section-subheading animated-item" style="transition-delay: 0.2s;">
+                Become a part of the NexCore family on Discord. Get the latest updates, chat with fellow players, participate in events, and get support when you need it.
+            </p>
+            <a href="YOUR_DISCORD_INVITE_LINK" target="_blank" class="cta-button animated-item" style="transition-delay: 0.3s;">
+                Join Discord Server
+            </a>
+        </div>
+    </section>
+
     <section id="join" class="section join-section">
         <div class="container">
             <h2 class="animated-item">Ready to Join?</h2>
-            <p class="animated-item" style="transition-delay: 0.1s;">Connecting to NexCore is easy! Launch Minecraft and add our server:</p>
-            <div class="server-ip-container animated-item" style="transition-delay: 0.2s;">
-                Server IP: <span>nexcore.top</span>
+            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">Connecting to NexCore is easy! Launch Minecraft Java Edition and add our server:</p>
+            <div class="server-ip-area animated-item" style="transition-delay: 0.2s;">
+                <div class="server-ip-display" id="server-ip">nexcore.top</div>
+                <button class="copy-ip-button" id="copy-ip-btn">Copy IP</button>
             </div>
-            <p class="animated-item" style="margin-top: 20px; font-size: 0.9em; color: rgba(255,255,255,0.8); transition-delay: 0.3s;">Minecraft Version: Java Edition 1.21.4</p>
+            <p class="animated-item" style="margin-top: 10px; font-size: 0.95em; color: rgba(255,255,255,0.9); transition-delay: 0.3s;">
+                Recommended Version: 1.21.4
+            </p>
         </div>
     </section>
 
@@ -359,36 +331,43 @@
     </footer>
 
     <script>
-        // Set current year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Intersection Observer for Scroll Animations
+        // Intersection Observer
         document.addEventListener('DOMContentLoaded', () => {
             const animatedItems = document.querySelectorAll('.animated-item');
-
-            if (!animatedItems.length) {
-                console.log('No elements with .animated-item class found.'); // Debug log
-                return;
-            }
-            // console.log(`Found ${animatedItems.length} elements with .animated-item class.`); // Debug log
-
+            if (!animatedItems.length) return;
             const observer = new IntersectionObserver((entries, observerInstance) => {
                 entries.forEach(entry => {
-                    // console.log('Observing:', entry.target, 'Is Intersecting:', entry.isIntersecting); // Detailed log
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // console.log('Added .is-visible to:', entry.target); // Debug log
-                        observerInstance.unobserve(entry.target); // Animate only once
+                        observerInstance.unobserve(entry.target);
                     }
                 });
-            }, {
-                rootMargin: '0px', // Adjust as needed, e.g., '-50px 0px -50px 0px' to trigger a bit later/sooner
-                threshold: 0.1   // 10% of the item is visible, can be an array e.g. [0, 0.25, 0.5, 0.75, 1]
-            });
+            }, { threshold: 0.1 });
+            animatedItems.forEach(item => { observer.observe(item); });
 
-            animatedItems.forEach(item => {
-                observer.observe(item);
-            });
+            // --- NEW: Copy IP Button Functionality ---
+            const copyIpButton = document.getElementById('copy-ip-btn');
+            const serverIpElement = document.getElementById('server-ip');
+
+            if (copyIpButton && serverIpElement) {
+                copyIpButton.addEventListener('click', () => {
+                    const ipAddress = serverIpElement.textContent;
+                    navigator.clipboard.writeText(ipAddress).then(() => {
+                        copyIpButton.textContent = 'Copied!';
+                        copyIpButton.classList.add('copied');
+                        setTimeout(() => {
+                            copyIpButton.textContent = 'Copy IP';
+                            copyIpButton.classList.remove('copied');
+                        }, 2000); // Reset button text after 2 seconds
+                    }).catch(err => {
+                        console.error('Failed to copy IP: ', err);
+                        // You could add a fallback here for older browsers if needed
+                        alert('Failed to copy IP. Please copy it manually: ' + ipAddress);
+                    });
+                });
+            }
         });
     </script>
 
