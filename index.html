@@ -74,11 +74,15 @@
             opacity: 0; transform: translateY(20px);
             animation: fadeInUp 0.8s 0.4s ease-out forwards;
         }
-        .hero .cta-button {
-            display: inline-block; background-color: #007aff; color: #fff;
+        .hero .cta-button { /* Base CTA button styles */
+            display: inline-block; 
+            color: #fff; /* Default text color for CTA buttons */
             padding: 16px 40px; font-size: 1.15em; 
             font-weight: 500; text-decoration: none; border-radius: 10px; 
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .hero .cta-button { /* Hero specific CTA */
+            background-color: #007aff; 
             box-shadow: 0 4px 15px rgba(0, 122, 255, 0.25);
             opacity: 0; transform: translateY(20px);
             animation: fadeInUp 0.8s 0.6s ease-out forwards;
@@ -181,16 +185,24 @@
             border-radius: 10px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
         }
+        /* UPDATED .cta-button-discord styles */
         .community-section .cta-button-discord { 
-            margin-top: 10px; 
+            display: inline-block; /* Ensures it behaves like a button */
+            margin-top: 30px;   /* Spacing below the widget */
             background-color: #5865F2; 
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.25);
+            color: #fff; /* Text color */
+            text-decoration: none; /* Removes underline from link */
             padding: 12px 30px; 
             font-size: 1.05em;
+            font-weight: 500;
+            border-radius: 10px; /* Matches other cta-buttons */
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.25);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
          .community-section .cta-button-discord:hover {
             background-color: #4f5bda;
             box-shadow: 0 6px 20px rgba(88, 101, 242, 0.35);
+            transform: translateY(-2px); /* Slight lift */
         }
 
         /* Footer */
@@ -318,8 +330,8 @@
 
             <a href="https://discord.gg/VAjz44fRAJ" target="_blank" 
                class="cta-button cta-button-discord animated-item" 
-               style="transition-delay: 0.3s; margin-top: 30px;"> 
-                Join via Invite Link
+               style="transition-delay: 0.3s;"> 
+                Join Our Discord
             </a>
         </div>
     </section>
