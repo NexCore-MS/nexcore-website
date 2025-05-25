@@ -10,10 +10,11 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            background-color: #f5f5f7; /* Apple-like light background */
-            color: #1d1d1f; /* Apple's primary text color */
+            background-color: #f5f5f7;
+            color: #1d1d1f;
             line-height: 1.6;
             scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scrollbar from animations */
         }
 
         .container {
@@ -24,7 +25,7 @@
 
         /* Navigation */
         nav {
-            background-color: rgba(255, 255, 255, 0.8); /* Translucent white */
+            background-color: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 15px 0;
@@ -65,25 +66,42 @@
             font-weight: 500;
             font-size: 0.95em;
             transition: color 0.3s ease;
+            position: relative; /* For potential underline animation */
         }
 
         nav ul li a:hover {
-            color: #007aff; /* Apple's link blue */
+            color: #007aff;
         }
+
+        /* --- NEW: Subtle underline hover for nav links --- */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -3px;
+            left: 0;
+            background-color: #007aff;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        nav ul li a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 100px 20px 80px; /* Generous padding */
-            background-color: #fff; /* White background for main content blocks */
-            /* Optional: Add a subtle background image here if you have one */
-            /* background-image: url('your-minecraft-hero-image.jpg'); */
-            /* background-size: cover; */
-            /* background-position: center; */
+            padding: 100px 20px 80px;
+            background-color: #fff;
         }
 
         .hero h1 {
-            font-size: 3.5em; /* Large, impactful heading */
+            font-size: 3.5em;
             font-weight: 700;
             color: #1d1d1f;
             margin-bottom: 0.3em;
@@ -92,27 +110,44 @@
 
         .hero .subtitle {
             font-size: 1.5em;
-            color: #6e6e73; /* Apple's secondary text color */
+            color: #6e6e73;
             margin-bottom: 1.5em;
             font-weight: 400;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: #007aff; /* Apple blue */
+            background-color: #007aff;
             color: #fff;
             padding: 15px 35px;
             font-size: 1.1em;
             font-weight: 500;
             text-decoration: none;
-            border-radius: 8px; /* Slightly rounded corners */
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
             box-shadow: 0 4px 15px rgba(0, 122, 255, 0.2);
         }
 
         .cta-button:hover {
             background-color: #0068d6;
-            transform: translateY(-2px);
+            transform: translateY(-3px); /* Slightly more lift */
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.3); /* Enhanced shadow on hover */
+        }
+
+        /* --- NEW: Hero Entrance Animations --- */
+        .hero h1, .hero .subtitle, .hero .cta-button {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .hero .subtitle { animation-delay: 0.2s; }
+        .hero .cta-button { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Sections Styling */
@@ -122,13 +157,9 @@
             background-color: #fff;
             border-bottom: 1px solid #e5e5e5;
         }
-        .section:nth-child(odd) { /* Alternate background for visual separation if desired */
-             /* background-color: #f5f5f7; */
-        }
         .section:last-of-type {
             border-bottom: none;
         }
-
 
         .section h2 {
             font-size: 2.8em;
@@ -139,28 +170,36 @@
 
         .section p, .section .lead {
             font-size: 1.2em;
-            color: #333; /* Slightly darker for body text in sections */
+            color: #333;
             max-width: 700px;
             margin: 0 auto 1em auto;
         }
 
-        /* Features Grid (Example) */
+        /* Features Grid */
         .features-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px; /* Space between feature items */
+            gap: 30px;
             margin-top: 40px;
         }
 
         .feature-item {
-            background-color: #f9f9f9; /* Slightly off-white for cards */
+            background-color: #f9f9f9;
             padding: 30px;
             border-radius: 10px;
             width: 100%;
-            max-width: 300px; /* Control width of feature cards */
+            max-width: 300px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             text-align: left;
+            /* --- NEW: Transition for hover effect --- */
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+        }
+
+        /* --- NEW: Enhanced hover for feature items --- */
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
 
         .feature-item h3 {
@@ -169,12 +208,17 @@
             color: #1d1d1f;
             margin-bottom: 0.5em;
         }
-        .feature-item img { /* Placeholder for feature icons */
+        .feature-item .icon-placeholder { /* Updated from inline style to class */
             width: 50px;
             height: 50px;
+            background-color: #e9e9ed; /* Slightly different placeholder color */
             margin-bottom: 15px;
-            /* background-color: #007aff; /* temp background for icon placeholder */
-            /* border-radius: 8px; */
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size:20px;
+            color: #555;
         }
 
         .feature-item p {
@@ -186,7 +230,7 @@
 
         /* Call to Action Section (Join) */
         .join-section {
-            background-color: #007aff; /* Primary color for emphasis */
+            background-color: #007aff;
             color: #fff;
             padding: 80px 0;
         }
@@ -206,17 +250,21 @@
             font-size: 1.4em;
             font-weight: 500;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease; /* Smooth hover for IP */
+        }
+        .join-section .server-ip-container:hover {
+            transform: scale(1.03);
         }
 
         .join-section .server-ip-container span {
-            user-select: all; /* Makes IP selectable */
+            user-select: all;
         }
 
 
         /* Footer */
         footer {
-            background-color: #1d1d1f; /* Dark footer */
-            color: #a0a0a5; /* Light gray text for footer */
+            background-color: #1d1d1f;
+            color: #a0a0a5;
             text-align: center;
             padding: 40px 20px;
             font-size: 0.9em;
@@ -227,12 +275,29 @@
         }
 
         footer a {
-            color: #0096ff; /* Brighter blue for dark background */
+            color: #0096ff;
             text-decoration: none;
         }
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* --- NEW: Scroll Animation Helper Classes --- */
+        .animated-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animated-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Stagger children if needed */
+        .is-visible .feature-item:nth-child(1) { transition-delay: 0.1s; }
+        .is-visible .feature-item:nth-child(2) { transition-delay: 0.2s; }
+        .is-visible .feature-item:nth-child(3) { transition-delay: 0.3s; }
+
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -259,7 +324,7 @@
                 align-items: center;
             }
             .feature-item {
-                max-width: 90%; /* Feature items take more width on mobile */
+                max-width: 90%;
             }
         }
 
@@ -274,64 +339,3 @@
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#join">Join Us</a></li>
-                </ul>
-        </div>
-    </nav>
-
-    <section id="hero" class="hero">
-        <div class="container">
-            <h1>Welcome to NexCore</h1>
-            <p class="subtitle">Experience Minecraft like never before. Your next great adventure starts here.</p>
-            <a href="#join" class="cta-button">Play NexCore Now</a>
-        </div>
-    </section>
-
-    <section id="features" class="section">
-        <div class="container">
-            <h2>Why Choose NexCore?</h2>
-            <p class="lead">We've crafted a unique Minecraft experience focusing on community, performance, and exciting gameplay.</p>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div style="width: 50px; height: 50px; background-color: #ddd; margin-bottom: 15px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size:20px; color: #555;">🎮</div>
-                    <h3>Unique Gamemodes</h3>
-                    <p>Discover custom gamemodes you won't find anywhere else, designed for maximum fun and challenge.</p>
-                </div>
-                <div class="feature-item">
-                    <div style="width: 50px; height: 50px; background-color: #ddd; margin-bottom: 15px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size:20px; color: #555;">👥</div>
-                    <h3>Active Community</h3>
-                    <p>Join a friendly and welcoming community of players. Make new friends and conquer challenges together.</p>
-                </div>
-                <div class="feature-item">
-                    <div style="width: 50px; height: 50px; background-color: #ddd; margin-bottom: 15px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size:20px; color: #555;">⚡️</div>
-                    <h3>Lag-Free Performance</h3>
-                    <p>Our server is optimized for a smooth, lag-free experience, so you can focus on playing, not waiting.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="join" class="section join-section">
-        <div class="container">
-            <h2>Ready to Join?</h2>
-            <p>Connecting to NexCore is easy! Launch Minecraft and add our server:</p>
-            <div class="server-ip-container">
-                Server IP: <span>nexcore.top</span>
-            </div>
-            <p style="margin-top: 20px; font-size: 0.9em; color: rgba(255,255,255,0.8);">Minecraft Version: Java Edition 1.21.4</p>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
-            <p>NexCore is not affiliated with Mojang AB.</p>
-            </div>
-    </footer>
-
-    <script>
-        // Set current year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-
-</body>
-</html>
