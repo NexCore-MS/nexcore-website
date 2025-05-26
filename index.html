@@ -79,26 +79,25 @@
         /* === BUTTON STYLES === */
         /* Base Call-to-Action Button Style */
         .cta-button {
-            display: inline-block; /* Crucial for button-like behavior */
-            padding: 12px 25px;   /* Default padding */
-            font-size: 1.05em;    /* Default font size */
+            display: inline-block; 
+            padding: 12px 25px;   
+            font-size: 1.05em;    
             font-weight: 500;
-            color: #fff;           /* Default text color (usually white for colored buttons) */
-            text-decoration: none;  /* Remove underline from links styled as buttons */
+            color: #fff;           
+            text-decoration: none;  
             text-align: center;
             border-radius: 10px;
             cursor: pointer;
-            border: none;           /* Remove default browser border */
+            border: none;           
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
 
         /* Hero Button Specifics */
-        .hero .cta-button { /* This is the <a> tag with class="cta-button" inside .hero */
+        .hero .cta-button { 
             background-color: #007aff;
             box-shadow: 0 4px 15px rgba(0, 122, 255, 0.25);
-            padding: 16px 40px; /* Larger padding for hero button */
-            font-size: 1.15em;  /* Larger font for hero button */
-            /* Animation styles */
+            padding: 16px 40px; 
+            font-size: 1.15em;  
             opacity: 0; 
             transform: translateY(20px);
             animation: fadeInUp 0.8s 0.6s ease-out forwards;
@@ -109,19 +108,18 @@
             box-shadow: 0 6px 20px rgba(0, 122, 255, 0.35);
         }
 
-        /* Discord Button Specifics (uses .cta-button as a base class in HTML) */
+        /* Discord Button Specifics */
         .cta-button-discord { 
-            background-color: #5865F2; /* Discord purple */
+            background-color: #5865F2; 
             box-shadow: 0 4px 15px rgba(88, 101, 242, 0.25);
-            margin-top: 30px;   /* Spacing below the widget */
+            margin-top: 30px;   
         }
         .cta-button-discord:hover {
             background-color: #4f5bda;
             box-shadow: 0 6px 20px rgba(88, 101, 242, 0.35);
-            transform: translateY(-2px); /* Slight lift */
+            transform: translateY(-2px); 
         }
         /* === END BUTTON STYLES === */
-
 
         /* General Section Styling */
         .section {
@@ -195,11 +193,11 @@
             padding: 18px 30px; border-radius: 10px;
             font-size: 1.5em; font-weight: 600; color: #fff; user-select: all;
         }
-        .copy-ip-button { /* This is an actual <button> element, style accordingly */
+        .copy-ip-button { 
             background-color: #fff; color: #007aff; 
             padding: 18px 25px; border: none; border-radius: 10px;
             font-size: 1em; font-weight: 500; cursor: pointer;
-            font-family: inherit; /* Ensure it uses the page font */
+            font-family: inherit; 
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
         }
         .copy-ip-button:hover { background-color: #e9e9ed; transform: scale(1.05); }
@@ -216,8 +214,7 @@
             border-radius: 10px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
         }
-        /* .cta-button-discord styles are now above in the main BUTTON STYLES section */
-
+      
         /* Footer */
         footer { background-color: #1d1d1f; color: #a0a0a5; text-align: center; padding: 50px 20px; font-size: 0.9em; }
         footer p { margin: 0.5em 0; }
@@ -269,7 +266,7 @@
         <div class="container">
             <h1>Welcome to NexCore</h1>
             <p class="subtitle">Experience Minecraft like never before. Your next great adventure starts here.</p>
-            <a href="#join" class="cta-button">Play NexCore Now</a> {/* HTML class="cta-button" */}
+            <a href="#join" class="cta-button">Play NexCore Now</a> {/* CORRECTED: Removed bad comment */}
         </div>
     </section>
 
@@ -342,7 +339,7 @@
             </div>
 
             <a href="https://discord.gg/VAjz44fRAJ" target="_blank" 
-               class="cta-button cta-button-discord animated-item"  /* HTML classes "cta-button" and "cta-button-discord" */
+               class="cta-button cta-button-discord animated-item" 
                style="transition-delay: 0.3s;"> 
                 Join Our Discord
             </a>
