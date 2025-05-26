@@ -155,14 +155,14 @@ nav .logo { font-size: 1.8em; font-weight: 600; color: var(--heading-color); tex
 #darkModeToggle {
     background: var(--dark-mode-toggle-bg);
     color: var(--dark-mode-toggle-text);
-    border: 1px solid transparent; /* Or var(--nav-border-color) for subtle border */
+    border: 1px solid transparent; 
     border-radius: 8px;
     padding: 8px 12px;
     cursor: pointer;
-    font-size: 1.2em; /* Adjust size of moon/sun icon */
-    margin-left: 15px; /* Space from logo */
-    margin-right: auto; /* Pushes nav links to the right */
-    line-height: 1; /* Align icon better */
+    font-size: 1.2em; 
+    margin-left: 20px; /* Adds space between the nav links and the button */
+    /* margin-right: auto; /* REMOVE this line if it exists */
+    line-height: 1; 
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 #darkModeToggle:hover {
