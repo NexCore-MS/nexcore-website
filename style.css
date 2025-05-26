@@ -139,13 +139,21 @@ body, html {
 .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
 /* === START NAVIGATION STYLES === */
+/* Navigation - Using position: fixed */
 nav {
     background-color: var(--nav-bg-color);
     backdrop-filter: var(--nav-blur-saturate);
     -webkit-backdrop-filter: var(--nav-blur-saturate);
     padding: 15px 0;
     border-bottom: 1px solid var(--nav-border-color);
-    position: sticky; top: 0; z-index: 1000;
+
+    position: fixed; /* CHANGED from sticky */
+    top: 0;
+    left: 0;         /* Added for fixed positioning */
+    right: 0;        /* Added for fixed positioning */
+    width: 100%;     /* Ensures it spans full viewport width */
+    z-index: 1000;
+
     transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
