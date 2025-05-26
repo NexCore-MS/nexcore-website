@@ -61,7 +61,7 @@
     --dark-mode-toggle-bg: transparent;
     --dark-mode-toggle-text: #1d1d1f;
     --dark-mode-toggle-hover-bg: rgba(0,0,0,0.05);
-    --mobile-nav-toggle-color: var(--heading-color);
+    --mobile-nav-toggle-color: var(--heading-color); /* Uses heading color by default */
 }
 
 body.dark-mode {
@@ -124,7 +124,7 @@ body.dark-mode {
 
     --dark-mode-toggle-text: #f5f7fa;
     --dark-mode-toggle-hover-bg: rgba(255,255,255,0.08);
-    --mobile-nav-toggle-color: var(--heading-color);
+    --mobile-nav-toggle-color: var(--heading-color); /* Uses heading color by default */
 }
 
 
@@ -138,7 +138,7 @@ body, html {
 }
 .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-/* Navigation */
+/* === START NAVIGATION STYLES === */
 nav {
     background-color: var(--nav-bg-color);
     backdrop-filter: var(--nav-blur-saturate);
@@ -148,26 +148,52 @@ nav {
     position: sticky; top: 0; z-index: 1000;
     transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
 }
+
 nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* For absolute positioning of mobile menu */
 }
-nav .logo { font-size: 1.8em; font-weight: 600; color: var(--heading-color); text-decoration: none; }
 
-/* Wrapper for links and dark mode toggle */
+nav .logo {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: var(--heading-color);
+    text-decoration: none;
+    flex-shrink: 0; /* Prevent logo from shrinking if space is tight */
+}
+
+/* Wrapper for links and dark mode toggle - for desktop flex layout */
 .nav-links-wrapper {
     display: flex;
     align-items: center;
 }
-nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
-nav ul li { margin-left: 25px; } /* This applies to desktop view */
-nav ul li a {
-    text-decoration: none; color: var(--link-color); font-weight: 500;
-    font-size: 0.95em; transition: color 0.3s ease, opacity 0.3s ease;
-    position: relative; opacity: 0.9;
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Horizontal links on desktop */
 }
-nav ul li a:hover { color: var(--link-hover-color); opacity: 1; }
+
+nav ul li {
+    margin-left: 25px; /* Spacing between horizontal links */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--link-color);
+    font-weight: 500;
+    font-size: 0.95em;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    position: relative;
+    opacity: 0.9;
+}
+nav ul li a:hover {
+    color: var(--link-hover-color);
+    opacity: 1;
+}
 nav ul li a::after {
     content: ''; position: absolute; width: 100%; transform: scaleX(0);
     height: 1px; bottom: -3px; left: 0; background-color: var(--link-hover-color);
@@ -175,7 +201,7 @@ nav ul li a::after {
 }
 nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
 
-/* Dark Mode & Mobile Nav Toggle Buttons */
+/* Dark Mode Toggle Button Style (Desktop state within nav-links-wrapper) */
 #darkModeToggle {
     background: var(--dark-mode-toggle-bg);
     color: var(--dark-mode-toggle-text);
@@ -184,7 +210,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     padding: 8px 12px;
     cursor: pointer;
     font-size: 1.2em;
-    margin-left: 25px; /* Space from the nav links (ul) on desktop */
+    margin-left: 25px; /* Space from the nav links (ul) */
     line-height: 1;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -192,8 +218,9 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     background-color: var(--dark-mode-toggle-hover-bg);
 }
 
+/* Mobile Navigation Toggle Button (Hamburger) */
 .mobile-nav-toggle {
-    display: none; /* Hidden on desktop */
+    display: none; /* Hidden on desktop by default */
     background: none;
     border: none;
     font-size: 1.8em;
@@ -201,9 +228,11 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     color: var(--mobile-nav-toggle-color);
     padding: 5px;
     line-height: 1;
-    z-index: 1001;
+    z-index: 1001; /* Above the dropdown menu */
 }
 .mobile-nav-toggle span { display: block; }
+
+/* === END NAVIGATION STYLES === */
 
 
 /* Hero Section */
@@ -337,10 +366,9 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .dynmap-container { width: 100%; margin-top: 20px; }
 .dynmap-iframe {
     width: 100%; height: 75vh; border: none;
-    border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow); /* Use card shadow */
+    border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow);
     background-color: #000; /* Fallback */
 }
-
 
 /* Footer */
 footer { background-color: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; font-size: 0.9em; transition: background-color 0.3s ease, color 0.3s ease; }
@@ -352,39 +380,37 @@ footer a:hover { text-decoration: underline; }
 .animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out .1s; }
 .animated-item.is-visible { opacity: 1; transform: translateY(0); }
 
-/* Responsive adjustments */
+/* Responsive adjustments (includes mobile navigation) */
 @media (max-width: 768px) {
+    /* Mobile Navigation Specifics */
     nav .container {
-        flex-direction: row; /* Keep logo and hamburger on one line */
-        justify-content: space-between;
+        /* Keeps logo and hamburger side-by-side */
     }
     .mobile-nav-toggle {
         display: block; /* Show hamburger on mobile */
     }
     .nav-links-wrapper {
-        display: none; /* Hide links and dark mode toggle by default on mobile */
-        flex-direction: column;
-        align-items: center;
+        display: none; /* Hide links wrapper by default on mobile */
         position: absolute;
-        top: 100%; /* Position below the nav bar */
+        top: 100%; 
         left: 0;
         right: 0;
         background-color: var(--nav-bg-color);
-        padding: 20px 0; /* Padding top and bottom */
+        padding: 20px 0; 
         box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         border-top: 1px solid var(--nav-border-color);
         z-index: 999;
     }
-    .nav-links-wrapper.nav-open { display: flex; }
+    .nav-links-wrapper.nav-open { display: flex; flex-direction: column; align-items: center; }
     nav ul {
         flex-direction: column; width: 100%; text-align: center;
-        margin-bottom: 20px; /* Space before dark mode toggle if it's last */
+        margin-bottom: 20px; 
     }
-    nav ul li { margin-left: 0; margin-bottom: 18px; width: 100%; }
-    nav ul li:last-child { margin-bottom: 0; }
-    nav ul li a { padding: 10px 0; display: block; width: 100%; }
-    #darkModeToggle { margin-left: 0; margin-top: 0; /* Reset desktop margin, already spaced by flex */ }
+    nav ul li { margin-left: 0; margin-bottom: 0; width: 100%; }
+    nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
+    #darkModeToggle { margin-left: 0; margin-top: 0; }
 
+    /* Other Responsive Styles */
     .hero h1 { font-size: 2.8em; }
     .hero .subtitle { font-size: 1.3em; }
     .section h2, .rules-content h1 { font-size: 2.2em; }
