@@ -24,6 +24,10 @@
     --nav-bg-color: rgba(255, 255, 255, 0.8);
     --nav-border-color: rgba(0,0,0,0.08);
     --nav-blur-saturate: blur(20px) saturate(180%);
+    /* !!! IMPORTANT: Estimate your nav height here for body padding-top !!! */
+    /* Inspect your nav element to get its actual height */
+    --nav-height: 70px; /* EXAMPLE VALUE - PLEASE ADJUST */
+
 
     --hero-bg-color: #1c1c1e; /* Fallback, image overlay takes precedence */
     --hero-overlay-start: rgba(28, 28, 30, 0.65);
@@ -136,24 +140,28 @@ body, html {
     line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+/* ADD PADDING-TOP TO BODY FOR FIXED NAV */
+body {
+    padding-top: var(--nav-height); /* Adjust --nav-height variable above if needed */
+}
+
 .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
 /* === START NAVIGATION STYLES === */
-/* Navigation - Using position: fixed */
 nav {
     background-color: var(--nav-bg-color);
     backdrop-filter: var(--nav-blur-saturate);
     -webkit-backdrop-filter: var(--nav-blur-saturate);
     padding: 15px 0;
     border-bottom: 1px solid var(--nav-border-color);
-
-    position: fixed; /* CHANGED from sticky */
+    
+    position: fixed; /* CHANGED to fixed */
     top: 0;
-    left: 0;         /* Added for fixed positioning */
-    right: 0;        /* Added for fixed positioning */
-    width: 100%;     /* Ensures it spans full viewport width */
+    left: 0;
+    right: 0;
+    width: 100%; /* Ensures it spans full viewport width */
     z-index: 1000;
-
+    
     transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
@@ -161,7 +169,7 @@ nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* For absolute positioning of mobile menu */
+    position: relative; 
 }
 
 nav .logo {
@@ -169,12 +177,11 @@ nav .logo {
     font-weight: 600;
     color: var(--heading-color);
     text-decoration: none;
-    flex-shrink: 0; /* Prevent logo from shrinking if space is tight */
+    flex-shrink: 0; 
 }
 
-/* Wrapper for links and dark mode toggle - for desktop flex layout */
 .nav-links-wrapper {
-    display: flex;
+    display: flex; 
     align-items: center;
 }
 
@@ -182,11 +189,11 @@ nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex; /* Horizontal links on desktop */
+    display: flex; 
 }
 
 nav ul li {
-    margin-left: 25px; /* Spacing between horizontal links */
+    margin-left: 25px; 
 }
 
 nav ul li a {
@@ -209,7 +216,6 @@ nav ul li a::after {
 }
 nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
 
-/* Dark Mode Toggle Button Style (Desktop state within nav-links-wrapper) */
 #darkModeToggle {
     background: var(--dark-mode-toggle-bg);
     color: var(--dark-mode-toggle-text);
@@ -218,7 +224,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     padding: 8px 12px;
     cursor: pointer;
     font-size: 1.2em;
-    margin-left: 25px; /* Space from the nav links (ul) */
+    margin-left: 25px; 
     line-height: 1;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -226,9 +232,8 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     background-color: var(--dark-mode-toggle-hover-bg);
 }
 
-/* Mobile Navigation Toggle Button (Hamburger) */
 .mobile-nav-toggle {
-    display: none; /* Hidden on desktop by default */
+    display: none; 
     background: none;
     border: none;
     font-size: 1.8em;
@@ -236,37 +241,39 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     color: var(--mobile-nav-toggle-color);
     padding: 5px;
     line-height: 1;
-    z-index: 1001; /* Above the dropdown menu */
+    z-index: 1001; 
 }
 .mobile-nav-toggle span { display: block; }
 
 /* === END NAVIGATION STYLES === */
 
-
 /* Hero Section */
+/* NO CHANGE TO HERO SECTION - content will now be below the fixed nav due to body padding */
 .hero {
-    text-align: center; padding: 120px 20px 100px;
+    text-align: center; padding: 120px 20px 100px; /* This padding is internal to hero */
+    /* If nav was transparent and hero was the very first visual element,
+       you might adjust hero's top padding. But with body padding-top, hero's own padding is fine. */
     background-color: var(--hero-bg-color);
     background-image: linear-gradient(var(--hero-overlay-start), var(--hero-overlay-end)), url('YOUR_IMAGE_FILENAME_HERE.jpg');
     background-size: cover; background-position: center center;
-    background-repeat: no-repeat; position: relative; color: var(--hero-text-color);
+    background-repeat: no-repeat; position: relative; color: var(--hero-text-color); 
 }
 .hero h1 {
     font-size: 3.8em; font-weight: 700; color: var(--hero-text-color);
     margin-bottom: 0.3em; letter-spacing: -0.02em;
     opacity: 0; transform: translateY(20px);
-    animation: fadeInUp 0.8s 0.2s ease-out forwards;
+    animation: fadeInUp 0.8s 0.2s ease-out forwards; 
 }
 .hero .subtitle {
     font-size: 1.6em; color: var(--hero-subtitle-color);
     margin-bottom: 1.8em; font-weight: 400;
-    max-width: 650px; margin-left: auto; margin-right: auto;
+    max-width: 650px; margin-left: auto; margin-right: auto; 
     opacity: 0; transform: translateY(20px);
     animation: fadeInUp 0.8s 0.4s ease-out forwards;
 }
 @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-/* === BUTTON STYLES === */
+/* === BUTTON STYLES (Unchanged from before) === */
 .cta-button {
     display: inline-block; padding: 12px 25px;
     font-size: 1.05em; font-weight: 500;
@@ -298,7 +305,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     transform: translateY(-2px);
 }
 
-/* General Section Styling */
+/* General Section Styling (Unchanged from before) */
 .section {
     padding: 80px 0; text-align: center;
     background-color: var(--section-bg);
@@ -319,7 +326,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     max-width: 700px; margin: 0 auto 2.5em auto; font-weight: 400;
 }
 
-/* Features & Future Modes Grid */
+/* Features & Future Modes Grid (Unchanged from before) */
 .features-grid, .future-modes-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px; }
 .feature-item, .future-mode-item {
     padding: 30px; border-radius: 12px;
@@ -348,7 +355,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .future-mode-item .icon-placeholder img, .future-mode-item .icon-placeholder svg { width: 28px; height: 28px; }
 .feature-item p, .future-mode-item p { font-size: 0.95em; color: var(--card-text-color); line-height: 1.5; }
 
-/* Join Section */
+/* Join Section (Unchanged from before) */
 .join-section { background-color: var(--join-section-bg); color: var(--join-section-text); padding: 80px 0; }
 .join-section h2 { color: var(--join-section-text); font-size: 2.8em; }
 .join-section .section-subheading { color: var(--join-section-subheading-text); }
@@ -366,11 +373,11 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .copy-ip-button:hover { background-color: var(--copy-btn-hover-bg); transform: scale(1.05); }
 .copy-ip-button.copied { background-color: var(--copy-btn-copied-bg); color: var(--copy-btn-copied-text); }
 
-/* Community Section */
+/* Community Section (Unchanged from before) */
 .discord-widget-container { margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: center; }
 .discord-widget-container iframe { border-radius: 10px; box-shadow: 0 5px 15px var(--discord-widget-shadow); }
 
-/* Dynmap Styles */
+/* Dynmap Styles (Unchanged from before) */
 .dynmap-container { width: 100%; margin-top: 20px; }
 .dynmap-iframe {
     width: 100%; height: 75vh; border: none;
@@ -378,13 +385,13 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     background-color: #000; /* Fallback */
 }
 
-/* Footer */
+/* Footer (Unchanged from before) */
 footer { background-color: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; font-size: 0.9em; transition: background-color 0.3s ease, color 0.3s ease; }
 footer p { margin: 0.5em 0; }
 footer a { color: var(--footer-link); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 
-/* Scroll Animation Helper Classes */
+/* Scroll Animation Helper Classes (Unchanged from before) */
 .animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out .1s; }
 .animated-item.is-visible { opacity: 1; transform: translateY(0); }
 
@@ -418,7 +425,7 @@ footer a:hover { text-decoration: underline; }
     nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
     #darkModeToggle { margin-left: 0; margin-top: 0; }
 
-    /* Other Responsive Styles */
+    /* Other Responsive Styles (Unchanged from before) */
     .hero h1 { font-size: 2.8em; }
     .hero .subtitle { font-size: 1.3em; }
     .section h2, .rules-content h1 { font-size: 2.2em; }
