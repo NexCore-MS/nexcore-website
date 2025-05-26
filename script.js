@@ -5,6 +5,49 @@ document.addEventListener('DOMContentLoaded', () => {
         yearElement.textContent = new Date().getFullYear();
     }
 
+    // Dark Mode Toggle Functionality
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Function to apply the saved or preferred theme
+    const applyTheme = (theme) => {
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+            if (darkModeToggle) darkModeToggle.textContent = '☀️'; // Sun icon for light mode
+        } else {
+            body.classList.remove('dark-mode');
+            if (darkModeToggle) darkModeToggle.textContent = '🌙'; // Moon icon for dark mode
+        }
+    };
+
+    // Check for saved theme in localStorage
+    let savedTheme = localStorage.getItem('theme');
+
+    // If no saved theme, check system preference
+    if (!savedTheme) {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            savedTheme = 'dark';
+        } else {
+            savedTheme = 'light'; // Default to light if no system preference or saved theme
+        }
+    }
+    
+    applyTheme(savedTheme); // Apply the initial theme
+
+    // Toggle button event listener
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            let newTheme;
+            if (body.classList.contains('dark-mode')) {
+                newTheme = 'light';
+            } else {
+                newTheme = 'dark';
+            }
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+
     // Intersection Observer for Scroll Animations
     const animatedItems = document.querySelectorAll('.animated-item');
     if (animatedItems.length > 0) {
@@ -15,14 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     observerInstance.unobserve(entry.target); 
                 }
             });
-        }, { threshold: 0.1 }); // Trigger when 10% of the item is visible
+        }, { threshold: 0.1 });
         
         animatedItems.forEach(item => {
             observer.observe(item);
         });
     }
 
-    // Copy IP Button Functionality (only runs if elements exist)
+    // Copy IP Button Functionality
     const copyIpButton = document.getElementById('copy-ip-btn');
     const serverIpElement = document.getElementById('server-ip');
 
@@ -38,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 2000); 
             }).catch(err => {
                 console.error('Failed to copy IP: ', err);
-                // Provide a fallback message for the user
                 alert('Failed to copy IP. Please copy it manually: ' + ipAddress);
             });
         });
