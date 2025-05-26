@@ -61,70 +61,70 @@
     --dark-mode-toggle-bg: transparent;
     --dark-mode-toggle-text: #1d1d1f;
     --dark-mode-toggle-hover-bg: rgba(0,0,0,0.05);
+    --mobile-nav-toggle-color: var(--heading-color);
 }
 
 body.dark-mode {
-    --bg-color: #161617; /* Slightly off-black */
+    --bg-color: #161617;
     --text-color: #f5f7fa;
     --text-muted-color: #8e8e93;
     --heading-color: #f5f7fa;
     --link-color: #f5f7fa;
-    --link-hover-color: #0A84FF; /* Apple's dark mode blue */
+    --link-hover-color: #0A84FF;
     --primary-accent-color: #0A84FF;
     --primary-accent-hover-bg: #0073e0;
     --primary-accent-shadow: rgba(10, 132, 255, 0.3);
     --primary-accent-hover-shadow: rgba(10, 132, 255, 0.4);
 
-    --section-bg: #1c1c1e; /* Darker gray */
-    --section-alt-bg: #161617; /* Match body bg or slightly different */
-    --section-border: #38383a; /* Lighter border for dark mode */
+    --section-bg: #1c1c1e;
+    --section-alt-bg: #161617;
+    --section-border: #38383a;
 
     --card-bg: #2c2c2e;
-    --card-alt-bg: #1c1c1e; /* For items on section-alt-bg */
+    --card-alt-bg: #1c1c1e;
     --card-shadow: rgba(0,0,0,0.2);
     --card-hover-shadow: rgba(0,0,0,0.3);
     --card-text-color: #c7c7cc;
 
-    --nav-bg-color: rgba(28, 28, 30, 0.75); /* Darker nav bg */
-    --nav-border-color: rgba(84,84,88,0.65); /* Apple dark mode separator */
-    --nav-blur-saturate: blur(20px) saturate(180%); /* Can keep same blur/saturate */
+    --nav-bg-color: rgba(28, 28, 30, 0.75);
+    --nav-border-color: rgba(84,84,88,0.65);
 
-    --hero-bg-color: #000; /* Can make hero even darker */
-    --hero-overlay-start: rgba(0,0,0, 0.65); /* Darker overlay */
+    --hero-bg-color: #000;
+    --hero-overlay-start: rgba(0,0,0, 0.65);
     --hero-overlay-end: rgba(0,0,0, 0.85);
     --hero-text-color: #fff;
     --hero-subtitle-color: #a0a0a5;
 
     --icon-placeholder-bg: #0A84FF30;
     --icon-placeholder-color: #0A84FF;
-    --future-icon-placeholder-bg: #bf5af230; /* Example: Dark mode purple */
+    --future-icon-placeholder-bg: #bf5af230;
     --future-icon-placeholder-color: #bf5af2;
 
-    --join-section-bg: #0A84FF; /* Use dark mode primary accent */
+    --join-section-bg: #0A84FF;
     --join-section-text: #fff;
     --join-section-subheading-text: rgba(255,255,255,0.85);
-    --ip-display-bg: rgba(255, 255, 255, 0.1); /* Slightly less opaque */
+    --ip-display-bg: rgba(255, 255, 255, 0.1);
     --ip-display-border: rgba(255, 255, 255, 0.2);
     --ip-display-text: #fff;
-    --copy-btn-bg: #3a3a3c; /* Darker button background */
-    --copy-btn-text: #0A84FF; /* Accent text */
+    --copy-btn-bg: #3a3a3c;
+    --copy-btn-text: #0A84FF;
     --copy-btn-hover-bg: #48484a;
-    --copy-btn-copied-bg: #30d158; /* Dark mode green */
+    --copy-btn-copied-bg: #30d158;
     --copy-btn-copied-text: #fff;
 
     --discord-widget-shadow: rgba(0,0,0,0.3);
-    --discord-button-bg: #7289DA; /* Discord button can often stay same or be slightly lighter */
+    --discord-button-bg: #7289DA;
     --discord-button-hover-bg: #677bc4;
     --discord-button-shadow: rgba(114, 137, 218, 0.3);
     --discord-button-hover-shadow: rgba(114, 137, 218, 0.4);
 
-    --footer-bg: #000; /* Black footer */
+    --footer-bg: #000;
     --footer-text: #8e8e93;
     --footer-link: #0A84FF;
 
-    --dark-mode-toggle-bg: transparent;
     --dark-mode-toggle-text: #f5f7fa;
     --dark-mode-toggle-hover-bg: rgba(255,255,255,0.08);
+    --mobile-nav-toggle-color: var(--heading-color);
 }
 
 
@@ -134,7 +134,7 @@ body, html {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
@@ -148,29 +148,20 @@ nav {
     position: sticky; top: 0; z-index: 1000;
     transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
 }
-nav .container { display: flex; justify-content: space-between; align-items: center; }
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 nav .logo { font-size: 1.8em; font-weight: 600; color: var(--heading-color); text-decoration: none; }
 
-/* Dark Mode Toggle Button Style */
-#darkModeToggle {
-    background: var(--dark-mode-toggle-bg);
-    color: var(--dark-mode-toggle-text);
-    border: 1px solid transparent; 
-    border-radius: 8px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 1.2em; 
-    margin-left: 20px; /* Adds space between the nav links and the button */
-    /* margin-right: auto; /* REMOVE this line if it exists */
-    line-height: 1; 
-    transition: background-color 0.3s ease, color 0.3s ease;
+/* Wrapper for links and dark mode toggle */
+.nav-links-wrapper {
+    display: flex;
+    align-items: center;
 }
-#darkModeToggle:hover {
-    background-color: var(--dark-mode-toggle-hover-bg);
-}
-
 nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
-nav ul li { margin-left: 25px; }
+nav ul li { margin-left: 25px; } /* This applies to desktop view */
 nav ul li a {
     text-decoration: none; color: var(--link-color); font-weight: 500;
     font-size: 0.95em; transition: color 0.3s ease, opacity 0.3s ease;
@@ -183,6 +174,37 @@ nav ul li a::after {
     transform-origin: bottom right; transition: transform 0.25s ease-out;
 }
 nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+
+/* Dark Mode & Mobile Nav Toggle Buttons */
+#darkModeToggle {
+    background: var(--dark-mode-toggle-bg);
+    color: var(--dark-mode-toggle-text);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-left: 25px; /* Space from the nav links (ul) on desktop */
+    line-height: 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+#darkModeToggle:hover {
+    background-color: var(--dark-mode-toggle-hover-bg);
+}
+
+.mobile-nav-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: var(--mobile-nav-toggle-color);
+    padding: 5px;
+    line-height: 1;
+    z-index: 1001;
+}
+.mobile-nav-toggle span { display: block; }
+
 
 /* Hero Section */
 .hero {
@@ -211,7 +233,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .cta-button {
     display: inline-block; padding: 12px 25px;
     font-size: 1.05em; font-weight: 500;
-    color: #fff; /* Most CTA buttons have white text, bg color will define them */
+    color: #fff;
     text-decoration: none; text-align: center;
     border-radius: 10px; cursor: pointer; border: none;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
@@ -291,7 +313,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 
 /* Join Section */
 .join-section { background-color: var(--join-section-bg); color: var(--join-section-text); padding: 80px 0; }
-.join-section h2 { color: var(--join-section-text); font-size: 2.8em; } /* Explicitly set h2 color here */
+.join-section h2 { color: var(--join-section-text); font-size: 2.8em; }
 .join-section .section-subheading { color: var(--join-section-subheading-text); }
 .server-ip-area { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; }
 .server-ip-display {
@@ -311,6 +333,15 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .discord-widget-container { margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: center; }
 .discord-widget-container iframe { border-radius: 10px; box-shadow: 0 5px 15px var(--discord-widget-shadow); }
 
+/* Dynmap Styles */
+.dynmap-container { width: 100%; margin-top: 20px; }
+.dynmap-iframe {
+    width: 100%; height: 75vh; border: none;
+    border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow); /* Use card shadow */
+    background-color: #000; /* Fallback */
+}
+
+
 /* Footer */
 footer { background-color: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; font-size: 0.9em; transition: background-color 0.3s ease, color 0.3s ease; }
 footer p { margin: 0.5em 0; }
@@ -318,32 +349,52 @@ footer a { color: var(--footer-link); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 
 /* Scroll Animation Helper Classes */
-.animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out .1s; /* Added slight delay to transform for sequential feel */ }
+.animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out .1s; }
 .animated-item.is-visible { opacity: 1; transform: translateY(0); }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    nav .container { flex-direction: row; /* Keep logo and links on one line */ flex-wrap: wrap; /* Allow wrapping if needed */ }
-    #darkModeToggle { order: -1; /* Moves toggle to the left of the logo on mobile if desired */ margin-left: 0; margin-right: 15px; }
-    nav .logo { margin-right: auto; /* Pushes links to the right if toggle is first */ }
-    nav ul { margin-left: auto; /* Push nav links to the right, if toggle is first */ flex-basis: 100%; text-align: center; margin-top: 10px; display:none; /* Hide by default, show with JS or a mobile menu button if needed */ }
-    /* Basic mobile nav improvement - simple show/hide, a proper burger menu is more complex */
-    /* For now, let's assume nav links might wrap or we need a burger menu later */
-    /* Reverting to simpler mobile nav for now to avoid breaking layout without more JS */
-    nav .container { flex-direction: column; }
-    #darkModeToggle { order: 0; margin: 10px 0 0 0; } /* Center toggle below logo */
-    nav ul { margin-top: 10px; }
-
+    nav .container {
+        flex-direction: row; /* Keep logo and hamburger on one line */
+        justify-content: space-between;
+    }
+    .mobile-nav-toggle {
+        display: block; /* Show hamburger on mobile */
+    }
+    .nav-links-wrapper {
+        display: none; /* Hide links and dark mode toggle by default on mobile */
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 100%; /* Position below the nav bar */
+        left: 0;
+        right: 0;
+        background-color: var(--nav-bg-color);
+        padding: 20px 0; /* Padding top and bottom */
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-top: 1px solid var(--nav-border-color);
+        z-index: 999;
+    }
+    .nav-links-wrapper.nav-open { display: flex; }
+    nav ul {
+        flex-direction: column; width: 100%; text-align: center;
+        margin-bottom: 20px; /* Space before dark mode toggle if it's last */
+    }
+    nav ul li { margin-left: 0; margin-bottom: 18px; width: 100%; }
+    nav ul li:last-child { margin-bottom: 0; }
+    nav ul li a { padding: 10px 0; display: block; width: 100%; }
+    #darkModeToggle { margin-left: 0; margin-top: 0; /* Reset desktop margin, already spaced by flex */ }
 
     .hero h1 { font-size: 2.8em; }
     .hero .subtitle { font-size: 1.3em; }
     .section h2, .rules-content h1 { font-size: 2.2em; }
     .section .section-subheading, .rules-content .section-subheading { font-size: 1.1em; }
-    /* nav ul li { margin: 0 10px; } */ /* Already handled by flex items */
     .features-grid, .future-modes-grid { flex-direction: column; align-items: center; }
     .feature-item, .future-mode-item { max-width: 90%; }
     .server-ip-area { flex-direction: column; gap: 10px; }
     .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
     .copy-ip-button { padding: 15px 20px; font-size: 0.95em; width: 100%; max-width: 250px;}
     .discord-widget-container iframe { width: 100% !important; max-width: 350px; min-height: 400px; }
+    .dynmap-iframe { height: 60vh; }
+    .section .section-subheading.dynmap-intro { margin-bottom: 1.5em; }
 }
