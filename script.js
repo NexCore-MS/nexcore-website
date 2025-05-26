@@ -1,56 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('NexCore script.js loaded and DOMContentLoaded fired.'); // 1. Script start
+
     // Set current year in footer
     const yearElement = document.getElementById('year');
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
+    } else {
+        console.warn('Footer year element with ID "year" not found.');
     }
 
     // Dark Mode Toggle Functionality
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
 
-    // Function to apply the saved or preferred theme
+    console.log('Attempting to find darkModeToggle button. Found:', darkModeToggle); // 2. Button found?
+
     const applyTheme = (theme) => {
+        console.log('Applying theme:', theme); // 4. or 7. Applying theme
         if (theme === 'dark') {
             body.classList.add('dark-mode');
-            if (darkModeToggle) darkModeToggle.textContent = '☀️'; // Sun icon for light mode
+            if (darkModeToggle) darkModeToggle.textContent = '☀️'; // Sun icon
         } else {
             body.classList.remove('dark-mode');
-            if (darkModeToggle) darkModeToggle.textContent = '🌙'; // Moon icon for dark mode
+            if (darkModeToggle) darkModeToggle.textContent = '🌙'; // Moon icon
         }
     };
 
     // Check for saved theme in localStorage
     let savedTheme = localStorage.getItem('theme');
+    console.log('Initial check - Saved theme from localStorage:', savedTheme); // 3. localStorage check
 
-    // If no saved theme, check system preference
     if (!savedTheme) {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             savedTheme = 'dark';
+            console.log('No saved theme. Using system preference: dark'); 
         } else {
-            savedTheme = 'light'; // Default to light if no system preference or saved theme
+            savedTheme = 'light';
+            console.log('No saved theme. Defaulting to light theme (or system preference is light).');
         }
     }
-    
     applyTheme(savedTheme); // Apply the initial theme
 
-    // Toggle button event listener
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
+            console.log('Dark mode toggle button CLICKED!'); // 5. Button click detected
             let newTheme;
             if (body.classList.contains('dark-mode')) {
                 newTheme = 'light';
             } else {
                 newTheme = 'dark';
             }
+            console.log('New theme will be:', newTheme); // 6. New theme decided
             applyTheme(newTheme);
             localStorage.setItem('theme', newTheme);
+            console.log('Set localStorage theme to:', newTheme); // 8. localStorage updated
         });
+    } else {
+        // This warning will appear if the button isn't found by its ID
+        console.warn('Dark mode toggle button with ID "darkModeToggle" was NOT found by the script.');
     }
 
     // Intersection Observer for Scroll Animations
     const animatedItems = document.querySelectorAll('.animated-item');
     if (animatedItems.length > 0) {
+        // console.log(`Found ${animatedItems.length} animated items to observe.`);
         const observer = new IntersectionObserver((entries, observerInstance) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -63,6 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
         animatedItems.forEach(item => {
             observer.observe(item);
         });
+    } else {
+        // console.log('No ".animated-item" elements found to observe on this page.');
     }
 
     // Copy IP Button Functionality
@@ -70,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const serverIpElement = document.getElementById('server-ip');
 
     if (copyIpButton && serverIpElement) {
+        // console.log('Copy IP button and element found. Attaching listener.');
         copyIpButton.addEventListener('click', () => {
             const ipAddress = serverIpElement.textContent;
             navigator.clipboard.writeText(ipAddress).then(() => {
@@ -84,5 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Failed to copy IP. Please copy it manually: ' + ipAddress);
             });
         });
+    } else {
+        // Warnings if these specific elements are not on a page (e.g., rules.html)
+        // if (!copyIpButton) console.log('Copy IP button with ID "copy-ip-btn" not found on this page (this is normal for non-index pages).');
+        // if (!serverIpElement) console.log('Server IP element with ID "server-ip" not found on this page (this is normal for non-index pages).');
     }
 });
