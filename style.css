@@ -6,7 +6,7 @@
     --heading-color: #1d1d1f;
     --link-color: #1d1d1f; /* Nav link color */
     --link-hover-color: #007aff;
-    --primary-accent-color: #007aff;
+    --primary-accent-color: #007aff; /* Main accent, will be used for icon */
     --primary-accent-hover-bg: #0068d6;
     --primary-accent-shadow: rgba(0, 122, 255, 0.25);
     --primary-accent-hover-shadow: rgba(0, 122, 255, 0.35);
@@ -15,8 +15,8 @@
     --section-alt-bg: #f5f5f7;
     --section-border: #e5e5e5;
 
-    --card-bg: #f9f9f9; /* For items on white section bg */
-    --card-alt-bg: #fff; /* For items on alternate section bg */
+    --card-bg: #f9f9f9; 
+    --card-alt-bg: #fff; 
     --card-shadow: rgba(0,0,0,0.05);
     --card-hover-shadow: rgba(0,0,0,0.08);
     --card-text-color: #555;
@@ -24,12 +24,9 @@
     --nav-bg-color: rgba(255, 255, 255, 0.8);
     --nav-border-color: rgba(0,0,0,0.08);
     --nav-blur-saturate: blur(20px) saturate(180%);
-    /* !!! IMPORTANT: Estimate your nav height here for body padding-top !!! */
-    /* Inspect your nav element to get its actual height */
     --nav-height: 70px; /* EXAMPLE VALUE - PLEASE ADJUST */
 
-
-    --hero-bg-color: #1c1c1e; /* Fallback, image overlay takes precedence */
+    --hero-bg-color: #1c1c1e; 
     --hero-overlay-start: rgba(28, 28, 30, 0.65);
     --hero-overlay-end: rgba(28, 28, 30, 0.85);
     --hero-text-color: #fff;
@@ -65,7 +62,12 @@
     --dark-mode-toggle-bg: transparent;
     --dark-mode-toggle-text: #1d1d1f;
     --dark-mode-toggle-hover-bg: rgba(0,0,0,0.05);
-    --mobile-nav-toggle-color: var(--heading-color); /* Uses heading color by default */
+    --mobile-nav-toggle-color: var(--heading-color); 
+
+    /* Cyberpunk accent for icon - can be same as primary or different */
+    --cyberpunk-accent-color: #00f0ff; /* Bright cyan/teal for cyberpunk */
+    --cyberpunk-glow-color: #00f0ff80; /* Glow with some transparency */
+
 }
 
 body.dark-mode {
@@ -128,7 +130,10 @@ body.dark-mode {
 
     --dark-mode-toggle-text: #f5f7fa;
     --dark-mode-toggle-hover-bg: rgba(255,255,255,0.08);
-    --mobile-nav-toggle-color: var(--heading-color); /* Uses heading color by default */
+    --mobile-nav-toggle-color: var(--heading-color); 
+
+    --cyberpunk-accent-color: #00f0ff; /* Keep it bright in dark mode */
+    --cyberpunk-glow-color: #00f0ff80;
 }
 
 
@@ -140,9 +145,8 @@ body, html {
     line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-/* ADD PADDING-TOP TO BODY FOR FIXED NAV */
 body {
-    padding-top: var(--nav-height); /* Adjust --nav-height variable above if needed */
+    padding-top: var(--nav-height); 
 }
 
 .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
@@ -154,14 +158,9 @@ nav {
     -webkit-backdrop-filter: var(--nav-blur-saturate);
     padding: 15px 0;
     border-bottom: 1px solid var(--nav-border-color);
-    
-    position: fixed; /* CHANGED to fixed */
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%; /* Ensures it spans full viewport width */
+    position: fixed; 
+    top: 0; left: 0; right: 0; width: 100%; 
     z-index: 1000;
-    
     transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
@@ -172,7 +171,10 @@ nav .container {
     position: relative; 
 }
 
+/* UPDATED LOGO STYLES */
 nav .logo {
+    display: flex; /* To align icon and text */
+    align-items: center;
     font-size: 1.8em;
     font-weight: 600;
     color: var(--heading-color);
@@ -180,8 +182,23 @@ nav .logo {
     flex-shrink: 0; 
 }
 
+/* NEW CSS ICON PLACEHOLDER */
+.logo-icon-placeholder {
+    display: inline-block;
+    width: 0.8em; /* Relative to logo font size */
+    height: 0.8em;
+    margin-right: 0.4em; /* Space between icon and "NexCore" text */
+    border: 2px solid var(--cyberpunk-accent-color); /* Cyberpunk accent border */
+    background-color: transparent; 
+    /* Simple cyberpunk shape: square with a cut corner */
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); 
+    box-shadow: 0 0 3px var(--cyberpunk-accent-color), 0 0 7px var(--cyberpunk-glow-color), inset 0 0 2px var(--cyberpunk-accent-color); /* Neon glow */
+    transform: skewX(-5deg); /* Slight skew for cyberpunk feel */
+}
+
+/* Wrapper for links and dark mode toggle - for desktop flex layout */
 .nav-links-wrapper {
-    display: flex; 
+    display: flex;
     align-items: center;
 }
 
@@ -191,11 +208,9 @@ nav ul {
     padding: 0;
     display: flex; 
 }
-
 nav ul li {
     margin-left: 25px; 
 }
-
 nav ul li a {
     text-decoration: none;
     color: var(--link-color);
@@ -247,12 +262,10 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 
 /* === END NAVIGATION STYLES === */
 
-/* Hero Section */
-/* NO CHANGE TO HERO SECTION - content will now be below the fixed nav due to body padding */
+
+/* Hero Section (styles remain the same) */
 .hero {
-    text-align: center; padding: 120px 20px 100px; /* This padding is internal to hero */
-    /* If nav was transparent and hero was the very first visual element,
-       you might adjust hero's top padding. But with body padding-top, hero's own padding is fine. */
+    text-align: center; padding: 120px 20px 100px;
     background-color: var(--hero-bg-color);
     background-image: linear-gradient(var(--hero-overlay-start), var(--hero-overlay-end)), url('YOUR_IMAGE_FILENAME_HERE.jpg');
     background-size: cover; background-position: center center;
@@ -273,7 +286,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 }
 @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-/* === BUTTON STYLES (Unchanged from before) === */
+/* === BUTTON STYLES (styles remain the same) === */
 .cta-button {
     display: inline-block; padding: 12px 25px;
     font-size: 1.05em; font-weight: 500;
@@ -305,7 +318,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     transform: translateY(-2px);
 }
 
-/* General Section Styling (Unchanged from before) */
+/* General Section Styling (styles remain the same) */
 .section {
     padding: 80px 0; text-align: center;
     background-color: var(--section-bg);
@@ -326,7 +339,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     max-width: 700px; margin: 0 auto 2.5em auto; font-weight: 400;
 }
 
-/* Features & Future Modes Grid (Unchanged from before) */
+/* Features & Future Modes Grid (styles remain the same) */
 .features-grid, .future-modes-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px; }
 .feature-item, .future-mode-item {
     padding: 30px; border-radius: 12px;
@@ -355,7 +368,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .future-mode-item .icon-placeholder img, .future-mode-item .icon-placeholder svg { width: 28px; height: 28px; }
 .feature-item p, .future-mode-item p { font-size: 0.95em; color: var(--card-text-color); line-height: 1.5; }
 
-/* Join Section (Unchanged from before) */
+/* Join Section (styles remain the same) */
 .join-section { background-color: var(--join-section-bg); color: var(--join-section-text); padding: 80px 0; }
 .join-section h2 { color: var(--join-section-text); font-size: 2.8em; }
 .join-section .section-subheading { color: var(--join-section-subheading-text); }
@@ -373,11 +386,11 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .copy-ip-button:hover { background-color: var(--copy-btn-hover-bg); transform: scale(1.05); }
 .copy-ip-button.copied { background-color: var(--copy-btn-copied-bg); color: var(--copy-btn-copied-text); }
 
-/* Community Section (Unchanged from before) */
+/* Community Section (styles remain the same) */
 .discord-widget-container { margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: center; }
 .discord-widget-container iframe { border-radius: 10px; box-shadow: 0 5px 15px var(--discord-widget-shadow); }
 
-/* Dynmap Styles (Unchanged from before) */
+/* Dynmap Styles (styles remain the same) */
 .dynmap-container { width: 100%; margin-top: 20px; }
 .dynmap-iframe {
     width: 100%; height: 75vh; border: none;
@@ -385,13 +398,13 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     background-color: #000; /* Fallback */
 }
 
-/* Footer (Unchanged from before) */
+/* Footer (styles remain the same) */
 footer { background-color: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; font-size: 0.9em; transition: background-color 0.3s ease, color 0.3s ease; }
 footer p { margin: 0.5em 0; }
 footer a { color: var(--footer-link); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 
-/* Scroll Animation Helper Classes (Unchanged from before) */
+/* Scroll Animation Helper Classes (styles remain the same) */
 .animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out .1s; }
 .animated-item.is-visible { opacity: 1; transform: translateY(0); }
 
@@ -425,7 +438,7 @@ footer a:hover { text-decoration: underline; }
     nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
     #darkModeToggle { margin-left: 0; margin-top: 0; }
 
-    /* Other Responsive Styles (Unchanged from before) */
+    /* Other Responsive Styles (styles remain the same) */
     .hero h1 { font-size: 2.8em; }
     .hero .subtitle { font-size: 1.3em; }
     .section h2, .rules-content h1 { font-size: 2.2em; }
