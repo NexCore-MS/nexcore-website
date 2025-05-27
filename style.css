@@ -6,7 +6,7 @@
     --heading-color: #1d1d1f;
     --link-color: #1d1d1f; /* Nav link color */
     --link-hover-color: #007aff;
-    --primary-accent-color: #007aff; /* Main accent, will be used for icon */
+    --primary-accent-color: #007aff; 
     --primary-accent-hover-bg: #0068d6;
     --primary-accent-shadow: rgba(0, 122, 255, 0.25);
     --primary-accent-hover-shadow: rgba(0, 122, 255, 0.35);
@@ -24,7 +24,7 @@
     --nav-bg-color: rgba(255, 255, 255, 0.8);
     --nav-border-color: rgba(0,0,0,0.08);
     --nav-blur-saturate: blur(20px) saturate(180%);
-    --nav-height: 70px; /* EXAMPLE VALUE - PLEASE ADJUST */
+    --nav-height: 70px; /* EXAMPLE VALUE - PLEASE ADJUST by inspecting your nav */
 
     --hero-bg-color: #1c1c1e; 
     --hero-overlay-start: rgba(28, 28, 30, 0.65);
@@ -66,8 +66,7 @@
 
     /* Cyberpunk accent for icon - can be same as primary or different */
     --cyberpunk-accent-color: #00f0ff; /* Bright cyan/teal for cyberpunk */
-    --cyberpunk-glow-color: #00f0ff80; /* Glow with some transparency */
-
+    --cyberpunk-glow-color: #00f0ff60; /* Glow with some transparency */
 }
 
 body.dark-mode {
@@ -132,8 +131,8 @@ body.dark-mode {
     --dark-mode-toggle-hover-bg: rgba(255,255,255,0.08);
     --mobile-nav-toggle-color: var(--heading-color); 
 
-    --cyberpunk-accent-color: #00f0ff; /* Keep it bright in dark mode */
-    --cyberpunk-glow-color: #00f0ff80;
+    --cyberpunk-accent-color: #00f0ff; 
+    --cyberpunk-glow-color: #00f0ff60;
 }
 
 
@@ -171,9 +170,8 @@ nav .container {
     position: relative; 
 }
 
-/* UPDATED LOGO STYLES */
 nav .logo {
-    display: flex; /* To align icon and text */
+    display: flex; 
     align-items: center;
     font-size: 1.8em;
     font-weight: 600;
@@ -182,23 +180,35 @@ nav .logo {
     flex-shrink: 0; 
 }
 
-/* NEW CSS ICON PLACEHOLDER */
+/* === NEW CSS ICON PLACEHOLDER (HEXAGON) === */
 .logo-icon-placeholder {
     display: inline-block;
-    width: 0.8em; /* Relative to logo font size */
-    height: 0.8em;
-    margin-right: 0.4em; /* Space between icon and "NexCore" text */
-    border: 2px solid var(--cyberpunk-accent-color); /* Cyberpunk accent border */
-    background-color: transparent; 
-    /* Simple cyberpunk shape: square with a cut corner */
-    clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); 
-    box-shadow: 0 0 3px var(--cyberpunk-accent-color), 0 0 7px var(--cyberpunk-glow-color), inset 0 0 2px var(--cyberpunk-accent-color); /* Neon glow */
-    transform: skewX(-5deg); /* Slight skew for cyberpunk feel */
+    width: 0.8em;  /* Adjust size relative to logo font */
+    height: 0.92em; /* Height for a well-proportioned hexagon (approx width * 1.15) */
+    margin-right: 0.5em; /* Space between icon and "NexCore" text */
+    background-color: var(--cyberpunk-accent-color); /* Solid fill for the hexagon */
+    /* Hexagon shape */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    box-shadow: 0 0 5px var(--cyberpunk-accent-color), 0 0 10px var(--cyberpunk-glow-color); /* Neon glow */
+    vertical-align: -0.12em; /* Fine-tune vertical alignment with text */
 }
+/* If you want a border instead of a solid fill for the hexagon:
+.logo-icon-placeholder {
+    display: inline-block;
+    width: 0.8em;
+    height: 0.92em;
+    margin-right: 0.5em;
+    border: 2px solid var(--cyberpunk-accent-color);
+    background-color: transparent;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    box-shadow: 0 0 5px var(--cyberpunk-accent-color), 0 0 10px var(--cyberpunk-glow-color);
+    vertical-align: -0.12em;
+}
+*/
 
-/* Wrapper for links and dark mode toggle - for desktop flex layout */
+
 .nav-links-wrapper {
-    display: flex;
+    display: flex; 
     align-items: center;
 }
 
