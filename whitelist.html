@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whitelist Application - NexCore</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon-placeholder"></span>NexCore
+            </a>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span>☰</span>
+            </button>
+            <div class="nav-links-wrapper">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#future">Coming Soon</a></li>
+                    <li><a href="rules.html">Rules</a></li>
+                    <li><a href="dynmap.html">Live Map</a></li>
+                    <li><a href="whitelist.html">Whitelist</a></li> <li><a href="index.html#community">Community</a></li>
+                    <li><a href="index.html#join">Join Us</a></li>
+                </ul>
+                <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1 class="animated-item">Join NexCore Alpha/Beta Testing!</h1>
+                <p class="section-subheading animated-item" style="transition-delay: 0.1s;">
+                    NexCore is currently in active development. We're looking for enthusiastic players to join our Alpha/Beta testing phase to help us find bugs, provide feedback, and shape the future of the server!
+                </p>
+
+                <div class="whitelist-form-container animated-item" style="transition-delay: 0.2s;">
+                    <h2 style="margin-bottom: 1em;">Whitelist Application</h2>
+                    <p style="text-align: left; max-width: 600px; margin: 0 auto 2em auto; color: var(--text-muted-color);">
+                        Please fill out the form below carefully. Applications are reviewed periodically, and successful applicants will be contacted (usually via Discord).
+                    </p>
+                    
+                    <form action="https://formsubmit.co/nexcore.ms@gmail.com" method="POST" class="whitelist-form">
+                        <input type="hidden" name="_subject" value="New NexCore Whitelist Application!">
+                        <input type="hidden" name="_captcha" value="false"> <div class="form-group">
+                            <label for="ign">Minecraft Username (IGN):</label>
+                            <input type="text" id="ign" name="Minecraft Username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="discord">Discord Username (e.g., user#1234):</label>
+                            <input type="text" id="discord" name="Discord Username" required placeholder="yourdiscord#0000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age (Optional):</label>
+                            <input type="number" id="age" name="Age" min="10">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="why-join">Why do you want to join NexCore's Alpha/Beta testing?</label>
+                            <textarea id="why-join" name="Why Join" rows="5" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="player-type">What kind of Minecraft player are you? (e.g., builder, explorer, pvper, technical player, etc.)</label>
+                            <textarea id="player-type" name="Player Type" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Do you have previous experience with server testing? (Briefly describe if yes)</label>
+                            <textarea id="experience" name="Testing Experience" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="agree-rules" name="Agreed to Rules" value="yes" required>
+                            <label for="agree-rules" class="checkbox-label">I have read and agree to follow the server rules (see <a href="rules.html" target="_blank" style="color: var(--primary-accent-color);">Rules Page</a>) and testing guidelines.</label>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 30px;">
+                            <button type="submit" class="cta-button">Submit Application</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="animated-item" style="margin-top: 40px; transition-delay: 0.3s;">
+                    <h3>What Happens Next?</h3>
+                    <p style="max-width: 600px; margin: 0 auto; color: var(--text-muted-color);">
+                        Our team will review your application. If you're selected for the current testing phase, we'll typically contact you via Discord within a few days to a week. Please be patient! We appreciate your interest in NexCore.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
+            <p>NexCore is not affiliated with Mojang AB.</p>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
