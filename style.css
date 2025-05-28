@@ -74,7 +74,6 @@
     --legal-content-link: var(--primary-accent-color);
 }
 
-/* UPDATED: Dark mode variables now target html.dark-mode */
 html.dark-mode {
     --bg-color: #161617;
     --text-color: #f5f7fa;
@@ -162,9 +161,9 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
     font-weight: 400;
-    transition: opacity 0.5s ease; /* Only transition opacity here, bg/color handled by html */
+    transition: opacity 0.5s ease; 
 }
-body.loaded { /* This class is added by script.js */
+body.loaded { 
     visibility: visible;
     opacity: 1;
 }
@@ -230,7 +229,7 @@ nav ul li a {
     transition: color 0.3s ease, opacity 0.3s ease;
     position: relative;
     opacity: 0.9;
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap; 
 }
 nav ul li a:hover { color: var(--link-hover-color); opacity: 1; }
 nav ul li a::after {
@@ -262,47 +261,134 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 }
 .mobile-nav-toggle span { display: block; }
 
-/* Search Container Styles */
-.search-container {
+/* === Google Custom Search Box Styles (New Section) === */
+.search-container { /* Our existing wrapper for Google's search box */
     display: flex;
     align-items: center;
-    margin-left: 15px; 
-    flex-shrink: 0; 
+    margin-left: 15px; /* Spacing from dark mode toggle */
+    flex-shrink: 0; /* Prevent shrinking */
 }
-.search-input {
-    font-family: inherit;
-    font-size: 0.9em;
-    padding: 7px 12px;
-    border: 1px solid var(--nav-border-color);
-    border-radius: 6px;
-    background-color: var(--bg-color); /* Use theme-aware background */
-    color: var(--text-color); /* Use theme-aware text color */
-    width: 150px; 
-    transition: width 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+
+/* Overall control Google injects */
+.search-container .gsc-control-cse {
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    width: auto !important; /* Allow it to be sized by its content or our container */
 }
-.search-input:focus {
-    outline: none;
-    border-color: var(--primary-accent-color);
-    width: 180px; 
-    box-shadow: 0 0 0 2px var(--primary-accent-shadow);
+
+/* The table Google uses for layout */
+.search-container .gsc-search-box {
+    margin-bottom: 0 !important;
+    display: flex !important; /* Use flex for the input and button cells */
+    align-items: center !important;
+    width: auto !important; /* Let the content define the width initially */
 }
-#searchIcon {
-    background: transparent;
-    border: none;
-    padding: 6px;
-    margin-left: -34px; 
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+/* Cell containing the input field */
+.search-container td.gsc-input {
+    padding-right: 0 !important; /* Remove any space next to the input field within the table */
 }
-.search-svg-icon {
-    stroke: var(--text-muted-color);
-    transition: stroke 0.3s ease;
+
+/* The actual input field */
+.search-container input.gsc-input#gsc-i-id1 {
+    font-family: inherit !important;
+    font-size: 0.9em !important;
+    color: var(--text-color) !important;
+    background-color: var(--form-input-bg) !important; /* Use theme-aware form input background */
+    background-image: none !important; /* Remove Google's branding image */
+    border: 1px solid var(--form-input-border) !important; /* Use theme-aware form input border */
+    border-radius: 6px 0 0 6px !important; /* Round left corners only */
+    padding: 7px 12px !important;
+    height: 36px !important; /* Fixed height to match typical Apple feel, adjust as needed */
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    outline: none !important;
+    width: 170px !important; /* Initial width, adjust as needed */
+    min-width: 100px; /* Prevent it from being too small */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, width 0.3s ease !important;
 }
-#searchIcon:hover .search-svg-icon {
-    stroke: var(--primary-accent-color);
+
+.search-container input.gsc-input#gsc-i-id1:focus {
+    border-color: var(--form-input-focus-border) !important;
+    box-shadow: 0 0 0 2px var(--form-input-focus-shadow) !important;
+    width: 200px !important; /* Optional: expand on focus */
 }
+
+/* Placeholder text styling */
+.search-container input.gsc-input#gsc-i-id1::placeholder {
+    color: var(--text-muted-color) !important;
+    opacity: 1 !important;
+}
+.search-container input.gsc-input#gsc-i-id1::-webkit-input-placeholder {
+    color: var(--text-muted-color) !important;
+}
+.search-container input.gsc-input#gsc-i-id1::-moz-placeholder {
+    color: var(--text-muted-color) !important;
+    opacity: 1 !important;
+}
+.search-container input.gsc-input#gsc-i-id1:-ms-input-placeholder {
+    color: var(--text-muted-color) !important;
+}
+.search-container input.gsc-input#gsc-i-id1::-ms-input-placeholder {
+    color: var(--text-muted-color) !important;
+}
+
+/* Cell containing the search button */
+.search-container td.gsc-search-button {
+    padding-left: 0 !important; /* No space from the input cell */
+}
+
+/* The search button */
+.search-container button.gsc-search-button.gsc-search-button-v2 {
+    background-color: var(--form-input-bg) !important; /* Match input background initially */
+    border: 1px solid var(--form-input-border) !important;
+    border-left: none !important; /* Input field has the right border, button has no left border */
+    padding: 0 10px !important; /* Adjust padding */
+    margin: 0 !important;
+    cursor: pointer !important;
+    border-radius: 0 6px 6px 0 !important; /* Round right corners only */
+    height: 36px !important; /* Match input height */
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.search-container button.gsc-search-button.gsc-search-button-v2:hover {
+    background-color: var(--dark-mode-toggle-hover-bg) !important; /* Consistent hover */
+    border-color: var(--form-input-focus-border) !important;
+}
+
+/* SVG icon inside Google's search button */
+.search-container button.gsc-search-button.gsc-search-button-v2 svg {
+    fill: var(--text-muted-color) !important;
+    width: 13px !important;
+    height: 13px !important;
+    transition: fill 0.3s ease !important;
+}
+
+.search-container button.gsc-search-button.gsc-search-button-v2:hover svg {
+    fill: var(--primary-accent-color) !important;
+}
+
+/* Hide Google's clear button (X in input) and the other clear button cell */
+.search-container .gsst_a, /* Google's X button inside the input */
+.search-container td.gsc-clear-button { /* The separate clear button cell */
+    display: none !important;
+}
+
+/* Input box wrapper styling to remove its default appearances */
+.search-container .gsc-input-box {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+}
+
+/* --- End Google Custom Search Box Styles --- */
+
 
 /* Hero Section */
 .hero {
@@ -361,11 +447,11 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .section {
     padding: 100px 0;
     text-align: center;
-    background-color: var(--section-bg); /* Will use themed variable */
+    background-color: var(--section-bg); 
     transition: background-color 0.3s ease;
 }
 .section:last-of-type { margin-bottom: 0; }
-.section.alternate-bg { background-color: var(--section-alt-bg); /* Will use themed variable */ }
+.section.alternate-bg { background-color: var(--section-alt-bg); }
 
 .rules-content {
     text-align: left; max-width: 800px; margin: 0 auto;
@@ -467,25 +553,25 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: var(--legal-content-bg); /* Themed */
-    color: var(--legal-content-text); /* Themed */
+    background-color: var(--legal-content-bg); 
+    color: var(--legal-content-text); 
     border-radius: 8px;
 }
 .legal-content h1 {
     font-size: 2.4em;
-    color: var(--legal-content-heading); /* Themed */
+    color: var(--legal-content-heading); 
     margin-bottom: 1em;
     text-align: center;
 }
 .legal-content h2 {
     font-size: 1.8em;
-    color: var(--legal-content-heading); /* Themed */
+    color: var(--legal-content-heading); 
     margin-top: 2em;
     margin-bottom: 0.8em;
 }
 .legal-content h3 {
     font-size: 1.4em;
-    color: var(--legal-content-heading); /* Themed */
+    color: var(--legal-content-heading); 
     margin-top: 1.5em;
     margin-bottom: 0.5em;
 }
@@ -503,7 +589,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     margin-bottom: 0.6em;
 }
 .legal-content a {
-    color: var(--legal-content-link); /* Themed */
+    color: var(--legal-content-link); 
     text-decoration: underline;
 }
 .legal-content a:hover {
@@ -513,7 +599,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     display: block;
     text-align: center;
     margin-bottom: 1.5em;
-    color: var(--text-muted-color); /* Themed */
+    color: var(--text-muted-color); 
 }
 
 /* Footer */
@@ -583,17 +669,27 @@ footer a:hover { text-decoration: underline; }
     }
     .search-container {
         margin-left: 0; 
+        margin-bottom: 15px; /* Add some space below search in mobile nav */
         justify-content: center; 
         padding: 0 20px; 
         box-sizing: border-box;
     }
-    .search-input {
-        width: 100%; 
-        max-width: 250px; 
+    /* Adjustments for Google Search Box in mobile */
+    .search-container .gsc-search-box {
+        width: 100% !important; /* Allow it to take more width */
     }
-    #searchIcon {
-         margin-left: -36px; 
+    .search-container input.gsc-input#gsc-i-id1 {
+        min-width: 0 !important; /* Allow it to shrink more on mobile */
+        width: 100% !important; /* Take full available width in its flex cell */
+        max-width: none !important; /* Remove max-width if set for desktop focus */
     }
+    .search-container input.gsc-input#gsc-i-id1:focus {
+        width: 100% !important; /* Keep it full width on focus too */
+    }
+    .search-container button.gsc-search-button.gsc-search-button-v2 {
+        height: 36px !important; /* Ensure height matches input */
+    }
+
 
     /* Other Responsive Styles */
     .hero h1 { font-size: 2.8em; }
