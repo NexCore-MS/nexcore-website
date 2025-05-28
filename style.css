@@ -24,9 +24,7 @@
     --nav-bg-color: rgba(255, 255, 255, 0.8);
     --nav-border-color: rgba(0,0,0,0.08);
     --nav-blur-saturate: blur(20px) saturate(180%);
-    /* !!! IMPORTANT: Inspect your nav element to get its actual height and set it here !!! */
-    --nav-height: 70px; /* <<<<<<< ADJUST THIS VALUE */
-
+    --nav-height: 70px; /* EXAMPLE VALUE - PLEASE ADJUST by inspecting your nav */
 
     --hero-bg-color: #1c1c1e; 
     --hero-overlay-start: rgba(28, 28, 30, 0.65);
@@ -162,7 +160,7 @@ body {
 
 .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-/* === NAVIGATION STYLES (Copied from previous complete version) === */
+/* === START NAVIGATION STYLES === */
 nav {
     background-color: var(--nav-bg-color);
     backdrop-filter: var(--nav-blur-saturate);
@@ -237,34 +235,77 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .mobile-nav-toggle span { display: block; }
 /* === END NAVIGATION STYLES === */
 
-/* Hero Section (Copied from previous complete version) */
-.hero { /* ... */ }
-.hero h1 { /* ... */ }
-.hero .subtitle { /* ... */ }
-@keyframes fadeInUp { /* ... */ }
+/* Hero Section */
+.hero {
+    text-align: center; padding: 120px 20px 100px;
+    background-color: var(--hero-bg-color);
+    background-image: linear-gradient(var(--hero-overlay-start), var(--hero-overlay-end)), url('YOUR_IMAGE_FILENAME_HERE.jpg');
+    background-size: cover; background-position: center center;
+    background-repeat: no-repeat; position: relative; color: var(--hero-text-color); 
+}
+.hero h1 {
+    font-size: 3.8em; font-weight: 700; color: var(--hero-text-color);
+    margin-bottom: 0.3em; letter-spacing: -0.02em; 
+    opacity: 0; transform: translateY(20px);
+    animation: fadeInUp 0.8s 0.2s ease-out forwards; 
+}
+.hero .subtitle {
+    font-size: 1.6em; color: var(--hero-subtitle-color);
+    margin-bottom: 1.8em; font-weight: 400;
+    max-width: 650px; margin-left: auto; margin-right: auto; 
+    opacity: 0; transform: translateY(20px);
+    animation: fadeInUp 0.8s 0.4s ease-out forwards;
+}
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-/* === BUTTON STYLES (Copied from previous complete version) === */
-.cta-button { /* ... */ }
-.hero .cta-button { /* ... */ }
-.hero .cta-button:hover { /* ... */ }
-.cta-button-discord { /* ... */ }
-.cta-button-discord:hover { /* ... */ }
+/* === BUTTON STYLES === */
+.cta-button {
+    display: inline-block; padding: 12px 25px;
+    font-size: 1.05em; font-weight: 500;
+    color: #fff;
+    text-decoration: none; text-align: center;
+    border-radius: 10px; cursor: pointer; border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.hero .cta-button {
+    background-color: var(--primary-accent-color);
+    box-shadow: 0 4px 15px var(--primary-accent-shadow);
+    padding: 16px 40px; font-size: 1.15em;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeInUp 0.8s 0.6s ease-out forwards;
+}
+.hero .cta-button:hover {
+    background-color: var(--primary-accent-hover-bg);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px var(--primary-accent-hover-shadow);
+}
+.cta-button-discord {
+    background-color: var(--discord-button-bg);
+    box-shadow: 0 4px 15px var(--discord-button-shadow);
+    margin-top: 30px;
+}
+.cta-button-discord:hover {
+    background-color: var(--discord-button-hover-bg);
+    box-shadow: 0 6px 20px var(--discord-button-hover-shadow);
+    transform: translateY(-2px);
+}
 
-/* General Section Styling (Copied from previous complete version, with noted updates) */
+/* General Section Styling */
 .section {
     padding: 100px 0; 
     text-align: center;
     background-color: var(--section-bg);
-    /* border-bottom: 1px solid var(--section-border); /* Removed */ */
     margin-bottom: 2px; 
     transition: background-color 0.3s ease;
 }
 .section:last-of-type { margin-bottom: 0; }
 .section.alternate-bg { background-color: var(--section-alt-bg); }
+
 .rules-content { text-align: left; max-width: 800px; margin: 0 auto; }
 .rules-content h1, .rules-content h2, .rules-content h3 { text-align: center; }
 .rules-content ul, .rules-content ol { margin-bottom: 1.5em; padding-left: 20px; }
 .rules-content li { margin-bottom: 0.5em; }
+
 .section h2, .rules-content h1 { 
     font-size: 2.8em; font-weight: 600; color: var(--heading-color); 
     margin-bottom: 0.5em;
@@ -275,7 +316,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     max-width: 700px; margin: 0 auto 2.5em auto; font-weight: 400;
 }
 
-/* Features & Future Modes Grid (Copied from previous complete version, with noted updates) */
+/* Features & Future Modes Grid */
 .features-grid, .future-modes-grid { 
     display: flex; flex-wrap: wrap; justify-content: center; 
     gap: 40px; 
@@ -283,7 +324,6 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 }
 .feature-item, .future-mode-item {
     padding: 35px; 
-    /* ...rest of item styles... */
     border-radius: 12px;
     width: 100%; max-width: 320px;
     box-shadow: 0 5px 15px var(--card-shadow);
@@ -298,13 +338,11 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .feature-item h3, .future-mode-item h3 { font-size: 1.5em; font-weight: 600; color: var(--heading-color); margin-bottom: 0.5em; }
 .feature-item .icon-placeholder {
     background-color: var(--icon-placeholder-bg); color: var(--icon-placeholder-color);
-    /* ...rest of icon placeholder styles... */
     width: 48px; height: 48px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;
     border-radius: 10px; font-size: 24px;
 }
 .future-mode-item .icon-placeholder {
     background-color: var(--future-icon-placeholder-bg); color: var(--future-icon-placeholder-color);
-    /* ...rest of icon placeholder styles... */
     width: 48px; height: 48px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;
     border-radius: 10px; font-size: 24px;
 }
@@ -316,11 +354,10 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     line-height: 1.5; 
 }
 
-/* Join Section (Copied from previous complete version, with noted updates) */
+/* Join Section */
 .join-section { background-color: var(--join-section-bg); color: var(--join-section-text); padding: 100px 0; } 
 .join-section h2 { color: var(--join-section-text); font-size: 2.8em; letter-spacing: -0.015em; } 
 .join-section .section-subheading { color: var(--join-section-subheading-text); }
-/* ...rest of join section styles... */
 .server-ip-area { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; }
 .server-ip-display {
     background-color: var(--ip-display-bg); border: 1px solid var(--ip-display-border);
@@ -335,52 +372,66 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .copy-ip-button:hover { background-color: var(--copy-btn-hover-bg); transform: scale(1.05); }
 .copy-ip-button.copied { background-color: var(--copy-btn-copied-bg); color: var(--copy-btn-copied-text); }
 
+/* Community Section */
+.discord-widget-container { margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: center; }
+.discord-widget-container iframe { border-radius: 10px; box-shadow: 0 5px 15px var(--discord-widget-shadow); }
 
-/* Community Section (Copied from previous complete version) */
-.discord-widget-container { /* ... */ }
-.discord-widget-container iframe { /* ... */ }
+/* Dynmap Styles */
+.dynmap-container { width: 100%; margin-top: 20px; }
+.dynmap-iframe {
+    width: 100%; height: 75vh; border: none;
+    border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow);
+    background-color: #000; /* Fallback */
+}
 
-/* Dynmap Styles (Copied from previous complete version) */
-.dynmap-container { /* ... */ }
-.dynmap-iframe { /* ... */ }
+/* Google Form Container Styles */
+.google-form-container { max-width: 760px; margin: 30px auto; }
+.google-form-iframe {
+    width: 100%; min-height: 700px; border: none; 
+    border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow); 
+}
 
-/* Google Form Container Styles (Copied from previous complete version) */
-.google-form-container { /* ... */ }
-.google-form-iframe { /* ... */ }
+/* Footer */
+footer { background-color: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; font-size: 0.9em; transition: background-color 0.3s ease, color 0.3s ease; }
+footer p { margin: 0.5em 0; }
+footer a { color: var(--footer-link); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
+/* Scroll Animation Helper Classes */
+.animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out .1s; }
+.animated-item.is-visible { opacity: 1; transform: translateY(0); }
 
-/* Footer (Copied from previous complete version) */
-footer { /* ... */ }
-footer p { /* ... */ }
-footer a { /* ... */ }
-footer a:hover { /* ... */ }
-
-/* Scroll Animation Helper Classes (Copied from previous complete version) */
-.animated-item { /* ... */ }
-.animated-item.is-visible { /* ... */ }
-
-/* === NEW OR UPDATED: Scroll Margin for Fixed Header Anchor Links === */
+/* Scroll Margin for Fixed Header Anchor Links */
 #hero, 
 #features, 
 #future, 
 #community, 
 #join {
-    scroll-margin-top: var(--nav-height); /* Offset for the fixed header height */
+    scroll-margin-top: var(--nav-height); 
 }
 
 /* Responsive adjustments (includes mobile navigation) */
 @media (max-width: 768px) {
-    /* Mobile Navigation Specifics (Copied from previous complete version) */
-    nav .container { /* ... */ }
-    .mobile-nav-toggle { /* ... */ }
-    .nav-links-wrapper { /* ... */ }
-    .nav-links-wrapper.nav-open { /* ... */ }
-    nav ul { /* ... */ }
-    nav ul li { /* ... */ }
-    nav ul li a { /* ... */ }
-    #darkModeToggle { /* ... */ }
+    /* Mobile Navigation Specifics */
+    nav .container { /* Keeps logo and hamburger side-by-side */ }
+    .mobile-nav-toggle { display: block; /* Show hamburger on mobile */ }
+    .nav-links-wrapper {
+        display: none; /* Hide links wrapper by default on mobile */
+        position: absolute; top: 100%; left: 0; right: 0;
+        background-color: var(--nav-bg-color);
+        padding: 20px 0; box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-top: 1px solid var(--nav-border-color); z-index: 999;
+    }
+    .nav-links-wrapper.nav-open { display: flex; flex-direction: column; align-items: center; }
+    nav ul {
+        flex-direction: column; width: 100%; text-align: center;
+        margin-bottom: 20px; 
+    }
+    nav ul li { margin-left: 0; margin-bottom: 0; width: 100%; }
+    nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
+    #darkModeToggle { margin-left: 0; margin-top: 0; }
 
-    /* Other Responsive Styles (Copied from previous complete version, with noted updates) */
+    /* Other Responsive Styles */
     .hero h1 { font-size: 2.8em; }
     .hero .subtitle { font-size: 1.3em; }
     .section h2, .rules-content h1 { font-size: 2.2em; letter-spacing: -0.01em; }
@@ -388,7 +439,6 @@ footer a:hover { /* ... */ }
     .section { padding: 80px 0; } 
     .features-grid, .future-modes-grid { gap: 30px; } 
     .feature-item, .future-mode-item { padding: 30px; max-width: 90%; }
-    /* ...rest of responsive styles... */
     .server-ip-area { flex-direction: column; gap: 10px; }
     .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
     .copy-ip-button { padding: 15px 20px; font-size: 0.95em; width: 100%; max-width: 250px;}
