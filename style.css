@@ -13,7 +13,6 @@
 
     --section-bg: #fff;
     --section-alt-bg: #f5f5f7;
-    /* --section-border: #e5e5e5; /* Border removed from sections */ */
 
     --card-bg: #f9f9f9; 
     --card-alt-bg: #fff; 
@@ -32,7 +31,7 @@
     --hero-text-color: #fff;
     --hero-subtitle-color: #d1d1d6;
 
-    --icon-placeholder-bg: #007aff30;
+    --icon-placeholder-bg: #007aff30; /* For feature icons etc. */
     --icon-placeholder-color: #007aff;
     --future-icon-placeholder-bg: #7857fe30;
     --future-icon-placeholder-color: #7857fe;
@@ -64,8 +63,8 @@
     --dark-mode-toggle-hover-bg: rgba(0,0,0,0.05);
     --mobile-nav-toggle-color: var(--heading-color); 
 
-    --cyberpunk-accent-color: #00f0ff; 
-    --cyberpunk-glow-color: #00f0ff60; 
+    /* --cyberpunk-accent-color: #00f0ff; /* No longer needed for CSS logo icon if replaced */
+    /* --cyberpunk-glow-color: #00f0ff60; /* No longer needed for CSS logo icon if replaced */
 
     --form-input-bg: #fff; 
     --form-input-border: #ccc;
@@ -87,7 +86,6 @@ body.dark-mode {
 
     --section-bg: #1c1c1e;
     --section-alt-bg: #161617;
-    /* --section-border: #38383a; /* Border removed from sections */ */
 
     --card-bg: #2c2c2e;
     --card-alt-bg: #1c1c1e;
@@ -135,8 +133,8 @@ body.dark-mode {
     --dark-mode-toggle-hover-bg: rgba(255,255,255,0.08);
     --mobile-nav-toggle-color: var(--heading-color); 
 
-    --cyberpunk-accent-color: #00f0ff; 
-    --cyberpunk-glow-color: #00f0ff60;
+    /* --cyberpunk-accent-color: #00f0ff; /* No longer needed for CSS logo icon if replaced */
+    /* --cyberpunk-glow-color: #00f0ff60; /* No longer needed for CSS logo icon if replaced */
 
     --form-input-bg: #2c2c2e; 
     --form-input-border: #4a4a4c;
@@ -187,16 +185,17 @@ nav .logo {
     text-decoration: none;
     flex-shrink: 0; 
 }
-.logo-icon-placeholder {
-    display: inline-block;
-    width: 0.8em;  
-    height: 0.92em; 
-    margin-right: 0.5em; 
-    background-color: var(--cyberpunk-accent-color); 
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    box-shadow: 0 0 5px var(--cyberpunk-accent-color), 0 0 10px var(--cyberpunk-glow-color); 
-    vertical-align: -0.12em; 
+
+/* REMOVED .logo-icon-placeholder styles */
+/* NEW styles for the image icon */
+.logo-icon-image {
+    height: 1em;  /* Scales with the logo text font-size (1.8em) */
+    /* Or use a fixed pixel height, e.g., height: 28px; */
+    width: auto; /* Maintain aspect ratio */
+    margin-right: 0.4em; /* Space between icon and "NexCore" text */
+    vertical-align: middle; /* Helps older browsers if flex alignment is tricky */
 }
+
 .nav-links-wrapper {
     display: flex; 
     align-items: center;
@@ -234,6 +233,9 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 }
 .mobile-nav-toggle span { display: block; }
 /* === END NAVIGATION STYLES === */
+
+/* ... (Rest of your CSS: Hero, Buttons, Sections, Grids, Join, Community, Dynmap, Google Form, Footer, Animations, Scroll Margin, Media Queries) ... */
+/* Ensure all those sections from the previous complete CSS are here */
 
 /* Hero Section */
 .hero {
