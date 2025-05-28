@@ -69,8 +69,7 @@
     --form-input-focus-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
 }
 
-/* UPDATED: Changed body.dark-mode to html.dark-mode */
-html.dark-mode {
+html.dark-mode { /* Dark mode variables applied to HTML element */
     --bg-color: #161617;
     --text-color: #f5f7fa;
     --text-muted-color: #8e8e93;
@@ -84,7 +83,6 @@ html.dark-mode {
 
     --section-bg: #1c1c1e;
     --section-alt-bg: #161617;
-    /* --section-border: #38383a; /* Border removed from sections */ */
 
     --card-bg: #2c2c2e;
     --card-alt-bg: #1c1c1e;
@@ -142,19 +140,48 @@ html.dark-mode {
 body, html {
     margin: 0; padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--bg-color); 
+    color: var(--text-color);       
     line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Main background/color transition when user clicks toggle */
+    /* The initial flash is handled by inline script and styles in <head> */
+    /* and the body.loaded class transition below */
+    /* transition: background-color 0.3s ease, color 0.3s ease;  <-- This can be removed if body.loaded handles it */
     font-weight: 400; 
 }
+
 body {
     padding-top: var(--nav-height); 
+    background-color: var(--bg-color); /* Ensure body gets themed background */
+    color: var(--text-color);         /* Ensure body gets themed text color */
+
+    /* Styles for FOUC (flash) prevention */
+    visibility: hidden; /* Initially hidden by inline <style> in <head> */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out; /* Smooth fade-in for body */
 }
+
+body.loaded { /* This class will be added by script.js */
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Apply themed background and color to html element too for good measure if inline didn't catch it */
+/* Though the inline style in <head> should be sufficient for initial paint */
+html {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+html.dark-mode {
+    background-color: var(--bg-color); /* Will use dark-mode variable */
+    color: var(--text-color);       /* Will use dark-mode variable */
+}
+
 
 .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-/* === NAVIGATION STYLES === */
+/* === NAVIGATION STYLES (Unchanged from last full version) === */
+/* ... (all nav, logo, .nav-links-wrapper, ul, li, a, #darkModeToggle, .mobile-nav-toggle styles) ... */
 nav {
     background-color: var(--nav-bg-color);
     backdrop-filter: var(--nav-blur-saturate);
@@ -181,7 +208,7 @@ nav .logo {
     text-decoration: none;
     flex-shrink: 0; 
 }
-.logo-icon-image { /* Updated for image logo */
+.logo-icon-image { 
     max-height: 1.2em; 
     width: auto;       
     margin-right: 0.5em; 
@@ -225,8 +252,8 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .mobile-nav-toggle span { display: block; }
 /* === END NAVIGATION STYLES === */
 
-/* ... (Rest of CSS: Hero, Buttons, Sections, Grids, Join, Community, Dynmap, Google Form, Footer, Animations, Scroll Margin, Media Queries) ... */
-/* Ensure all those sections from the previous complete CSS are here */
+
+/* ... (Rest of your CSS for Hero, Buttons, Sections, Grids, Join, Community, Dynmap, Google Form, Footer, Animations, Scroll Margin, Media Queries) ... */
 /* Hero Section */
 .hero {
     text-align: center; padding: 120px 20px 100px;
