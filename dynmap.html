@@ -3,31 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexCore - Your Next Minecraft Adventure</title> <script>
+    <title>Your Page Title - NexCore</title> <style>
+      /* Initially hide the body to prevent flash of unstyled/unthemed content */
+      body { 
+        visibility: hidden; 
+        opacity: 0; 
+        /* Basic background color set here too, will be quickly overridden by theme script */
+        background-color: #f5f5f7; /* Default light theme background */
+      }
+      html.dark-mode body { /* If dark mode is set by script below, body will get this BG initially */
+        background-color: #161617; /* Default dark theme background */
+      }
+      /* Set base HTML colors immediately (these were from the previous attempt, still good) */
+      html { background-color: #f5f5f7; color: #1d1d1f; }
+      html.dark-mode { background-color: #161617; color: #f5f7fa; }
+    </style>
+
+    <script>
       (function() {
         try {
           var theme = localStorage.getItem('theme');
+          var isDarkMode = false;
           if (theme === 'dark' || (!theme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark-mode');
+            isDarkMode = true;
           } else {
             document.documentElement.classList.remove('dark-mode');
           }
+          // After setting the class, make the body visible.
+          // This should happen before the main stylesheet is even fully parsed for complex rules.
+          // document.body.style.visibility = 'visible'; // Simple reveal
+          // document.body.style.opacity = '1';
+
         } catch (e) { console.warn('Initial theme script failed:', e); }
       })();
     </script>
 
-    <style>
-      html {
-        background-color: #f5f5f7; /* Matches :root --bg-color (light mode) */
-        color: #1d1d1f;       /* Matches :root --text-color (light mode) */
-      }
-      html.dark-mode {
-        background-color: #161617; /* Matches html.dark-mode --bg-color */
-        color: #f5f7fa;       /* Matches html.dark-mode --text-color */
-      }
-      /* This ensures the most basic page background and text color are set immediately */
-      /* The main style.css will then load and apply all other detailed styles. */
-    </style>
     <link rel="stylesheet" href="style.css">
     </head>
 <body>
