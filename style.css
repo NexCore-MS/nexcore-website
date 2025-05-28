@@ -23,7 +23,7 @@
     --nav-bg-color: rgba(255, 255, 255, 0.8);
     --nav-border-color: rgba(0,0,0,0.08);
     --nav-blur-saturate: blur(20px) saturate(180%);
-    --nav-height: 70px; /* EXAMPLE VALUE - PLEASE ADJUST by inspecting your nav */
+    --nav-height: 70px; /* Adjust as needed by inspecting your nav */
 
     --hero-bg-color: #1c1c1e;
     --hero-text-color: #fff;
@@ -74,7 +74,8 @@
     --legal-content-link: var(--primary-accent-color);
 }
 
-body.dark-mode {
+/* UPDATED: Dark mode variables now target html.dark-mode */
+html.dark-mode {
     --bg-color: #161617;
     --text-color: #f5f7fa;
     --text-muted-color: #8e8e93;
@@ -154,16 +155,16 @@ html {
 body {
     visibility: hidden;
     opacity: 0;
-    background-color: var(--bg-color);
+    /* background-color is inherited from html or set by html.dark-mode */
     margin: 0; padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     line-height: 1.6;
     scroll-behavior: smooth;
     overflow-x: hidden;
     font-weight: 400;
-    transition: background-color 0.3s ease, color 0.3s ease, opacity 0.5s ease;
+    transition: opacity 0.5s ease; /* Only transition opacity here, bg/color handled by html */
 }
-body.loaded {
+body.loaded { /* This class is added by script.js */
     visibility: visible;
     opacity: 1;
 }
@@ -208,15 +209,15 @@ nav .logo {
 .nav-links-wrapper {
     display: flex;
     align-items: center;
-    flex-grow: 1; /* Allow this wrapper to grow */
-    justify-content: flex-end; /* Push all items to the right */
+    flex-grow: 1; 
+    justify-content: flex-end; 
 }
 nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    align-items: center; /* Vertically align items in the list */
+    align-items: center; 
 }
 nav ul li {
     margin-left: 25px;
@@ -244,13 +245,13 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     color: var(--dark-mode-toggle-text);
     border: 1px solid transparent;
     border-radius: 8px;
-    padding: 8px 10px; /* Adjusted padding */
+    padding: 8px 10px; 
     cursor: pointer;
-    font-size: 1.1em; /* Adjusted font size */
-    margin-left: 20px; /* Space from nav links */
+    font-size: 1.1em; 
+    margin-left: 20px; 
     line-height: 1;
     transition: background-color 0.3s ease, color 0.3s ease;
-    flex-shrink: 0; /* Prevent toggle from shrinking */
+    flex-shrink: 0; 
 }
 #darkModeToggle:hover { background-color: var(--dark-mode-toggle-hover-bg); }
 
@@ -265,8 +266,8 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .search-container {
     display: flex;
     align-items: center;
-    margin-left: 15px; /* Space from dark mode toggle */
-    flex-shrink: 0; /* Prevent search container from shrinking */
+    margin-left: 15px; 
+    flex-shrink: 0; 
 }
 .search-input {
     font-family: inherit;
@@ -274,22 +275,22 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     padding: 7px 12px;
     border: 1px solid var(--nav-border-color);
     border-radius: 6px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    width: 150px; /* Adjust as needed */
-    transition: width 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    background-color: var(--bg-color); /* Use theme-aware background */
+    color: var(--text-color); /* Use theme-aware text color */
+    width: 150px; 
+    transition: width 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 .search-input:focus {
     outline: none;
     border-color: var(--primary-accent-color);
-    width: 180px; /* Optional: expand on focus */
+    width: 180px; 
     box-shadow: 0 0 0 2px var(--primary-accent-shadow);
 }
 #searchIcon {
     background: transparent;
     border: none;
     padding: 6px;
-    margin-left: -34px; /* Overlay on the right of the input; adjust as needed */
+    margin-left: -34px; 
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -360,11 +361,11 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .section {
     padding: 100px 0;
     text-align: center;
-    background-color: var(--section-bg);
+    background-color: var(--section-bg); /* Will use themed variable */
     transition: background-color 0.3s ease;
 }
 .section:last-of-type { margin-bottom: 0; }
-.section.alternate-bg { background-color: var(--section-alt-bg); }
+.section.alternate-bg { background-color: var(--section-alt-bg); /* Will use themed variable */ }
 
 .rules-content {
     text-align: left; max-width: 800px; margin: 0 auto;
@@ -402,6 +403,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .section.alternate-bg .future-mode-item { background-color: var(--card-alt-bg); }
 .section:not(.alternate-bg) .feature-item,
 .section:not(.alternate-bg) .future-mode-item { background-color: var(--card-bg); }
+
 .feature-item:hover, .future-mode-item:hover { transform: translateY(-8px); box-shadow: 0 12px 28px var(--card-hover-shadow); }
 .feature-item h3, .future-mode-item h3 { font-size: 1.5em; font-weight: 600; color: var(--heading-color); margin-bottom: 0.5em; }
 .feature-item .icon-placeholder {
@@ -465,25 +467,25 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
-    background-color: var(--legal-content-bg);
-    color: var(--legal-content-text);
+    background-color: var(--legal-content-bg); /* Themed */
+    color: var(--legal-content-text); /* Themed */
     border-radius: 8px;
 }
 .legal-content h1 {
     font-size: 2.4em;
-    color: var(--legal-content-heading);
+    color: var(--legal-content-heading); /* Themed */
     margin-bottom: 1em;
     text-align: center;
 }
 .legal-content h2 {
     font-size: 1.8em;
-    color: var(--legal-content-heading);
+    color: var(--legal-content-heading); /* Themed */
     margin-top: 2em;
     margin-bottom: 0.8em;
 }
 .legal-content h3 {
     font-size: 1.4em;
-    color: var(--legal-content-heading);
+    color: var(--legal-content-heading); /* Themed */
     margin-top: 1.5em;
     margin-bottom: 0.5em;
 }
@@ -501,7 +503,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     margin-bottom: 0.6em;
 }
 .legal-content a {
-    color: var(--legal-content-link);
+    color: var(--legal-content-link); /* Themed */
     text-decoration: underline;
 }
 .legal-content a:hover {
@@ -511,7 +513,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     display: block;
     text-align: center;
     margin-bottom: 1.5em;
-    color: var(--text-muted-color);
+    color: var(--text-muted-color); /* Themed */
 }
 
 /* Footer */
@@ -565,32 +567,32 @@ footer a:hover { text-decoration: underline; }
     .nav-links-wrapper.nav-open {
         display: flex;
         flex-direction: column;
-        align-items: stretch; /* Stretch items in column */
+        align-items: stretch; 
     }
     nav ul {
         flex-direction: column; width: 100%; text-align: center;
-        margin-bottom: 15px; /* Space before toggle/search */
+        margin-bottom: 15px; 
     }
     nav ul li { margin-left: 0; margin-bottom: 0; width: 100%; }
     nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
 
     #darkModeToggle {
-        margin-left: 0; /* Reset margin */
-        margin-bottom: 15px; /* Space below */
-        align-self: center; /* Center in the column */
+        margin-left: 0; 
+        margin-bottom: 15px; 
+        align-self: center; 
     }
     .search-container {
-        margin-left: 0; /* Reset margin */
-        justify-content: center; /* Center search items */
-        padding: 0 20px; /* Padding if it takes full width */
+        margin-left: 0; 
+        justify-content: center; 
+        padding: 0 20px; 
         box-sizing: border-box;
     }
     .search-input {
-        width: 100%; /* Take available space */
-        max-width: 250px; /* But not too wide */
+        width: 100%; 
+        max-width: 250px; 
     }
     #searchIcon {
-         margin-left: -36px; /* Re-adjust for mobile if needed */
+         margin-left: -36px; 
     }
 
     /* Other Responsive Styles */
