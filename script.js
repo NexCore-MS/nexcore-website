@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // console.log('NexCore script.js loaded and DOMContentLoaded fired.');
+    // --- NEW: Add 'loaded' class to body to trigger fade-in ---
+    document.body.classList.add('loaded');
+    // --- END NEW ---
 
     // Set current year in footer
     const yearElement = document.getElementById('year');
@@ -9,42 +11,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dark Mode Toggle Functionality
     const darkModeToggle = document.getElementById('darkModeToggle');
-    const rootHtmlElement = document.documentElement; // Target <html> element
+    const rootHtmlElement = document.documentElement; // Target <html> for .dark-mode class
 
-    const applyTheme = (theme) => {
-        if (theme === 'dark') {
-            rootHtmlElement.classList.add('dark-mode');
-            if (darkModeToggle) darkModeToggle.textContent = '☀️'; 
-        } else {
-            rootHtmlElement.classList.remove('dark-mode');
-            if (darkModeToggle) darkModeToggle.textContent = '🌙'; 
+    const applyThemeButtonIcon = (theme) => { // Renamed to be more specific
+        if (darkModeToggle) {
+            darkModeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
         }
     };
 
-    // Initial theme is set by inline script in <head>.
-    // This part mainly ensures the button icon is correct on load.
+    // Initial theme class on <html> is set by inline script in <head>.
+    // This part ensures button icon is correct based on that.
     let currentTheme = rootHtmlElement.classList.contains('dark-mode') ? 'dark' : 'light';
-    if (darkModeToggle) { // Update button icon based on class already set by inline script
-        darkModeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
-    }
+    applyThemeButtonIcon(currentTheme); 
     
-    // Toggle button event listener
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
             let newTheme;
             if (rootHtmlElement.classList.contains('dark-mode')) {
                 newTheme = 'light';
+                rootHtmlElement.classList.remove('dark-mode');
             } else {
                 newTheme = 'dark';
+                rootHtmlElement.classList.add('dark-mode');
             }
-            applyTheme(newTheme);
-            localStorage.setItem('theme', newTheme);
+            applyThemeButtonIcon(newTheme); // Update button icon
+            localStorage.setItem('theme', newTheme); // Save preference
         });
     } else {
         console.warn('Dark mode toggle button with ID "darkModeToggle" was NOT found by the script.');
     }
 
-    // Hamburger Menu Toggle Functionality (remains the same)
+    // Hamburger Menu Toggle Functionality
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const navLinksWrapper = document.querySelector('.nav-links-wrapper');
 
@@ -74,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!navLinksWrapper) console.warn('Nav links wrapper (.nav-links-wrapper) not found.');
     }
 
-    // Intersection Observer for Scroll Animations (remains the same)
+    // Intersection Observer for Scroll Animations
     const animatedItems = document.querySelectorAll('.animated-item');
     if (animatedItems.length > 0) {
         const observer = new IntersectionObserver((entries, observerInstance) => {
@@ -88,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animatedItems.forEach(item => { observer.observe(item); });
     }
 
-    // Copy IP Button Functionality (remains the same)
+    // Copy IP Button Functionality
     const copyIpButton = document.getElementById('copy-ip-btn');
     const serverIpElement = document.getElementById('server-ip');
     if (copyIpButton && serverIpElement) {
