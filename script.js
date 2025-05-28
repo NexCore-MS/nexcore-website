@@ -11,21 +11,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dark Mode Toggle Functionality
     const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
+    const rootEl = document.documentElement; // Target <html> element for dark-mode class
 
     // console.log('Attempting to find darkModeToggle button. Found:', darkModeToggle);
 
     const applyTheme = (theme) => {
         // console.log('Applying theme:', theme);
         if (theme === 'dark') {
-            body.classList.add('dark-mode');
+            rootEl.classList.add('dark-mode');
             if (darkModeToggle) darkModeToggle.textContent = '☀️';
         } else {
-            body.classList.remove('dark-mode');
+            rootEl.classList.remove('dark-mode');
             if (darkModeToggle) darkModeToggle.textContent = '🌙';
         }
     };
 
+    // Inline script in <head> handles initial theme application before this script runs.
+    // This script will still check localStorage/system preference to set the correct button icon
+    // and ensure consistency if the inline script somehow failed or wasn't present.
     let savedTheme = localStorage.getItem('theme');
     // console.log('Initial check - Saved theme from localStorage:', savedTheme);
 
@@ -38,13 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // console.log('No saved theme. Defaulting to light theme (or system preference is light).');
         }
     }
-    applyTheme(savedTheme);
+    // Ensure the class on <html> matches what was determined, and set button icon
+    // The inline script might have already set the class, applyTheme here will just ensure it.
+    applyTheme(savedTheme); 
 
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
             // console.log('Dark mode toggle button CLICKED!');
             let newTheme;
-            if (body.classList.contains('dark-mode')) {
+            if (rootEl.classList.contains('dark-mode')) {
                 newTheme = 'light';
             } else {
                 newTheme = 'dark';
@@ -80,38 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         navLinksWrapper.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', (event) => {
-                // Only close if it's an anchor link on the same page, or any link if preferred
-                const href = link.getAttribute('href');
-                const isSamePageAnchor = href && href.startsWith('#') && window.location.pathname === link.pathname;
-                const isDifferentPage = window.location.pathname !== link.pathname && link.hostname === window.location.hostname;
-
-
+            link.addEventListener('click', () => {
                 if (navLinksWrapper.classList.contains('nav-open')) {
-                    // Close for same-page anchor links or if navigating away from current page type (e.g. index.html to rules.html)
-                    // This logic can be tricky. For simplicity, often closing on any link click is fine for mobile.
-                    // Let's close it if it's a same page anchor OR if it's not just linking to the current page file.
-                    let closeMenu = false;
-                    if (isSamePageAnchor) {
-                        closeMenu = true;
-                    } else if (href && !href.startsWith('#') && (link.pathname !== window.location.pathname || link.hash)) {
-                        // This condition is if it's a link to another page or section on another page
-                        // We might not need to close it here as the page will reload/navigate
-                        // But often good UX to close it anyway.
-                        closeMenu = true; 
-                    } else if (href === window.location.pathname + window.location.search + window.location.hash) {
-                        // Link to the exact same current page, maybe just an anchor on current non-index page
-                        closeMenu = true;
-                    }
-
-
-                    if (navLinksWrapper.classList.contains('nav-open')) { // Check again in case of complex logic
-                        navLinksWrapper.classList.remove('nav-open');
-                        mobileNavToggle.setAttribute('aria-expanded', 'false');
-                        const iconSpan = mobileNavToggle.querySelector('span');
-                        if (iconSpan) {
-                            iconSpan.textContent = '☰';
-                        }
+                    navLinksWrapper.classList.remove('nav-open');
+                    mobileNavToggle.setAttribute('aria-expanded', 'false');
+                    const iconSpan = mobileNavToggle.querySelector('span');
+                    if (iconSpan) {
+                        iconSpan.textContent = '☰';
                     }
                 }
             });
