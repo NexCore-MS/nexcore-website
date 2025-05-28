@@ -19,22 +19,10 @@
     </script>
 
     <style>
-      html { /* Default light theme base for html */
-        background-color: #f5f5f7; 
-        color: #1d1d1f;       
-      }
-      html.dark-mode { /* Dark theme base for html if class is present */
-        background-color: #161617; 
-        color: #f5f7fa;       
-      }
-      body {
-        visibility: hidden; /* Hide body initially to prevent flash */
-        opacity: 0;
-        background-color: #f5f5f7; /* Fallback light body background */
-      }
-      html.dark-mode body { /* Fallback dark body background if dark-mode is set on html */
-         background-color: #161617;
-      }
+      html { background-color: #f5f5f7; color: #1d1d1f; }
+      html.dark-mode { background-color: #161617; color: #f5f7fa; }
+      body { visibility: hidden; opacity: 0; background-color: #f5f5f7; }
+      html.dark-mode body { background-color: #161617; }
     </style>
 
     <link rel="stylesheet" href="style.css">
@@ -68,90 +56,78 @@
     <main>
         <section class="section">
             <div class="container">
-                <div class="legal-content"> <h1 class="animated-item">🔐 Privacy Policy (NexCore)</h1>
+                <div class="legal-content"> 
+                    <h1 class="animated-item">Privacy Policy</h1>
                     <p class="animated-item" style="transition-delay: 0.1s;"><em>Last Updated: May 28, 2025</em></p>
                     
                     <p class="animated-item" style="transition-delay: 0.2s;">NexCore ("we", "our", or "us") values your privacy. This Privacy Policy outlines how we collect, use, and protect your information when you visit <a href="https://www.nexcore.top" style="color: var(--primary-accent-color);">https://www.nexcore.top</a> (the "Service").</p>
                     <p class="animated-item" style="transition-delay: 0.3s;">By using the Service, you agree to the collection and use of information in accordance with this Privacy Policy.</p>
 
-                    <h2 class="animated-item" style="transition-delay: 0.4s;">🔍 Interpretation and Definitions</h2>
-                    <p class="animated-item" style="transition-delay: 0.45s;"><strong>Definitions:</strong></p>
+                    <h2 class="animated-item" style="transition-delay: 0.4s;">Interpretation and Definitions</h2>
                     <ul class="animated-item" style="transition-delay: 0.5s;">
-                        <li><strong>Service:</strong> The NexCore website and Minecraft server services accessible via <a href="https://www.nexcore.top" style="color: var(--primary-accent-color);">https://www.nexcore.top</a>.</li>
-                        <li><strong>Personal Data:</strong> Any information that can identify a user.</li>
-                        <li><strong>Usage Data:</strong> Data collected automatically such as IP address, browser type, time spent on pages, etc.</li>
-                        <li><strong>Cookies:</strong> Small files stored on your device that help us improve your experience.</li>
-                        <li><strong>You:</strong> The user accessing the Service.</li>
-                        <li><strong>Account:</strong> Any user-registered account used to interact with NexCore features.</li>
-                        <li><strong>Service Provider:</strong> Third-party services that help operate or analyze NexCore.</li>
-                        <li><strong>Affiliate:</strong> An entity under common ownership or control with NexCore.</li>
+                        <li><strong>Service</strong> refers to the NexCore website and Minecraft server services.</li>
+                        <li><strong>Personal Data</strong> refers to any information that identifies a user.</li>
+                        <li><strong>Usage Data</strong> refers to technical and analytical data collected automatically.</li>
+                        <li><strong>Cookies</strong> are small files stored on your device used to enhance functionality.</li>
+                        <li><strong>You</strong> refers to the individual using the Service.</li>
+                        <li><strong>Account</strong> refers to any user-created access credentials for using NexCore features.</li>
+                        <li><strong>Service Provider</strong> refers to third-party companies or individuals employed by us to support the Service.</li>
+                        <li><strong>Affiliate</strong> refers to any entity under common control with NexCore.</li>
                     </ul>
 
-                    <h2 class="animated-item" style="transition-delay: 0.6s;">📊 What We Collect</h2>
+                    <h2 class="animated-item" style="transition-delay: 0.6s;">Information We Collect</h2>
                     <ul class="animated-item" style="transition-delay: 0.7s;">
-                        <li>Usage data via analytics tools (e.g. IP, device type, browser version)</li>
-                        <li>Email address (if you contact us or create an account)</li>
-                        <li>Cookies and tracking data (see Cookie Policy)</li>
+                        <li>Usage data such as IP address, browser type, device type, and time spent on pages</li>
+                        <li>Email addresses, if submitted through contact forms or account registration</li>
+                        <li>Tracking data via cookies and analytics tools</li>
                     </ul>
 
-                    <h2 class="animated-item" style="transition-delay: 0.8s;">🔐 How We Use Your Data</h2>
+                    <h2 class="animated-item" style="transition-delay: 0.8s;">Use of Information</h2>
+                    <p class="animated-item" style="transition-delay: 0.85s;">We may use your personal data to:</p>
                     <ul class="animated-item" style="transition-delay: 0.9s;">
-                        <li>To operate and maintain the website/server</li>
-                        <li>To detect abuse, attacks, or rule violations</li>
-                        <li>To respond to inquiries or support requests</li>
-                        <li>To improve the Service experience</li>
-                        <li>To comply with legal obligations</li>
+                        <li>Operate and maintain the website and Minecraft server</li>
+                        <li>Monitor server health and detect abuse</li>
+                        <li>Respond to inquiries or support requests</li>
+                        <li>Improve site features and user experience</li>
+                        <li>Comply with legal obligations</li>
                     </ul>
 
-                    <h2 class="animated-item" style="transition-delay: 1s;">🤝 Sharing of Information</h2>
+                    <h2 class="animated-item" style="transition-delay: 1s;">Sharing of Information</h2>
                     <ul class="animated-item" style="transition-delay: 1.1s;">
-                        <li>We do not sell your information.</li>
-                        <li>We may share data with trusted service providers (like hosting or analytics tools).</li>
-                        <li>In case of a merger or asset sale, data may be transferred to the acquiring entity.</li>
+                        <li>We do not sell personal data</li>
+                        <li>Data may be shared with service providers for analytics, hosting, or server optimization</li>
+                        <li>In the event of a business transfer, data may be transferred accordingly</li>
                     </ul>
 
-                    <h2 class="animated-item" style="transition-delay: 1.2s;">🌍 International Data Transfer</h2>
-                    <p class="animated-item" style="transition-delay: 1.3s;">If you're outside the United States, please be aware that your data may be transferred to and processed in the United States or other jurisdictions where our servers or third-party services operate.</p>
+                    <h2 class="animated-item" style="transition-delay: 1.2s;">Data Transfers</h2>
+                    <p class="animated-item" style="transition-delay: 1.3s;">Your data may be transferred to and processed in countries outside your jurisdiction, including the United States. By using our Service, you consent to such transfers.</p>
                     
-                    <h2 class="animated-item" style="transition-delay: 1.4s;">🧁 Cookie Policy</h2>
-                    <p class="animated-item" style="transition-delay: 1.5s;">We use cookies to:</p>
-                    <ul class="animated-item" style="transition-delay: 1.6s;">
-                        <li>Remember user preferences</li>
-                        <li>Track server and website performance</li>
-                        <li>Improve features and gameplay experience</li>
-                    </ul>
-                    <p class="animated-item" style="transition-delay: 1.7s;">You can disable cookies in your browser settings. For more, see the Cookie Policy section below.</p>
-
-                    <h2 class="animated-item" style="transition-delay: 1.8s;">🧑‍⚖️ Your Rights</h2>
-                    <p class="animated-item" style="transition-delay: 1.9s;">You may:</p>
-                    <ul class="animated-item" style="transition-delay: 2s;">
-                        <li>Request a copy of your personal data</li>
-                        <li>Request deletion of your data</li>
-                        <li>Opt out of data collection (where technically feasible)</li>
-                    </ul>
-                    <p class="animated-item" style="transition-delay: 2.1s;">Email us at <a href="mailto:nexcore.ms@gmail.com" style="color: var(--primary-accent-color);">nexcore.ms@gmail.com</a> for any data-related requests.</p>
-
-                    <h2 class="animated-item" style="transition-delay: 2.2s;">📵 Children’s Privacy</h2>
-                    <p class="animated-item" style="transition-delay: 2.3s;">NexCore is not intended for users under the age of 13. If we become aware that personal data has been collected from a child under 13, we will delete it immediately.</p>
-
-                    <h2 class="animated-item" style="transition-delay: 2.4s;">⚖️ Legal Jurisdiction</h2>
-                    <p class="animated-item" style="transition-delay: 2.5s;">This Privacy Policy is governed by and interpreted according to the laws of the State of Florida, United States. Any disputes arising will be handled under Florida jurisdiction.</p>
-
-                    <h2 class="animated-item" style="transition-delay: 2.6s;">🔗 Links to Other Sites</h2>
-                    <p class="animated-item" style="transition-delay: 2.7s;">We may link to third-party sites (e.g., Discord, plugins, resource packs). We are not responsible for their privacy practices. Please review their policies.</p>
-
-                    <h2 class="animated-item" style="transition-delay: 2.8s;">🚨 Mojang/Minecraft Disclaimer</h2>
-                    <p class="animated-item" style="transition-delay: 2.9s;">NexCore is an independent Minecraft server. We are not affiliated with Mojang, Microsoft, or any of their subsidiaries. All content is community-generated.</p>
-
-                    <h2 class="animated-item" style="transition-delay: 3s;">📄 Terms and Cookie Policy Links</h2>
-                    <ul class="animated-item" style="transition-delay: 3.1s;">
-                        <li><a href="terms.html" style="color: var(--primary-accent-color);">View our Terms of Service</a></li>
-                        <li><a href="cookie-policy.html" style="color: var(--primary-accent-color);">View our Cookie Policy</a></li>
+                    <h2 class="animated-item" style="transition-delay: 1.4s;">Your Rights</h2>
+                    <p class="animated-item" style="transition-delay: 1.45s;">You have the right to:</p>
+                    <ul class="animated-item" style="transition-delay: 1.5s;">
+                        <li>Request access to or deletion of your data</li>
+                        <li>Opt out of non-essential data collection</li>
+                        <li>Contact us for any data concerns at <a href="mailto:nexcore.ms@gmail.com" style="color: var(--primary-accent-color);">nexcore.ms@gmail.com</a></li>
                     </ul>
 
-                    <h2 class="animated-item" style="transition-delay: 3.2s;">📬 Contact Us</h2>
-                    <p class="animated-item" style="transition-delay: 3.3s;">If you have any questions or concerns about your data:</p>
-                    <ul class="animated-item" style="transition-delay: 3.4s;">
+                    <h2 class="animated-item" style="transition-delay: 1.6s;">Data Retention</h2>
+                    <p class="animated-item" style="transition-delay: 1.7s;">We retain personal data only as long as necessary to fulfill the purposes listed above or as required by law.</p>
+
+                    <h2 class="animated-item" style="transition-delay: 1.8s;">Security</h2>
+                    <p class="animated-item" style="transition-delay: 1.9s;">We strive to protect your data using industry-standard methods. However, no internet transmission is 100% secure, and we cannot guarantee absolute protection.</p>
+
+                    <h2 class="animated-item" style="transition-delay: 2.0s;">Children’s Privacy</h2>
+                    <p class="animated-item" style="transition-delay: 2.1s;">Our Service is not directed to anyone under the age of 13. We do not knowingly collect data from minors. If we become aware of such collection, we will delete it immediately.</p>
+
+                    <h2 class="animated-item" style="transition-delay: 2.2s;">Legal Jurisdiction</h2>
+                    <p class="animated-item" style="transition-delay: 2.3s;">This Privacy Policy is governed by the laws of the State of Florida, United States. Any disputes will be subject to Florida jurisdiction.</p>
+
+                    <h2 class="animated-item" style="transition-delay: 2.4s;">Mojang/Minecraft Disclaimer</h2>
+                    <p class="animated-item" style="transition-delay: 2.5s;">NexCore is an independent Minecraft project and is not affiliated with Mojang, Microsoft, or any of their subsidiaries.</p>
+
+                    <h2 class="animated-item" style="transition-delay: 2.6s;">Contact</h2>
+                    <p class="animated-item" style="transition-delay: 2.7s;">For privacy-related questions, contact:</p>
+                    <ul class="animated-item" style="transition-delay: 2.8s;">
                         <li>Email: <a href="mailto:nexcore.ms@gmail.com" style="color: var(--primary-accent-color);">nexcore.ms@gmail.com</a></li>
                     </ul>
                 </div>
