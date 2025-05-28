@@ -13,6 +13,8 @@
 
     --section-bg: #fff;
     --section-alt-bg: #f5f5f7;
+    --section-border: #e5e5e5; /* For legal content h2 or general use */
+
 
     --card-bg: #f9f9f9; 
     --card-alt-bg: #fff; 
@@ -56,7 +58,9 @@
 
     --footer-bg: #1d1d1f;
     --footer-text: #a0a0a5;
-    --footer-link: #2997ff;
+    --footer-link: #2997ff; 
+    --footer-link-hover: #53abff; 
+
 
     --dark-mode-toggle-bg: transparent;
     --dark-mode-toggle-text: #1d1d1f;
@@ -69,7 +73,7 @@
     --form-input-focus-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
 }
 
-html.dark-mode { /* Dark mode variables applied to HTML element */
+html.dark-mode { 
     --bg-color: #161617;
     --text-color: #f5f7fa;
     --text-muted-color: #8e8e93;
@@ -83,6 +87,7 @@ html.dark-mode { /* Dark mode variables applied to HTML element */
 
     --section-bg: #1c1c1e;
     --section-alt-bg: #161617;
+    --section-border: #38383a; 
 
     --card-bg: #2c2c2e;
     --card-alt-bg: #1c1c1e;
@@ -124,7 +129,9 @@ html.dark-mode { /* Dark mode variables applied to HTML element */
 
     --footer-bg: #000;
     --footer-text: #8e8e93;
-    --footer-link: #0A84FF;
+    --footer-link: #0A84FF; 
+    --footer-link-hover: #3b9eff;
+
 
     --dark-mode-toggle-text: #f5f7fa;
     --dark-mode-toggle-hover-bg: rgba(255,255,255,0.08);
@@ -143,45 +150,32 @@ body, html {
     background-color: var(--bg-color); 
     color: var(--text-color);       
     line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden;
-    /* Main background/color transition when user clicks toggle */
-    /* The initial flash is handled by inline script and styles in <head> */
-    /* and the body.loaded class transition below */
-    /* transition: background-color 0.3s ease, color 0.3s ease;  <-- This can be removed if body.loaded handles it */
     font-weight: 400; 
 }
-
 body {
     padding-top: var(--nav-height); 
-    background-color: var(--bg-color); /* Ensure body gets themed background */
-    color: var(--text-color);         /* Ensure body gets themed text color */
-
-    /* Styles for FOUC (flash) prevention */
-    visibility: hidden; /* Initially hidden by inline <style> in <head> */
+    background-color: var(--bg-color); 
+    color: var(--text-color);         
+    visibility: hidden; 
     opacity: 0;
-    transition: opacity 0.2s ease-in-out; /* Smooth fade-in for body */
+    transition: opacity 0.2s ease-in-out; 
 }
-
-body.loaded { /* This class will be added by script.js */
+body.loaded { 
     visibility: visible;
     opacity: 1;
 }
-
-/* Apply themed background and color to html element too for good measure if inline didn't catch it */
-/* Though the inline style in <head> should be sufficient for initial paint */
 html {
     background-color: var(--bg-color);
     color: var(--text-color);
 }
 html.dark-mode {
-    background-color: var(--bg-color); /* Will use dark-mode variable */
-    color: var(--text-color);       /* Will use dark-mode variable */
+    background-color: var(--bg-color); 
+    color: var(--text-color);       
 }
-
 
 .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-/* === NAVIGATION STYLES (Unchanged from last full version) === */
-/* ... (all nav, logo, .nav-links-wrapper, ul, li, a, #darkModeToggle, .mobile-nav-toggle styles) ... */
+/* === START NAVIGATION STYLES === */
 nav {
     background-color: var(--nav-bg-color);
     backdrop-filter: var(--nav-blur-saturate);
@@ -252,8 +246,6 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .mobile-nav-toggle span { display: block; }
 /* === END NAVIGATION STYLES === */
 
-
-/* ... (Rest of your CSS for Hero, Buttons, Sections, Grids, Join, Community, Dynmap, Google Form, Footer, Animations, Scroll Margin, Media Queries) ... */
 /* Hero Section */
 .hero {
     text-align: center; padding: 120px 20px 100px;
@@ -320,20 +312,57 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .section:last-of-type { margin-bottom: 0; }
 .section.alternate-bg { background-color: var(--section-alt-bg); }
 
-.rules-content { text-align: left; max-width: 800px; margin: 0 auto; }
-.rules-content h1, .rules-content h2, .rules-content h3 { text-align: center; }
-.rules-content ul, .rules-content ol { margin-bottom: 1.5em; padding-left: 20px; }
-.rules-content li { margin-bottom: 0.5em; }
-
-.section h2, .rules-content h1 { 
+/* Rules & Legal Content Styling */
+.rules-content, .legal-content { 
+    text-align: left; 
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px 0; 
+}
+.rules-content h1, .legal-content h1 {
+    text-align: center; 
+    margin-bottom: 1.5em;
+    font-size: 2.8em; 
+    font-weight: 600; 
+    color: var(--heading-color); 
+    letter-spacing: -0.015em; 
+}
+.rules-content h2, .legal-content h2 {
+    text-align: left; 
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+    font-size: 1.8em; 
+    border-bottom: 1px solid var(--section-border); 
+    padding-bottom: 0.3em;
+    color: var(--heading-color);
+}
+.rules-content p, .legal-content p, 
+.rules-content ul, .legal-content ul,
+.rules-content ol, .legal-content ol {
+    margin-bottom: 1.2em;
+    line-height: 1.7; 
+    color: var(--text-color); 
+}
+.rules-content ul, .legal-content ul,
+.rules-content ol, .legal-content ol {
+    padding-left: 25px;
+}
+.rules-content li, .legal-content li {
+    margin-bottom: 0.6em;
+}
+/* General section h2 for other pages */
+.section h2 { 
     font-size: 2.8em; font-weight: 600; color: var(--heading-color); 
     margin-bottom: 0.5em;
     letter-spacing: -0.015em; 
 }
-.section .section-subheading, .rules-content .section-subheading {
+.section .section-subheading, 
+.rules-content .section-subheading,
+.legal-content .section-subheading { 
     font-size: 1.3em; color: var(--text-muted-color);
     max-width: 700px; margin: 0 auto 2.5em auto; font-weight: 400;
 }
+
 
 /* Features & Future Modes Grid */
 .features-grid, .future-modes-grid { 
@@ -413,8 +442,29 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 /* Footer */
 footer { background-color: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; font-size: 0.9em; transition: background-color 0.3s ease, color 0.3s ease; }
 footer p { margin: 0.5em 0; }
-footer a { color: var(--footer-link); text-decoration: none; }
-footer a:hover { text-decoration: underline; }
+footer a { 
+    color: var(--footer-link); 
+    text-decoration: none; 
+}
+footer a:hover { 
+    color: var(--footer-link-hover); 
+    text-decoration: underline; 
+}
+.footer-links {
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+.footer-links a {
+    color: var(--footer-text); 
+    text-decoration: none;
+    margin: 0 8px;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: var(--footer-link); 
+    text-decoration: underline;
+}
+
 
 /* Scroll Animation Helper Classes */
 .animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out .1s; }
@@ -453,8 +503,9 @@ footer a:hover { text-decoration: underline; }
     /* Other Responsive Styles */
     .hero h1 { font-size: 2.8em; }
     .hero .subtitle { font-size: 1.3em; }
-    .section h2, .rules-content h1 { font-size: 2.2em; letter-spacing: -0.01em; }
-    .section .section-subheading, .rules-content .section-subheading { font-size: 1.1em; }
+    .section h2, .rules-content h1, .legal-content h1 { font-size: 2.2em; letter-spacing: -0.01em; }
+    .legal-content h2 { font-size: 1.6em; }
+    .section .section-subheading, .rules-content .section-subheading, .legal-content .section-subheading { font-size: 1.1em; }
     .section { padding: 80px 0; } 
     .features-grid, .future-modes-grid { gap: 30px; } 
     .feature-item, .future-mode-item { padding: 30px; max-width: 90%; }
@@ -466,4 +517,6 @@ footer a:hover { text-decoration: underline; }
     .section .section-subheading.dynmap-intro { margin-bottom: 1.5em; }
     .google-form-container { margin-top: 20px; margin-bottom: 20px; }
     .google-form-iframe { min-height: 600px; }
+    .footer-links { display: flex; flex-direction: column; gap: 5px; }
+    .footer-links a { margin: 0; }
 }
