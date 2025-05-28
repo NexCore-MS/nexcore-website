@@ -1,58 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- NEW: Add 'loaded' class to body to trigger fade-in ---
     document.body.classList.add('loaded');
-    // --- END NEW ---
 
-    // Set current year in footer
     const yearElement = document.getElementById('year');
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
 
-    // Dark Mode Toggle Functionality
+    // Dark Mode Toggle
     const darkModeToggle = document.getElementById('darkModeToggle');
-    const rootHtmlElement = document.documentElement; // Target <html> for .dark-mode class
-
-    const applyThemeButtonIcon = (theme) => { // Renamed to be more specific
+    const rootHtmlElement = document.documentElement;
+    const applyThemeButtonIcon = (theme) => {
         if (darkModeToggle) {
             darkModeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
         }
     };
-
-    // Initial theme class on <html> is set by inline script in <head>.
-    // This part ensures button icon is correct based on that.
     let currentTheme = rootHtmlElement.classList.contains('dark-mode') ? 'dark' : 'light';
-    applyThemeButtonIcon(currentTheme); 
-    
+    applyThemeButtonIcon(currentTheme);
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
-            let newTheme;
-            if (rootHtmlElement.classList.contains('dark-mode')) {
-                newTheme = 'light';
-                rootHtmlElement.classList.remove('dark-mode');
-            } else {
-                newTheme = 'dark';
+            let newTheme = rootHtmlElement.classList.contains('dark-mode') ? 'light' : 'dark';
+            if (newTheme === 'dark') {
                 rootHtmlElement.classList.add('dark-mode');
+            } else {
+                rootHtmlElement.classList.remove('dark-mode');
             }
-            applyThemeButtonIcon(newTheme); // Update button icon
-            localStorage.setItem('theme', newTheme); // Save preference
+            applyThemeButtonIcon(newTheme);
+            localStorage.setItem('theme', newTheme);
         });
     } else {
-        console.warn('Dark mode toggle button with ID "darkModeToggle" was NOT found by the script.');
+        console.warn('Dark mode toggle button with ID "darkModeToggle" not found.');
     }
 
-    // Hamburger Menu Toggle Functionality
+    // Hamburger Menu Toggle
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const navLinksWrapper = document.querySelector('.nav-links-wrapper');
-
     if (mobileNavToggle && navLinksWrapper) {
         mobileNavToggle.addEventListener('click', () => {
             const isOpened = navLinksWrapper.classList.toggle('nav-open');
             mobileNavToggle.setAttribute('aria-expanded', isOpened);
             const iconSpan = mobileNavToggle.querySelector('span');
-            if (iconSpan) {
-                iconSpan.textContent = isOpened ? '✕' : '☰';
-            }
+            if (iconSpan) iconSpan.textContent = isOpened ? '✕' : '☰';
         });
         navLinksWrapper.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
@@ -60,18 +47,51 @@ document.addEventListener('DOMContentLoaded', () => {
                     navLinksWrapper.classList.remove('nav-open');
                     mobileNavToggle.setAttribute('aria-expanded', 'false');
                     const iconSpan = mobileNavToggle.querySelector('span');
-                    if (iconSpan) {
-                        iconSpan.textContent = '☰';
-                    }
+                    if (iconSpan) iconSpan.textContent = '☰';
                 }
             });
         });
     } else {
-        if (!mobileNavToggle) console.warn('Mobile nav toggle button (.mobile-nav-toggle) not found.');
-        if (!navLinksWrapper) console.warn('Nav links wrapper (.nav-links-wrapper) not found.');
+        if (!mobileNavToggle) console.warn('Mobile nav toggle button not found.');
+        if (!navLinksWrapper) console.warn('Nav links wrapper not found.');
     }
 
-    // Intersection Observer for Scroll Animations
+    // NEW: Search Bar Toggle Functionality
+    const searchIcon = document.getElementById('searchIcon');
+    const searchInput = document.getElementById('searchInput');
+    const searchContainer = document.querySelector('.search-container');
+
+    if (searchIcon && searchInput && searchContainer) {
+        searchIcon.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent click from bubbling up if needed
+            searchContainer.classList.toggle('search-active');
+            if (searchContainer.classList.contains('search-active')) {
+                searchInput.focus(); // Focus the input field when it becomes active
+            }
+        });
+
+        // Optional: Close search if user clicks outside of it
+        document.addEventListener('click', (event) => {
+            if (searchContainer.classList.contains('search-active') && 
+                !searchContainer.contains(event.target) && 
+                event.target !== searchIcon && 
+                !searchIcon.contains(event.target) /* check if click was on icon or its children */ ) {
+                searchContainer.classList.remove('search-active');
+            }
+        });
+        
+        // Prevent clicks inside search input from closing it via the above listener
+        searchInput.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+
+    } else {
+        if (!searchIcon) console.warn('Search icon not found.');
+        if (!searchInput) console.warn('Search input not found.');
+        if (!searchContainer) console.warn('Search container not found.');
+    }
+
+    // Intersection Observer for Scroll Animations (remains the same)
     const animatedItems = document.querySelectorAll('.animated-item');
     if (animatedItems.length > 0) {
         const observer = new IntersectionObserver((entries, observerInstance) => {
@@ -85,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animatedItems.forEach(item => { observer.observe(item); });
     }
 
-    // Copy IP Button Functionality
+    // Copy IP Button Functionality (remains the same)
     const copyIpButton = document.getElementById('copy-ip-btn');
     const serverIpElement = document.getElementById('server-ip');
     if (copyIpButton && serverIpElement) {
