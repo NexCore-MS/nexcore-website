@@ -69,8 +69,8 @@
     --form-input-border: #ccc;
     --form-input-focus-border: var(--primary-accent-color);
     --form-input-focus-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
-
-    --search-input-bg: var(--bg-color); /* Use main page bg for search input */
+    
+    --search-input-bg: var(--bg-color);
     --search-input-text: var(--text-color);
     --search-input-border: var(--nav-border-color);
 }
@@ -142,19 +142,43 @@ html.dark-mode {
     --form-input-border: #4a4a4c;
     --form-input-focus-border: var(--primary-accent-color);
     --form-input-focus-shadow: 0 0 0 2px rgba(10, 132, 255, 0.3);
-
-    --search-input-bg: #2c2c2e; /* Darker input background */
+    
+    --search-input-bg: #2c2c2e; 
     --search-input-text: var(--text-color);
     --search-input-border: var(--nav-border-color);
 }
 
 
-body, html { /* ... (Keep this block as is from previous) ... */ }
-body { /* ... (Keep this block as is from previous) ... */ }
-body.loaded { /* ... (Keep this block as is from previous) ... */ }
-html { /* ... (Keep this block as is from previous) ... */ }
-html.dark-mode { /* ... (Keep this block as is from previous) ... */ }
-.container { /* ... (Keep this block as is from previous) ... */ }
+body, html {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: var(--bg-color); 
+    color: var(--text-color);       
+    line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden;
+    font-weight: 400; 
+}
+body {
+    padding-top: var(--nav-height); 
+    background-color: var(--bg-color); 
+    color: var(--text-color);         
+    visibility: hidden; 
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out; 
+}
+body.loaded { 
+    visibility: visible;
+    opacity: 1;
+}
+html {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+html.dark-mode {
+    background-color: var(--bg-color); 
+    color: var(--text-color);       
+}
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
 /* === START NAVIGATION STYLES === */
 nav {
@@ -192,17 +216,24 @@ nav .logo {
 .nav-links-wrapper {
     display: flex; 
     align-items: center;
+    flex-grow: 1; 
+    justify-content: flex-end; 
 }
 nav ul {
     list-style: none; margin: 0; padding: 0; display: flex; 
+    align-items: center; 
 }
 nav ul li {
-    margin-left: 25px; 
+    margin-left: 20px; 
+}
+nav ul li:first-child {
+    margin-left: 0; 
 }
 nav ul li a {
     text-decoration: none; color: var(--link-color); font-weight: 500;
     font-size: 0.95em; transition: color 0.3s ease, opacity 0.3s ease;
     position: relative; opacity: 0.9;
+    white-space: nowrap; 
 }
 nav ul li a:hover { color: var(--link-hover-color); opacity: 1; }
 nav ul li a::after {
@@ -211,41 +242,35 @@ nav ul li a::after {
     transform-origin: bottom right; transition: transform 0.25s ease-out;
 }
 nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
-
 #darkModeToggle {
     background: var(--dark-mode-toggle-bg); color: var(--dark-mode-toggle-text);
     border: 1px solid transparent; border-radius: 8px;
-    padding: 8px 12px; cursor: pointer; font-size: 1.2em;
-    margin-left: 25px; line-height: 1;
+    padding: 8px 10px; cursor: pointer; font-size: 1.1em; 
+    margin-left: 20px; 
+    line-height: 1;
     transition: background-color 0.3s ease, color 0.3s ease;
+    flex-shrink: 0; 
 }
 #darkModeToggle:hover { background-color: var(--dark-mode-toggle-hover-bg); }
 
-/* NEW: Search Bar Styles */
+/* Search Bar Styles */
 .search-container {
     position: relative;
     display: flex;
     align-items: center;
-    margin-left: 15px; /* Space from dark mode toggle */
+    margin-left: 15px; 
+    flex-shrink: 0; 
 }
 #searchIcon {
-    background: none;
-    border: none;
-    color: var(--link-color); /* Use nav link color */
-    font-size: 1em; /* Adjusted to better match icon size */
-    cursor: pointer;
-    padding: 8px; /* Tappable area */
-    display: flex; /* For aligning SVG properly */
-    align-items: center;
-    justify-content: center;
+    background: none; border: none;
+    color: var(--link-color); 
+    font-size: 1em; 
+    cursor: pointer; padding: 8px;
+    display: flex; align-items: center; justify-content: center;
     transition: color 0.3s ease;
 }
-#searchIcon:hover {
-    color: var(--link-hover-color);
-}
-.search-svg-icon { /* Styles for the SVG search icon */
-    stroke: currentColor; /* SVG inherits color from button */
-}
+#searchIcon:hover { color: var(--link-hover-color); }
+.search-svg-icon { stroke: currentColor; width: 18px; height: 18px; }
 .search-input {
     width: 0;
     padding: 8px 0; 
@@ -257,27 +282,21 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     color: var(--search-input-text);
     opacity: 0;
     visibility: hidden;
-    transform: translateX(10px); 
-    transition: width 0.3s ease-out, padding-left 0.3s ease-out, padding-right 0.3s ease-out, opacity 0.3s ease-out, visibility 0s linear 0.3s, transform 0.3s ease-out, border-color 0.3s ease-out;
-    position: absolute; /* Position it absolutely to expand over/next to icon smoothly */
-    right: 0; /* Align to the right of the search-container */
+    position: absolute; 
+    right: 100%; 
     top: 50%;
-    transform: translateY(-50%) translateX(20px); /* Start off-screen and centered vertically */
+    transform: translateY(-50%);
+    margin-right: 5px; 
+    transition: width 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out, visibility 0s linear 0.3s, border-color 0.3s ease-out;
 }
 .search-container.search-active .search-input {
     width: 180px; 
     padding: 8px 12px;
     opacity: 1;
     visibility: visible;
-    transform: translateY(-50%) translateX(0); /* Slide in */
     border-color: var(--search-input-border);
-    transition: width 0.3s ease-out, padding-left 0.3s ease-out, padding-right 0.3s ease-out, opacity 0.3s ease-out, visibility 0s linear 0s, transform 0.3s ease-out, border-color 0.3s ease-out;
+    transition: width 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out, visibility 0s linear 0s, border-color 0.3s ease-out;
 }
-/* Optional: Change Search Icon to Close when active */
-.search-container.search-active #searchIcon .search-svg-icon {
-    /* display: none; Or change SVG to a close icon via JS */
-}
-
 
 .mobile-nav-toggle {
     display: none; background: none; border: none;
@@ -287,7 +306,6 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .mobile-nav-toggle span { display: block; }
 /* === END NAVIGATION STYLES === */
 
-/* ... (Rest of your CSS for Hero, Buttons, Sections, Grids, Join, Community, Dynmap, Google Form, Footer, Animations, Scroll Margin) ... */
 /* Hero Section */
 .hero {
     text-align: center; padding: 120px 20px 100px;
@@ -520,12 +538,9 @@ footer a:hover {
 
 /* Responsive adjustments (includes mobile navigation) */
 @media (max-width: 768px) {
-    nav .container {
-        /* Keeps logo and hamburger side-by-side */
-    }
-    .mobile-nav-toggle {
-        display: block; /* Show hamburger on mobile */
-    }
+    /* Mobile Navigation Specifics */
+    nav .container { /* Keeps logo and hamburger side-by-side */ }
+    .mobile-nav-toggle { display: block; /* Show hamburger on mobile */ }
     .nav-links-wrapper {
         display: none; /* Hide links wrapper by default on mobile */
         position: absolute; top: 100%; left: 0; right: 0;
@@ -542,27 +557,27 @@ footer a:hover {
     nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
     #darkModeToggle { margin-left: 0; margin-top: 0; }
 
-    /* NEW: Search Bar Mobile Styles */
+    /* Search Bar Mobile Styles */
     .nav-links-wrapper.nav-open .search-container {
         order: -1; /* Place search at the top of the mobile menu */
         width: 90%;
         margin: 0 auto 20px auto; /* Centering and spacing */
-        display: flex; /* Ensure icon and input are in a row initially */
+        display: flex; 
         justify-content: center;
     }
     .nav-links-wrapper.nav-open .search-container #searchIcon {
-        padding: 10px; /* Easier to tap */
+        padding: 10px; 
     }
     .nav-links-wrapper.nav-open .search-container.search-active .search-input {
-        width: calc(100% - 40px); /* Adjust width considering the icon space */
+        width: calc(100% - 40px); 
         transform: translateY(-50%) translateX(0);
     }
-    .nav-links-wrapper.nav-open .search-input { /* When not active but menu is open */
-         position: static; /* Override absolute positioning for stacking */
+    .nav-links-wrapper.nav-open .search-input { 
+         position: static; 
          transform: none;
          margin-left: 5px;
     }
-    .search-container.search-active #searchIcon { /* Keep icon visible on mobile when search is active */
+    .search-container.search-active #searchIcon { 
         /* display: inline-flex; /* Ensure it stays if it was hidden on desktop */
     }
 
