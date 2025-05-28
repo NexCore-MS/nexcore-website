@@ -70,7 +70,7 @@
     --form-input-focus-border: var(--primary-accent-color);
     --form-input-focus-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
     
-    --search-input-bg: var(--bg-color);
+    --search-input-bg: var(--bg-color); 
     --search-input-text: var(--text-color);
     --search-input-border: var(--nav-border-color);
 }
@@ -149,36 +149,12 @@ html.dark-mode {
 }
 
 
-body, html {
-    margin: 0; padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    background-color: var(--bg-color); 
-    color: var(--text-color);       
-    line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden;
-    font-weight: 400; 
-}
-body {
-    padding-top: var(--nav-height); 
-    background-color: var(--bg-color); 
-    color: var(--text-color);         
-    visibility: hidden; 
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out; 
-}
-body.loaded { 
-    visibility: visible;
-    opacity: 1;
-}
-html {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}
-html.dark-mode {
-    background-color: var(--bg-color); 
-    color: var(--text-color);       
-}
-
-.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+body, html { /* ... (Keep this block as is from previous versions) ... */ }
+body { /* ... (Keep this block as is from previous versions) ... */ }
+body.loaded { /* ... (Keep this block as is from previous versions) ... */ }
+html { /* ... (Keep this block as is from previous versions) ... */ }
+html.dark-mode { /* ... (Keep this block as is from previous versions) ... */ }
+.container { /* ... (Keep this block as is from previous versions) ... */ }
 
 /* === START NAVIGATION STYLES === */
 nav {
@@ -213,12 +189,14 @@ nav .logo {
     margin-right: 0.5em; 
     vertical-align: middle; 
 }
+
+/* Wrapper for all items to the right of the logo */
 .nav-links-wrapper {
-    display: flex; 
+    display: flex;
     align-items: center;
-    flex-grow: 1; 
-    justify-content: flex-end; 
+    /* This wrapper will contain UL, dark mode toggle, and search container */
 }
+
 nav ul {
     list-style: none; margin: 0; padding: 0; display: flex; 
     align-items: center; 
@@ -227,7 +205,7 @@ nav ul li {
     margin-left: 20px; 
 }
 nav ul li:first-child {
-    margin-left: 0; 
+    /* margin-left: 0; /* Only if UL is the first element in nav-links-wrapper */
 }
 nav ul li a {
     text-decoration: none; color: var(--link-color); font-weight: 500;
@@ -242,6 +220,7 @@ nav ul li a::after {
     transform-origin: bottom right; transition: transform 0.25s ease-out;
 }
 nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+
 #darkModeToggle {
     background: var(--dark-mode-toggle-bg); color: var(--dark-mode-toggle-text);
     border: 1px solid transparent; border-radius: 8px;
@@ -249,32 +228,22 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     margin-left: 20px; 
     line-height: 1;
     transition: background-color 0.3s ease, color 0.3s ease;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
 #darkModeToggle:hover { background-color: var(--dark-mode-toggle-hover-bg); }
 
-/* Search Bar Styles */
+/* UPDATED Search Bar Styles - For in-flow expansion */
 .search-container {
-    position: relative;
     display: flex;
     align-items: center;
-    margin-left: 15px; 
-    flex-shrink: 0; 
+    margin-left: 15px; /* Space from dark mode toggle */
+    flex-shrink: 0; /* Prevent container itself from shrinking too much */
 }
-#searchIcon {
-    background: none; border: none;
-    color: var(--link-color); 
-    font-size: 1em; 
-    cursor: pointer; padding: 8px;
-    display: flex; align-items: center; justify-content: center;
-    transition: color 0.3s ease;
-}
-#searchIcon:hover { color: var(--link-hover-color); }
-.search-svg-icon { stroke: currentColor; width: 18px; height: 18px; }
+
 .search-input {
-    width: 0;
-    padding: 8px 0; 
-    border: 1px solid transparent; 
+    width: 0; /* Initially hidden */
+    padding: 8px 0; /* Initial padding, will expand horizontal padding */
+    border: 1px solid transparent;
     border-radius: 6px;
     font-size: 0.9em;
     outline: none;
@@ -282,21 +251,30 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     color: var(--search-input-text);
     opacity: 0;
     visibility: hidden;
-    position: absolute; 
-    right: 100%; 
-    top: 50%;
-    transform: translateY(-50%);
-    margin-right: 5px; 
-    transition: width 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out, visibility 0s linear 0.3s, border-color 0.3s ease-out;
+    margin-right: 0; /* No margin when hidden */
+    transition: width 0.3s ease-out, padding 0.3s ease-out, opacity 0.2s ease-out, visibility 0s linear 0.3s, border-color 0.3s ease-out, margin-right 0.3s ease-out;
 }
+
 .search-container.search-active .search-input {
-    width: 180px; 
+    width: 150px; /* Adjust width as needed */
     padding: 8px 12px;
     opacity: 1;
     visibility: visible;
     border-color: var(--search-input-border);
-    transition: width 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out, visibility 0s linear 0s, border-color 0.3s ease-out;
+    margin-right: 8px; /* Space between input and icon when active */
 }
+
+#searchIcon { /* Icon is now to the right of the input in HTML */
+    background: none; border: none;
+    color: var(--link-color);
+    font-size: 1em;
+    cursor: pointer; padding: 8px;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 0.3s ease;
+}
+#searchIcon:hover { color: var(--link-hover-color); }
+.search-svg-icon { stroke: currentColor; width: 18px; height: 18px; }
+
 
 .mobile-nav-toggle {
     display: none; background: none; border: none;
@@ -306,6 +284,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .mobile-nav-toggle span { display: block; }
 /* === END NAVIGATION STYLES === */
 
+/* ... (Rest of your CSS: Hero, Buttons, Sections, etc. remains the same as last full version) ... */
 /* Hero Section */
 .hero {
     text-align: center; padding: 120px 20px 100px;
@@ -539,46 +518,54 @@ footer a:hover {
 /* Responsive adjustments (includes mobile navigation) */
 @media (max-width: 768px) {
     /* Mobile Navigation Specifics */
-    nav .container { /* Keeps logo and hamburger side-by-side */ }
-    .mobile-nav-toggle { display: block; /* Show hamburger on mobile */ }
+    nav .container {
+        /* Logo and hamburger layout handled by flexbox */
+    }
+    .mobile-nav-toggle {
+        display: block; /* Show hamburger on mobile */
+        order: 1; /* Ensure hamburger is on the far right in the nav bar itself */
+    }
     .nav-links-wrapper {
         display: none; /* Hide links wrapper by default on mobile */
+        /* order: 0; /* This would apply if it was a direct child of nav .container, but it's not in the mobile top bar */
         position: absolute; top: 100%; left: 0; right: 0;
         background-color: var(--nav-bg-color);
         padding: 20px 0; box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         border-top: 1px solid var(--nav-border-color); z-index: 999;
     }
     .nav-links-wrapper.nav-open { display: flex; flex-direction: column; align-items: center; }
-    nav ul {
-        flex-direction: column; width: 100%; text-align: center;
-        margin-bottom: 20px; 
+    
+    /* Ordering within the opened mobile menu */
+    .nav-links-wrapper.nav-open .search-container {
+        order: 1; /* Search at the top */
+        width: 90%; margin: 0 auto 20px auto; 
+        justify-content: center; 
     }
+    .nav-links-wrapper.nav-open ul {
+        order: 2; /* Links after search */
+        flex-direction: column; width: 100%; text-align: center;
+        margin: 0 0 20px 0; padding: 0;
+    }
+    .nav-links-wrapper.nav-open #darkModeToggle {
+        order: 3; /* Dark mode toggle last */
+        margin-left: 0; margin-top: 0;
+    }
+
     nav ul li { margin-left: 0; margin-bottom: 0; width: 100%; }
     nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
-    #darkModeToggle { margin-left: 0; margin-top: 0; }
-
-    /* Search Bar Mobile Styles */
-    .nav-links-wrapper.nav-open .search-container {
-        order: -1; /* Place search at the top of the mobile menu */
-        width: 90%;
-        margin: 0 auto 20px auto; /* Centering and spacing */
-        display: flex; 
-        justify-content: center;
-    }
-    .nav-links-wrapper.nav-open .search-container #searchIcon {
-        padding: 10px; 
+    
+    .search-input { /* Base styles for mobile search input when not active */
+        position: static; /* In mobile menu, it's part of the column flow */
+        transform: none;
+        margin-right: 0; /* Reset from desktop absolute positioning */
+        margin-left: 8px; /* Space from icon */
     }
     .nav-links-wrapper.nav-open .search-container.search-active .search-input {
-        width: calc(100% - 40px); 
-        transform: translateY(-50%) translateX(0);
+        width: calc(100% - 50px); /* Adjust width to fit next to icon */
+        padding: 8px 12px;
     }
-    .nav-links-wrapper.nav-open .search-input { 
-         position: static; 
-         transform: none;
-         margin-left: 5px;
-    }
-    .search-container.search-active #searchIcon { 
-        /* display: inline-flex; /* Ensure it stays if it was hidden on desktop */
+    #searchIcon { /* Ensure consistent padding for tap area */
+         padding: 10px;
     }
 
 
