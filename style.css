@@ -6,29 +6,28 @@
     --heading-color: #1d1d1f;
     --link-color: #1d1d1f; /* Nav link color */
     --link-hover-color: #007aff;
-    --primary-accent-color: #007aff; 
+    --primary-accent-color: #007aff;
     --primary-accent-hover-bg: #0068d6;
     --primary-accent-shadow: rgba(0, 122, 255, 0.25);
     --primary-accent-hover-shadow: rgba(0, 122, 255, 0.35);
 
     --section-bg: #fff;
     --section-alt-bg: #f5f5f7;
-    --section-border: #e5e5e5; 
 
-    --card-bg: #f9f9f9; 
-    --card-alt-bg: #fff; 
+    --card-bg: #f9f9f9;
+    --card-alt-bg: #fff;
     --card-shadow: rgba(0,0,0,0.05);
     --card-hover-shadow: rgba(0,0,0,0.08);
-    --card-text-color: var(--text-muted-color); 
+    --card-text-color: var(--text-muted-color);
 
     --nav-bg-color: rgba(255, 255, 255, 0.8);
     --nav-border-color: rgba(0,0,0,0.08);
     --nav-blur-saturate: blur(20px) saturate(180%);
     --nav-height: 70px; /* EXAMPLE VALUE - PLEASE ADJUST by inspecting your nav */
 
-    --hero-bg-color: #1c1c1e; 
-    --hero-overlay-start: rgba(28, 28, 30, 0.65);
-    --hero-overlay-end: rgba(28, 28, 30, 0.85);
+    --hero-bg-color: #1c1c1e;
+    /* --hero-overlay-start: rgba(28, 28, 30, 0.65); -- Removed as no image */
+    /* --hero-overlay-end: rgba(28, 28, 30, 0.85); -- Removed as no image */
     --hero-text-color: #fff;
     --hero-subtitle-color: #d1d1d6;
 
@@ -57,25 +56,28 @@
 
     --footer-bg: #1d1d1f;
     --footer-text: #a0a0a5;
-    --footer-link: #2997ff; 
-    --footer-link-hover: #53abff; 
+    --footer-link: #2997ff;
+    --footer-links-color: #b0b0b5; /* Color for Privacy, Terms, Cookie links */
+    --footer-links-hover-color: #fff;
 
     --dark-mode-toggle-bg: transparent;
     --dark-mode-toggle-text: #1d1d1f;
     --dark-mode-toggle-hover-bg: rgba(0,0,0,0.05);
-    --mobile-nav-toggle-color: var(--heading-color); 
+    --mobile-nav-toggle-color: var(--heading-color);
 
-    --form-input-bg: #fff; 
+    --form-input-bg: #fff;
     --form-input-border: #ccc;
     --form-input-focus-border: var(--primary-accent-color);
     --form-input-focus-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
-    
-    --search-input-bg: var(--bg-color); 
-    --search-input-text: var(--text-color);
-    --search-input-border: var(--nav-border-color);
+
+    /* For legal pages */
+    --legal-content-bg: var(--section-bg);
+    --legal-content-text: var(--text-color);
+    --legal-content-heading: var(--heading-color);
+    --legal-content-link: var(--primary-accent-color);
 }
 
-html.dark-mode { 
+body.dark-mode {
     --bg-color: #161617;
     --text-color: #f5f7fa;
     --text-muted-color: #8e8e93;
@@ -89,20 +91,19 @@ html.dark-mode {
 
     --section-bg: #1c1c1e;
     --section-alt-bg: #161617;
-    --section-border: #38383a; 
 
     --card-bg: #2c2c2e;
     --card-alt-bg: #1c1c1e;
     --card-shadow: rgba(0,0,0,0.2);
     --card-hover-shadow: rgba(0,0,0,0.3);
-    --card-text-color: #c7c7cc; 
+    --card-text-color: #c7c7cc;
 
     --nav-bg-color: rgba(28, 28, 30, 0.75);
     --nav-border-color: rgba(84,84,88,0.65);
 
     --hero-bg-color: #000;
-    --hero-overlay-start: rgba(0,0,0, 0.65);
-    --hero-overlay-end: rgba(0,0,0, 0.85);
+    /* --hero-overlay-start: rgba(0,0,0, 0.65); -- Removed as no image */
+    /* --hero-overlay-end: rgba(0,0,0, 0.85); -- Removed as no image */
     --hero-text-color: #fff;
     --hero-subtitle-color: #a0a0a5;
 
@@ -131,30 +132,60 @@ html.dark-mode {
 
     --footer-bg: #000;
     --footer-text: #8e8e93;
-    --footer-link: #0A84FF; 
-    --footer-link-hover: #3b9eff;
+    --footer-link: #0A84FF;
+    --footer-links-color: #707075; /* Dark mode color for Privacy, Terms, Cookie links */
+    --footer-links-hover-color: #f5f7fa;
+
 
     --dark-mode-toggle-text: #f5f7fa;
     --dark-mode-toggle-hover-bg: rgba(255,255,255,0.08);
-    --mobile-nav-toggle-color: var(--heading-color); 
+    --mobile-nav-toggle-color: var(--heading-color);
 
-    --form-input-bg: #2c2c2e; 
+    --form-input-bg: #2c2c2e;
     --form-input-border: #4a4a4c;
     --form-input-focus-border: var(--primary-accent-color);
     --form-input-focus-shadow: 0 0 0 2px rgba(10, 132, 255, 0.3);
-    
-    --search-input-bg: #2c2c2e; 
-    --search-input-text: var(--text-color);
-    --search-input-border: var(--nav-border-color);
+
+    /* For legal pages */
+    --legal-content-bg: var(--section-bg);
+    --legal-content-text: var(--text-color);
+    --legal-content-heading: var(--heading-color);
+    --legal-content-link: var(--primary-accent-color);
 }
 
 
-body, html { /* ... (Keep this block as is from previous versions) ... */ }
-body { /* ... (Keep this block as is from previous versions) ... */ }
-body.loaded { /* ... (Keep this block as is from previous versions) ... */ }
-html { /* ... (Keep this block as is from previous versions) ... */ }
-html.dark-mode { /* ... (Keep this block as is from previous versions) ... */ }
-.container { /* ... (Keep this block as is from previous versions) ... */ }
+/* FOUC Prevention: Base HTML/Body styles - Applied before full CSS loads */
+html {
+    background-color: var(--bg-color); /* Uses CSS var for initial bg */
+    color: var(--text-color); /* Uses CSS var for initial text */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+}
+body {
+    visibility: hidden; /* Hide body until styles and JS are ready */
+    opacity: 0;
+    background-color: var(--bg-color); /* Match html bg for consistency */
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    font-weight: 400;
+    transition: background-color 0.3s ease, color 0.3s ease, opacity 0.5s ease; /* Added opacity transition */
+}
+/* Make body visible once JS adds this class */
+body.loaded {
+    visibility: visible;
+    opacity: 1;
+}
+/* Styles applied *after* body.loaded if JS fails (less critical now with inline script) */
+body:not(.loaded) {
+    /* Fallback styles if JS fails to add .loaded - though inline script should handle theme */
+}
+
+
+body { padding-top: var(--nav-height); } /* Adjusted for fixed nav */
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
 /* === START NAVIGATION STYLES === */
 nav {
@@ -162,9 +193,9 @@ nav {
     backdrop-filter: var(--nav-blur-saturate);
     -webkit-backdrop-filter: var(--nav-blur-saturate);
     padding: 15px 0;
-    border-bottom: 1px solid var(--nav-border-color); 
-    position: fixed; 
-    top: 0; left: 0; right: 0; width: 100%; 
+    border-bottom: 1px solid var(--nav-border-color);
+    position: fixed;
+    top: 0; left: 0; right: 0; width: 100%;
     z-index: 1000;
     transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
 }
@@ -172,46 +203,37 @@ nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; 
+    position: relative;
 }
 nav .logo {
-    display: flex; 
+    display: flex;
     align-items: center;
     font-size: 1.8em;
-    font-weight: 600; 
+    font-weight: 600;
     color: var(--heading-color);
     text-decoration: none;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
-.logo-icon-image { 
-    max-height: 1.2em; 
-    width: auto;       
-    margin-right: 0.5em; 
-    vertical-align: middle; 
+.logo-icon-image { /* Styles for your uploaded image icon */
+    height: 1em;  /* Scales with the logo text font-size (1.8em) */
+    width: auto; /* Maintain aspect ratio */
+    margin-right: 0.4em; /* Space between icon and "NexCore" text */
+    vertical-align: middle; /* Helps older browsers if flex alignment is tricky */
 }
-
-/* Wrapper for all items to the right of the logo */
 .nav-links-wrapper {
     display: flex;
     align-items: center;
-    /* This wrapper will contain UL, dark mode toggle, and search container */
 }
-
 nav ul {
-    list-style: none; margin: 0; padding: 0; display: flex; 
-    align-items: center; 
+    list-style: none; margin: 0; padding: 0; display: flex;
 }
 nav ul li {
-    margin-left: 20px; 
-}
-nav ul li:first-child {
-    /* margin-left: 0; /* Only if UL is the first element in nav-links-wrapper */
+    margin-left: 25px;
 }
 nav ul li a {
     text-decoration: none; color: var(--link-color); font-weight: 500;
     font-size: 0.95em; transition: color 0.3s ease, opacity 0.3s ease;
     position: relative; opacity: 0.9;
-    white-space: nowrap; 
 }
 nav ul li a:hover { color: var(--link-hover-color); opacity: 1; }
 nav ul li a::after {
@@ -220,89 +242,39 @@ nav ul li a::after {
     transform-origin: bottom right; transition: transform 0.25s ease-out;
 }
 nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
-
 #darkModeToggle {
     background: var(--dark-mode-toggle-bg); color: var(--dark-mode-toggle-text);
     border: 1px solid transparent; border-radius: 8px;
-    padding: 8px 10px; cursor: pointer; font-size: 1.1em; 
-    margin-left: 20px; 
-    line-height: 1;
+    padding: 8px 12px; cursor: pointer; font-size: 1.2em;
+    margin-left: 25px; line-height: 1;
     transition: background-color 0.3s ease, color 0.3s ease;
-    flex-shrink: 0;
 }
 #darkModeToggle:hover { background-color: var(--dark-mode-toggle-hover-bg); }
-
-/* UPDATED Search Bar Styles - For in-flow expansion */
-.search-container {
-    display: flex;
-    align-items: center;
-    margin-left: 15px; /* Space from dark mode toggle */
-    flex-shrink: 0; /* Prevent container itself from shrinking too much */
-}
-
-.search-input {
-    width: 0; /* Initially hidden */
-    padding: 8px 0; /* Initial padding, will expand horizontal padding */
-    border: 1px solid transparent;
-    border-radius: 6px;
-    font-size: 0.9em;
-    outline: none;
-    background-color: var(--search-input-bg);
-    color: var(--search-input-text);
-    opacity: 0;
-    visibility: hidden;
-    margin-right: 0; /* No margin when hidden */
-    transition: width 0.3s ease-out, padding 0.3s ease-out, opacity 0.2s ease-out, visibility 0s linear 0.3s, border-color 0.3s ease-out, margin-right 0.3s ease-out;
-}
-
-.search-container.search-active .search-input {
-    width: 150px; /* Adjust width as needed */
-    padding: 8px 12px;
-    opacity: 1;
-    visibility: visible;
-    border-color: var(--search-input-border);
-    margin-right: 8px; /* Space between input and icon when active */
-}
-
-#searchIcon { /* Icon is now to the right of the input in HTML */
-    background: none; border: none;
-    color: var(--link-color);
-    font-size: 1em;
-    cursor: pointer; padding: 8px;
-    display: flex; align-items: center; justify-content: center;
-    transition: color 0.3s ease;
-}
-#searchIcon:hover { color: var(--link-hover-color); }
-.search-svg-icon { stroke: currentColor; width: 18px; height: 18px; }
-
-
 .mobile-nav-toggle {
     display: none; background: none; border: none;
     font-size: 1.8em; cursor: pointer; color: var(--mobile-nav-toggle-color);
-    padding: 5px; line-height: 1; z-index: 1001; 
+    padding: 5px; line-height: 1; z-index: 1001;
 }
 .mobile-nav-toggle span { display: block; }
 /* === END NAVIGATION STYLES === */
 
-/* ... (Rest of your CSS: Hero, Buttons, Sections, etc. remains the same as last full version) ... */
-/* Hero Section */
+/* Hero Section - UPDATED (No background image) */
 .hero {
     text-align: center; padding: 120px 20px 100px;
-    background-color: var(--hero-bg-color);
-    background-image: linear-gradient(var(--hero-overlay-start), var(--hero-overlay-end)), url('YOUR_IMAGE_FILENAME_HERE.jpg');
-    background-size: cover; background-position: center center;
-    background-repeat: no-repeat; position: relative; color: var(--hero-text-color); 
+    background-color: var(--hero-bg-color); /* This will now be the only background */
+    /* background-image: linear-gradient(var(--hero-overlay-start), var(--hero-overlay-end)), url('YOUR_IMAGE_FILENAME_HERE.jpg'); */ /* Removed this line */
+    position: relative; color: var(--hero-text-color);
 }
 .hero h1 {
     font-size: 3.8em; font-weight: 700; color: var(--hero-text-color);
-    margin-bottom: 0.3em; letter-spacing: -0.02em; 
+    margin-bottom: 0.3em; letter-spacing: -0.02em;
     opacity: 0; transform: translateY(20px);
-    animation: fadeInUp 0.8s 0.2s ease-out forwards; 
+    animation: fadeInUp 0.8s 0.2s ease-out forwards;
 }
 .hero .subtitle {
     font-size: 1.6em; color: var(--hero-subtitle-color);
     margin-bottom: 1.8em; font-weight: 400;
-    max-width: 650px; margin-left: auto; margin-right: auto; 
+    max-width: 650px; margin-left: auto; margin-right: auto;
     opacity: 0; transform: translateY(20px);
     animation: fadeInUp 0.8s 0.4s ease-out forwards;
 }
@@ -342,72 +314,41 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 
 /* General Section Styling */
 .section {
-    padding: 100px 0; 
+    padding: 100px 0;
     text-align: center;
     background-color: var(--section-bg);
-    margin-bottom: 2px; 
+    /* margin-bottom: 2px; -- Removed, no visible border to separate sections now */
     transition: background-color 0.3s ease;
 }
 .section:last-of-type { margin-bottom: 0; }
 .section.alternate-bg { background-color: var(--section-alt-bg); }
 
-.rules-content, .legal-content { 
-    text-align: left; 
-    max-width: 800px; 
-    margin: 0 auto; 
-    padding: 20px 0; 
+.rules-content { /* Also used for general content on simple pages */
+    text-align: left; max-width: 800px; margin: 0 auto;
+    padding: 20px 0; /* Added some padding for standalone use */
 }
-.rules-content h1, .legal-content h1 {
-    text-align: center; 
-    margin-bottom: 1.5em;
-    font-size: 2.8em; 
-    font-weight: 600; 
-    color: var(--heading-color); 
-    letter-spacing: -0.015em; 
-}
-.rules-content h2, .legal-content h2 {
-    text-align: left; 
-    margin-top: 2em;
-    margin-bottom: 0.8em;
-    font-size: 1.8em; 
-    border-bottom: 1px solid var(--section-border); 
-    padding-bottom: 0.3em;
-    color: var(--heading-color);
-}
-.rules-content p, .legal-content p, 
-.rules-content ul, .legal-content ul,
-.rules-content ol, .legal-content ol {
-    margin-bottom: 1.2em;
-    line-height: 1.7; 
-    color: var(--text-color); 
-}
-.rules-content ul, .legal-content ul,
-.rules-content ol, .legal-content ol {
-    padding-left: 25px;
-}
-.rules-content li, .legal-content li {
-    margin-bottom: 0.6em;
-}
-.section h2 { 
-    font-size: 2.8em; font-weight: 600; color: var(--heading-color); 
+.rules-content h1, .rules-content h2, .rules-content h3 { text-align: center; }
+.rules-content ul, .rules-content ol { margin-bottom: 1.5em; padding-left: 20px; }
+.rules-content li { margin-bottom: 0.5em; }
+
+.section h2, .rules-content h1 { /* Shared between sections and simple page titles */
+    font-size: 2.8em; font-weight: 600; color: var(--heading-color);
     margin-bottom: 0.5em;
-    letter-spacing: -0.015em; 
+    letter-spacing: -0.015em;
 }
-.section .section-subheading, 
-.rules-content .section-subheading,
-.legal-content .section-subheading { 
+.section .section-subheading, .rules-content .section-subheading {
     font-size: 1.3em; color: var(--text-muted-color);
     max-width: 700px; margin: 0 auto 2.5em auto; font-weight: 400;
 }
 
 /* Features & Future Modes Grid */
-.features-grid, .future-modes-grid { 
-    display: flex; flex-wrap: wrap; justify-content: center; 
-    gap: 40px; 
-    margin-top: 40px; 
+.features-grid, .future-modes-grid {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
 }
 .feature-item, .future-mode-item {
-    padding: 35px; 
+    padding: 35px;
     border-radius: 12px;
     width: 100%; max-width: 320px;
     box-shadow: 0 5px 15px var(--card-shadow);
@@ -432,15 +373,15 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 }
 .feature-item .icon-placeholder img, .feature-item .icon-placeholder svg,
 .future-mode-item .icon-placeholder img, .future-mode-item .icon-placeholder svg { width: 28px; height: 28px; }
-.feature-item p, .future-mode-item p { 
-    font-size: 0.95em; 
-    color: var(--card-text-color); 
-    line-height: 1.5; 
+.feature-item p, .future-mode-item p {
+    font-size: 0.95em;
+    color: var(--card-text-color);
+    line-height: 1.5;
 }
 
 /* Join Section */
-.join-section { background-color: var(--join-section-bg); color: var(--join-section-text); padding: 100px 0; } 
-.join-section h2 { color: var(--join-section-text); font-size: 2.8em; letter-spacing: -0.015em; } 
+.join-section { background-color: var(--join-section-bg); color: var(--join-section-text); padding: 100px 0; }
+.join-section h2 { color: var(--join-section-text); font-size: 2.8em; letter-spacing: -0.015em; }
 .join-section .section-subheading { color: var(--join-section-subheading-text); }
 .server-ip-area { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; }
 .server-ip-display {
@@ -471,34 +412,91 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 /* Google Form Container Styles */
 .google-form-container { max-width: 760px; margin: 30px auto; }
 .google-form-iframe {
-    width: 100%; min-height: 700px; border: none; 
-    border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow); 
+    width: 100%; min-height: 700px; border: none;
+    border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow);
 }
 
+/* Legal Content Pages (Terms, Privacy, Cookie Policy) */
+.legal-content {
+    text-align: left;
+    max-width: 800px; /* Standard readable width */
+    margin: 40px auto; /* Spacing from header/footer */
+    padding: 20px;
+    background-color: var(--legal-content-bg);
+    color: var(--legal-content-text);
+    border-radius: 8px; /* Optional: slight rounding */
+    /* box-shadow: 0 2px 10px rgba(0,0,0,0.03); /* Optional: subtle shadow */
+}
+.legal-content h1 {
+    font-size: 2.4em; /* Slightly smaller than section titles */
+    color: var(--legal-content-heading);
+    margin-bottom: 1em;
+    text-align: center;
+}
+.legal-content h2 {
+    font-size: 1.8em;
+    color: var(--legal-content-heading);
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+    /* text-align: left; */ /* Default left for headings within content */
+}
+.legal-content h3 {
+    font-size: 1.4em;
+    color: var(--legal-content-heading);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    /* text-align: left; */
+}
+.legal-content p,
+.legal-content ul,
+.legal-content ol {
+    margin-bottom: 1.2em;
+    line-height: 1.7;
+    font-size: 1em; /* Or 1.05em for slightly larger text */
+}
+.legal-content ul, .legal-content ol {
+    padding-left: 25px; /* Indentation for lists */
+}
+.legal-content li {
+    margin-bottom: 0.6em;
+}
+.legal-content a {
+    color: var(--legal-content-link);
+    text-decoration: underline;
+}
+.legal-content a:hover {
+    text-decoration: none;
+}
+.legal-content em { /* For effective dates etc. */
+    display: block;
+    text-align: center;
+    margin-bottom: 1.5em;
+    color: var(--text-muted-color);
+}
+
+
 /* Footer */
-footer { background-color: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; font-size: 0.9em; transition: background-color 0.3s ease, color 0.3s ease; }
+footer {
+    background-color: var(--footer-bg); color: var(--footer-text);
+    text-align: center; padding: 50px 20px; font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 footer p { margin: 0.5em 0; }
-footer a { 
-    color: var(--footer-link); 
-    text-decoration: none; 
-}
-footer a:hover { 
-    color: var(--footer-link-hover); 
-    text-decoration: underline; 
-}
-.footer-links {
+footer a { color: var(--footer-link); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+.footer-links { /* Container for Privacy, Terms, Cookie links */
     margin-top: 15px;
-    font-size: 0.9em;
+    font-size: 0.95em;
 }
 .footer-links a {
-    color: var(--footer-text); 
-    text-decoration: none;
-    margin: 0 8px;
-    transition: color 0.3s ease;
+    color: var(--footer-links-color);
+    margin: 0 10px;
+    transition: color 0.2s ease;
 }
 .footer-links a:hover {
-    color: var(--footer-link); 
-    text-decoration: underline;
+    color: var(--footer-links-hover-color);
+    text-decoration: none;
 }
 
 
@@ -507,76 +505,44 @@ footer a:hover {
 .animated-item.is-visible { opacity: 1; transform: translateY(0); }
 
 /* Scroll Margin for Fixed Header Anchor Links */
-#hero, 
-#features, 
-#future, 
-#community, 
+#hero,
+#features,
+#future,
+#community,
 #join {
-    scroll-margin-top: var(--nav-height); 
+    scroll-margin-top: var(--nav-height); /* Value from --nav-height variable */
 }
 
 /* Responsive adjustments (includes mobile navigation) */
 @media (max-width: 768px) {
     /* Mobile Navigation Specifics */
-    nav .container {
-        /* Logo and hamburger layout handled by flexbox */
-    }
-    .mobile-nav-toggle {
-        display: block; /* Show hamburger on mobile */
-        order: 1; /* Ensure hamburger is on the far right in the nav bar itself */
-    }
+    nav .container { /* Keeps logo and hamburger side-by-side */ }
+    .mobile-nav-toggle { display: block; /* Show hamburger on mobile */ }
     .nav-links-wrapper {
         display: none; /* Hide links wrapper by default on mobile */
-        /* order: 0; /* This would apply if it was a direct child of nav .container, but it's not in the mobile top bar */
         position: absolute; top: 100%; left: 0; right: 0;
         background-color: var(--nav-bg-color);
         padding: 20px 0; box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         border-top: 1px solid var(--nav-border-color); z-index: 999;
     }
     .nav-links-wrapper.nav-open { display: flex; flex-direction: column; align-items: center; }
-    
-    /* Ordering within the opened mobile menu */
-    .nav-links-wrapper.nav-open .search-container {
-        order: 1; /* Search at the top */
-        width: 90%; margin: 0 auto 20px auto; 
-        justify-content: center; 
-    }
-    .nav-links-wrapper.nav-open ul {
-        order: 2; /* Links after search */
+    nav ul {
         flex-direction: column; width: 100%; text-align: center;
-        margin: 0 0 20px 0; padding: 0;
+        margin-bottom: 20px;
     }
-    .nav-links-wrapper.nav-open #darkModeToggle {
-        order: 3; /* Dark mode toggle last */
-        margin-left: 0; margin-top: 0;
-    }
-
     nav ul li { margin-left: 0; margin-bottom: 0; width: 100%; }
     nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
-    
-    .search-input { /* Base styles for mobile search input when not active */
-        position: static; /* In mobile menu, it's part of the column flow */
-        transform: none;
-        margin-right: 0; /* Reset from desktop absolute positioning */
-        margin-left: 8px; /* Space from icon */
-    }
-    .nav-links-wrapper.nav-open .search-container.search-active .search-input {
-        width: calc(100% - 50px); /* Adjust width to fit next to icon */
-        padding: 8px 12px;
-    }
-    #searchIcon { /* Ensure consistent padding for tap area */
-         padding: 10px;
-    }
-
+    #darkModeToggle { margin-left: 0; margin-top: 0; }
 
     /* Other Responsive Styles */
     .hero h1 { font-size: 2.8em; }
     .hero .subtitle { font-size: 1.3em; }
     .section h2, .rules-content h1, .legal-content h1 { font-size: 2.2em; letter-spacing: -0.01em; }
-    .legal-content h2 { font-size: 1.6em; }
-    .section .section-subheading, .rules-content .section-subheading, .legal-content .section-subheading { font-size: 1.1em; }
-    .section { padding: 80px 0; } 
-    .features-grid, .future-modes-grid { gap: 30px; } 
+    .legal-content h2 { font-size: 1.7em; }
+    .legal-content h3 { font-size: 1.3em; }
+    .section .section-subheading, .rules-content .section-subheading { font-size: 1.1em; }
+    .section { padding: 80px 0; }
+    .features-grid, .future-modes-grid { gap: 30px; }
     .feature-item, .future-mode-item { padding: 30px; max-width: 90%; }
     .server-ip-area { flex-direction: column; gap: 10px; }
     .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
@@ -586,6 +552,5 @@ footer a:hover {
     .section .section-subheading.dynmap-intro { margin-bottom: 1.5em; }
     .google-form-container { margin-top: 20px; margin-bottom: 20px; }
     .google-form-iframe { min-height: 600px; }
-    .footer-links { display: flex; flex-direction: column; gap: 5px; }
-    .footer-links a { margin: 0; }
+    .legal-content { margin: 20px auto; padding: 15px; }
 }
