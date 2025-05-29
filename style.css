@@ -64,7 +64,7 @@
     --mobile-nav-toggle-color: var(--heading-color);
 
     --form-input-bg: #fff;
-    --form-input-border: #ccc;
+    --form-input-border: #ccc; /* General form input border */
     --form-input-focus-border: var(--primary-accent-color);
     --form-input-focus-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
 
@@ -96,7 +96,7 @@ html.dark-mode {
     --card-text-color: #c7c7cc;
 
     --nav-bg-color: rgba(28, 28, 30, 0.75);
-    --nav-border-color: rgba(84,84,88,0.65);
+    --nav-border-color: rgba(84,84,88,0.65); /* Dark mode nav border */
 
     --hero-bg-color: #000;
     --hero-text-color: #fff;
@@ -135,8 +135,8 @@ html.dark-mode {
     --dark-mode-toggle-hover-bg: rgba(255,255,255,0.08);
     --mobile-nav-toggle-color: var(--heading-color);
 
-    --form-input-bg: #2c2c2e;
-    --form-input-border: #4a4a4c;
+    --form-input-bg: #2c2c2e; /* Dark mode form input background */
+    --form-input-border: #4a4a4c; /* Dark mode form input border */
     --form-input-focus-border: var(--primary-accent-color);
     --form-input-focus-shadow: 0 0 0 2px rgba(10, 132, 255, 0.3);
 
@@ -154,7 +154,6 @@ html {
 body {
     visibility: hidden;
     opacity: 0;
-    /* background-color is inherited from html or set by html.dark-mode */
     margin: 0; padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     line-height: 1.6;
@@ -261,33 +260,35 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 }
 .mobile-nav-toggle span { display: block; }
 
-/* === Google Custom Search Box Styles (New Section) === */
-.search-container { /* Our existing wrapper for Google's search box */
+/* === Google Custom Search Box Styles (Refined for gap) === */
+.search-container { 
     display: flex;
     align-items: center;
-    margin-left: 15px; /* Spacing from dark mode toggle */
-    flex-shrink: 0; /* Prevent shrinking */
+    margin-left: 15px; 
+    flex-shrink: 0; 
 }
 
-/* Overall control Google injects */
 .search-container .gsc-control-cse {
     padding: 0 !important;
     border: none !important;
     background: transparent !important;
-    width: auto !important; /* Allow it to be sized by its content or our container */
+    width: auto !important; 
 }
 
-/* The table Google uses for layout */
-.search-container .gsc-search-box {
+/* This is Google's table that holds the input and button */
+.search-container table.gsc-search-box {
     margin-bottom: 0 !important;
-    display: flex !important; /* Use flex for the input and button cells */
+    display: flex !important; 
     align-items: center !important;
-    width: auto !important; /* Let the content define the width initially */
+    width: auto !important;
+    border-collapse: collapse !important; /* Critical for removing gaps */
+    border-spacing: 0 !important; /* Critical for removing gaps */
 }
 
-/* Cell containing the input field */
+/* Table cell for input */
 .search-container td.gsc-input {
-    padding-right: 0 !important; /* Remove any space next to the input field within the table */
+    padding: 0 !important; /* Remove all padding from the cell */
+    display: flex !important; /* Ensure input inside fills this cell */
 }
 
 /* The actual input field */
@@ -295,69 +296,64 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     font-family: inherit !important;
     font-size: 0.9em !important;
     color: var(--text-color) !important;
-    background-color: var(--form-input-bg) !important; /* Use theme-aware form input background */
-    background-image: none !important; /* Remove Google's branding image */
-    border: 1px solid var(--form-input-border) !important; /* Use theme-aware form input border */
-    border-radius: 6px 0 0 6px !important; /* Round left corners only */
+    background-color: var(--form-input-bg) !important; 
+    background-image: none !important; 
+    border: 1px solid var(--form-input-border) !important; 
+    border-right-width: 0px !important; /* Remove right border of input */
+    border-radius: 6px 0 0 6px !important; 
     padding: 7px 12px !important;
-    height: 36px !important; /* Fixed height to match typical Apple feel, adjust as needed */
+    height: 36px !important; 
     box-sizing: border-box !important;
     margin: 0 !important;
     outline: none !important;
-    width: 170px !important; /* Initial width, adjust as needed */
-    min-width: 100px; /* Prevent it from being too small */
+    width: 170px !important; 
+    min-width: 100px; 
+    vertical-align: middle !important;
     transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, width 0.3s ease !important;
 }
 
 .search-container input.gsc-input#gsc-i-id1:focus {
-    border-color: var(--form-input-focus-border) !important;
+    border-color: var(--form-input-focus-border) !important; 
     box-shadow: 0 0 0 2px var(--form-input-focus-shadow) !important;
-    width: 200px !important; /* Optional: expand on focus */
+    border-right-width: 0px !important; /* Keep right border off on focus */
 }
 
 /* Placeholder text styling */
-.search-container input.gsc-input#gsc-i-id1::placeholder {
-    color: var(--text-muted-color) !important;
-    opacity: 1 !important;
-}
-.search-container input.gsc-input#gsc-i-id1::-webkit-input-placeholder {
-    color: var(--text-muted-color) !important;
-}
-.search-container input.gsc-input#gsc-i-id1::-moz-placeholder {
-    color: var(--text-muted-color) !important;
-    opacity: 1 !important;
-}
-.search-container input.gsc-input#gsc-i-id1:-ms-input-placeholder {
-    color: var(--text-muted-color) !important;
-}
+.search-container input.gsc-input#gsc-i-id1::placeholder,
+.search-container input.gsc-input#gsc-i-id1::-webkit-input-placeholder,
+.search-container input.gsc-input#gsc-i-id1::-moz-placeholder,
+.search-container input.gsc-input#gsc-i-id1:-ms-input-placeholder,
 .search-container input.gsc-input#gsc-i-id1::-ms-input-placeholder {
     color: var(--text-muted-color) !important;
+    opacity: 1 !important;
 }
 
-/* Cell containing the search button */
+/* Table cell for search button */
 .search-container td.gsc-search-button {
-    padding-left: 0 !important; /* No space from the input cell */
+    padding: 0 !important; /* Remove all padding from the cell */
+    display: flex !important; /* Ensure button inside fills this cell */
 }
 
 /* The search button */
 .search-container button.gsc-search-button.gsc-search-button-v2 {
-    background-color: var(--form-input-bg) !important; /* Match input background initially */
+    background-color: var(--form-input-bg) !important; 
     border: 1px solid var(--form-input-border) !important;
-    border-left: none !important; /* Input field has the right border, button has no left border */
-    padding: 0 10px !important; /* Adjust padding */
+    /* border-left: none !important; -- Not strictly needed if input has no right border and table has border-collapse */
+    padding: 0 10px !important; 
     margin: 0 !important;
     cursor: pointer !important;
-    border-radius: 0 6px 6px 0 !important; /* Round right corners only */
-    height: 36px !important; /* Match input height */
+    border-radius: 0 6px 6px 0 !important; 
+    height: 36px !important; 
     box-sizing: border-box !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    vertical-align: middle !important;
     transition: background-color 0.3s ease, border-color 0.3s ease !important;
 }
 
 .search-container button.gsc-search-button.gsc-search-button-v2:hover {
-    background-color: var(--dark-mode-toggle-hover-bg) !important; /* Consistent hover */
+    background-color: var(--dark-mode-toggle-hover-bg) !important; 
     border-color: var(--form-input-focus-border) !important;
 }
 
@@ -374,8 +370,8 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 }
 
 /* Hide Google's clear button (X in input) and the other clear button cell */
-.search-container .gsst_a, /* Google's X button inside the input */
-.search-container td.gsc-clear-button { /* The separate clear button cell */
+.search-container .gsst_a, 
+.search-container td.gsc-clear-button { 
     display: none !important;
 }
 
@@ -385,7 +381,15 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     padding: 0 !important;
     margin: 0 !important;
     background: transparent !important;
+    height: 100% !important; 
+    display: flex !important; 
+    align-items: center !important;
 }
+/* Inner table within gsc-input-box */
+.search-container .gsc-input-box > table {
+    height: 100% !important;
+}
+
 
 /* --- End Google Custom Search Box Styles --- */
 
@@ -669,27 +673,25 @@ footer a:hover { text-decoration: underline; }
     }
     .search-container {
         margin-left: 0; 
-        margin-bottom: 15px; /* Add some space below search in mobile nav */
+        margin-bottom: 15px; 
         justify-content: center; 
         padding: 0 20px; 
         box-sizing: border-box;
     }
-    /* Adjustments for Google Search Box in mobile */
-    .search-container .gsc-search-box {
-        width: 100% !important; /* Allow it to take more width */
+    .search-container table.gsc-search-box { /* Ensure table also adapts */
+        width: 100% !important; 
     }
     .search-container input.gsc-input#gsc-i-id1 {
-        min-width: 0 !important; /* Allow it to shrink more on mobile */
-        width: 100% !important; /* Take full available width in its flex cell */
-        max-width: none !important; /* Remove max-width if set for desktop focus */
+        min-width: 0 !important; 
+        width: 100% !important; 
+        max-width: none !important; 
     }
     .search-container input.gsc-input#gsc-i-id1:focus {
-        width: 100% !important; /* Keep it full width on focus too */
+        width: 100% !important; 
     }
     .search-container button.gsc-search-button.gsc-search-button-v2 {
-        height: 36px !important; /* Ensure height matches input */
+        height: 36px !important; 
     }
-
 
     /* Other Responsive Styles */
     .hero h1 { font-size: 2.8em; }
