@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexCore - Your Next Minecraft Adventure</title> <script>
+    <title>Terms of Service - NexCore</title> {/* Corrected Page Title */}
+
+    {/* === ADD FAVICON LINK HERE === */}
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+
+    <script>
       (function() {
         try {
           var theme = localStorage.getItem('theme');
@@ -28,19 +33,16 @@
       body {
         visibility: hidden; /* Hide body initially to prevent flash */
         opacity: 0;
-        background-color: #f5f5f7; /* Fallback light body background, consistent with html */
-      }
-      html.dark-mode body { /* Fallback dark body background if dark-mode is set on html */
-         background-color: #161617;
+        /* background-color is inherited from html or set by html.dark-mode */
       }
     </style>
 
     <link rel="stylesheet" href="style.css">
 
-    </head>
+</head>
 <body>
 
-   <nav>
+    <nav>
         <div class="container">
             <a href="index.html" class="logo">
                 <img src="assets/images/nexcore-icon.png" alt="NexCore Icon" class="logo-icon-image"> 
@@ -61,7 +63,7 @@
                     <li><a href="index.html#join">Join Us</a></li>
                 </ul>
                 <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
-                </div>
+            </div>
         </div>
     </nav>
 
