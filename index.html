@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexCore - Your Next Minecraft Adventure</title>
-
     <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+    <meta name="description" content="Join NexCore, your ultimate Minecraft server adventure! Experience unique gamemodes, an active community, and lag-free performance. Start your journey today!">
 
     <script>
       (function() {
@@ -37,137 +37,151 @@
     </style>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
 <nav>
+    <div class="container">
+        <a href="index.html" class="logo">
+            <img src="assets/images/nexcore-icon.png" alt="NexCore Icon" class="logo-icon-image"> 
+            NexCore
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span>☰</span>
+        </button>
+        <div class="nav-links-wrapper">
+            <ul>
+                <li><a href="index.html">Home</a></li> 
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#future">Coming Soon</a></li>
+                <li><a href="rules.html">Rules</a></li>
+                <li><a href="dynmap.html">Live Map</a></li>
+                <li><a href="whitelist.html">Whitelist</a></li>
+                <li><a href="index.html#community">Community</a></li>
+                <li><a href="index.html#join">Join Us</a></li>
+            </ul>
+            <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="hero" id="hero">
         <div class="container">
-            <a href="index.html" class="logo">
-                <img src="assets/images/nexcore-icon.png" alt="NexCore Icon" class="logo-icon-image"> 
-                NexCore
+            <h1 class="animated-item">Welcome to NexCore</h1>
+            <p class="subtitle animated-item" style="transition-delay: 0.2s;">Experience Minecraft like never before. Your next great adventure starts here.</p>
+            <a href="#join" class="cta-button animated-item" style="transition-delay: 0.4s;">Play NexCore Now</a>
+        </div>
+    </section>
+
+    <section class="section alternate-bg" id="features">
+        <div class="container">
+            <h2 class="animated-item">Why Choose NexCore?</h2>
+            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">We've crafted a unique Minecraft experience focusing on community, performance, and exciting gameplay features.</p>
+            <div class="features-grid">
+                {/* */}
+                <div class="feature-item animated-item" style="transition-delay: 0.2s;">
+                    <div class="icon-placeholder">📜</div>
+                    <h3>Custom Quests & Adventures</h3>
+                    <p>Embark on unique adventures with custom quests! Explore the world, complete challenges, and earn exclusive rewards as you delve into the lore of NexCore.</p>
+                </div>
+                {/* */}
+                <div class="feature-item animated-item" style="transition-delay: 0.3s;">
+                    <div class="icon-placeholder">💰</div>
+                    <h3>Player Economy & Shops</h3>
+                    <p>Engage in a dynamic player-driven economy! Create your own shops, trade valuable goods at the auction house, or take on jobs to earn your fortune.</p>
+                </div>
+                {/* */}
+                <div class="feature-item animated-item" style="transition-delay: 0.4s;">
+                    <div class="icon-placeholder">🛡️</div>
+                    <h3>Advanced Land Protection</h3>
+                    <p>Secure your creations with our intuitive land claiming system. Protect your builds from grief and manage permissions for your friends with ease.</p>
+                </div>
+                {/* */}
+                <div class="feature-item animated-item" style="transition-delay: 0.5s;"> {/* Adjusted delay */}
+                    <div class="icon-placeholder">⭐</div>
+                    <h3>Unique Ranks & Perks</h3>
+                    <p>Progress through exciting ranks or unlock special perks! Gain new abilities, cosmetics, and advantages as you play and contribute to the NexCore community.</p>
+                </div>
+                {/* */}
+                <div class="feature-item animated-item" style="transition-delay: 0.6s;"> {/* Adjusted delay */}
+                    <div class="icon-placeholder">✨</div>
+                    <h3>Custom Enchants & Items</h3>
+                    <p>Discover a world beyond vanilla with custom enchantments and unique items! Enhance your gear with powerful new abilities and find rare artifacts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="future">
+        <div class="container">
+            <h2 class="animated-item">Future Adventures</h2>
+            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">We're always working on new content and features. Here's a sneak peek of what's planned!</p>
+            <div class="future-modes-grid">
+                <div class="future-mode-item animated-item" style="transition-delay: 0.2s;">
+                    <div class="icon-placeholder">🎨</div>
+                    <h3>Creative Realms</h3>
+                    <p>Unleash your imagination in dedicated creative worlds with advanced building tools.</p>
+                </div>
+                <div class="future-mode-item animated-item" style="transition-delay: 0.3s;">
+                    <div class="icon-placeholder">🧱</div>
+                    <h3>SkyBlock Evolved</h3>
+                    <p>A fresh take on SkyBlock with unique challenges, progression, and custom islands.</p>
+                </div>
+                <div class="future-mode-item animated-item" style="transition-delay: 0.4s;">
+                    <div class="icon-placeholder">⚔️</div>
+                    <h3>New Bosses & Dungeons</h3>
+                    <p>Face formidable new bosses and explore challenging dungeons for epic loot.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section alternate-bg" id="community">
+        <div class="container">
+            <h2 class="animated-item">Join Our Community</h2>
+            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">Connect with other players, get server updates, and participate in events on our Discord server!</p>
+            <div class="discord-widget-container animated-item" style="transition-delay: 0.2s;">
+                <iframe 
+                    src="https://discord.com/widget?id=1004153689105240124&theme=dark" 
+                    width="350" 
+                    height="500" 
+                    allowtransparency="true" 
+                    frameborder="0" 
+                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+                </iframe>
+            </div>
+            <a href="https://discord.gg/VAjz44fRAJ" target="_blank" class="cta-button cta-button-discord animated-item" style="transition-delay: 0.3s;">
+                Join Our Discord
             </a>
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span>☰</span>
-            </button>
-            <div class="nav-links-wrapper">
-                <ul>
-                    <li><a href="index.html">Home</a></li> 
-                    <li><a href="index.html#features">Features</a></li>
-                    <li><a href="index.html#future">Coming Soon</a></li>
-                    <li><a href="rules.html">Rules</a></li>
-                    <li><a href="dynmap.html">Live Map</a></li>
-                    <li><a href="whitelist.html">Whitelist</a></li>
-                    <li><a href="index.html#community">Community</a></li>
-                    <li><a href="index.html#join">Join Us</a></li>
-                </ul>
-                <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
-            </div>
         </div>
-    </nav>
+    </section>
 
-    <main>
-        <section class="hero" id="hero">
-            <div class="container">
-                <h1 class="animated-item">Welcome to NexCore</h1>
-                <p class="subtitle animated-item" style="transition-delay: 0.2s;">Experience Minecraft like never before. Your next great adventure starts here.</p>
-                <a href="#join" class="cta-button animated-item" style="transition-delay: 0.4s;">Play NexCore Now</a>
-            </div>
-        </section>
-
-        <section class="section alternate-bg" id="features">
-            <div class="container">
-                <h2 class="animated-item">Why Choose NexCore?</h2>
-                <p class="section-subheading animated-item" style="transition-delay: 0.1s;">We've crafted a unique Minecraft experience focusing on community, performance, and exciting gameplay.</p>
-                <div class="features-grid">
-                    <div class="feature-item animated-item" style="transition-delay: 0.2s;">
-                        <div class="icon-placeholder">🎮</div>
-                        <h3>Unique Gamemodes</h3>
-                        <p>Discover custom gamemodes you won't find anywhere else, designed for maximum fun and challenge.</p>
-                    </div>
-                    <div class="feature-item animated-item" style="transition-delay: 0.3s;">
-                        <div class="icon-placeholder">👥</div>
-                        <h3>Active Community</h3>
-                        <p>Join a friendly and welcoming community of players. Make new friends and conquer challenges together.</p>
-                    </div>
-                    <div class="feature-item animated-item" style="transition-delay: 0.4s;">
-                        <div class="icon-placeholder">⚡️</div>
-                        <h3>Optimized Performance</h3>
-                        <p>Experience lag-free gameplay with our powerful hardware and optimized server software.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="future">
-            <div class="container">
-                <h2 class="animated-item">Future Adventures</h2>
-                <p class="section-subheading animated-item" style="transition-delay: 0.1s;">We're always working on new content and features. Here's a sneak peek of what's planned!</p>
-                <div class="future-modes-grid">
-                    <div class="future-mode-item animated-item" style="transition-delay: 0.2s;">
-                        <div class="icon-placeholder">🎨</div>
-                        <h3>Creative Realms</h3>
-                        <p>Unleash your imagination in dedicated creative worlds with advanced building tools.</p>
-                    </div>
-                    <div class="future-mode-item animated-item" style="transition-delay: 0.3s;">
-                        <div class="icon-placeholder">🧱</div>
-                        <h3>SkyBlock Evolved</h3>
-                        <p>A fresh take on SkyBlock with unique challenges, progression, and custom islands.</p>
-                    </div>
-                    <div class="future-mode-item animated-item" style="transition-delay: 0.4s;">
-                        <div class="icon-placeholder">⚔️</div>
-                        <h3>New Bosses & Dungeons</h3>
-                        <p>Face formidable new bosses and explore challenging dungeons for epic loot.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section alternate-bg" id="community">
-            <div class="container">
-                <h2 class="animated-item">Join Our Community</h2>
-                <p class="section-subheading animated-item" style="transition-delay: 0.1s;">Connect with other players, get server updates, and participate in events on our Discord server!</p>
-                <div class="discord-widget-container animated-item" style="transition-delay: 0.2s;">
-                    <iframe 
-                        src="https://discord.com/widget?id=1004153689105240124&theme=dark" 
-                        width="350" 
-                        height="500" 
-                        allowtransparency="true" 
-                        frameborder="0" 
-                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-                    </iframe>
-                </div>
-                <a href="https://discord.gg/VAjz44fRAJ" target="_blank" class="cta-button cta-button-discord animated-item" style="transition-delay: 0.3s;">
-                    Join Our Discord
-                </a>
-            </div>
-        </section>
-
-        <section class="section join-section" id="join">
-            <div class="container">
-                <h2 class="animated-item">Ready to Play?</h2>
-                <p class="section-subheading animated-item" style="transition-delay: 0.1s;">Join the NexCore server today and start your adventure!</p>
-                <div class="server-ip-area animated-item" style="transition-delay: 0.2s;">
-                    <div class="server-ip-display" id="server-ip">nexcore.top</div>
-                    <button class="copy-ip-button" id="copy-ip-btn">Copy IP</button>
-                </div>
-                <p class="animated-item" style="transition-delay: 0.3s;">Status: <span style="color: #34c759; font-weight: bold;">Online</span> | Version: Java 1.21.4</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
+    <section class="section join-section" id="join">
         <div class="container">
-            <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
-            <p>NexCore is not affiliated with Mojang AB.</p>
-            <p class="footer-links">
-                <a href="privacy.html">Privacy Policy</a> | 
-                <a href="terms.html">Terms of Service</a> | 
-                <a href="cookie-policy.html">Cookie Policy</a>
-            </p>
+            <h2 class="animated-item">Ready to Play?</h2>
+            <p class="section-subheading animated-item" style="transition-delay: 0.1s;">Join the NexCore server today and start your adventure!</p>
+            <div class="server-ip-area animated-item" style="transition-delay: 0.2s;">
+                <div class="server-ip-display" id="server-ip">nexcore.top</div>
+                <button class="copy-ip-button" id="copy-ip-btn">Copy IP</button>
+            </div>
+            <p class="animated-item" style="transition-delay: 0.3s;">Status: <span style="color: #34c759; font-weight: bold;">Online</span> | Version: Java 1.21.4</p>
         </div>
-    </footer>
+    </section>
+</main>
 
-    <script src="script.js" defer></script>
+<footer>
+    <div class="container">
+        <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
+        <p>NexCore is not affiliated with Mojang AB.</p>
+        <p class="footer-links">
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms of Service</a> | 
+            <a href="cookie-policy.html">Cookie Policy</a>
+        </p>
+    </div>
+</footer>
+
+<script src="script.js" defer></script>
 </body>
 </html>
