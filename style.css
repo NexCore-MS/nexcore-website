@@ -246,7 +246,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     padding: 8px 10px; 
     cursor: pointer;
     font-size: 1.1em; 
-    margin-left: 20px; /* This will now be the last item, so margin is from the ul */
+    margin-left: 20px; 
     line-height: 1;
     transition: background-color 0.3s ease, color 0.3s ease;
     flex-shrink: 0; 
@@ -259,9 +259,6 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     padding: 5px; line-height: 1; z-index: 1001;
 }
 .mobile-nav-toggle span { display: block; }
-
-/* Styles for .search-container, .search-input, #searchIcon, 
-   and Google CSE specific styles have been REMOVED from this version. */
 
 /* Hero Section */
 .hero {
@@ -319,30 +316,86 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 /* General Section Styling */
 .section {
     padding: 100px 0;
-    text-align: center;
+    text-align: center; 
     background-color: var(--section-bg); 
     transition: background-color 0.3s ease;
 }
 .section:last-of-type { margin-bottom: 0; }
 .section.alternate-bg { background-color: var(--section-alt-bg); }
 
-.rules-content {
-    text-align: left; max-width: 800px; margin: 0 auto;
-    padding: 20px 0;
+/* Styling for main content wrappers like in rules.html, legal pages, guide.html */
+.rules-content, 
+.legal-content,
+.guide-content { /* Added .guide-content here for consistency if used as a base class */
+    text-align: left; 
+    max-width: 800px; 
+    margin: 0 auto;
+    padding: 20px 0; 
 }
-.rules-content h1, .rules-content h2, .rules-content h3 { text-align: center; }
-.rules-content ul, .rules-content ol { margin-bottom: 1.5em; padding-left: 20px; }
-.rules-content li { margin-bottom: 0.5em; }
+.rules-content h1, .rules-content h2, .rules-content h3,
+.legal-content h1, .legal-content h2, .legal-content h3,
+.guide-content h1, .guide-content h2, .guide-content h3 { 
+    text-align: center; /* Headings within these content blocks are centered */
+}
+.rules-content ul, .rules-content ol,
+.legal-content ul, .legal-content ol,
+.guide-content ul, .guide-content ol { 
+    margin-bottom: 1.5em; 
+    padding-left: 20px; 
+}
+.rules-content li,
+.legal-content li,
+.guide-content li { 
+    margin-bottom: 0.5em; 
+}
 
-.section h2, .rules-content h1 {
-    font-size: 2.8em; font-weight: 600; color: var(--heading-color);
+/* General H2 for sections and H1 for content pages like rules/legal/guide */
+.section h2, 
+.rules-content h1, 
+.legal-content h1,
+.guide-content h1 { 
+    font-size: 2.8em; 
+    font-weight: 600; 
+    color: var(--heading-color);
     margin-bottom: 0.5em;
     letter-spacing: -0.015em;
+    /* text-align: center; is handled by .section for section titles, 
+       and explicitly for h1 inside .rules-content etc. above */
 }
-.section .section-subheading, .rules-content .section-subheading {
-    font-size: 1.3em; color: var(--text-muted-color);
-    max-width: 700px; margin: 0 auto 2.5em auto; font-weight: 400;
+
+/* Subheadings for sections and content pages */
+.section .section-subheading, 
+.rules-content .section-subheading, 
+.legal-content .section-subheading,
+.guide-content .section-subheading { /* Added .guide-content here */
+    font-size: 1.3em; 
+    color: var(--text-muted-color);
+    max-width: 700px; 
+    margin: 0 auto 2.5em auto; /* Centers the block */
+    font-weight: 400;
+    text-align: center; /* MODIFIED: Ensures subheading text is centered */
 }
+
+/* Command list styling for guide.html */
+.command-list {
+    list-style: none;
+    padding-left: 0;
+}
+.command-list li {
+    margin-bottom: 0.6em;
+    font-size: 0.95em;
+}
+.command-list code {
+    background-color: var(--section-alt-bg); /* Light grey in light mode, dark grey in dark */
+    color: var(--primary-accent-color); /* Make commands stand out a bit */
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+html.dark-mode .command-list code {
+    background-color: var(--card-bg); /* A slightly different dark shade */
+}
+
 
 /* Features & Future Modes Grid */
 .features-grid, .future-modes-grid {
@@ -386,7 +439,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 /* Join Section */
 .join-section { background-color: var(--join-section-bg); color: var(--join-section-text); padding: 100px 0; }
 .join-section h2 { color: var(--join-section-text); font-size: 2.8em; letter-spacing: -0.015em; }
-.join-section .section-subheading { color: var(--join-section-subheading-text); }
+.join-section .section-subheading { color: var(--join-section-subheading-text); } /* Will also be centered now */
 .server-ip-area { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; }
 .server-ip-display {
     background-color: var(--ip-display-bg); border: 1px solid var(--ip-display-border);
@@ -420,60 +473,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow);
 }
 
-/* Legal Content Pages */
-.legal-content {
-    text-align: left;
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: var(--legal-content-bg); 
-    color: var(--legal-content-text); 
-    border-radius: 8px;
-}
-.legal-content h1 {
-    font-size: 2.4em;
-    color: var(--legal-content-heading); 
-    margin-bottom: 1em;
-    text-align: center;
-}
-.legal-content h2 {
-    font-size: 1.8em;
-    color: var(--legal-content-heading); 
-    margin-top: 2em;
-    margin-bottom: 0.8em;
-}
-.legal-content h3 {
-    font-size: 1.4em;
-    color: var(--legal-content-heading); 
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-}
-.legal-content p,
-.legal-content ul,
-.legal-content ol {
-    margin-bottom: 1.2em;
-    line-height: 1.7;
-    font-size: 1em;
-}
-.legal-content ul, .legal-content ol {
-    padding-left: 25px;
-}
-.legal-content li {
-    margin-bottom: 0.6em;
-}
-.legal-content a {
-    color: var(--legal-content-link); 
-    text-decoration: underline;
-}
-.legal-content a:hover {
-    text-decoration: none;
-}
-.legal-content em {
-    display: block;
-    text-align: center;
-    margin-bottom: 1.5em;
-    color: var(--text-muted-color); 
-}
+/* Legal Content Pages (already covered by .legal-content above) */
 
 /* Footer */
 footer {
@@ -500,65 +500,4 @@ footer a:hover { text-decoration: underline; }
 }
 
 /* Scroll Animation Helper Classes */
-.animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out .1s; }
-.animated-item.is-visible { opacity: 1; transform: translateY(0); }
-
-/* Scroll Margin for Fixed Header Anchor Links */
-#hero,
-#features,
-#future,
-#community,
-#join {
-    scroll-margin-top: var(--nav-height);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    /* Mobile Navigation Specifics */
-    .mobile-nav-toggle { display: block; }
-    .nav-links-wrapper {
-        display: none;
-        position: absolute; top: 100%; left: 0; right: 0;
-        background-color: var(--nav-bg-color);
-        padding: 20px 0; box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        border-top: 1px solid var(--nav-border-color); z-index: 999;
-    }
-    .nav-links-wrapper.nav-open {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch; 
-    }
-    nav ul {
-        flex-direction: column; width: 100%; text-align: center;
-        margin-bottom: 15px; 
-    }
-    nav ul li { margin-left: 0; margin-bottom: 0; width: 100%; }
-    nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
-
-    #darkModeToggle {
-        margin-left: 0; 
-        margin-bottom: 15px; /* Ensure space if it's the last item */
-        align-self: center; 
-    }
-    /* No search-container specific styles needed in mobile if it's removed */
-
-    /* Other Responsive Styles */
-    .hero h1 { font-size: 2.8em; }
-    .hero .subtitle { font-size: 1.3em; }
-    .section h2, .rules-content h1, .legal-content h1 { font-size: 2.2em; letter-spacing: -0.01em; }
-    .legal-content h2 { font-size: 1.7em; }
-    .legal-content h3 { font-size: 1.3em; }
-    .section .section-subheading, .rules-content .section-subheading { font-size: 1.1em; }
-    .section { padding: 80px 0; }
-    .features-grid, .future-modes-grid { gap: 30px; }
-    .feature-item, .future-mode-item { padding: 30px; max-width: 90%; }
-    .server-ip-area { flex-direction: column; gap: 10px; }
-    .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
-    .copy-ip-button { padding: 15px 20px; font-size: 0.95em; width: 100%; max-width: 250px;}
-    .discord-widget-container iframe { width: 100% !important; max-width: 350px; min-height: 400px; }
-    .dynmap-iframe { height: 60vh; }
-    .section .section-subheading.dynmap-intro { margin-bottom: 1.5em; }
-    .google-form-container { margin-top: 20px; margin-bottom: 20px; }
-    .google-form-iframe { min-height: 600px; }
-    .legal-content { margin: 20px auto; padding: 15px; }
-}
+.animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform
