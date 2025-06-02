@@ -326,7 +326,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 /* Styling for main content wrappers like in rules.html, legal pages, guide.html */
 .rules-content, 
 .legal-content,
-.guide-content { /* Added .guide-content here for consistency if used as a base class */
+.guide-content { 
     text-align: left; 
     max-width: 800px; 
     margin: 0 auto;
@@ -335,7 +335,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .rules-content h1, .rules-content h2, .rules-content h3,
 .legal-content h1, .legal-content h2, .legal-content h3,
 .guide-content h1, .guide-content h2, .guide-content h3 { 
-    text-align: center; /* Headings within these content blocks are centered */
+    text-align: center; 
 }
 .rules-content ul, .rules-content ol,
 .legal-content ul, .legal-content ol,
@@ -359,42 +359,21 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     color: var(--heading-color);
     margin-bottom: 0.5em;
     letter-spacing: -0.015em;
-    /* text-align: center; is handled by .section for section titles, 
-       and explicitly for h1 inside .rules-content etc. above */
 }
 
 /* Subheadings for sections and content pages */
 .section .section-subheading, 
 .rules-content .section-subheading, 
 .legal-content .section-subheading,
-.guide-content .section-subheading { /* Added .guide-content here */
+.guide-content .section-subheading { 
     font-size: 1.3em; 
     color: var(--text-muted-color);
     max-width: 700px; 
-    margin: 0 auto 2.5em auto; /* Centers the block */
+    margin: 0 auto 2.5em auto; 
     font-weight: 400;
-    text-align: center; /* MODIFIED: Ensures subheading text is centered */
+    /* text-align: center; -- Reverted this change for now to isolate the blank page issue */
 }
-
-/* Command list styling for guide.html */
-.command-list {
-    list-style: none;
-    padding-left: 0;
-}
-.command-list li {
-    margin-bottom: 0.6em;
-    font-size: 0.95em;
-}
-.command-list code {
-    background-color: var(--section-alt-bg); /* Light grey in light mode, dark grey in dark */
-    color: var(--primary-accent-color); /* Make commands stand out a bit */
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-}
-html.dark-mode .command-list code {
-    background-color: var(--card-bg); /* A slightly different dark shade */
-}
+/* If a specific subheading like on guide.html needs centering, use an inline style or a utility class for now */
 
 
 /* Features & Future Modes Grid */
@@ -439,7 +418,7 @@ html.dark-mode .command-list code {
 /* Join Section */
 .join-section { background-color: var(--join-section-bg); color: var(--join-section-text); padding: 100px 0; }
 .join-section h2 { color: var(--join-section-text); font-size: 2.8em; letter-spacing: -0.015em; }
-.join-section .section-subheading { color: var(--join-section-subheading-text); } /* Will also be centered now */
+.join-section .section-subheading { color: var(--join-section-subheading-text); } 
 .server-ip-area { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; }
 .server-ip-display {
     background-color: var(--ip-display-bg); border: 1px solid var(--ip-display-border);
@@ -500,4 +479,67 @@ footer a:hover { text-decoration: underline; }
 }
 
 /* Scroll Animation Helper Classes */
-.animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform
+.animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out .1s; }
+.animated-item.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Scroll Margin for Fixed Header Anchor Links */
+#hero,
+#features,
+#future,
+#community,
+#join {
+    scroll-margin-top: var(--nav-height);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* Mobile Navigation Specifics */
+    .mobile-nav-toggle { display: block; }
+    .nav-links-wrapper {
+        display: none;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background-color: var(--nav-bg-color);
+        padding: 20px 0; box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-top: 1px solid var(--nav-border-color); z-index: 999;
+    }
+    .nav-links-wrapper.nav-open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch; 
+    }
+    nav ul {
+        flex-direction: column; width: 100%; text-align: center;
+        margin-bottom: 15px; 
+    }
+    nav ul li { margin-left: 0; margin-bottom: 0; width: 100%; }
+    nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
+
+    #darkModeToggle {
+        margin-left: 0; 
+        margin-bottom: 15px; 
+        align-self: center; 
+    }
+
+    /* Other Responsive Styles */
+    .hero h1 { font-size: 2.8em; }
+    .hero .subtitle { font-size: 1.3em; }
+    .section h2, .rules-content h1, .legal-content h1, .guide-content h1 { font-size: 2.2em; letter-spacing: -0.01em; }
+    .legal-content h2, .guide-content h2 { font-size: 1.7em; } 
+    .legal-content h3, .guide-content h3 { font-size: 1.3em; } 
+    .section .section-subheading, 
+    .rules-content .section-subheading, 
+    .legal-content .section-subheading,
+    .guide-content .section-subheading { font-size: 1.1em; }
+    .section { padding: 80px 0; }
+    .features-grid, .future-modes-grid { gap: 30px; }
+    .feature-item, .future-mode-item { padding: 30px; max-width: 90%; }
+    .server-ip-area { flex-direction: column; gap: 10px; }
+    .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
+    .copy-ip-button { padding: 15px 20px; font-size: 0.95em; width: 100%; max-width: 250px;}
+    .discord-widget-container iframe { width: 100% !important; max-width: 350px; min-height: 400px; }
+    .dynmap-iframe { height: 60vh; }
+    .section .section-subheading.dynmap-intro { margin-bottom: 1.5em; }
+    .google-form-container { margin-top: 20px; margin-bottom: 20px; }
+    .google-form-iframe { min-height: 600px; }
+    .legal-content, .rules-content, .guide-content { margin: 20px auto; padding: 15px; }
+}
