@@ -454,6 +454,34 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .discord-widget-container { margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: center; }
 .discord-widget-container iframe { border-radius: 10px; box-shadow: 0 5px 15px var(--discord-widget-shadow); }
 
+/* Testimonials */
+.testimonials-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+.testimonial-item {
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 5px 15px var(--card-shadow);
+    font-style: italic;
+    position: relative;
+}
+.section.alternate-bg .testimonial-item { background-color: var(--card-alt-bg); }
+.section:not(.alternate-bg) .testimonial-item { background-color: var(--card-bg); }
+.testimonial-item cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--heading-color);
+    text-align: right;
+}
+
 /* Dynmap Styles */
 .dynmap-container { width: 100%; margin-top: 20px; }
 .dynmap-iframe {
@@ -564,6 +592,8 @@ footer a:hover { text-decoration: underline; }
     .section { padding: 80px 0; }
     .features-grid, .future-modes-grid { gap: 30px; }
     .feature-item, .future-mode-item { padding: 30px; max-width: 90%; }
+    .testimonials-grid { gap: 20px; }
+    .testimonial-item { max-width: 90%; }
     .server-ip-area { flex-direction: column; gap: 10px; }
     .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
     .copy-ip-button { padding: 15px 20px; font-size: 0.95em; width: 100%; max-width: 250px;}
