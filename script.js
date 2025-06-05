@@ -136,6 +136,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Back to Top Button Functionality
+    const backToTopButton = document.getElementById('backToTop');
+    if (backToTopButton) {
+        const toggleVisibility = () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        };
+        window.addEventListener('scroll', toggleVisibility);
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        toggleVisibility();
+    }
+
     // FOUC prevention: Make body visible after CSS and initial JS should be handled
     // The inline script in <head> handles initial theme class on <html>
     // This ensures body becomes visible
