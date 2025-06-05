@@ -136,6 +136,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Back to Top Button Functionality
+    const backToTopButton = document.getElementById('backToTop');
+    if (backToTopButton) {
+        const toggleVisibility = () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        };
+        window.addEventListener('scroll', toggleVisibility);
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        toggleVisibility();
+    }
+
+    // Server Status Fetch
+    const statusEl = document.getElementById('server-status');
+    if (statusEl) {
+        fetch('https://api.mcsrvstat.us/2/nexcore.top')
+            .then(resp => resp.json())
+            .then(data => {
+                if (data && data.online) {
+                    let playerInfo = '';
+                    if (data.players && typeof data.players.online === 'number') {
+                        playerInfo = ` - ${data.players.online}/${data.players.max} players`;
+                    }
+                    statusEl.innerHTML = `Status: <span class="status-online">Online</span>${playerInfo}`;
+                } else {
+                    statusEl.innerHTML = `Status: <span class="status-offline">Offline</span>`;
+                }
+            })
+            .catch(err => {
+                console.error('Failed to fetch server status', err);
+                statusEl.textContent = 'Status: unknown';
+            });
+    }
+
     // FOUC prevention: Make body visible after CSS and initial JS should be handled
     // The inline script in <head> handles initial theme class on <html>
     // This ensures body becomes visible
