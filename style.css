@@ -541,5 +541,33 @@ footer a:hover { text-decoration: underline; }
     .section .section-subheading.dynmap-intro { margin-bottom: 1.5em; }
     .google-form-container { margin-top: 20px; margin-bottom: 20px; }
     .google-form-iframe { min-height: 600px; }
-    .legal-content, .rules-content, .guide-content { margin: 20px auto; padding: 15px; }
+.legal-content, .rules-content, .guide-content { margin: 20px auto; padding: 15px; }
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.3em;
+    cursor: pointer;
+    box-shadow: 0 4px 6px var(--primary-accent-shadow);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 999;
+}
+.back-to-top:hover {
+    background-color: var(--primary-accent-hover-bg);
+    transform: scale(1.1);
+}
+.back-to-top.visible {
+    display: flex;
 }
