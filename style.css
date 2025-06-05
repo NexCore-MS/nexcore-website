@@ -548,7 +548,8 @@ footer a:hover { text-decoration: underline; }
     .section .section-subheading.dynmap-intro { margin-bottom: 1.5em; }
     .google-form-container { margin-top: 20px; margin-bottom: 20px; }
     .google-form-iframe { min-height: 600px; }
-.legal-content, .rules-content, .guide-content, .faq-content { margin: 20px auto; padding: 15px; }
+    .legal-content, .rules-content, .guide-content { margin: 20px auto; padding: 15px; }
+    .faq-content { margin: 20px auto; padding: 15px; }
 }
 
 /* Back to Top Button */
