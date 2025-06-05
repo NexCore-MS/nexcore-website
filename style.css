@@ -324,9 +324,10 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .section.alternate-bg { background-color: var(--section-alt-bg); }
 
 /* Styling for main content wrappers like in rules.html, legal pages, guide.html */
-.rules-content, 
+.rules-content,
 .legal-content,
-.guide-content { 
+.guide-content,
+.faq-content {
     text-align: left; 
     max-width: 800px; 
     margin: 0 auto;
@@ -334,26 +335,30 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 }
 .rules-content h1, .rules-content h2, .rules-content h3,
 .legal-content h1, .legal-content h2, .legal-content h3,
-.guide-content h1, .guide-content h2, .guide-content h3 { 
+.guide-content h1, .guide-content h2, .guide-content h3,
+.faq-content h1, .faq-content h2, .faq-content h3 {
     text-align: center; 
 }
 .rules-content ul, .rules-content ol,
 .legal-content ul, .legal-content ol,
-.guide-content ul, .guide-content ol { 
+.guide-content ul, .guide-content ol,
+.faq-content ul, .faq-content ol {
     margin-bottom: 1.5em; 
     padding-left: 20px; 
 }
 .rules-content li,
 .legal-content li,
-.guide-content li { 
+.guide-content li,
+.faq-content li {
     margin-bottom: 0.5em; 
 }
 
 /* General H2 for sections and H1 for content pages like rules/legal/guide */
 .section h2, 
-.rules-content h1, 
+.rules-content h1,
 .legal-content h1,
-.guide-content h1 { 
+.guide-content h1,
+.faq-content h1 {
     font-size: 2.8em; 
     font-weight: 600; 
     color: var(--heading-color);
@@ -365,7 +370,8 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .section .section-subheading, 
 .rules-content .section-subheading, 
 .legal-content .section-subheading,
-.guide-content .section-subheading { 
+.guide-content .section-subheading,
+.faq-content .section-subheading {
     font-size: 1.3em; 
     color: var(--text-muted-color);
     max-width: 700px; 
@@ -432,6 +438,14 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 }
 .copy-ip-button:hover { background-color: var(--copy-btn-hover-bg); transform: scale(1.05); }
 .copy-ip-button.copied { background-color: var(--copy-btn-copied-bg); color: var(--copy-btn-copied-text); }
+
+/* Server status line */
+.server-status {
+    margin-top: 10px;
+    font-size: 1em;
+}
+.server-status .status-online { color: #34c759; font-weight: bold; }
+.server-status .status-offline { color: #ff3b30; font-weight: bold; }
 
 /* Community Section */
 .discord-widget-container { margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: center; }
@@ -526,10 +540,11 @@ footer a:hover { text-decoration: underline; }
     .section h2, .rules-content h1, .legal-content h1, .guide-content h1 { font-size: 2.2em; letter-spacing: -0.01em; }
     .legal-content h2, .guide-content h2 { font-size: 1.7em; } 
     .legal-content h3, .guide-content h3 { font-size: 1.3em; } 
-    .section .section-subheading, 
-    .rules-content .section-subheading, 
+    .section .section-subheading,
+    .rules-content .section-subheading,
     .legal-content .section-subheading,
-    .guide-content .section-subheading { font-size: 1.1em; }
+    .guide-content .section-subheading,
+    .faq-content .section-subheading { font-size: 1.1em; }
     .section { padding: 80px 0; }
     .features-grid, .future-modes-grid { gap: 30px; }
     .feature-item, .future-mode-item { padding: 30px; max-width: 90%; }
@@ -541,5 +556,39 @@ footer a:hover { text-decoration: underline; }
     .section .section-subheading.dynmap-intro { margin-bottom: 1.5em; }
     .google-form-container { margin-top: 20px; margin-bottom: 20px; }
     .google-form-iframe { min-height: 600px; }
-    .legal-content, .rules-content, .guide-content { margin: 20px auto; padding: 15px; }
+    .legal-content,
+    .rules-content,
+    .guide-content,
+    .faq-content {
+        margin: 20px auto;
+        padding: 15px;
+    }
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.3em;
+    cursor: pointer;
+    box-shadow: 0 4px 6px var(--primary-accent-shadow);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 999;
+}
+.back-to-top:hover {
+    background-color: var(--primary-accent-hover-bg);
+    transform: scale(1.1);
+}
+.back-to-top.visible {
+    display: flex;
 }
