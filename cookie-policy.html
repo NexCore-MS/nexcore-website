@@ -1,94 +1,138 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a/cookie-policy.html b/cookie-policy.html
-index efa381c24bce70f064295efb32745926fb3fc987..d41e4552e5f587ae65c32616217d2f0652f9b7c3 100644
---- a/cookie-policy.html
-+++ b/cookie-policy.html
-@@ -36,50 +36,51 @@
-       }
-     </style>
- 
-     <link rel="stylesheet" href="style.css">
- </head>
- <body>
- 
-     <nav>
-         <div class="container">
-             <a href="index.html" class="logo">
-                 <img src="assets/images/nexcore-icon.png" alt="NexCore Icon" class="logo-icon-image"> 
-                 NexCore
-             </a>
-             <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                 <span>☰</span>
-             </button>
-             <div class="nav-links-wrapper">
-                 <ul>
-                     <li><a href="index.html">Home</a></li> 
-                     <li><a href="index.html#features">Features</a></li>
-                     <li><a href="index.html#future">Coming Soon</a></li>
-                     <li><a href="rules.html">Rules</a></li>
-                     <li><a href="dynmap.html">Live Map</a></li>
-                     <li><a href="whitelist.html">Whitelist</a></li>
-                     <li><a href="guide.html">Guide</a></li>
-+                    <li><a href="faq.html">FAQ</a></li>
-                     <li><a href="index.html#community">Community</a></li>
-                     <li><a href="index.html#join">Join Us</a></li>
-                 </ul>
-                 <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
-             </div>
-         </div>
-     </nav>
- 
-     <main>
-         <section class="section">
-             <div class="container">
-                 <div class="legal-content">
-                     <h1 class="animated-item">Cookie Policy</h1>
-                     <p class="animated-item" style="transition-delay: 0.1s;"><em>Last Updated: May 28, 2025</em></p>
-                     
-                     <p class="animated-item" style="transition-delay: 0.2s;">This Cookie Policy explains how NexCore uses cookies and similar tracking technologies when you visit <a href="https://www.nexcore.top" style="color: var(--primary-accent-color);">https://www.nexcore.top</a>.</p>
- 
-                     <h2 class="animated-item" style="transition-delay: 0.3s;">What Are Cookies</h2>
-                     <p class="animated-item" style="transition-delay: 0.4s;">Cookies are small data files placed on your device to help websites function properly and analyze user activity.</p>
- 
-                     <h2 class="animated-item" style="transition-delay: 0.5s;">Types of Cookies We Use</h2>
-                     <h3 class="animated-item" style="transition-delay: 0.6s; font-size: 1.4em; margin-top:1.5em; text-align:left;">Essential Cookies:</h3>
-                     <ul class="animated-item" style="transition-delay: 0.65s;">
-                         <li>Required for basic website functionality. These are always active.</li>
-                     </ul>
-diff --git a/cookie-policy.html b/cookie-policy.html
-index efa381c24bce70f064295efb32745926fb3fc987..d41e4552e5f587ae65c32616217d2f0652f9b7c3 100644
---- a/cookie-policy.html
-+++ b/cookie-policy.html
-@@ -109,28 +110,29 @@
-                     <h2 class="animated-item" style="transition-delay: 1.5s;">Changes to This Policy</h2>
-                     <p class="animated-item" style="transition-delay: 1.6s;">We may update this Cookie Policy periodically. Any changes will be posted on this page with a revised "Last Updated" date.</p>
- 
-                     <h2 class="animated-item" style="transition-delay: 1.7s;">Contact</h2>
-                     <p class="animated-item" style="transition-delay: 1.8s;">For questions about this policy, contact:</p>
-                     <ul class="animated-item" style="transition-delay: 1.9s;">
-                         <li>Email: <a href="mailto:nexcore.ms@gmail.com" style="color: var(--primary-accent-color);">nexcore.ms@gmail.com</a></li>
-                     </ul>
-                 </div>
-             </div>
-         </section>
-     </main>
- 
-     <footer>
-         <div class="container">
-             <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
-             <p>NexCore is not affiliated with Mojang AB.</p>
-             <p class="footer-links">
-                 <a href="privacy.html">Privacy Policy</a> | 
-                 <a href="terms.html">Terms of Service</a> | 
-                 <a href="cookie-policy.html">Cookie Policy</a>
-             </p>
-         </div>
-     </footer>
- 
-+<button id="backToTop" class="back-to-top" aria-label="Back to top">▲</button>
-     <script src="script.js" defer></script>
- </body>
- </html>
- 
-EOF
-)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy - NexCore</title>
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+    <meta name="description" content="Review the official NexCore cookie policy for nexcore.top. Learn about the types of cookies we use, why, and how you can manage your cookie preferences.">
+
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (theme === 'dark' || (!theme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark-mode');
+          } else {
+            document.documentElement.classList.remove('dark-mode');
+          }
+        } catch (e) { console.warn('Initial theme script (in head) failed:', e); }
+      })();
+    </script>
+
+    <style>
+      html { /* Default light theme base for html */
+        background-color: #f5f5f7; 
+        color: #1d1d1f;       
+      }
+      html.dark-mode { /* Dark theme base for html if class is present */
+        background-color: #161617; 
+        color: #f5f7fa;       
+      }
+      body {
+        visibility: hidden; /* Hide body initially to prevent flash */
+        opacity: 0;
+        /* background-color is inherited from html or set by html.dark-mode */
+      }
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/nexcore-icon.png" alt="NexCore Icon" class="logo-icon-image"> 
+                NexCore
+            </a>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span>☰</span>
+            </button>
+            <div class="nav-links-wrapper">
+                <ul>
+                    <li><a href="index.html">Home</a></li> 
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#future">Coming Soon</a></li>
+                    <li><a href="rules.html">Rules</a></li>
+                    <li><a href="dynmap.html">Live Map</a></li>
+                    <li><a href="whitelist.html">Whitelist</a></li>
+                    <li><a href="guide.html">Guide</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="index.html#community">Community</a></li>
+                    <li><a href="index.html#join">Join Us</a></li>
+                </ul>
+                <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="legal-content">
+                    <h1 class="animated-item">Cookie Policy</h1>
+                    <p class="animated-item" style="transition-delay: 0.1s;"><em>Last Updated: May 28, 2025</em></p>
+                    
+                    <p class="animated-item" style="transition-delay: 0.2s;">This Cookie Policy explains how NexCore uses cookies and similar tracking technologies when you visit <a href="https://www.nexcore.top" style="color: var(--primary-accent-color);">https://www.nexcore.top</a>.</p>
+
+                    <h2 class="animated-item" style="transition-delay: 0.3s;">What Are Cookies</h2>
+                    <p class="animated-item" style="transition-delay: 0.4s;">Cookies are small data files placed on your device to help websites function properly and analyze user activity.</p>
+
+                    <h2 class="animated-item" style="transition-delay: 0.5s;">Types of Cookies We Use</h2>
+                    <h3 class="animated-item" style="transition-delay: 0.6s; font-size: 1.4em; margin-top:1.5em; text-align:left;">Essential Cookies:</h3>
+                    <ul class="animated-item" style="transition-delay: 0.65s;">
+                        <li>Required for basic website functionality. These are always active.</li>
+                    </ul>
+
+                    <h3 class="animated-item" style="transition-delay: 0.7s; font-size: 1.4em; margin-top:1.5em; text-align:left;">Performance Cookies:</h3>
+                    <ul class="animated-item" style="transition-delay: 0.75s;">
+                        <li>Used for analytics and site usage tracking (e.g. page visits, load times). Data is anonymized.</li>
+                    </ul>
+
+                    <h3 class="animated-item" style="transition-delay: 0.8s; font-size: 1.4em; margin-top:1.5em; text-align:left;">Functionality Cookies:</h3>
+                    <ul class="animated-item" style="transition-delay: 0.85s;">
+                        <li>Help remember your settings and preferences (e.g., language, theme).</li>
+                    </ul>
+
+                    <h2 class="animated-item" style="transition-delay: 0.9s;">Managing Cookies</h2>
+                    <p class="animated-item" style="transition-delay: 1s;">Most browsers allow you to control cookies through settings. You can:</p>
+                    <ul class="animated-item" style="transition-delay: 1.1s;">
+                        <li>Delete existing cookies</li>
+                        <li>Block cookies from specific sites</li>
+                        <li>Set preferences for when cookies are accepted</li>
+                    </ul>
+                    <p class="animated-item" style="transition-delay: 1.2s;"><strong>Note:</strong> Disabling cookies may affect your ability to use parts of the NexCore site or Minecraft services properly.</p>
+                    
+                    <h2 class="animated-item" style="transition-delay: 1.3s;">Third-Party Cookies</h2>
+                    <p class="animated-item" style="transition-delay: 1.4s;">We may use trusted third-party services (e.g. Google Analytics) which place their own cookies to collect usage data. These providers are bound by their own privacy policies.</p>
+
+                    <h2 class="animated-item" style="transition-delay: 1.5s;">Changes to This Policy</h2>
+                    <p class="animated-item" style="transition-delay: 1.6s;">We may update this Cookie Policy periodically. Any changes will be posted on this page with a revised "Last Updated" date.</p>
+
+                    <h2 class="animated-item" style="transition-delay: 1.7s;">Contact</h2>
+                    <p class="animated-item" style="transition-delay: 1.8s;">For questions about this policy, contact:</p>
+                    <ul class="animated-item" style="transition-delay: 1.9s;">
+                        <li>Email: <a href="mailto:nexcore.ms@gmail.com" style="color: var(--primary-accent-color);">nexcore.ms@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
+            <p>NexCore is not affiliated with Mojang AB.</p>
+            <p class="footer-links">
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a> | 
+                <a href="cookie-policy.html">Cookie Policy</a>
+            </p>
+        </div>
+    </footer>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top">▲</button>
+    <script src="script.js" defer></script>
+</body>
+</html>
