@@ -439,6 +439,14 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .copy-ip-button:hover { background-color: var(--copy-btn-hover-bg); transform: scale(1.05); }
 .copy-ip-button.copied { background-color: var(--copy-btn-copied-bg); color: var(--copy-btn-copied-text); }
 
+/* Server status line */
+.server-status {
+    margin-top: 10px;
+    font-size: 1em;
+}
+.server-status .status-online { color: #34c759; font-weight: bold; }
+.server-status .status-offline { color: #ff3b30; font-weight: bold; }
+
 /* Community Section */
 .discord-widget-container { margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: center; }
 .discord-widget-container iframe { border-radius: 10px; box-shadow: 0 5px 15px var(--discord-widget-shadow); }
