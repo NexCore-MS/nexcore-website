@@ -96,17 +96,43 @@ document.addEventListener('DOMContentLoaded', () => {
     if (copyIpButton && serverIpElement) {
         copyIpButton.addEventListener('click', () => {
             const ipAddress = serverIpElement.textContent;
-            navigator.clipboard.writeText(ipAddress).then(() => {
+
+            const handleSuccess = () => {
                 copyIpButton.textContent = 'Copied!';
                 copyIpButton.classList.add('copied');
                 setTimeout(() => {
                     copyIpButton.textContent = 'Copy IP';
                     copyIpButton.classList.remove('copied');
                 }, 2000);
-            }).catch(err => {
+            };
+
+            const handleFailure = (err) => {
                 console.error('Failed to copy IP: ', err);
                 alert('Failed to copy IP. Please copy it manually: ' + ipAddress);
-            });
+            };
+
+            if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+                navigator.clipboard.writeText(ipAddress).then(handleSuccess).catch(handleFailure);
+            } else {
+                try {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = ipAddress;
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    textarea.focus();
+                    textarea.select();
+                    const successful = document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    if (successful) {
+                        handleSuccess();
+                    } else {
+                        handleFailure(new Error('execCommand failed'));
+                    }
+                } catch (err) {
+                    handleFailure(err);
+                }
+            }
         });
     }
 
