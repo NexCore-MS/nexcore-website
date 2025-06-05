@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - NexCore</title>
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+    <meta name="theme-color" content="#007aff">
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (theme === 'dark' || (!theme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark-mode');
+          } else {
+            document.documentElement.classList.remove('dark-mode');
+          }
+        } catch (e) { console.warn('Initial theme script (in head) failed:', e); }
+      })();
+    </script>
+    <style>
+      html { background-color: #f5f5f7; color: #1d1d1f; }
+      html.dark-mode { background-color: #161617; color: #f5f7fa; }
+      body { visibility: hidden; opacity: 0; }
+    </style>
+    <link rel="stylesheet" href="style.css">
+<noscript><style>body{visibility:visible;opacity:1}</style></noscript>
+</head>
+<body>
+<nav>
+    <div class="container">
+        <a href="index.html" class="logo">
+            <img loading="lazy" src="assets/images/nexcore-icon.png" alt="NexCore Icon" class="logo-icon-image">
+            NexCore
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span>☰</span>
+        </button>
+        <div class="nav-links-wrapper">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#future">Coming Soon</a></li>
+                <li><a href="rules.html">Rules</a></li>
+                <li><a href="dynmap.html">Live Map</a></li>
+                <li><a href="whitelist.html">Whitelist</a></li>
+                <li><a href="guide.html">Guide</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="index.html#community">Community</a></li>
+                <li><a href="index.html#join">Join Us</a></li>
+            </ul>
+            <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="section">
+        <div class="container">
+            <h1 class="animated-item">404 - Page Not Found</h1>
+            <p class="section-subheading animated-item" style="transition-delay: 0.2s;">The page you were looking for doesn&rsquo;t exist.</p>
+            <a href="index.html" class="cta-button animated-item" style="transition-delay: 0.4s;">Return Home</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
+        <p>NexCore is not affiliated with Mojang AB.</p>
+        <p class="footer-links">
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="cookie-policy.html">Cookie Policy</a>
+        </p>
+    </div>
+</footer>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top">▲</button>
+
+<script src="script.js" defer></script>
+</body>
+</html>
