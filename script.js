@@ -54,12 +54,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (iconSpan) {
                 iconSpan.textContent = isOpened ? '✕' : '☰';
             }
+
+            if (isOpened) {
+                navLinksWrapper.style.maxHeight = navLinksWrapper.scrollHeight + 'px';
+            } else {
+                navLinksWrapper.style.maxHeight = null;
+            }
         });
 
         navLinksWrapper.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if (navLinksWrapper.classList.contains('nav-open')) {
                     navLinksWrapper.classList.remove('nav-open');
+                    navLinksWrapper.style.maxHeight = null;
                     mobileNavToggle.setAttribute('aria-expanded', 'false');
                     const iconSpan = mobileNavToggle.querySelector('span');
                     if (iconSpan) {
