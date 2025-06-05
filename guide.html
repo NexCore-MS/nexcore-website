@@ -1,159 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started Guide - NexCore</title>
-    <link rel="icon" href="/assets/images/favicon.png" type="image/png">
-    <meta name="description" content="New to NexCore? Our official Getting Started Guide helps you begin your Minecraft adventure! Learn basic commands, how worlds work, how to set homes, and claim land.">
-
-    <script>
-      (function() {
-        try {
-          var theme = localStorage.getItem('theme');
-          if (theme === 'dark' || (!theme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark-mode');
-          } else {
-            document.documentElement.classList.remove('dark-mode');
-          }
-        } catch (e) { console.warn('Initial theme script (in head) failed:', e); }
-      })();
-    </script>
-
-    <style>
-      html { /* Default light theme base for html */
-        background-color: #f5f5f7; 
-        color: #1d1d1f;       
-      }
-      html.dark-mode { /* Dark theme base for html if class is present */
-        background-color: #161617; 
-        color: #f5f7fa;       
-      }
-      body {
-        visibility: hidden; /* Hide body initially to prevent flash */
-        opacity: 0;
-      }
-    </style>
-
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <nav>
-        <div class="container">
-            <a href="index.html" class="logo">
-                <img src="assets/images/nexcore-icon.png" alt="NexCore Icon" class="logo-icon-image"> 
-                NexCore
-            </a>
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span>☰</span>
-            </button>
-            <div class="nav-links-wrapper">
-                <ul>
-                    <li><a href="index.html">Home</a></li> 
-                    <li><a href="index.html#features">Features</a></li>
-                    <li><a href="index.html#future">Coming Soon</a></li>
-                    <li><a href="rules.html">Rules</a></li>
-                    <li><a href="dynmap.html">Live Map</a></li>
-                    <li><a href="whitelist.html">Whitelist</a></li>
-                    <li><a href="guide.html">Guide</a></li> 
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="index.html#community">Community</a></li>
-                    <li><a href="index.html#join">Join Us</a></li>
-                </ul>
-                <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
-            </div>
-        </div>
-    </nav>
-
-    <main>
-        <section class="section">
-            <div class="container">
-                <div class="guide-content legal-content"> 
-                    <h1 class="animated-item">Getting Started on NexCore</h1>
-                    <p class="section-subheading animated-item" style="transition-delay: 0.1s; text-align: center;">
-                        Welcome to NexCore! This guide will help you begin your adventure.
-                    </p>
-
-                    <h2 class="animated-item" style="transition-delay: 0.2s;">Starting Your Adventure</h2>
-                    <div class="animated-item" style="transition-delay: 0.3s;">
-                        <p>Start your survival adventure by teleporting to the Survival World. Gather resources, sell them in the shop, and build your base!</p>
-                        <p><strong>Teleport To Survival World:</strong> You can enter the survival world by talking to the "Worlds NPC" (Non-Player Character) at spawn, or by entering the command <code>/rtp</code> (Random Teleport).</p>
-                        <p><strong>A Great Start:</strong> Collect useful rewards from Voting or from the Rewards menu (<code>/rewards</code>) for free on the server! Use any crate keys you get in the Crate Area (<code>/warp crates</code>).</p>
-                    </div>
-
-                    <h2 class="animated-item" style="transition-delay: 0.4s;">Basic Commands</h2>
-                    <p class="animated-item" style="transition-delay: 0.45s;">Here are some important commands you'll need on the server:</p>
-                    <ul class="animated-item command-list" style="transition-delay: 0.5s;">
-                        <li><code>/worlds</code> &rarr; Open the worlds menu.</li>
-                        <li><code>/spawn</code> &rarr; Teleport to the server spawn.</li>
-                        <li><code>/sethome</code> &rarr; Set your current location as your home.</li>
-                        <li><code>/home</code> &rarr; Teleport to your set home.</li>
-                        <li><code>/delhome</code> &rarr; Delete your set home.</li>
-                        <li><code>/pay [player_name] [amount]</code> &rarr; Transfer money to another player.</li>
-                        <li><code>/tpa [player_name]</code> &rarr; Request to teleport to another player.</li>
-                        <li><code>/tpaccept</code> &rarr; Accept a teleportation request.</li>
-                        <li><code>/tpdeny</code> &rarr; Deny a teleportation request.</li>
-                        <li><code>/warps</code> &rarr; Open the warps menu.</li>
-                    </ul>
-
-                    <h2 class="animated-item" style="transition-delay: 0.6s;">Understanding Worlds</h2>
-                    <div class="animated-item" style="transition-delay: 0.7s;">
-                        <p>There are several worlds available for exploring and using on NexCore. Here are the details:</p>
-                        <ul>
-                            <li><strong>Survival World:</strong> Main world, 30k x 30k blocks.</li>
-                            <li><strong>Nether World:</strong> 10k x 10k blocks.</li>
-                            <li><strong>End World:</strong> 5k x 5k blocks.</li>
-                            <li><strong>Mining World:</strong> 5k x 5k blocks.</li>
-                        </ul>
-                        <p><strong>Mining World:</strong> This world is specifically for gathering resources to help preserve the main Survival World's landscape. It may reset periodically (check with server staff for details).</p>
-                        <p>You can typically access these via the <code>/worlds</code> menu.</p>
-                    </div>
-
-                    <h2 class="animated-item" style="transition-delay: 0.8s;">Player Homes</h2>
-                    <div class="animated-item" style="transition-delay: 0.9s;">
-                        <p>Homes allow you to set checkpoints that you can quickly teleport back to, no matter where you are.</p>
-                        <p><strong>Commands:</strong></p>
-                        <ul>
-                            <li><code>/sethome [home_name]</code> &rarr; Set your current location as a home. (You can often name homes, e.g., <code>/sethome base</code>)</li>
-                            <li><code>/home [home_name]</code> &rarr; Teleport to your specified home.</li>
-                            <li><code>/delhome [home_name]</code> &rarr; Delete a home you've set.</li>
-                        </ul>
-                        <p><strong>Home Limit:</strong> As a default player, you can set 2 homes. Your home limit will increase as you level up on the server!</p>
-                    </div>
-
-                    <h2 class="animated-item" style="transition-delay: 1.0s;">Claiming Land (Grief Protection)</h2>
-                    <div class="animated-item" style="transition-delay: 1.1s;">
-                        <p>When you find the perfect spot in the survival world for your base, you can claim an area to gain complete control over it and protect it from grief.</p>
-                        <p><strong>Your Claimblocks:</strong> You have a certain number of claimblocks, which you can see by holding a golden shovel (the claiming tool). You often earn more claimblocks by playing on the server.</p>
-                        <p><strong>How To Claim:</strong></p>
-                        <ul>
-                            <li>Get a golden shovel (often provided via a starter kit or by command like <code>/kit claimtool</code> - check if your server has this).</li>
-                            <li>Right-click one corner of the area you want to claim with the golden shovel.</li>
-                            <li>Go to the opposite corner and right-click it with the golden shovel to define the rectangular area.</li>
-                            <li>Hold your shovel to see your claim boundaries and remaining claimblocks.</li>
-                        </ul>
-                        <p>You can also use commands like <code>/trust [player_name]</code> to allow friends to build in your claim, and other commands to manage your claims (often listed via <code>/help griefprevention</code> or a similar command).</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
-            <p>NexCore is not affiliated with Mojang AB.</p>
-            <p class="footer-links">
-                <a href="privacy.html">Privacy Policy</a> | 
-                <a href="terms.html">Terms of Service</a> | 
-                <a href="cookie-policy.html">Cookie Policy</a>
-            </p>
-        </div>
-    </footer>
-
-<button id="backToTop" class="back-to-top" aria-label="Back to top">▲</button>
-    <script src="script.js" defer></script>
-</body>
-</html>
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/guide.html b/guide.html
+index 8690dd109eaacdb9fd4024d8533ffd4ff4d0f272..68334bc5f905c1ac1cacbb2664f46b7e231b3109 100644
+--- a/guide.html
++++ b/guide.html
+@@ -35,50 +35,51 @@
+       }
+     </style>
+ 
+     <link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+ 
+     <nav>
+         <div class="container">
+             <a href="index.html" class="logo">
+                 <img src="assets/images/nexcore-icon.png" alt="NexCore Icon" class="logo-icon-image"> 
+                 NexCore
+             </a>
+             <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                 <span>☰</span>
+             </button>
+             <div class="nav-links-wrapper">
+                 <ul>
+                     <li><a href="index.html">Home</a></li> 
+                     <li><a href="index.html#features">Features</a></li>
+                     <li><a href="index.html#future">Coming Soon</a></li>
+                     <li><a href="rules.html">Rules</a></li>
+                     <li><a href="dynmap.html">Live Map</a></li>
+                     <li><a href="whitelist.html">Whitelist</a></li>
+                     <li><a href="guide.html">Guide</a></li> 
++                    <li><a href="faq.html">FAQ</a></li>
+                     <li><a href="index.html#community">Community</a></li>
+                     <li><a href="index.html#join">Join Us</a></li>
+                 </ul>
+                 <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+             </div>
+         </div>
+     </nav>
+ 
+     <main>
+         <section class="section">
+             <div class="container">
+                 <div class="guide-content legal-content"> 
+                     <h1 class="animated-item">Getting Started on NexCore</h1>
+                     <p class="section-subheading animated-item" style="transition-delay: 0.1s; text-align: center;">
+                         Welcome to NexCore! This guide will help you begin your adventure.
+                     </p>
+ 
+                     <h2 class="animated-item" style="transition-delay: 0.2s;">Starting Your Adventure</h2>
+                     <div class="animated-item" style="transition-delay: 0.3s;">
+                         <p>Start your survival adventure by teleporting to the Survival World. Gather resources, sell them in the shop, and build your base!</p>
+                         <p><strong>Teleport To Survival World:</strong> You can enter the survival world by talking to the "Worlds NPC" (Non-Player Character) at spawn, or by entering the command <code>/rtp</code> (Random Teleport).</p>
+                         <p><strong>A Great Start:</strong> Collect useful rewards from Voting or from the Rewards menu (<code>/rewards</code>) for free on the server! Use any crate keys you get in the Crate Area (<code>/warp crates</code>).</p>
+                     </div>
+ 
+                     <h2 class="animated-item" style="transition-delay: 0.4s;">Basic Commands</h2>
+diff --git a/guide.html b/guide.html
+index 8690dd109eaacdb9fd4024d8533ffd4ff4d0f272..68334bc5f905c1ac1cacbb2664f46b7e231b3109 100644
+--- a/guide.html
++++ b/guide.html
+@@ -130,28 +131,29 @@
+                             <li>Get a golden shovel (often provided via a starter kit or by command like <code>/kit claimtool</code> - check if your server has this).</li>
+                             <li>Right-click one corner of the area you want to claim with the golden shovel.</li>
+                             <li>Go to the opposite corner and right-click it with the golden shovel to define the rectangular area.</li>
+                             <li>Hold your shovel to see your claim boundaries and remaining claimblocks.</li>
+                         </ul>
+                         <p>You can also use commands like <code>/trust [player_name]</code> to allow friends to build in your claim, and other commands to manage your claims (often listed via <code>/help griefprevention</code> or a similar command).</p>
+                     </div>
+ 
+                 </div>
+             </div>
+         </section>
+     </main>
+ 
+     <footer>
+         <div class="container">
+             <p>&copy; <span id="year"></span> NexCore. All rights reserved.</p>
+             <p>NexCore is not affiliated with Mojang AB.</p>
+             <p class="footer-links">
+                 <a href="privacy.html">Privacy Policy</a> | 
+                 <a href="terms.html">Terms of Service</a> | 
+                 <a href="cookie-policy.html">Cookie Policy</a>
+             </p>
+         </div>
+     </footer>
+ 
++<button id="backToTop" class="back-to-top" aria-label="Back to top">▲</button>
+     <script src="script.js" defer></script>
+ </body>
+ </html>
+ 
+EOF
+)
