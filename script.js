@@ -154,8 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Server Status Fetch
-    const statusEl = document.getElementById('server-status');
-    if (statusEl) {
+    const fetchServerStatus = () => {
+        const statusEl = document.getElementById('server-status');
+        if (!statusEl) return;
+
         fetch('https://api.mcsrvstat.us/2/nexcore.top')
             .then(resp => resp.json())
             .then(data => {
@@ -173,7 +175,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Failed to fetch server status', err);
                 statusEl.textContent = 'Status: unknown';
             });
-    }
+    };
+
+    fetchServerStatus();
 
     // FOUC prevention: Make body visible after CSS and initial JS should be handled
     // The inline script in <head> handles initial theme class on <html>
