@@ -48,18 +48,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileNavToggle && navLinksWrapper) {
         mobileNavToggle.addEventListener('click', () => {
-            const isOpened = navLinksWrapper.classList.toggle('nav-open');
-            mobileNavToggle.setAttribute('aria-expanded', isOpened);
+            const isOpening = !navLinksWrapper.classList.contains('nav-open');
+            mobileNavToggle.setAttribute('aria-expanded', isOpening);
             const iconSpan = mobileNavToggle.querySelector('span');
             if (iconSpan) {
-                iconSpan.textContent = isOpened ? '✕' : '☰';
+                iconSpan.textContent = isOpening ? '✕' : '☰';
+            }
+
+            if (isOpening) {
+                navLinksWrapper.style.maxHeight = navLinksWrapper.scrollHeight + 'px';
+                navLinksWrapper.classList.add('nav-open');
+                const cleanup = (e) => {
+                    if (e.propertyName === 'max-height') {
+                        navLinksWrapper.style.maxHeight = 'none';
+                        navLinksWrapper.removeEventListener('transitionend', cleanup);
+                    }
+                };
+                navLinksWrapper.addEventListener('transitionend', cleanup);
+            } else {
+                navLinksWrapper.style.maxHeight = navLinksWrapper.scrollHeight + 'px';
+                void navLinksWrapper.offsetHeight;
+                navLinksWrapper.classList.remove('nav-open');
+                navLinksWrapper.style.maxHeight = '0';
+            }
+        });
+
+        navLinksWrapper.addEventListener('transitionend', (e) => {
+            if (e.propertyName === 'max-height' && !navLinksWrapper.classList.contains('nav-open')) {
+                navLinksWrapper.style.maxHeight = '';
             }
         });
 
         navLinksWrapper.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if (navLinksWrapper.classList.contains('nav-open')) {
+                    navLinksWrapper.style.maxHeight = navLinksWrapper.scrollHeight + 'px';
+                    void navLinksWrapper.offsetHeight;
                     navLinksWrapper.classList.remove('nav-open');
+                    navLinksWrapper.style.maxHeight = '0';
                     mobileNavToggle.setAttribute('aria-expanded', 'false');
                     const iconSpan = mobileNavToggle.querySelector('span');
                     if (iconSpan) {
