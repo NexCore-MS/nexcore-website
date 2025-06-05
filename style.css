@@ -1,264 +1,594 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a/style.css b/style.css
-index 64fb652817db3845703435728ba075fef3068069..8c3a0f251159a51af24f88a4660e80777dda3f14 100644
---- a/style.css
-+++ b/style.css
-@@ -302,92 +302,98 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left;
-     transform: translateY(-3px) scale(1.02);
-     box-shadow: 0 6px 20px var(--primary-accent-hover-shadow);
- }
- .cta-button-discord {
-     background-color: var(--discord-button-bg);
-     box-shadow: 0 4px 15px var(--discord-button-shadow);
-     margin-top: 30px;
- }
- .cta-button-discord:hover {
-     background-color: var(--discord-button-hover-bg);
-     box-shadow: 0 6px 20px var(--discord-button-hover-shadow);
-     transform: translateY(-2px);
- }
- 
- /* General Section Styling */
- .section {
-     padding: 100px 0;
-     text-align: center; 
-     background-color: var(--section-bg); 
-     transition: background-color 0.3s ease;
- }
- .section:last-of-type { margin-bottom: 0; }
- .section.alternate-bg { background-color: var(--section-alt-bg); }
- 
- /* Styling for main content wrappers like in rules.html, legal pages, guide.html */
--.rules-content, 
-+.rules-content,
- .legal-content,
--.guide-content { 
-+.guide-content,
-+.faq-content {
-     text-align: left; 
-     max-width: 800px; 
-     margin: 0 auto;
-     padding: 20px 0; 
- }
- .rules-content h1, .rules-content h2, .rules-content h3,
- .legal-content h1, .legal-content h2, .legal-content h3,
--.guide-content h1, .guide-content h2, .guide-content h3 { 
-+.guide-content h1, .guide-content h2, .guide-content h3,
-+.faq-content h1, .faq-content h2, .faq-content h3 {
-     text-align: center; 
- }
- .rules-content ul, .rules-content ol,
- .legal-content ul, .legal-content ol,
--.guide-content ul, .guide-content ol { 
-+.guide-content ul, .guide-content ol,
-+.faq-content ul, .faq-content ol {
-     margin-bottom: 1.5em; 
-     padding-left: 20px; 
- }
- .rules-content li,
- .legal-content li,
--.guide-content li { 
-+.guide-content li,
-+.faq-content li {
-     margin-bottom: 0.5em; 
- }
- 
- /* General H2 for sections and H1 for content pages like rules/legal/guide */
- .section h2, 
--.rules-content h1, 
-+.rules-content h1,
- .legal-content h1,
--.guide-content h1 { 
-+.guide-content h1,
-+.faq-content h1 {
-     font-size: 2.8em; 
-     font-weight: 600; 
-     color: var(--heading-color);
-     margin-bottom: 0.5em;
-     letter-spacing: -0.015em;
- }
- 
- /* Subheadings for sections and content pages */
- .section .section-subheading, 
- .rules-content .section-subheading, 
- .legal-content .section-subheading,
--.guide-content .section-subheading { 
-+.guide-content .section-subheading,
-+.faq-content .section-subheading {
-     font-size: 1.3em; 
-     color: var(--text-muted-color);
-     max-width: 700px; 
-     margin: 0 auto 2.5em auto; 
-     font-weight: 400;
-     /* text-align: center; -- Reverted this change for now to isolate the blank page issue */
- }
- /* If a specific subheading like on guide.html needs centering, use an inline style or a utility class for now */
- 
- 
- /* Features & Future Modes Grid */
- .features-grid, .future-modes-grid {
-     display: flex; flex-wrap: wrap; justify-content: center;
-     gap: 40px;
-     margin-top: 40px;
- }
- .feature-item, .future-mode-item {
-     padding: 35px;
-     border-radius: 12px;
-     width: 100%; max-width: 320px;
-     box-shadow: 0 5px 15px var(--card-shadow);
-     text-align: left;
-     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.3s ease;
- }
- .section.alternate-bg .feature-item,
-diff --git a/style.css b/style.css
-index 64fb652817db3845703435728ba075fef3068069..8c3a0f251159a51af24f88a4660e80777dda3f14 100644
---- a/style.css
-+++ b/style.css
-@@ -411,50 +417,58 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left;
- .future-mode-item .icon-placeholder img, .future-mode-item .icon-placeholder svg { width: 28px; height: 28px; }
- .feature-item p, .future-mode-item p {
-     font-size: 0.95em;
-     color: var(--card-text-color);
-     line-height: 1.5;
- }
- 
- /* Join Section */
- .join-section { background-color: var(--join-section-bg); color: var(--join-section-text); padding: 100px 0; }
- .join-section h2 { color: var(--join-section-text); font-size: 2.8em; letter-spacing: -0.015em; }
- .join-section .section-subheading { color: var(--join-section-subheading-text); } 
- .server-ip-area { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; }
- .server-ip-display {
-     background-color: var(--ip-display-bg); border: 1px solid var(--ip-display-border);
-     padding: 18px 30px; border-radius: 10px; font-size: 1.5em; font-weight: 600; color: var(--ip-display-text); user-select: all;
- }
- .copy-ip-button {
-     background-color: var(--copy-btn-bg); color: var(--copy-btn-text);
-     padding: 18px 25px; border: none; border-radius: 10px;
-     font-size: 1em; font-weight: 500; cursor: pointer; font-family: inherit;
-     transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
- }
- .copy-ip-button:hover { background-color: var(--copy-btn-hover-bg); transform: scale(1.05); }
- .copy-ip-button.copied { background-color: var(--copy-btn-copied-bg); color: var(--copy-btn-copied-text); }
- 
-+/* Server status line */
-+.server-status {
-+    margin-top: 10px;
-+    font-size: 1em;
-+}
-+.server-status .status-online { color: #34c759; font-weight: bold; }
-+.server-status .status-offline { color: #ff3b30; font-weight: bold; }
-+
- /* Community Section */
- .discord-widget-container { margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: center; }
- .discord-widget-container iframe { border-radius: 10px; box-shadow: 0 5px 15px var(--discord-widget-shadow); }
- 
- /* Dynmap Styles */
- .dynmap-container { width: 100%; margin-top: 20px; }
- .dynmap-iframe {
-     width: 100%; height: 75vh; border: none;
-     border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow);
-     background-color: #000; /* Fallback */
- }
- 
- /* Google Form Container Styles */
- .google-form-container { max-width: 760px; margin: 30px auto; }
- .google-form-iframe {
-     width: 100%; min-height: 700px; border: none;
-     border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow);
- }
- 
- /* Legal Content Pages (already covered by .legal-content above) */
- 
- /* Footer */
- footer {
-     background-color: var(--footer-bg); color: var(--footer-text);
-     text-align: center; padding: 50px 20px; font-size: 0.9em;
-diff --git a/style.css b/style.css
-index 64fb652817db3845703435728ba075fef3068069..8c3a0f251159a51af24f88a4660e80777dda3f14 100644
---- a/style.css
-+++ b/style.css
-@@ -504,42 +518,77 @@ footer a:hover { text-decoration: underline; }
-     }
-     .nav-links-wrapper.nav-open {
-         display: flex;
-         flex-direction: column;
-         align-items: stretch; 
-     }
-     nav ul {
-         flex-direction: column; width: 100%; text-align: center;
-         margin-bottom: 15px; 
-     }
-     nav ul li { margin-left: 0; margin-bottom: 0; width: 100%; }
-     nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
- 
-     #darkModeToggle {
-         margin-left: 0; 
-         margin-bottom: 15px; 
-         align-self: center; 
-     }
- 
-     /* Other Responsive Styles */
-     .hero h1 { font-size: 2.8em; }
-     .hero .subtitle { font-size: 1.3em; }
-     .section h2, .rules-content h1, .legal-content h1, .guide-content h1 { font-size: 2.2em; letter-spacing: -0.01em; }
-     .legal-content h2, .guide-content h2 { font-size: 1.7em; } 
-     .legal-content h3, .guide-content h3 { font-size: 1.3em; } 
--    .section .section-subheading, 
--    .rules-content .section-subheading, 
-+    .section .section-subheading,
-+    .rules-content .section-subheading,
-     .legal-content .section-subheading,
--    .guide-content .section-subheading { font-size: 1.1em; }
-+    .guide-content .section-subheading,
-+    .faq-content .section-subheading { font-size: 1.1em; }
-     .section { padding: 80px 0; }
-     .features-grid, .future-modes-grid { gap: 30px; }
-     .feature-item, .future-mode-item { padding: 30px; max-width: 90%; }
-     .server-ip-area { flex-direction: column; gap: 10px; }
-     .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
-     .copy-ip-button { padding: 15px 20px; font-size: 0.95em; width: 100%; max-width: 250px;}
-     .discord-widget-container iframe { width: 100% !important; max-width: 350px; min-height: 400px; }
-     .dynmap-iframe { height: 60vh; }
-     .section .section-subheading.dynmap-intro { margin-bottom: 1.5em; }
-     .google-form-container { margin-top: 20px; margin-bottom: 20px; }
-     .google-form-iframe { min-height: 600px; }
--    .legal-content, .rules-content, .guide-content { margin: 20px auto; padding: 15px; }
-+    .legal-content,
-+    .rules-content,
-+    .guide-content,
-+    .faq-content {
-+        margin: 20px auto;
-+        padding: 15px;
-+    }
-+}
-+
-+/* Back to Top Button */
-+.back-to-top {
-+    position: fixed;
-+    bottom: 30px;
-+    right: 30px;
-+    width: 40px;
-+    height: 40px;
-+    display: none;
-+    align-items: center;
-+    justify-content: center;
-+    background-color: var(--primary-accent-color);
-+    color: #fff;
-+    border: none;
-+    border-radius: 50%;
-+    font-size: 1.3em;
-+    cursor: pointer;
-+    box-shadow: 0 4px 6px var(--primary-accent-shadow);
-+    transition: background-color 0.3s ease, transform 0.2s ease;
-+    z-index: 999;
-+}
-+.back-to-top:hover {
-+    background-color: var(--primary-accent-hover-bg);
-+    transform: scale(1.1);
-+}
-+.back-to-top.visible {
-+    display: flex;
- }
- 
-EOF
-)
+/* Global Resets & Base Styles */
+:root {
+    --bg-color: #f5f5f7;
+    --text-color: #1d1d1f;
+    --text-muted-color: #6e6e73;
+    --heading-color: #1d1d1f;
+    --link-color: #1d1d1f; /* Nav link color */
+    --link-hover-color: #007aff;
+    --primary-accent-color: #007aff;
+    --primary-accent-hover-bg: #0068d6;
+    --primary-accent-shadow: rgba(0, 122, 255, 0.25);
+    --primary-accent-hover-shadow: rgba(0, 122, 255, 0.35);
+
+    --section-bg: #fff;
+    --section-alt-bg: #f5f5f7;
+
+    --card-bg: #f9f9f9;
+    --card-alt-bg: #fff;
+    --card-shadow: rgba(0,0,0,0.05);
+    --card-hover-shadow: rgba(0,0,0,0.08);
+    --card-text-color: var(--text-muted-color);
+
+    --nav-bg-color: rgba(255, 255, 255, 0.8);
+    --nav-border-color: rgba(0,0,0,0.08);
+    --nav-blur-saturate: blur(20px) saturate(180%);
+    --nav-height: 70px; /* Adjust as needed by inspecting your nav */
+
+    --hero-bg-color: #1c1c1e;
+    --hero-text-color: #fff;
+    --hero-subtitle-color: #d1d1d6;
+
+    --icon-placeholder-bg: #007aff30; /* For feature icons etc. */
+    --icon-placeholder-color: #007aff;
+    --future-icon-placeholder-bg: #7857fe30;
+    --future-icon-placeholder-color: #7857fe;
+
+    --join-section-bg: #007aff;
+    --join-section-text: #fff;
+    --join-section-subheading-text: rgba(255,255,255,0.85);
+    --ip-display-bg: rgba(255, 255, 255, 0.15);
+    --ip-display-border: rgba(255, 255, 255, 0.3);
+    --ip-display-text: #fff;
+    --copy-btn-bg: #fff;
+    --copy-btn-text: #007aff;
+    --copy-btn-hover-bg: #e9e9ed;
+    --copy-btn-copied-bg: #34c759;
+    --copy-btn-copied-text: #fff;
+
+    --discord-widget-shadow: rgba(0,0,0,0.08);
+    --discord-button-bg: #5865F2;
+    --discord-button-hover-bg: #4f5bda;
+    --discord-button-shadow: rgba(88, 101, 242, 0.25);
+    --discord-button-hover-shadow: rgba(88, 101, 242, 0.35);
+
+    --footer-bg: #1d1d1f;
+    --footer-text: #a0a0a5;
+    --footer-link: #2997ff;
+    --footer-links-color: #b0b0b5;
+    --footer-links-hover-color: #fff;
+
+    --dark-mode-toggle-bg: transparent;
+    --dark-mode-toggle-text: #1d1d1f;
+    --dark-mode-toggle-hover-bg: rgba(0,0,0,0.05);
+    --mobile-nav-toggle-color: var(--heading-color);
+
+    --form-input-bg: #fff; /* General form input background, if needed elsewhere */
+    --form-input-border: #ccc; /* General form input border */
+    --form-input-focus-border: var(--primary-accent-color);
+    --form-input-focus-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+
+    --legal-content-bg: var(--section-bg);
+    --legal-content-text: var(--text-color);
+    --legal-content-heading: var(--heading-color);
+    --legal-content-link: var(--primary-accent-color);
+}
+
+html.dark-mode {
+    --bg-color: #161617;
+    --text-color: #f5f7fa;
+    --text-muted-color: #8e8e93;
+    --heading-color: #f5f7fa;
+    --link-color: #f5f7fa;
+    --link-hover-color: #0A84FF;
+    --primary-accent-color: #0A84FF;
+    --primary-accent-hover-bg: #0073e0;
+    --primary-accent-shadow: rgba(10, 132, 255, 0.3);
+    --primary-accent-hover-shadow: rgba(10, 132, 255, 0.4);
+
+    --section-bg: #1c1c1e;
+    --section-alt-bg: #161617;
+
+    --card-bg: #2c2c2e;
+    --card-alt-bg: #1c1c1e;
+    --card-shadow: rgba(0,0,0,0.2);
+    --card-hover-shadow: rgba(0,0,0,0.3);
+    --card-text-color: #c7c7cc;
+
+    --nav-bg-color: rgba(28, 28, 30, 0.75);
+    --nav-border-color: rgba(84,84,88,0.65); 
+
+    --hero-bg-color: #000;
+    --hero-text-color: #fff;
+    --hero-subtitle-color: #a0a0a5;
+
+    --icon-placeholder-bg: #0A84FF30;
+    --icon-placeholder-color: #0A84FF;
+    --future-icon-placeholder-bg: #bf5af230;
+    --future-icon-placeholder-color: #bf5af2;
+
+    --join-section-bg: #0A84FF;
+    --join-section-text: #fff;
+    --join-section-subheading-text: rgba(255,255,255,0.85);
+    --ip-display-bg: rgba(255, 255, 255, 0.1);
+    --ip-display-border: rgba(255, 255, 255, 0.2);
+    --ip-display-text: #fff;
+    --copy-btn-bg: #3a3a3c;
+    --copy-btn-text: #0A84FF;
+    --copy-btn-hover-bg: #48484a;
+    --copy-btn-copied-bg: #30d158;
+    --copy-btn-copied-text: #fff;
+
+    --discord-widget-shadow: rgba(0,0,0,0.3);
+    --discord-button-bg: #7289DA;
+    --discord-button-hover-bg: #677bc4;
+    --discord-button-shadow: rgba(114, 137, 218, 0.3);
+    --discord-button-hover-shadow: rgba(114, 137, 218, 0.4);
+
+    --footer-bg: #000;
+    --footer-text: #8e8e93;
+    --footer-link: #0A84FF;
+    --footer-links-color: #707075;
+    --footer-links-hover-color: #f5f7fa;
+
+    --dark-mode-toggle-text: #f5f7fa;
+    --dark-mode-toggle-hover-bg: rgba(255,255,255,0.08);
+    --mobile-nav-toggle-color: var(--heading-color);
+
+    --form-input-bg: #2c2c2e; 
+    --form-input-border: #4a4a4c; 
+    --form-input-focus-border: var(--primary-accent-color);
+    --form-input-focus-shadow: 0 0 0 2px rgba(10, 132, 255, 0.3);
+
+    --legal-content-bg: var(--section-bg);
+    --legal-content-text: var(--text-color);
+    --legal-content-heading: var(--heading-color);
+    --legal-content-link: var(--primary-accent-color);
+}
+
+html {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+body {
+    visibility: hidden;
+    opacity: 0;
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    font-weight: 400;
+    transition: opacity 0.5s ease; 
+}
+body.loaded { 
+    visibility: visible;
+    opacity: 1;
+}
+body { padding-top: var(--nav-height); }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+/* === NAVIGATION STYLES === */
+nav {
+    background-color: var(--nav-bg-color);
+    backdrop-filter: var(--nav-blur-saturate);
+    -webkit-backdrop-filter: var(--nav-blur-saturate);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--nav-border-color);
+    position: fixed;
+    top: 0; left: 0; right: 0; width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
+}
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+nav .logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8em;
+    font-weight: 600;
+    color: var(--heading-color);
+    text-decoration: none;
+    flex-shrink: 0;
+}
+.logo-icon-image {
+    height: 1em;
+    width: auto;
+    margin-right: 0.4em;
+    vertical-align: middle;
+}
+
+.nav-links-wrapper {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; 
+    justify-content: flex-end; 
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center; 
+}
+nav ul li {
+    margin-left: 25px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: var(--link-color);
+    font-weight: 500;
+    font-size: 0.95em;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    position: relative;
+    opacity: 0.9;
+    white-space: nowrap; 
+}
+nav ul li a:hover { color: var(--link-hover-color); opacity: 1; }
+nav ul li a::after {
+    content: ''; position: absolute; width: 100%; transform: scaleX(0);
+    height: 1px; bottom: -3px; left: 0; background-color: var(--link-hover-color);
+    transform-origin: bottom right; transition: transform 0.25s ease-out;
+}
+nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+
+#darkModeToggle {
+    background: var(--dark-mode-toggle-bg);
+    color: var(--dark-mode-toggle-text);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 8px 10px; 
+    cursor: pointer;
+    font-size: 1.1em; 
+    margin-left: 20px; 
+    line-height: 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex-shrink: 0; 
+}
+#darkModeToggle:hover { background-color: var(--dark-mode-toggle-hover-bg); }
+
+.mobile-nav-toggle {
+    display: none; background: none; border: none;
+    font-size: 1.8em; cursor: pointer; color: var(--mobile-nav-toggle-color);
+    padding: 5px; line-height: 1; z-index: 1001;
+}
+.mobile-nav-toggle span { display: block; }
+
+/* Hero Section */
+.hero {
+    text-align: center; padding: 120px 20px 100px;
+    background-color: var(--hero-bg-color);
+    position: relative; color: var(--hero-text-color);
+}
+.hero h1 {
+    font-size: 3.8em; font-weight: 700; color: var(--hero-text-color);
+    margin-bottom: 0.3em; letter-spacing: -0.02em;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeInUp 0.8s 0.2s ease-out forwards;
+}
+.hero .subtitle {
+    font-size: 1.6em; color: var(--hero-subtitle-color);
+    margin-bottom: 1.8em; font-weight: 400;
+    max-width: 650px; margin-left: auto; margin-right: auto;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeInUp 0.8s 0.4s ease-out forwards;
+}
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+/* BUTTON STYLES */
+.cta-button {
+    display: inline-block; padding: 12px 25px;
+    font-size: 1.05em; font-weight: 500;
+    color: #fff;
+    text-decoration: none; text-align: center;
+    border-radius: 10px; cursor: pointer; border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.hero .cta-button {
+    background-color: var(--primary-accent-color);
+    box-shadow: 0 4px 15px var(--primary-accent-shadow);
+    padding: 16px 40px; font-size: 1.15em;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeInUp 0.8s 0.6s ease-out forwards;
+}
+.hero .cta-button:hover {
+    background-color: var(--primary-accent-hover-bg);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px var(--primary-accent-hover-shadow);
+}
+.cta-button-discord {
+    background-color: var(--discord-button-bg);
+    box-shadow: 0 4px 15px var(--discord-button-shadow);
+    margin-top: 30px;
+}
+.cta-button-discord:hover {
+    background-color: var(--discord-button-hover-bg);
+    box-shadow: 0 6px 20px var(--discord-button-hover-shadow);
+    transform: translateY(-2px);
+}
+
+/* General Section Styling */
+.section {
+    padding: 100px 0;
+    text-align: center; 
+    background-color: var(--section-bg); 
+    transition: background-color 0.3s ease;
+}
+.section:last-of-type { margin-bottom: 0; }
+.section.alternate-bg { background-color: var(--section-alt-bg); }
+
+/* Styling for main content wrappers like in rules.html, legal pages, guide.html */
+.rules-content,
+.legal-content,
+.guide-content,
+.faq-content {
+    text-align: left; 
+    max-width: 800px; 
+    margin: 0 auto;
+    padding: 20px 0; 
+}
+.rules-content h1, .rules-content h2, .rules-content h3,
+.legal-content h1, .legal-content h2, .legal-content h3,
+.guide-content h1, .guide-content h2, .guide-content h3,
+.faq-content h1, .faq-content h2, .faq-content h3 {
+    text-align: center; 
+}
+.rules-content ul, .rules-content ol,
+.legal-content ul, .legal-content ol,
+.guide-content ul, .guide-content ol,
+.faq-content ul, .faq-content ol {
+    margin-bottom: 1.5em; 
+    padding-left: 20px; 
+}
+.rules-content li,
+.legal-content li,
+.guide-content li,
+.faq-content li {
+    margin-bottom: 0.5em; 
+}
+
+/* General H2 for sections and H1 for content pages like rules/legal/guide */
+.section h2, 
+.rules-content h1,
+.legal-content h1,
+.guide-content h1,
+.faq-content h1 {
+    font-size: 2.8em; 
+    font-weight: 600; 
+    color: var(--heading-color);
+    margin-bottom: 0.5em;
+    letter-spacing: -0.015em;
+}
+
+/* Subheadings for sections and content pages */
+.section .section-subheading, 
+.rules-content .section-subheading, 
+.legal-content .section-subheading,
+.guide-content .section-subheading,
+.faq-content .section-subheading {
+    font-size: 1.3em; 
+    color: var(--text-muted-color);
+    max-width: 700px; 
+    margin: 0 auto 2.5em auto; 
+    font-weight: 400;
+    /* text-align: center; -- Reverted this change for now to isolate the blank page issue */
+}
+/* If a specific subheading like on guide.html needs centering, use an inline style or a utility class for now */
+
+
+/* Features & Future Modes Grid */
+.features-grid, .future-modes-grid {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+.feature-item, .future-mode-item {
+    padding: 35px;
+    border-radius: 12px;
+    width: 100%; max-width: 320px;
+    box-shadow: 0 5px 15px var(--card-shadow);
+    text-align: left;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.3s ease;
+}
+.section.alternate-bg .feature-item,
+.section.alternate-bg .future-mode-item { background-color: var(--card-alt-bg); }
+.section:not(.alternate-bg) .feature-item,
+.section:not(.alternate-bg) .future-mode-item { background-color: var(--card-bg); }
+
+.feature-item:hover, .future-mode-item:hover { transform: translateY(-8px); box-shadow: 0 12px 28px var(--card-hover-shadow); }
+.feature-item h3, .future-mode-item h3 { font-size: 1.5em; font-weight: 600; color: var(--heading-color); margin-bottom: 0.5em; }
+.feature-item .icon-placeholder {
+    background-color: var(--icon-placeholder-bg); color: var(--icon-placeholder-color);
+    width: 48px; height: 48px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;
+    border-radius: 10px; font-size: 24px;
+}
+.future-mode-item .icon-placeholder {
+    background-color: var(--future-icon-placeholder-bg); color: var(--future-icon-placeholder-color);
+    width: 48px; height: 48px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;
+    border-radius: 10px; font-size: 24px;
+}
+.feature-item .icon-placeholder img, .feature-item .icon-placeholder svg,
+.future-mode-item .icon-placeholder img, .future-mode-item .icon-placeholder svg { width: 28px; height: 28px; }
+.feature-item p, .future-mode-item p {
+    font-size: 0.95em;
+    color: var(--card-text-color);
+    line-height: 1.5;
+}
+
+/* Join Section */
+.join-section { background-color: var(--join-section-bg); color: var(--join-section-text); padding: 100px 0; }
+.join-section h2 { color: var(--join-section-text); font-size: 2.8em; letter-spacing: -0.015em; }
+.join-section .section-subheading { color: var(--join-section-subheading-text); } 
+.server-ip-area { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; }
+.server-ip-display {
+    background-color: var(--ip-display-bg); border: 1px solid var(--ip-display-border);
+    padding: 18px 30px; border-radius: 10px; font-size: 1.5em; font-weight: 600; color: var(--ip-display-text); user-select: all;
+}
+.copy-ip-button {
+    background-color: var(--copy-btn-bg); color: var(--copy-btn-text);
+    padding: 18px 25px; border: none; border-radius: 10px;
+    font-size: 1em; font-weight: 500; cursor: pointer; font-family: inherit;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.copy-ip-button:hover { background-color: var(--copy-btn-hover-bg); transform: scale(1.05); }
+.copy-ip-button.copied { background-color: var(--copy-btn-copied-bg); color: var(--copy-btn-copied-text); }
+
+/* Server status line */
+.server-status {
+    margin-top: 10px;
+    font-size: 1em;
+}
+.server-status .status-online { color: #34c759; font-weight: bold; }
+.server-status .status-offline { color: #ff3b30; font-weight: bold; }
+
+/* Community Section */
+.discord-widget-container { margin-top: 30px; margin-bottom: 30px; display: flex; justify-content: center; }
+.discord-widget-container iframe { border-radius: 10px; box-shadow: 0 5px 15px var(--discord-widget-shadow); }
+
+/* Dynmap Styles */
+.dynmap-container { width: 100%; margin-top: 20px; }
+.dynmap-iframe {
+    width: 100%; height: 75vh; border: none;
+    border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow);
+    background-color: #000; /* Fallback */
+}
+
+/* Google Form Container Styles */
+.google-form-container { max-width: 760px; margin: 30px auto; }
+.google-form-iframe {
+    width: 100%; min-height: 700px; border: none;
+    border-radius: 10px; box-shadow: 0 5px 15px var(--card-shadow);
+}
+
+/* Legal Content Pages (already covered by .legal-content above) */
+
+/* Footer */
+footer {
+    background-color: var(--footer-bg); color: var(--footer-text);
+    text-align: center; padding: 50px 20px; font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+footer p { margin: 0.5em 0; }
+footer a { color: var(--footer-link); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+.footer-links {
+    margin-top: 15px;
+    font-size: 0.95em;
+}
+.footer-links a {
+    color: var(--footer-links-color);
+    margin: 0 10px;
+    transition: color 0.2s ease;
+}
+.footer-links a:hover {
+    color: var(--footer-links-hover-color);
+    text-decoration: none;
+}
+
+/* Scroll Animation Helper Classes */
+.animated-item { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out .1s; }
+.animated-item.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Scroll Margin for Fixed Header Anchor Links */
+#hero,
+#features,
+#future,
+#community,
+#join {
+    scroll-margin-top: var(--nav-height);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* Mobile Navigation Specifics */
+    .mobile-nav-toggle { display: block; }
+    .nav-links-wrapper {
+        display: none;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background-color: var(--nav-bg-color);
+        padding: 20px 0; box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-top: 1px solid var(--nav-border-color); z-index: 999;
+    }
+    .nav-links-wrapper.nav-open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch; 
+    }
+    nav ul {
+        flex-direction: column; width: 100%; text-align: center;
+        margin-bottom: 15px; 
+    }
+    nav ul li { margin-left: 0; margin-bottom: 0; width: 100%; }
+    nav ul li a { padding: 12px 20px; display: block; width: 100%; box-sizing: border-box; }
+
+    #darkModeToggle {
+        margin-left: 0; 
+        margin-bottom: 15px; 
+        align-self: center; 
+    }
+
+    /* Other Responsive Styles */
+    .hero h1 { font-size: 2.8em; }
+    .hero .subtitle { font-size: 1.3em; }
+    .section h2, .rules-content h1, .legal-content h1, .guide-content h1 { font-size: 2.2em; letter-spacing: -0.01em; }
+    .legal-content h2, .guide-content h2 { font-size: 1.7em; } 
+    .legal-content h3, .guide-content h3 { font-size: 1.3em; } 
+    .section .section-subheading,
+    .rules-content .section-subheading,
+    .legal-content .section-subheading,
+    .guide-content .section-subheading,
+    .faq-content .section-subheading { font-size: 1.1em; }
+    .section { padding: 80px 0; }
+    .features-grid, .future-modes-grid { gap: 30px; }
+    .feature-item, .future-mode-item { padding: 30px; max-width: 90%; }
+    .server-ip-area { flex-direction: column; gap: 10px; }
+    .server-ip-display { font-size: 1.3em; padding: 15px 25px;}
+    .copy-ip-button { padding: 15px 20px; font-size: 0.95em; width: 100%; max-width: 250px;}
+    .discord-widget-container iframe { width: 100% !important; max-width: 350px; min-height: 400px; }
+    .dynmap-iframe { height: 60vh; }
+    .section .section-subheading.dynmap-intro { margin-bottom: 1.5em; }
+    .google-form-container { margin-top: 20px; margin-bottom: 20px; }
+    .google-form-iframe { min-height: 600px; }
+    .legal-content,
+    .rules-content,
+    .guide-content,
+    .faq-content {
+        margin: 20px auto;
+        padding: 15px;
+    }
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.3em;
+    cursor: pointer;
+    box-shadow: 0 4px 6px var(--primary-accent-shadow);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 999;
+}
+.back-to-top:hover {
+    background-color: var(--primary-accent-hover-bg);
+    transform: scale(1.1);
+}
+.back-to-top.visible {
+    display: flex;
+}
