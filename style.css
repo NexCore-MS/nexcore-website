@@ -100,7 +100,7 @@ html.dark-mode {
 
     --hero-bg: linear-gradient(180deg, #1c1c1e 0%, #000 100%);
     --hero-text-color: #fff;
-    --hero-subtitle-color: #a0a0a5;
+    --hero-subtitle-color: #fff;
 
     --icon-placeholder-bg: #0A84FF30;
     --icon-placeholder-color: #0A84FF;
