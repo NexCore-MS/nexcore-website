@@ -201,7 +201,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data && data.online) {
                     let playerInfo = '';
                     if (data.players && typeof data.players.online === 'number') {
-                        playerInfo = ` - ${data.players.online}/${data.players.max} players`;
+                        playerInfo = ` - ${data.players.online}`;
+                        if (typeof data.players.max === 'number') {
+                            playerInfo += `/${data.players.max}`;
+                        }
+                        playerInfo += ' players';
                     }
                     statusEl.innerHTML = `Status: <span class="status-online">Online</span>${playerInfo}`;
                 } else {
