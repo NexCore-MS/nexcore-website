@@ -355,8 +355,9 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
 .legal-content ul, .legal-content ol,
 .guide-content ul, .guide-content ol,
 .faq-content ul, .faq-content ol {
-    margin-bottom: 1.5em; 
-    padding-left: 20px; 
+    margin-bottom: 1.5em;
+    padding-left: 1.2em;
+    list-style-position: inside;
 }
 .rules-content li,
 .legal-content li,
