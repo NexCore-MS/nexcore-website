@@ -115,6 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Scroll Down Button
+    const scrollDownButton = document.querySelector('.scroll-down');
+    if (scrollDownButton) {
+        scrollDownButton.addEventListener('click', () => {
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                aboutSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
     // Copy IP Button Functionality
     const copyIpButton = document.getElementById('copy-ip-btn');
     const serverIpElement = document.getElementById('server-ip');
