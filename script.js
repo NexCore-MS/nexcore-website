@@ -220,6 +220,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchServerStatus();
 
+    // Simple gallery slider
+    const gallerySlides = document.querySelectorAll('.gallery-slide');
+    const prevBtn = document.querySelector('.gallery-btn.prev');
+    const nextBtn = document.querySelector('.gallery-btn.next');
+    let currentSlide = 0;
+
+    const showSlide = (index) => {
+        gallerySlides.forEach((slide, i) => {
+            if (i === index) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+    };
+
+    if (gallerySlides.length && prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + gallerySlides.length) % gallerySlides.length;
+            showSlide(currentSlide);
+        });
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % gallerySlides.length;
+            showSlide(currentSlide);
+        });
+    }
+
     // FOUC prevention: Make body visible after CSS and initial JS should be handled
     // The inline script in <head> handles initial theme class on <html>
     // This ensures body becomes visible

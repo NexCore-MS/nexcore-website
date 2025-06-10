@@ -280,6 +280,7 @@ nav ul li a:hover::after { transform: scaleX(1); transform-origin: bottom left; 
     background-image: url('assets/images/slide1.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     opacity: 0.35;
     z-index: -2;
 }
@@ -585,6 +586,40 @@ html.dark-mode .hero::before {
     color: var(--heading-color);
     text-align: right;
 }
+
+/* Gallery Section */
+.gallery-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+.gallery-slide-container {
+    max-width: 800px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--card-shadow);
+}
+.gallery-slide {
+    display: none;
+    width: 100%;
+    height: auto;
+}
+.gallery-slide.active { display: block; }
+.gallery-btn {
+    background-color: var(--primary-accent-color);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 4px 6px var(--primary-accent-shadow);
+    transition: background-color 0.3s ease;
+}
+.gallery-btn:hover { background-color: var(--primary-accent-hover-bg); }
 
 /* Dynmap Styles */
 .dynmap-container { width: 100%; margin-top: 20px; }
