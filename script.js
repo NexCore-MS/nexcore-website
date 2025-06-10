@@ -233,5 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // The inline script in <head> handles initial theme class on <html>
     // This ensures body becomes visible
     document.body.classList.add('loaded');
+    document.body.classList.remove('preload');
 
 });

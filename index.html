@@ -35,17 +35,23 @@
         background-color: #161617; 
         color: #f5f7fa;       
       }
-      body {
+      .preload {
         visibility: hidden; /* Hide body initially to prevent flash */
         opacity: 0;
         /* background-color is inherited from html or set by html.dark-mode */
       }
     </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        document.body.classList.add("loaded");
+        document.body.classList.remove("preload");
+      });
+    </script>
 
     <link rel="stylesheet" href="style.css">
 <noscript><style>body{visibility:visible;opacity:1}</style></noscript>
 </head>
-<body>
+<body class="preload">
 
 <nav>
     <div class="container">

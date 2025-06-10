@@ -21,12 +21,18 @@
     <style>
       html { background-color: #f5f5f7; color: #1d1d1f; }
       html.dark-mode { background-color: #161617; color: #f5f7fa; }
-      body { visibility: hidden; opacity: 0; }
+      .preload { visibility: hidden; opacity: 0; }
     </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        document.body.classList.add("loaded");
+        document.body.classList.remove("preload");
+      });
+    </script>
     <link rel="stylesheet" href="style.css">
 <noscript><style>body{visibility:visible;opacity:1}</style></noscript>
 </head>
-<body>
+<body class="preload">
 <nav>
     <div class="container">
         <a href="index.html" class="logo">
