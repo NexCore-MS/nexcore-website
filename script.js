@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeMenu = () => {
             navLinksWrapper.classList.remove('nav-open');
             navOverlay.classList.remove('visible');
+            document.body.classList.remove('menu-open');
             mobileNavToggle.setAttribute('aria-expanded', 'false');
             const iconSpan = mobileNavToggle.querySelector('span');
             if (iconSpan) {
@@ -66,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 iconSpan.textContent = isOpen ? '✕' : '☰';
             }
             navOverlay.classList.toggle('visible', isOpen);
+            document.body.classList.toggle('menu-open', isOpen);
         });
 
         navOverlay.addEventListener('click', closeMenu);
