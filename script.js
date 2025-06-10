@@ -45,58 +45,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hamburger Menu Toggle Functionality
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const navLinksWrapper = document.querySelector('.nav-links-wrapper');
+    const navOverlay = document.querySelector('.nav-overlay');
 
-    if (mobileNavToggle && navLinksWrapper) {
-        mobileNavToggle.addEventListener('click', () => {
-            const isOpening = !navLinksWrapper.classList.contains('nav-open');
-            mobileNavToggle.setAttribute('aria-expanded', isOpening);
+    if (mobileNavToggle && navLinksWrapper && navOverlay) {
+        const closeMenu = () => {
+            navLinksWrapper.classList.remove('nav-open');
+            navOverlay.classList.remove('visible');
+            mobileNavToggle.setAttribute('aria-expanded', 'false');
             const iconSpan = mobileNavToggle.querySelector('span');
             if (iconSpan) {
-                iconSpan.textContent = isOpening ? '✕' : '☰';
+                iconSpan.textContent = '☰';
             }
+        };
 
-            if (isOpening) {
-                navLinksWrapper.style.maxHeight = navLinksWrapper.scrollHeight + 'px';
-                navLinksWrapper.classList.add('nav-open');
-                const cleanup = (e) => {
-                    if (e.propertyName === 'max-height') {
-                        navLinksWrapper.style.maxHeight = 'none';
-                        navLinksWrapper.removeEventListener('transitionend', cleanup);
-                    }
-                };
-                navLinksWrapper.addEventListener('transitionend', cleanup);
-            } else {
-                navLinksWrapper.style.maxHeight = navLinksWrapper.scrollHeight + 'px';
-                void navLinksWrapper.offsetHeight;
-                navLinksWrapper.classList.remove('nav-open');
-                navLinksWrapper.style.maxHeight = '0';
+        mobileNavToggle.addEventListener('click', () => {
+            const isOpen = navLinksWrapper.classList.toggle('nav-open');
+            mobileNavToggle.setAttribute('aria-expanded', isOpen);
+            const iconSpan = mobileNavToggle.querySelector('span');
+            if (iconSpan) {
+                iconSpan.textContent = isOpen ? '✕' : '☰';
             }
+            navOverlay.classList.toggle('visible', isOpen);
         });
 
-        navLinksWrapper.addEventListener('transitionend', (e) => {
-            if (e.propertyName === 'max-height' && !navLinksWrapper.classList.contains('nav-open')) {
-                navLinksWrapper.style.maxHeight = '';
-            }
-        });
+        navOverlay.addEventListener('click', closeMenu);
 
         navLinksWrapper.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinksWrapper.classList.contains('nav-open')) {
-                    navLinksWrapper.style.maxHeight = navLinksWrapper.scrollHeight + 'px';
-                    void navLinksWrapper.offsetHeight;
-                    navLinksWrapper.classList.remove('nav-open');
-                    navLinksWrapper.style.maxHeight = '0';
-                    mobileNavToggle.setAttribute('aria-expanded', 'false');
-                    const iconSpan = mobileNavToggle.querySelector('span');
-                    if (iconSpan) {
-                        iconSpan.textContent = '☰';
-                    }
-                }
-            });
+            link.addEventListener('click', closeMenu);
         });
     } else {
         if (!mobileNavToggle) console.warn('Mobile nav toggle button (.mobile-nav-toggle) not found.');
         if (!navLinksWrapper) console.warn('Nav links wrapper (.nav-links-wrapper) not found.');
+        if (!navOverlay) console.warn('Navigation overlay (.nav-overlay) not found.');
     }
 
     // Intersection Observer for Scroll Animations
