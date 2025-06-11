@@ -207,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.querySelector('.gallery-btn.prev');
     const nextBtn = document.querySelector('.gallery-btn.next');
     let currentSlide = 0;
+    let autoSlideInterval;
 
     const showSlide = (index) => {
         gallerySlides.forEach((slide, i) => {
@@ -218,15 +219,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const stopAutoSlide = () => {
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
+    };
+
+    const startAutoSlide = () => {
+        stopAutoSlide();
+        autoSlideInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % gallerySlides.length;
+            showSlide(currentSlide);
+        }, 5000);
+    };
+
     if (gallerySlides.length && prevBtn && nextBtn) {
         prevBtn.addEventListener('click', () => {
             currentSlide = (currentSlide - 1 + gallerySlides.length) % gallerySlides.length;
             showSlide(currentSlide);
+            startAutoSlide();
         });
         nextBtn.addEventListener('click', () => {
             currentSlide = (currentSlide + 1) % gallerySlides.length;
             showSlide(currentSlide);
+            startAutoSlide();
         });
+
+        const galleryContainer = document.querySelector('.gallery-slide-container');
+        if (galleryContainer) {
+            galleryContainer.addEventListener('mouseenter', stopAutoSlide);
+            galleryContainer.addEventListener('mouseleave', startAutoSlide);
+        }
+
+        startAutoSlide();
     }
 
     // FOUC prevention: Make body visible after CSS and initial JS should be handled
