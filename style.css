@@ -9,20 +9,20 @@
     --link-hover-color: #0071e3;
     --primary-accent-color: #0071e3;
     --primary-accent-hover-bg: #005bb5;
-    --primary-accent-shadow: rgba(0, 113, 227, 0.25);
-    --primary-accent-hover-shadow: rgba(0, 113, 227, 0.35);
+    --primary-accent-shadow: rgb(0 113 227 / 25%);
+    --primary-accent-hover-shadow: rgb(0 113 227 / 35%);
 
     --section-bg: #fff;
     --section-alt-bg: #f5f5f7;
 
     --card-bg: #f9f9f9;
     --card-alt-bg: #fff;
-    --card-shadow: rgba(0,0,0,0.05);
-    --card-hover-shadow: rgba(0,0,0,0.08);
+    --card-shadow: rgb(0 0 0 / 5%);
+    --card-hover-shadow: rgb(0 0 0 / 8%);
     --card-text-color: var(--text-muted-color);
 
-    --nav-bg-color: rgba(255, 255, 255, 0.8);
-    --nav-border-color: rgba(0,0,0,0.08);
+    --nav-bg-color: rgb(255 255 255 / 80%);
+    --nav-border-color: rgb(0 0 0 / 8%);
     --nav-blur-saturate: blur(20px) saturate(180%);
     --nav-height: 70px; /* Adjust as needed by inspecting your nav */
 
@@ -37,9 +37,9 @@
 
     --join-section-bg: #0071e3;
     --join-section-text: #fff;
-    --join-section-subheading-text: rgba(255,255,255,0.85);
-    --ip-display-bg: rgba(255, 255, 255, 0.15);
-    --ip-display-border: rgba(255, 255, 255, 0.3);
+    --join-section-subheading-text: rgb(255 255 255 / 85%);
+    --ip-display-bg: rgb(255 255 255 / 15%);
+    --ip-display-border: rgb(255 255 255 / 30%);
     --ip-display-text: #fff;
     --copy-btn-bg: #fff;
     --copy-btn-text: #0071e3;
@@ -47,11 +47,11 @@
     --copy-btn-copied-bg: #34c759;
     --copy-btn-copied-text: #fff;
 
-    --discord-widget-shadow: rgba(0,0,0,0.08);
+    --discord-widget-shadow: rgb(0 0 0 / 8%);
     --discord-button-bg: #5865F2;
     --discord-button-hover-bg: #4f5bda;
-    --discord-button-shadow: rgba(88, 101, 242, 0.25);
-    --discord-button-hover-shadow: rgba(88, 101, 242, 0.35);
+    --discord-button-shadow: rgb(88 101 242 / 25%);
+    --discord-button-hover-shadow: rgb(88 101 242 / 35%);
 
     --footer-bg: #1d1d1f;
     --footer-text: #a0a0a5;
@@ -61,13 +61,13 @@
 
     --dark-mode-toggle-bg: transparent;
     --dark-mode-toggle-text: #1d1d1f;
-    --dark-mode-toggle-hover-bg: rgba(0,0,0,0.05);
+    --dark-mode-toggle-hover-bg: rgb(0 0 0 / 5%);
     --mobile-nav-toggle-color: var(--heading-color);
 
     --form-input-bg: #fff; /* General form input background, if needed elsewhere */
     --form-input-border: #ccc; /* General form input border */
     --form-input-focus-border: var(--primary-accent-color);
-    --form-input-focus-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
+    --form-input-focus-shadow: 0 0 0 2px rgb(0 122 255 / 20%);
 
     --legal-content-bg: var(--section-bg);
     --legal-content-text: var(--text-color);
@@ -84,20 +84,20 @@ html.dark-mode {
     --link-hover-color: #0A84FF;
     --primary-accent-color: #0A84FF;
     --primary-accent-hover-bg: #0073e0;
-    --primary-accent-shadow: rgba(10, 132, 255, 0.3);
-    --primary-accent-hover-shadow: rgba(10, 132, 255, 0.4);
+    --primary-accent-shadow: rgb(10 132 255 / 30%);
+    --primary-accent-hover-shadow: rgb(10 132 255 / 40%);
 
     --section-bg: #1c1c1e;
     --section-alt-bg: #161617;
 
     --card-bg: #2c2c2e;
     --card-alt-bg: #1c1c1e;
-    --card-shadow: rgba(0,0,0,0.2);
-    --card-hover-shadow: rgba(0,0,0,0.3);
+    --card-shadow: rgb(0 0 0 / 20%);
+    --card-hover-shadow: rgb(0 0 0 / 30%);
     --card-text-color: #c7c7cc;
 
-    --nav-bg-color: rgba(28, 28, 30, 0.75);
-    --nav-border-color: rgba(84,84,88,0.65); 
+    --nav-bg-color: rgb(28 28 30 / 75%);
+    --nav-border-color: rgb(84 84 88 / 65%);
 
     --hero-bg: linear-gradient(180deg, #1c1c1e 0%, #000 100%);
     --hero-text-color: #fff;
@@ -110,9 +110,9 @@ html.dark-mode {
 
     --join-section-bg: #0A84FF;
     --join-section-text: #fff;
-    --join-section-subheading-text: rgba(255,255,255,0.85);
-    --ip-display-bg: rgba(255, 255, 255, 0.1);
-    --ip-display-border: rgba(255, 255, 255, 0.2);
+    --join-section-subheading-text: rgb(255 255 255 / 85%);
+    --ip-display-bg: rgb(255 255 255 / 10%);
+    --ip-display-border: rgb(255 255 255 / 20%);
     --ip-display-text: #fff;
     --copy-btn-bg: #3a3a3c;
     --copy-btn-text: #0A84FF;
@@ -120,11 +120,11 @@ html.dark-mode {
     --copy-btn-copied-bg: #30d158;
     --copy-btn-copied-text: #fff;
 
-    --discord-widget-shadow: rgba(0,0,0,0.3);
+    --discord-widget-shadow: rgb(0 0 0 / 30%);
     --discord-button-bg: #7289DA;
     --discord-button-hover-bg: #677bc4;
-    --discord-button-shadow: rgba(114, 137, 218, 0.3);
-    --discord-button-hover-shadow: rgba(114, 137, 218, 0.4);
+    --discord-button-shadow: rgb(114 137 218 / 30%);
+    --discord-button-hover-shadow: rgb(114 137 218 / 40%);
 
     --footer-bg: #000;
     --footer-text: #8e8e93;
@@ -682,7 +682,7 @@ footer a:hover { text-decoration: underline; }
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     /* Mobile Navigation Specifics */
     .mobile-nav-toggle { display: block; }
 
@@ -694,7 +694,7 @@ footer a:hover { text-decoration: underline; }
         display: none;
         position: fixed;
         inset: 0;
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgb(0 0 0 / 40%);
         z-index: 999;
         opacity: 0;
         transition: opacity 0.3s ease;
@@ -712,7 +712,7 @@ footer a:hover { text-decoration: underline; }
         width: 80vw;
         max-width: 300px;
         background-color: var(--nav-bg-color);
-        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        box-shadow: -2px 0 10px rgb(0 0 0 / 10%);
         border-left: 1px solid var(--nav-border-color);
         flex-direction: column;
         align-items: flex-start;

@@ -177,8 +177,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const statusEl = document.getElementById('server-status');
         if (!statusEl) return;
 
-        fetch('https://api.mcsrvstat.us/2/nexcore.top')
-            .then(resp => resp.json())
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+        fetch('https://api.mcsrvstat.us/2/nexcore.top', {
+            signal: controller.signal
+        })
+            .then(resp => {
+                clearTimeout(timeoutId);
+                if (!resp.ok) {
+                    throw new Error(`HTTP ${resp.status}: ${resp.statusText}`);
+                }
+                return resp.json();
+            })
             .then(data => {
                 if (data && data.online) {
                     let playerInfo = '';
@@ -195,8 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(err => {
-                console.error('Failed to fetch server status', err);
-                statusEl.textContent = 'Status: unknown';
+                clearTimeout(timeoutId);
+                console.error('Failed to fetch server status:', err);
+                if (err.name === 'AbortError') {
+                    statusEl.innerHTML = 'Status: <span class="status-offline">Timeout</span>';
+                } else if (err.name === 'TypeError' && err.message.includes('fetch')) {
+                    statusEl.innerHTML = 'Status: <span class="status-offline">Connection Error</span>';
+                } else {
+                    statusEl.innerHTML = 'Status: <span class="status-offline">Unknown</span>';
+                }
             });
     };
 
