@@ -54,9 +54,9 @@
 <body class="preload">
 
 <nav>
-    <div class="container">
-        <a href="index.html" class="logo">
-            <img loading="lazy" src="assets/images/nexcore-icon.png" alt="NexCore Icon" class="logo-icon-image"> 
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <img loading="lazy" src="assets/images/nexcore-icon.png" alt="NexCore Icon"> 
             NexCore
         </a>
         <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -84,21 +84,17 @@
 
 <main>
     <section class="hero" id="hero">
+        <div class="hero-shapes">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+            <div class="shape shape4"></div>
+            <div class="shape shape5"></div>
+        </div>
         <div class="container">
             <h1 class="animated-item">Welcome to NexCore</h1>
             <p class="subtitle animated-item" style="transition-delay: 0.2s;">Experience Minecraft like never before. Your next great adventure starts here.</p>
             <a href="#join" class="cta-button animated-item" style="transition-delay: 0.4s;">Play NexCore Now</a>
-        </div>
-        <div class="hero-shapes" aria-hidden="true">
-            <div class="shape shape1"></div>
-            <div class="shape shape2"></div>
-            <div class="shape shape3"></div>
-        </div>
-        <div class="scroll-down" aria-label="Scroll down">&#x25BC;</div>
-        <div class="hero-wave" aria-hidden="true">
-            <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-                <path d="M0,80 C480,140 960,0 1440,80 L1440,100 L0,100 Z"></path>
-            </svg>
         </div>
     </section>
 
@@ -116,27 +112,27 @@
             <p class="section-subheading animated-item" style="transition-delay: 0.1s;">We've crafted a unique Minecraft experience focusing on community, performance, and exciting gameplay features.</p>
             <div class="features-grid">
                 <div class="feature-item animated-item slide-right" style="transition-delay: 0.2s;">
-                    <div class="icon-placeholder">📜</div>
+                    <div class="feature-icon">📜</div>
                     <h3>Custom Quests & Adventures</h3>
                     <p>Embark on unique adventures with custom quests! Explore the world, complete challenges, and earn exclusive rewards as you delve into the lore of NexCore.</p>
                 </div>
                 <div class="feature-item animated-item slide-left" style="transition-delay: 0.3s;">
-                    <div class="icon-placeholder">💰</div>
+                    <div class="feature-icon">💰</div>
                     <h3>Player Economy & Shops</h3>
                     <p>Engage in a dynamic player-driven economy! Create your own shops, trade valuable goods at the auction house, or take on jobs to earn your fortune.</p>
                 </div>
                 <div class="feature-item animated-item slide-right" style="transition-delay: 0.4s;">
-                    <div class="icon-placeholder">🛡️</div>
+                    <div class="feature-icon">🛡️</div>
                     <h3>Advanced Land Protection</h3>
                     <p>Secure your creations with our intuitive land claiming system. Protect your builds from grief and manage permissions for your friends with ease.</p>
                 </div>
                 <div class="feature-item animated-item slide-left" style="transition-delay: 0.5s;">
-                    <div class="icon-placeholder">⭐</div>
+                    <div class="feature-icon">⭐</div>
                     <h3>Unique Ranks & Perks</h3>
                     <p>Progress through exciting ranks or unlock special perks! Gain new abilities, cosmetics, and advantages as you play and contribute to the NexCore community.</p>
                 </div>
                 <div class="feature-item animated-item zoom-in" style="transition-delay: 0.6s;">
-                    <div class="icon-placeholder">✨</div>
+                    <div class="feature-icon">✨</div>
                     <h3>Custom Enchants & Items</h3>
                     <p>Discover a world beyond vanilla with custom enchantments and unique items! Enhance your gear with powerful new abilities and find rare artifacts.</p>
                 </div>
@@ -150,17 +146,17 @@
             <p class="section-subheading animated-item" style="transition-delay: 0.1s;">We're always working on new content and features. Here's a sneak peek of what's planned!</p>
             <div class="future-modes-grid">
                 <div class="future-mode-item animated-item slide-right" style="transition-delay: 0.2s;">
-                    <div class="icon-placeholder">🎨</div>
+                    <div class="future-mode-icon">🎨</div>
                     <h3>Creative Realms</h3>
                     <p>Unleash your imagination in dedicated creative worlds with advanced building tools.</p>
                 </div>
                 <div class="future-mode-item animated-item slide-left" style="transition-delay: 0.3s;">
-                    <div class="icon-placeholder">🧱</div>
+                    <div class="future-mode-icon">🧱</div>
                     <h3>SkyBlock Evolved</h3>
                     <p>A fresh take on SkyBlock with unique challenges, progression, and custom islands.</p>
                 </div>
                 <div class="future-mode-item animated-item slide-right" style="transition-delay: 0.4s;">
-                    <div class="icon-placeholder">⚔️</div>
+                    <div class="future-mode-icon">⚔️</div>
                     <h3>New Bosses & Dungeons</h3>
                     <p>Face formidable new bosses and explore challenging dungeons for epic loot.</p>
                 </div>
@@ -227,9 +223,9 @@
         <div class="container">
             <h2 class="animated-item">Ready to Play?</h2>
             <p class="section-subheading animated-item" style="transition-delay: 0.1s;">Join the NexCore server today and start your adventure!</p>
-            <div class="server-ip-area animated-item" style="transition-delay: 0.2s;">
-                <div class="server-ip-display" id="server-ip">nexcore.top</div>
-                <button class="copy-ip-button" id="copy-ip-btn">Copy IP</button>
+            <div class="ip-display animated-item" style="transition-delay: 0.2s;">
+                <span id="server-ip">nexcore.top</span>
+                <button class="copy-ip-btn" id="copy-ip-btn">Copy IP</button>
             </div>
             <p id="server-status" class="server-status animated-item" style="transition-delay: 0.3s;">Checking server status…</p>
         </div>
