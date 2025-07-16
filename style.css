@@ -920,6 +920,21 @@ html.dark-mode .hero h1 {
     transform: translateY(0) scale(1);
 }
 
+.loaded .animated-item {
+    animation: fallback-visibility 0.1s ease-out 2s forwards;
+}
+
+@keyframes fallback-visibility {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.loaded .animated-item.is-visible {
+    animation: none;
+}
+
 /* Back to Top Button */
 .back-to-top {
     position: fixed;
