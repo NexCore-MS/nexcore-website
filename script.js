@@ -273,28 +273,70 @@ document.addEventListener('DOMContentLoaded', () => {
         startAutoSlide();
     }
 
-    // Modern cursor effect
-    const cursor = document.createElement('div');
-    cursor.className = 'cursor-glow';
-    document.body.appendChild(cursor);
-
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-
-    // Enhanced parallax scrolling
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const heroShapes = document.querySelectorAll('.hero-shapes .shape');
+    // Apple-style smooth cursor interactions
+    const interactiveElements = document.querySelectorAll('button, a, .feature-item, .future-mode-item, .testimonial-item');
+    
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            element.style.transform = element.classList.contains('feature-item') || 
+                                     element.classList.contains('future-mode-item') || 
+                                     element.classList.contains('testimonial-item') 
+                                     ? 'translateY(-8px)' : 'scale(1.02)';
+        });
         
-        heroShapes.forEach((shape, index) => {
-            const speed = (index + 1) * 0.5;
-            shape.style.transform = `translateY(${scrolled * speed}px)`;
+        element.addEventListener('mouseleave', () => {
+            element.style.transform = '';
         });
     });
 
-    // Modern typing effect for hero title
+    // Apple-style parallax and scroll effects
+    let ticking = false;
+    
+    function updateScrollEffects() {
+        const scrolled = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        
+        // Parallax for hero shapes
+        const heroShapes = document.querySelectorAll('.hero-shapes .shape');
+        heroShapes.forEach((shape, index) => {
+            const speed = (index + 1) * 0.3;
+            shape.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
+        });
+        
+        // Navigation blur effect based on scroll
+        const nav = document.querySelector('nav');
+        if (scrolled > 50) {
+            nav.style.background = 'var(--nav-background)';
+            nav.style.backdropFilter = 'var(--nav-backdrop)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.1)';
+            nav.style.backdropFilter = 'blur(10px)';
+        }
+        
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateScrollEffects);
+            ticking = true;
+        }
+    });
+
+    // Premium page loading animation
+    window.addEventListener('load', () => {
+        document.body.classList.add('page-loaded');
+        
+        // Staggered animations for elements
+        const animatedElements = document.querySelectorAll('.animated-item');
+        animatedElements.forEach((element, index) => {
+            setTimeout(() => {
+                element.classList.add('animate-in');
+            }, index * 100);
+        });
+    });
+    
+    // Smooth modern typing effect for hero title
     const heroTitle = document.querySelector('.hero h1');
     if (heroTitle) {
         const originalText = heroTitle.textContent;
@@ -310,8 +352,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(typeInterval);
                 heroTitle.classList.remove('typing');
             }
-        }, 80);
+        }, 60);
     }
+    
+    // Premium hover sound effect (visual feedback only)
+    const buttons = document.querySelectorAll('.cta-button');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            button.style.filter = 'brightness(1.05)';
+        });
+        button.addEventListener('mouseleave', () => {
+            button.style.filter = '';
+        });
+    });
 
     // FOUC prevention: Make body visible after CSS and initial JS should be handled
     // The inline script in <head> handles initial theme class on <html>
