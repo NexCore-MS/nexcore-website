@@ -289,28 +289,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Apple-style parallax and scroll effects
+    // Glassmorphism scroll effects
     let ticking = false;
     
     function updateScrollEffects() {
         const scrolled = window.pageYOffset;
         const windowHeight = window.innerHeight;
         
-        // Parallax for hero shapes
-        const heroShapes = document.querySelectorAll('.hero-shapes .shape');
-        heroShapes.forEach((shape, index) => {
-            const speed = (index + 1) * 0.3;
-            shape.style.transform = `translate3d(0, ${scrolled * speed}px, 0)`;
+        // Parallax for glass orbs
+        const glassOrbs = document.querySelectorAll('.hero .glass-orb');
+        glassOrbs.forEach((orb, index) => {
+            const speed = (index + 1) * 0.2;
+            orb.style.transform = `translate3d(0, ${scrolled * speed}px, 0) scale(${1 + scrolled * 0.0002})`;
         });
         
-        // Navigation blur effect based on scroll
+        // Enhanced navigation glass effect
         const nav = document.querySelector('nav');
-        if (scrolled > 50) {
-            nav.style.background = 'var(--nav-background)';
-            nav.style.backdropFilter = 'var(--nav-backdrop)';
+        if (scrolled > 100) {
+            nav.style.background = 'var(--glass-white-strong)';
+            nav.style.boxShadow = 'var(--glass-shadow-hover)';
+            nav.style.transform = 'translateX(-50%) scale(0.98)';
         } else {
-            nav.style.background = 'rgba(255, 255, 255, 0.1)';
-            nav.style.backdropFilter = 'blur(10px)';
+            nav.style.background = 'var(--glass-white)';
+            nav.style.boxShadow = 'var(--glass-shadow)';
+            nav.style.transform = 'translateX(-50%) scale(1)';
         }
         
         ticking = false;
@@ -355,14 +357,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 60);
     }
     
-    // Premium hover sound effect (visual feedback only)
+    // Glass interaction effects
     const buttons = document.querySelectorAll('.cta-button');
     buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
-            button.style.filter = 'brightness(1.05)';
+            button.style.filter = 'brightness(1.1)';
+            button.style.background = 'var(--glass-white-strong)';
         });
         button.addEventListener('mouseleave', () => {
             button.style.filter = '';
+            button.style.background = '';
+        });
+        
+        // Ripple effect on click
+        button.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.classList.add('ripple');
+            
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            
+            button.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
         });
     });
 
