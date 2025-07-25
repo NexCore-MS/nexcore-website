@@ -5,41 +5,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const darkModeToggle = document.getElementById('darkModeToggle');
-    const rootElement = document.documentElement; // Target <html> for dark mode class
+    const rootElement = document.documentElement;
 
-    // Function to apply the theme and update toggle button
-    const applyTheme = (theme) => {
+    // Enhanced theme application with animations
+    const applyTheme = (theme, animate = false) => {
+        if (animate) {
+            darkModeToggle.style.transform = 'scale(0.8) rotate(180deg)';
+            setTimeout(() => {
+                darkModeToggle.style.transform = '';
+            }, 200);
+        }
+
         if (theme === 'dark') {
             rootElement.classList.add('dark-mode');
-            if (darkModeToggle) darkModeToggle.textContent = '☀️'; // Sun icon for light mode
+            if (darkModeToggle) {
+                darkModeToggle.textContent = '☀️';
+                darkModeToggle.style.background = 'var(--glass-white-strong)';
+            }
         } else {
             rootElement.classList.remove('dark-mode');
-            if (darkModeToggle) darkModeToggle.textContent = '🌙'; // Moon icon for dark mode
+            if (darkModeToggle) {
+                darkModeToggle.textContent = '🌙';
+                darkModeToggle.style.background = 'var(--glass-white)';
+            }
         }
     };
 
-    // Check localStorage for saved theme (this part is mostly handled by inline script for initial load)
-    // This script's main job for theme is the toggle button functionality
-    // Initialize button text based on current theme (set by inline script)
-    if (rootElement.classList.contains('dark-mode')) {
-        if (darkModeToggle) darkModeToggle.textContent = '☀️';
-    } else {
-        if (darkModeToggle) darkModeToggle.textContent = '🌙';
-    }
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    
+    applyTheme(initialTheme);
 
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
-            let newTheme;
-            if (rootElement.classList.contains('dark-mode')) {
-                newTheme = 'light';
-            } else {
-                newTheme = 'dark';
-            }
-            applyTheme(newTheme);
+            const newTheme = rootElement.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme, true);
             localStorage.setItem('theme', newTheme);
         });
-    } else {
-        console.warn('Dark mode toggle button with ID "darkModeToggle" was NOT found.');
     }
 
     // Hamburger Menu Toggle Functionality

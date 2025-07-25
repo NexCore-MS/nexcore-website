@@ -274,15 +274,26 @@ nav {
     backdrop-filter: var(--glass-backdrop);
     -webkit-backdrop-filter: var(--glass-backdrop);
     border: var(--glass-border);
-    border-radius: 25px;
+    border-radius: 20px;
     transition: all 0.3s var(--ease-glass);
     height: var(--nav-height);
     display: flex;
     align-items: center;
     box-shadow: var(--glass-shadow);
-    width: auto;
-    max-width: 600px;
-    padding: 0 20px;
+    padding: 0 25px;
+    min-width: 500px;
+    animation: navSlideIn 0.8s var(--ease-glass) forwards;
+}
+
+@keyframes navSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 nav::before {
@@ -302,13 +313,11 @@ nav:hover::before {
 }
 
 .nav-container {
-    margin: 0;
-    padding: 0;
     display: flex;
     align-items: center;
     width: 100%;
     height: 100%;
-    justify-content: space-between;
+    gap: 30px;
 }
 
 .nav-logo {
@@ -318,10 +327,15 @@ nav:hover::before {
     color: var(--text-primary);
     font-weight: 600;
     font-size: 18px;
-    margin-right: auto;
     letter-spacing: -0.01em;
     transition: all 0.3s var(--ease-glass);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .nav-logo img {
@@ -335,27 +349,38 @@ nav:hover::before {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 8px;
+    gap: 15px;
     align-items: center;
     margin: 0;
     padding: 0;
-    margin-left: auto;
-    margin-right: 15px;
+    flex: 1;
+    justify-content: center;
 }
 
 nav ul li a {
     text-decoration: none;
     color: var(--text-secondary);
     font-weight: 500;
-    font-size: 14px;
+    font-size: 15px;
     letter-spacing: -0.01em;
     transition: all 0.3s var(--ease-glass);
     position: relative;
     white-space: nowrap;
-    padding: 8px 12px;
+    padding: 10px 16px;
     border-radius: 12px;
     display: block;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    animation: navItemSlide 0.6s var(--ease-glass) forwards;
+    animation-delay: calc(var(--i) * 0.1s);
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+@keyframes navItemSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 nav ul li a:hover { 
@@ -451,25 +476,43 @@ nav ul li a:hover::after {
     color: var(--text-secondary);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    padding: 10px;
+    padding: 0;
     cursor: pointer;
-    font-size: 16px;
-    transition: all 0.3s var(--ease-glass);
+    font-size: 18px;
+    transition: all 0.4s var(--ease-glass);
     flex-shrink: 0;
     font-weight: 500;
     backdrop-filter: blur(10px);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
+
+#darkModeToggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s var(--ease-glass);
+}
+
+#darkModeToggle:hover::before {
+    left: 100%;
+}
+
 #darkModeToggle:hover { 
     background: var(--glass-white-strong);
     color: var(--text-primary);
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px) scale(1.1) rotate(20deg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .mobile-nav-toggle {
@@ -506,6 +549,14 @@ nav ul li a:hover::after {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: heroFadeIn 1.2s var(--ease-glass) forwards;
+    opacity: 0;
+}
+
+@keyframes heroFadeIn {
+    to {
+        opacity: 1;
+    }
 }
 
 .hero::before {
@@ -540,8 +591,22 @@ nav ul li a:hover::after {
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: floatOrb 15s ease-in-out infinite;
+    animation: floatOrb 15s ease-in-out infinite, orbGlow 3s ease-in-out infinite alternate;
     z-index: -1;
+    opacity: 0;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes orbGlow {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        opacity: 0.7;
+    }
+    100% {
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+        opacity: 1;
+    }
 }
 
 .hero .glass-orb:nth-child(1) {
@@ -872,6 +937,17 @@ html.dark-mode .hero h1 {
     overflow: hidden;
     border: var(--glass-border);
     margin: 0 auto;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: cardSlideUp 0.8s var(--ease-glass) forwards;
+    animation-delay: calc(var(--delay, 0) * 0.2s);
+}
+
+@keyframes cardSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .feature-item::before, .future-mode-item::before {
@@ -903,10 +979,16 @@ html.dark-mode .hero h1 {
 }
 
 .feature-item:hover, .future-mode-item:hover { 
-    transform: translateY(-15px) scale(1.02); 
-    box-shadow: var(--glass-shadow-hover);
+    transform: translateY(-20px) scale(1.05); 
+    box-shadow: var(--glass-shadow-hover), 0 0 50px rgba(255, 255, 255, 0.1);
     background: var(--glass-white-strong);
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+    animation: cardPulse 0.6s ease-in-out;
+}
+
+@keyframes cardPulse {
+    0%, 100% { transform: translateY(-20px) scale(1.05); }
+    50% { transform: translateY(-25px) scale(1.08); }
 }
 
 .feature-item h3, .future-mode-item h3 {
@@ -1517,13 +1599,16 @@ body.menu-open {
     
     nav {
         top: 15px;
-        width: calc(100% - 30px);
-        max-width: none;
-        padding: 0 15px;
+        left: 20px;
+        right: 20px;
+        transform: none;
+        width: auto;
+        min-width: auto;
+        padding: 0 20px;
     }
     
     .nav-container {
-        padding: 0;
+        gap: 15px;
     }
     
     .nav-logo {
@@ -1533,6 +1618,12 @@ body.menu-open {
     .nav-logo img {
         width: 28px;
         height: 28px;
+    }
+    
+    #darkModeToggle {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
     }
     
     /* Hide dropdown on mobile */
