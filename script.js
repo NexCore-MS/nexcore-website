@@ -273,6 +273,46 @@ document.addEventListener('DOMContentLoaded', () => {
         startAutoSlide();
     }
 
+    // Modern cursor effect
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor-glow';
+    document.body.appendChild(cursor);
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // Enhanced parallax scrolling
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroShapes = document.querySelectorAll('.hero-shapes .shape');
+        
+        heroShapes.forEach((shape, index) => {
+            const speed = (index + 1) * 0.5;
+            shape.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    });
+
+    // Modern typing effect for hero title
+    const heroTitle = document.querySelector('.hero h1');
+    if (heroTitle) {
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = '';
+        heroTitle.classList.add('typing');
+        
+        let charIndex = 0;
+        const typeInterval = setInterval(() => {
+            heroTitle.textContent += originalText[charIndex];
+            charIndex++;
+            
+            if (charIndex >= originalText.length) {
+                clearInterval(typeInterval);
+                heroTitle.classList.remove('typing');
+            }
+        }, 80);
+    }
+
     // FOUC prevention: Make body visible after CSS and initial JS should be handled
     // The inline script in <head> handles initial theme class on <html>
     // This ensures body becomes visible
