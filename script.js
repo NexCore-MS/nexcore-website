@@ -421,4 +421,134 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('loaded');
     document.body.classList.remove('preload');
 
+    // Matrix Rain Effect
+    function createMatrixRain() {
+        const matrixContainer = document.createElement('div');
+        matrixContainer.className = 'matrix-rain';
+        document.body.appendChild(matrixContainer);
+
+        const characters = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const columns = Math.floor(window.innerWidth / 20);
+
+        for (let i = 0; i < columns; i++) {
+            createMatrixColumn(matrixContainer, characters, i * 20);
+        }
+    }
+
+    function createMatrixColumn(container, characters, left) {
+        const column = document.createElement('div');
+        column.className = 'matrix-column';
+        column.style.left = left + 'px';
+        column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        column.style.animationDelay = Math.random() * 2 + 's';
+        
+        let text = '';
+        for (let i = 0; i < 20; i++) {
+            text += characters[Math.floor(Math.random() * characters.length)] + '\n';
+        }
+        column.textContent = text;
+        
+        container.appendChild(column);
+        
+        // Remove and recreate after animation
+        setTimeout(() => {
+            if (column.parentNode) {
+                column.parentNode.removeChild(column);
+                createMatrixColumn(container, characters, left);
+            }
+        }, (parseFloat(column.style.animationDuration) + parseFloat(column.style.animationDelay)) * 1000);
+    }
+
+    // Floating Particles
+    function createParticles() {
+        const particlesContainer = document.createElement('div');
+        particlesContainer.className = 'particles';
+        document.body.appendChild(particlesContainer);
+
+        setInterval(() => {
+            if (particlesContainer.children.length < 50) {
+                createParticle(particlesContainer);
+            }
+        }, 300);
+    }
+
+    function createParticle(container) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * window.innerWidth + 'px';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+        
+        const colors = ['#00FFE1', '#8B5CF6', '#F472B6', '#10B981', '#00D4FF'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.background = color;
+        particle.style.boxShadow = `0 0 10px ${color}`;
+        
+        container.appendChild(particle);
+        
+        // Remove after animation
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
+            }
+        }, 15000);
+    }
+
+    // Enhanced typing effect for hero title
+    function createTypingEffect() {
+        const heroTitle = document.querySelector('.hero h1');
+        if (heroTitle) {
+            const originalText = heroTitle.textContent.replace('|', '');
+            heroTitle.innerHTML = '';
+            
+            let charIndex = 0;
+            const typeInterval = setInterval(() => {
+                if (charIndex < originalText.length) {
+                    heroTitle.innerHTML = originalText.substring(0, charIndex + 1) + '<span class="cursor">|</span>';
+                    charIndex++;
+                } else {
+                    clearInterval(typeInterval);
+                    heroTitle.innerHTML = originalText + '<span class="cursor">|</span>';
+                }
+            }, 100);
+        }
+    }
+
+    // Initialize futuristic effects
+    if (window.innerWidth > 768) { // Only on desktop for performance
+        createMatrixRain();
+        createParticles();
+    }
+    
+    createTypingEffect();
+
+    // Add glitch effect to logo on hover
+    const navLogo = document.querySelector('.nav-logo');
+    if (navLogo) {
+        navLogo.addEventListener('mouseenter', () => {
+            navLogo.style.animation = 'logoGlitch 0.3s ease-in-out';
+        });
+        
+        navLogo.addEventListener('animationend', () => {
+            navLogo.style.animation = 'logoGlow 3s ease-in-out infinite alternate';
+        });
+    }
+
+    // Add CSS for glitch effect
+    const glitchCSS = `
+        @keyframes logoGlitch {
+            0%, 100% { transform: scale(1.1); }
+            25% { transform: scale(1.1) translateX(-2px); }
+            50% { transform: scale(1.1) translateX(2px); }
+            75% { transform: scale(1.1) translateY(-1px); }
+        }
+        .cursor {
+            animation: blink 1.5s infinite;
+        }
+    `;
+    
+    const style = document.createElement('style');
+    style.textContent = glitchCSS;
+    document.head.appendChild(style);
+
 });
