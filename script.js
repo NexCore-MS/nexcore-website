@@ -292,24 +292,70 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Dropdown functionality
+    // Enhanced Dropdown functionality
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {
         const toggle = dropdown.querySelector('.dropdown-toggle');
         const menu = dropdown.querySelector('.dropdown-menu');
+        let isOpen = false;
+        let closeTimeout;
         
-        // Prevent default link behavior
+        if (!toggle || !menu) return;
+        
+        const openDropdown = () => {
+            clearTimeout(closeTimeout);
+            if (isOpen) return;
+            isOpen = true;
+            dropdown.classList.add('active');
+            menu.style.opacity = '1';
+            menu.style.visibility = 'visible';
+            menu.style.transform = 'translateY(0)';
+        };
+        
+        const closeDropdown = () => {
+            if (!isOpen) return;
+            isOpen = false;
+            dropdown.classList.remove('active');
+            menu.style.opacity = '0';
+            menu.style.visibility = 'hidden';
+            menu.style.transform = 'translateY(-10px)';
+        };
+        
+        const scheduleClose = () => {
+            closeTimeout = setTimeout(closeDropdown, 300);
+        };
+        
+        // Desktop hover behavior
+        dropdown.addEventListener('mouseenter', openDropdown);
+        dropdown.addEventListener('mouseleave', scheduleClose);
+        
+        // Mobile click behavior
         toggle.addEventListener('click', (e) => {
             e.preventDefault();
+            if (isOpen) {
+                closeDropdown();
+            } else {
+                openDropdown();
+            }
+        });
+        
+        // Keep dropdown open when hovering over menu
+        menu.addEventListener('mouseenter', () => {
+            clearTimeout(closeTimeout);
         });
         
         // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!dropdown.contains(e.target)) {
-                menu.style.opacity = '0';
-                menu.style.visibility = 'hidden';
-                menu.style.transform = 'translateY(-10px)';
+                closeDropdown();
             }
+        });
+        
+        // Close dropdown when clicking on menu items
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                closeDropdown();
+            });
         });
     });
 
