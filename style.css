@@ -1,30 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-    /* Modern Vibrant Color Palette */
-    --primary-purple: #7C3AED;
-    --primary-purple-dark: #5B21B6;
-    --primary-purple-light: #A855F7;
+    /* Clean Modern Color Palette */
+    --primary-blue: #007AFF;
+    --primary-blue-dark: #0056CC;
+    --primary-blue-light: #4DA3FF;
     
-    --accent-coral: #FF6B6B;
-    --accent-coral-dark: #E55555;
-    --accent-coral-light: #FF8E8E;
-    
-    --accent-teal: #06D6A0;
-    --accent-teal-dark: #05C490;
-    --accent-teal-light: #07E8B0;
-    
-    --accent-orange: #FFB84D;
-    --accent-orange-dark: #FF9500;
-    --accent-orange-light: #FFC970;
-    
-    --accent-blue: #4ECDC4;
-    --accent-blue-dark: #45B7B8;
-    --accent-blue-light: #6BCF7F;
-    
-    --accent-pink: #FF8A80;
-    --accent-pink-dark: #FF6B6B;
-    --accent-pink-light: #FFA8A8;
+    --accent-purple: #8B5CF6;
+    --accent-purple-dark: #7C3AED;
+    --accent-purple-light: #A78BFA;
     
     /* Modern Neutral Colors */
     --neutral-50: #FAFBFC;
@@ -55,8 +39,8 @@
     /* Glass Effects */
     --glass-bg: rgba(255, 255, 255, 0.85);
     --glass-bg-strong: rgba(255, 255, 255, 0.95);
-    --glass-bg-tinted: rgba(124, 58, 237, 0.1);
-    --glass-border: rgba(124, 58, 237, 0.2);
+    --glass-bg-tinted: rgba(0, 122, 255, 0.1);
+    --glass-border: rgba(0, 122, 255, 0.2);
     --glass-border-light: rgba(255, 255, 255, 0.3);
     --glass-blur: blur(20px) saturate(180%);
     
@@ -67,9 +51,8 @@
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
     --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
     --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.25);
-    --shadow-colored: 0 10px 30px rgba(124, 58, 237, 0.3);
-    --shadow-coral: 0 10px 30px rgba(255, 107, 107, 0.3);
-    --shadow-teal: 0 10px 30px rgba(6, 214, 160, 0.3);
+    --shadow-colored: 0 10px 30px rgba(0, 122, 255, 0.3);
+    --shadow-accent: 0 10px 30px rgba(139, 92, 246, 0.3);
     
     /* Modern Animations */
     --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
@@ -145,6 +128,13 @@ body {
     transition: background-color 0.3s var(--ease-out-cubic), color 0.3s var(--ease-out-cubic);
 }
 
+/* Fix header overlap issue */
+main {
+    padding-top: 120px; /* Account for fixed nav height */
+    position: relative;
+    z-index: 1;
+}
+
 /* Modern Particle System */
 .particles {
     position: fixed;
@@ -167,13 +157,13 @@ body {
 }
 
 .particle:nth-child(odd) {
-    background: var(--primary-purple);
-    box-shadow: 0 0 6px var(--primary-purple);
+    background: var(--primary-blue);
+    box-shadow: 0 0 6px var(--primary-blue);
 }
 
 .particle:nth-child(even) {
-    background: var(--accent-teal);
-    box-shadow: 0 0 6px var(--accent-teal);
+    background: var(--accent-purple);
+    box-shadow: 0 0 6px var(--accent-purple);
 }
 
 @keyframes float {
@@ -213,7 +203,7 @@ nav {
 nav:hover {
     box-shadow: var(--shadow-colored);
     transform: translateX(-50%) translateY(-2px);
-    border-color: var(--primary-purple);
+    border-color: var(--primary-blue);
 }
 
 .nav-container {
@@ -231,7 +221,7 @@ nav:hover {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 24px;
-    background: linear-gradient(135deg, var(--primary-purple), var(--accent-coral));
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -248,7 +238,7 @@ nav:hover {
     height: 36px;
     border-radius: 10px;
     transition: transform 0.3s var(--ease-spring);
-    filter: drop-shadow(0 4px 8px rgba(124, 58, 237, 0.3));
+    filter: drop-shadow(0 4px 8px rgba(0, 122, 255, 0.3));
 }
 
 .nav-logo:hover img {
@@ -282,7 +272,7 @@ nav:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--primary-purple), var(--accent-teal));
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
     opacity: 0;
     transition: opacity 0.3s var(--ease-out-cubic);
     border-radius: 16px;
@@ -294,7 +284,7 @@ nav:hover {
 }
 
 .nav-links-wrapper a:hover {
-    color: var(--primary-purple);
+    color: var(--primary-blue);
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
@@ -703,13 +693,19 @@ nav:hover {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: var(--space-4);
-    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.3;
+    animation: slideInUp 0.6s var(--ease-out-cubic) 0.5s both;
 }
 
 .feature-item p {
     color: var(--text-secondary);
     line-height: 1.7;
     font-size: 16px;
+    animation: slideInUp 0.6s var(--ease-out-cubic) 0.6s both;
 }
 
 /* Future Modes */
@@ -1344,5 +1340,236 @@ body.loaded {
         width: 48px;
         height: 48px;
         font-size: 18px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Enhanced Typography Hierarchy */
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    text-align: center;
+    margin-bottom: var(--space-5);
+}
+
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+}
+
+h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-primary);
+    line-height: 1.3;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-4);
+    text-align: center;
+}
+
+/* Page content centering */
+.rules-content,
+.faq-content,
+.guide-content,
+.whitelist-content,
+.terms-content,
+.privacy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.rules-content h1,
+.faq-content h1,
+.guide-content h1,
+.whitelist-content h1,
+.terms-content h1,
+.privacy-content h1 {
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: slideInUp 0.8s var(--ease-out-cubic);
+}
+
+.rules-content h2,
+.faq-content h2,
+.guide-content h2,
+.whitelist-content h2,
+.terms-content h2,
+.privacy-content h2 {
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: slideInUp 0.8s var(--ease-out-cubic);
+}
+
+.rules-content ul,
+.faq-content ul,
+.guide-content ul,
+.whitelist-content ul,
+.terms-content ul,
+.privacy-content ul {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto var(--space-8) auto;
+}
+
+.rules-content li,
+.faq-content li,
+.guide-content li,
+.whitelist-content li,
+.terms-content li,
+.privacy-content li {
+    margin-bottom: var(--space-3);
+    padding-left: var(--space-2);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Enhanced Animations and Effects */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-10deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05) rotate(5deg);
+    }
+    70% {
+        transform: scale(0.95) rotate(-2deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--primary-blue), 0 0 10px var(--primary-blue), 0 0 15px var(--primary-blue);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--primary-blue), 0 0 20px var(--primary-blue), 0 0 30px var(--primary-blue);
+    }
+}
+
+/* Cool hover animations */
+.feature-item:hover h3 {
+    animation: shimmer 2s ease-in-out infinite;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-purple), var(--primary-blue));
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cta-button {
+    animation: fadeInScale 0.6s var(--ease-spring) 0.8s both;
+}
+
+.cta-button:hover {
+    animation: glowPulse 2s ease-in-out infinite;
+    transform: translateY(-3px) scale(1.05);
+}
+
+.animated-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: slideInUp 0.8s var(--ease-out-cubic);
+}
+
+/* Add floating animation to nav logo */
+.nav-logo {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
     }
 }
