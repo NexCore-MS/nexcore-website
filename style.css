@@ -2,47 +2,47 @@
 
 :root {
     /* 3D Interactive Theme */
-    --bg-primary: #0a0a0f;
-    --bg-secondary: #0f0f1a;
-    --bg-tertiary: #1a1a2e;
-    --bg-elevated: #16213e;
-    --bg-card: rgba(22, 33, 62, 0.3);
-    --bg-glass: rgba(22, 33, 62, 0.1);
-    --bg-glass-strong: rgba(22, 33, 62, 0.2);
+    --bg-primary: #0b0b0b;
+    --bg-secondary: #121212;
+    --bg-tertiary: #1c1c1c;
+    --bg-elevated: #232323;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-glass: rgba(255, 0, 60, 0.08);
+    --bg-glass-strong: rgba(255, 0, 60, 0.15);
     
     /* 3D Gradient Colors */
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-primary: linear-gradient(135deg, #ff003c 0%, #ff5757 100%);
     --gradient-minecraft: linear-gradient(135deg, #2E8B57 0%, #32CD32 100%);
-    --gradient-neon: linear-gradient(135deg, #00d4ff 0%, #090979 100%);
-    --gradient-fire: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
-    --gradient-ice: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    --gradient-neon: linear-gradient(135deg, #ff003c 0%, #ff5757 100%);
+    --gradient-fire: linear-gradient(135deg, #ff003c 0%, #ff5757 100%);
+    --gradient-ice: linear-gradient(135deg, #ffffff 0%, #ff003c 100%);
     
     /* Text Colors */
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.8);
     --text-tertiary: rgba(255, 255, 255, 0.6);
     --text-muted-color: rgba(255, 255, 255, 0.5);
-    --text-accent: #00d4ff;
-    --primary-accent-color: #00d4ff;
+    --text-accent: #ff003c;
+    --primary-accent-color: #ff003c;
     
     /* 3D Colors */
-    --neon-blue: #00d4ff;
+    --neon-blue: #ff003c;
     --neon-green: #32cd32;
     --neon-purple: #764ba2;
     --neon-orange: #feca57;
     
     /* Border Colors */
-    --border-primary: rgba(0, 212, 255, 0.2);
+    --border-primary: rgba(255, 0, 60, 0.3);
     --border-secondary: rgba(255, 255, 255, 0.1);
-    --border-neon: rgba(0, 212, 255, 0.5);
+    --border-neon: rgba(255, 0, 60, 0.6);
     
     /* Shadow System */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
     --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.5);
     --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.6);
     --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.7);
-    --shadow-neon: 0 0 30px rgba(0, 212, 255, 0.4);
-    --shadow-neon-strong: 0 0 50px rgba(0, 212, 255, 0.6);
+    --shadow-neon: 0 0 30px rgba(255, 0, 60, 0.4);
+    --shadow-neon-strong: 0 0 50px rgba(255, 0, 60, 0.6);
     --shadow-minecraft: 0 0 30px rgba(50, 205, 50, 0.4);
     
     /* 3D Animations */
@@ -132,7 +132,7 @@ body::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(255, 0, 60, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 40% 40%, rgba(50, 205, 50, 0.05) 0%, transparent 50%);
     pointer-events: none;
@@ -198,12 +198,12 @@ nav:hover {
     text-decoration: none;
     transition: all 0.4s var(--ease-elastic);
     transform-style: preserve-3d;
-    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    text-shadow: 0 0 30px rgba(255, 0, 60, 0.5);
 }
 
 .nav-logo:hover {
     transform: scale(1.1) rotateX(10deg) rotateY(5deg);
-    text-shadow: 0 0 50px rgba(0, 212, 255, 0.8);
+    text-shadow: 0 0 50px rgba(255, 0, 60, 0.8);
 }
 
 .nav-logo img {
@@ -265,7 +265,7 @@ nav:hover {
     color: var(--text-primary);
     transform: translateY(-3px) translateZ(5px);
     box-shadow: var(--shadow-neon);
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    text-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
 }
 
 .join-btn {
@@ -424,7 +424,7 @@ nav:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(255, 0, 60, 0.15) 0%, transparent 70%);
     pointer-events: none;
     animation: heroGlow 3s ease-in-out infinite alternate;
 }
@@ -455,7 +455,7 @@ nav:hover {
     opacity: 0;
     transform: translateY(50px) rotateX(20deg);
     animation: hero3DIn 1.5s var(--ease-elastic) 0.3s forwards;
-    text-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+    text-shadow: 0 0 50px rgba(255, 0, 60, 0.5);
     transform-style: preserve-3d;
 }
 
@@ -598,7 +598,7 @@ nav:hover {
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.02em;
     line-height: 1.2;
-    text-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+    text-shadow: 0 0 40px rgba(255, 0, 60, 0.3);
     transform-style: preserve-3d;
 }
 
@@ -669,12 +669,12 @@ nav:hover {
     display: block;
     transition: all 0.6s var(--ease-elastic);
     transform-style: preserve-3d;
-    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    text-shadow: 0 0 30px rgba(255, 0, 60, 0.5);
 }
 
 .feature-item:hover .feature-icon {
     transform: scale(1.3) rotateY(360deg) rotateX(15deg);
-    text-shadow: 0 0 50px rgba(0, 212, 255, 0.8);
+    text-shadow: 0 0 50px rgba(255, 0, 60, 0.8);
 }
 
 .feature-item h3 {
@@ -904,7 +904,7 @@ nav:hover {
     font-size: 24px;
     font-weight: 700;
     color: var(--text-primary);
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    text-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
 }
 
 .copy-ip-btn {
@@ -943,7 +943,7 @@ nav:hover {
 }
 
 .status-offline {
-    color: #ff6b6b;
+    color: var(--text-accent);
     font-weight: 700;
 }
 
@@ -971,7 +971,7 @@ footer p {
 
 .footer-links a:hover {
     color: var(--text-accent);
-    text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+    text-shadow: 0 0 15px rgba(255, 0, 60, 0.5);
 }
 
 /* 3D Back to Top */
@@ -1044,7 +1044,7 @@ p {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: var(--space-10);
-    text-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+    text-shadow: 0 0 40px rgba(255, 0, 60, 0.3);
 }
 
 .rules-content h2,
@@ -1138,7 +1138,7 @@ p {
 .ripple {
     position: absolute;
     border-radius: 50%;
-    background: rgba(0, 212, 255, 0.4);
+    background: rgba(255, 0, 60, 0.4);
     transform: scale(0);
     animation: ripple3D 0.8s linear;
     pointer-events: none;
@@ -1391,4 +1391,14 @@ p {
         height: 55px;
         font-size: 20px;
     }
+}
+.code-animation {
+    font-family: "JetBrains Mono", monospace;
+    color: var(--text-accent);
+    background: rgba(255,255,255,0.05);
+    padding: var(--space-4);
+    border-radius: 8px;
+    margin-top: var(--space-4);
+    white-space: pre;
+    text-shadow: 0 0 10px var(--text-accent);
 }
