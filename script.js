@@ -8,6 +8,32 @@ document.addEventListener('DOMContentLoaded', () => {
         yearElement.textContent = new Date().getFullYear();
     }
 
+    // Cyberpunk code typing animation
+    const codeElement = document.getElementById('code-animation');
+    if (codeElement) {
+        const codeLines = [
+            "const serverIp = 'play.nexcore.top';",
+            "console.log('Welcome to NexCore');",
+            "initExperience();"
+        ];
+        let line = 0;
+        let char = 0;
+        function type() {
+            if (line >= codeLines.length) return;
+            codeElement.textContent += codeLines[line].charAt(char);
+            char++;
+            if (char < codeLines[line].length) {
+                setTimeout(type, 60);
+            } else {
+                codeElement.textContent += '\n';
+                line++;
+                char = 0;
+                setTimeout(type, 300);
+            }
+        }
+        type();
+    }
+
     // ================================
     // 3D CUSTOM CURSOR SYSTEM
     // ================================
@@ -81,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.z = Math.random() * 1000;
             this.size = Math.random() * 3 + 1;
             this.speed = Math.random() * 2 + 1;
-            this.color = ['#00d4ff', '#32cd32', '#764ba2', '#feca57'][Math.floor(Math.random() * 4)];
+            this.color = ['#ff003c', '#32cd32', '#764ba2', '#feca57'][Math.floor(Math.random() * 4)];
             this.rotation = 0;
             this.rotationSpeed = Math.random() * 0.02 + 0.01;
         }
@@ -622,7 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (navLogo) {
             navLogo.addEventListener('mouseenter', () => {
                 navLogo.style.transform = 'scale(1.1) rotateX(10deg) rotateY(5deg)';
-                navLogo.style.textShadow = '0 0 50px rgba(0, 212, 255, 0.8)';
+                navLogo.style.textShadow = '0 0 50px rgba(255, 0, 60, 0.8)';
             });
             
             navLogo.addEventListener('mouseleave', () => {
