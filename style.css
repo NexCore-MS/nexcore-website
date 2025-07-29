@@ -21,7 +21,9 @@
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.8);
     --text-tertiary: rgba(255, 255, 255, 0.6);
+    --text-muted-color: rgba(255, 255, 255, 0.5);
     --text-accent: #00d4ff;
+    --primary-accent-color: #00d4ff;
     
     /* 3D Colors */
     --neon-blue: #00d4ff;
